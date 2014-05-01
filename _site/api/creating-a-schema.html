@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width">
+
+        <title>Supplejack : Creating a Schema</title>
+        <meta name="description" content="Documentation for the Supplejack stack">
+
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/supplejack/css/syntax.css">
+        <link rel="stylesheet" href="/supplejack/css/main.css">
+    </head>
+    <body>
+
+        <div class="container">
+            <div class=row-fluid>
+                <div id=header class=span12>
+                    <h4><a class=brand href="/supplejack/">Supplejack</a>
+    <small>Documentation for the Supplejack stack</small>
+</h4>
+
+
+                </div>
+            </div>
+
+            <div class=row-fluid>
+                
+                
+                    <div id=navigation class=span2>
+                        <ul class="nav nav-list">
+    <li><a href="/supplejack/">Home</a></li>
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Getting started</li>
+            
+            <li data-order="2"><a href="/supplejack/start/install-setup.html">Install & Setup</a></li>
+        
+            
+            <li data-order="1"><a href="/supplejack/start/dependancies.html">Dependancies</a></li>
+        
+            
+            <li data-order="5"><a href="/supplejack/start/supplejack-worker.html">Supplejack Worker</a></li>
+        
+            
+            <li data-order="4"><a href="/supplejack/start/supplejack-manager.html">Supplejack Manager</a></li>
+        
+            
+            <li data-order="3"><a href="/supplejack/start/supplejack-api.html">Supplejack API</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Using the API</li>
+            
+            <li data-order=""><a href="/supplejack/api/creating-a-schema.html">Creating a Schema</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Using the manger</li>
+            
+            <li data-order=""><a href="/supplejack/manager/parser-dsl-domain-specific-language.html">Parser DSL (Domain Specific Language)</a></li>
+        
+            
+            <li data-order=""><a href="/supplejack/manager/validations.html">Validations</a></li>
+        
+            
+            <li data-order=""><a href="/supplejack/manager/xml-namespaces.html">XML Namespaces</a></li>
+        
+            
+            <li data-order=""><a href="/supplejack/manager/attribute-transformation-options.html">Attribute Transformation Options</a></li>
+        
+            
+            <li data-order=""><a href="/supplejack/manager/enrichments.html">Enrichments</a></li>
+        
+            
+            <li data-order=""><a href="/supplejack/manager/modifiers.html">Modifiers</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Developers</li>
+            
+            <li data-order="1"><a href="/supplejack/dev/licence.html">Licence</a></li>
+        
+            
+            <li data-order="3"><a href="/supplejack/dev/changelog.html">Changelog</a></li>
+        
+    
+<!-- List additional links. It is recommended to add a divider
+    e.g. <li class=divider></li> first to break up the content. -->
+</ul>
+
+                    </div>
+
+                    <div id=content class=span10>
+                        <div class=page-header>
+    <h2>Creating a Schema
+        
+    </h2>
+</div>
+
+<p>The heart of the Supplejack API is the Schema. This defines the fields for each record and how those fields should be stored and searched. It also defines the different user roles and any restrictions for those roles.</p>
+
+<h2 id="toc_0">Fields</h2>
+
+<h3 id="toc_1">Types</h3>
+
+<p>Fields can be one of four types: String, Integer, Boolean or Datetime. When defining your fields in your schema you must declare the type of the field first</p>
+<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="c1"># Comments show example data that would be stored</span>
+<span class="n">string</span>   <span class="ss">:name</span>         <span class="c1"># &quot;Joe Smith&quot;</span>
+<span class="n">integer</span>  <span class="ss">:age</span>          <span class="c1"># 32</span>
+<span class="n">datetime</span> <span class="ss">:birthdate</span>    <span class="c1"># 2006-08-07T00:00:00.000Z</span>
+<span class="n">boolean</span>  <span class="ss">:employed</span>     <span class="c1"># true</span>
+</code></pre></div>
+<h3 id="toc_2">Multi value fields</h3>
+
+<p>Fields can be defined as multi value. This means that data will be stored as an array of values
+<code>ruby
+string :email,  multi_value: true   # e.g. [&quot;joe@test.com&quot;, &quot;joe.smith@example.com&quot;]
+</code></p>
+
+<h3 id="toc_3">Search</h3>
+
+<h4 id="toc_4">Search boost</h4>
+
+<p>Defining a search boost will add a boost to relevancy of the field when searching for records in SOLR. </p>
+<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="n">string</span> <span class="ss">:name</span><span class="p">,</span>    <span class="n">search_boost</span><span class="p">:</span> <span class="mi">10</span>
+<span class="n">string</span> <span class="ss">:address</span><span class="p">,</span> <span class="n">search_boost</span><span class="p">:</span> <span class="mi">2</span>
+</code></pre></div>
+<p>In the above example a search that matches values in the name field would receive a higher ranking than ones which match the address field.</p>
+
+<h4 id="toc_5">Search as</h4>
+
+<p>How the SOLR should search the field. Can either be filter, fulltext or both.<br>
+<strong>Fulltext</strong>:
+<strong>Filter</strong>:</p>
+<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="n">string</span> <span class="ss">:name</span><span class="p">,</span>     <span class="n">search_as</span><span class="p">:</span> <span class="o">[</span><span class="ss">:filter</span><span class="p">,</span> <span class="ss">:fulltext</span><span class="o">]</span>
+<span class="n">string</span> <span class="ss">:address</span><span class="p">,</span>  <span class="n">search_as</span><span class="p">:</span> <span class="o">[</span><span class="ss">:fulltext</span><span class="o">]</span>
+</code></pre></div>
+<h4 id="toc_6">Search value</h4>
+
+<h4 id="toc_7">Store</h4>
+
+<h2 id="toc_8">Groups</h2>
+
+<p>Groups allow you to collect several fields together and reference them using a single value. Groups are used when determining which fields to return if none are specified in the request. This means that you must always define at least the &#39;default&#39; group.</p>
+<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="n">group</span> <span class="ss">:default</span> <span class="k">do</span>
+  <span class="n">fields</span> <span class="o">[</span>
+    <span class="ss">:name</span><span class="p">,</span>
+    <span class="ss">:address</span>
+  <span class="o">]</span>
+<span class="k">end</span>
+
+<span class="n">group</span> <span class="ss">:all_fields</span> <span class="k">do</span>
+  <span class="n">includes</span> <span class="o">[</span><span class="ss">:default</span><span class="o">]</span>   <span class="c1"># NOTE: Groups can include other groups</span>
+  <span class="n">fields</span> <span class="o">[</span>
+    <span class="ss">:age</span><span class="p">,</span>
+    <span class="ss">:gender</span><span class="p">,</span>
+    <span class="ss">:email</span><span class="p">,</span>
+    <span class="ss">:phone</span>
+  <span class="o">]</span>
+<span class="k">end</span>
+</code></pre></div><div class="highlight"><pre><code class="json language-json" data-lang="json"><span class="err">//</span> <span class="err">Sample</span> <span class="err">requests</span> <span class="err">with</span> <span class="err">different</span> <span class="err">groups</span>
+<span class="err">//</span> <span class="err">api.supplejack.com/records/</span><span class="mi">123</span><span class="err">.json?api_key=abc</span><span class="mi">123</span>
+<span class="p">{</span>
+  <span class="nt">&quot;record&quot;</span><span class="p">:</span> <span class="p">{</span>
+     <span class="err">name:</span> <span class="nt">&quot;Joe Smith&quot;</span><span class="p">,</span>
+     <span class="err">address:</span> <span class="nt">&quot;123 Smith St, Wellington, New Zealand&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="err">//</span> <span class="err">api.supplejack.com/records/</span><span class="mi">123</span><span class="err">.json?api_key=abc</span><span class="mi">123</span><span class="err">&amp;fields=all_fields</span>
+<span class="p">{</span>
+  <span class="nt">&quot;record&quot;</span><span class="p">:</span> <span class="p">{</span>
+     <span class="err">name:</span> <span class="nt">&quot;Joe Smith&quot;</span><span class="p">,</span>
+     <span class="err">address:</span> <span class="nt">&quot;123 Smith St, Wellington, New Zealand&quot;</span><span class="p">,</span>
+     <span class="err">age:</span> <span class="err">32</span>
+     <span class="err">gender:</span> <span class="nt">&quot;male&quot;</span>
+     <span class="err">email</span><span class="p">:</span> <span class="s2">&quot;joe@test.com&quot;</span>
+     <span class="err">phone</span><span class="p">:</span> <span class="s2">&quot;07 123 5457&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="toc_9">Roles</h2>
+
+<p>You are able to define several roles for users of the API. These can be used to expose different fields </p>
+
+<h3 id="toc_10">Restrictions</h3>
+
+<h3 id="toc_11">Copy of the example schema that is created after install</h3>
+<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Schema</span> <span class="o">&lt;</span> <span class="no">SupplejackApi</span><span class="o">::</span><span class="no">SupplejackSchema</span>
+
+  <span class="c1"># Fields</span>
+  <span class="n">string</span>    <span class="ss">:name</span><span class="p">,</span>         <span class="n">search_boost</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>      <span class="n">search_as</span><span class="p">:</span> <span class="o">[</span><span class="ss">:filter</span><span class="p">,</span> <span class="ss">:fulltext</span><span class="o">]</span>
+  <span class="n">string</span>    <span class="ss">:address</span><span class="p">,</span>      <span class="n">search_boost</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>       <span class="n">search_as</span><span class="p">:</span> <span class="o">[</span><span class="ss">:filter</span><span class="p">,</span> <span class="ss">:fulltext</span><span class="o">]</span>
+  <span class="n">string</span>    <span class="ss">:email</span><span class="p">,</span>        <span class="n">multi_value</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>     <span class="n">search_as</span><span class="p">:</span> <span class="o">[</span><span class="ss">:filter</span><span class="o">]</span>
+  <span class="n">string</span>    <span class="ss">:children</span><span class="p">,</span>     <span class="n">multi_value</span><span class="p">:</span> <span class="kp">true</span>
+  <span class="n">string</span>    <span class="ss">:contact</span><span class="p">,</span>      <span class="n">multi_value</span><span class="p">:</span> <span class="kp">true</span>
+  <span class="n">integer</span>   <span class="ss">:age</span>
+  <span class="n">datetime</span>  <span class="ss">:birth_date</span>
+  <span class="n">boolean</span>   <span class="ss">:nz_citizen</span><span class="p">,</span>                          <span class="n">search_as</span><span class="p">:</span> <span class="o">[</span><span class="ss">:filter</span><span class="o">]</span>
+
+  <span class="c1"># Groups</span>
+  <span class="n">group</span> <span class="ss">:default</span> <span class="k">do</span>
+    <span class="n">fields</span> <span class="o">[</span>
+      <span class="ss">:name</span><span class="p">,</span>
+      <span class="ss">:address</span>
+    <span class="o">]</span>
+  <span class="k">end</span>
+  <span class="n">group</span> <span class="ss">:all</span> <span class="k">do</span>
+    <span class="n">includes</span> <span class="o">[</span><span class="ss">:default</span><span class="o">]</span>
+    <span class="n">fields</span> <span class="o">[</span>
+      <span class="ss">:email</span><span class="p">,</span>
+      <span class="ss">:children</span><span class="p">,</span>
+      <span class="ss">:nz_citizen</span><span class="p">,</span>
+      <span class="ss">:birth_date</span><span class="p">,</span>
+      <span class="ss">:age</span>
+    <span class="o">]</span>
+  <span class="k">end</span>
+
+   <span class="c1"># Roles</span>
+  <span class="n">role</span> <span class="ss">:developer</span> <span class="k">do</span>
+    <span class="n">default</span> <span class="kp">true</span>
+  <span class="k">end</span>
+  <span class="n">role</span> <span class="ss">:admin</span>
+
+<span class="k">end</span>
+</code></pre></div>
+
+                    </div>
+                
+            </div>
+
+            <div class=row-fluid>
+                <div id=footer class=span12>
+                    Documentation for <a href="https://github.com/DigitalNZ/supplejack_api">Supplejack</a>
+
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function orderNav() {
+                var list,
+                    section,
+                    header,
+                    sections = [],
+                    lists = {},
+                    headers = {};
+
+                var navUl = document.querySelectorAll('#navigation ul')[0],
+                    navLis = document.querySelectorAll('#navigation ul li');
+
+                if (!navUl) return;
+
+                for (var i = 0; i < navLis.length; i++) {
+                    var order, li = navLis[i];
+
+                    if (li.classList.contains('nav-header')) {
+                        section = li.textContent || li.innerText;
+                        sections.push(section);
+                        headers[section] = li;
+                        continue;
+                    }
+
+                    if (!lists[section]) {
+                        lists[section] = [];
+                    }
+
+                    order = parseFloat(li.getAttribute('data-order'))
+                    lists[section].push([order, li]);
+                }
+
+                for (var i = 0; i < sections.length; i++) {
+                    section = sections[i];
+                    list = lists[section].sort(function(a, b) {
+                        return a[0] - b[0];
+                    });
+
+                    if (header = headers[section]) {
+                        navUl.appendChild(header);
+                    }
+                    for (var j = 0; j < list.length; j++) {
+                        navUl.appendChild(list[j][1]);
+                    }
+                }
+            }
+
+            if (document.querySelectorAll) orderNav();
+        </script>
+    </body>
+</html>

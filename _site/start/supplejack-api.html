@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width">
 
-        <title>Supplejack : Supplejack Worker</title>
+        <title>Supplejack : Supplejack API</title>
         <meta name="description" content="Documentation for the Supplejack stack">
 
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
@@ -37,26 +37,56 @@
 
         
             
-                <li class=nav-header>Documentation</li>
+                <li class=nav-header>Getting started</li>
             
-            <li data-order="2"><a href="/supplejack/doc/install-setup.html">Install & Setup</a></li>
+            <li data-order="2"><a href="/supplejack/start/install-setup.html">Install & Setup</a></li>
         
             
-            <li data-order="1"><a href="/supplejack/doc/dependancies.html">Dependancies</a></li>
+            <li data-order="1"><a href="/supplejack/start/dependancies.html">Dependancies</a></li>
         
             
-            <li data-order="5"><a href="/supplejack/doc/supplejack-worker.html">Supplejack Worker</a></li>
+            <li data-order="5"><a href="/supplejack/start/supplejack-worker.html">Supplejack Worker</a></li>
         
             
-            <li data-order="4"><a href="/supplejack/doc/supplejack-manager.html">Supplejack Manager</a></li>
+            <li data-order="4"><a href="/supplejack/start/supplejack-manager.html">Supplejack Manager</a></li>
         
             
-            <li data-order="3"><a href="/supplejack/doc/supplejack-api.html">Supplejack API</a></li>
+            <li data-order="3"><a href="/supplejack/start/supplejack-api.html">Supplejack API</a></li>
         
     
         
         
 
+        
+            
+                <li class=nav-header>Using the API</li>
+            
+            <li data-order=""><a href="/supplejack/api/creating-a-schema.html">Creating a Schema</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Using the manger</li>
+            
+            <li data-order=""><a href="/supplejack/manager/parser-dsl-domain-specific-language.html">Parser DSL (Domain Specific Language)</a></li>
+        
+            
+            <li data-order=""><a href="/supplejack/manager/validations.html">Validations</a></li>
+        
+            
+            <li data-order=""><a href="/supplejack/manager/xml-namespaces.html">XML Namespaces</a></li>
+        
+            
+            <li data-order=""><a href="/supplejack/manager/attribute-transformation-options.html">Attribute Transformation Options</a></li>
+        
+            
+            <li data-order=""><a href="/supplejack/manager/enrichments.html">Enrichments</a></li>
+        
+            
+            <li data-order=""><a href="/supplejack/manager/modifiers.html">Modifiers</a></li>
         
     
         
@@ -72,16 +102,6 @@
             <li data-order="3"><a href="/supplejack/dev/changelog.html">Changelog</a></li>
         
     
-        
-        
-
-        
-    
-        
-        
-
-        
-    
 <!-- List additional links. It is recommended to add a divider
     e.g. <li class=divider></li> first to break up the content. -->
 </ul>
@@ -90,20 +110,23 @@
 
                     <div id=content class=span10>
                         <div class=page-header>
-    <h2>Supplejack Worker
+    <h2>Supplejack API
         
     </h2>
 </div>
 
-<p>The harvester worker is a rails application that uses <a href="http://sidekiq.org/">Sidekiq</a> to run all of the various jobs that occur in the harvesting and link checking process.</p>
+<p>The Supplejack API is a <a href="http://guides.rubyonrails.org/engines.html">mountable engine</a> which provides functionality to store, index and retrieve metadata via an API.</p>
 
-<h3 id="toc_0">Harvesting jobs</h3>
+<p>This wiki provides a guide on how to create and configure your API as well as an introduction to the rest of the Supplejack project.</p>
 
-<p>These use the harvester core gem to interpret a given parser which it uses to generate records and posts them to the Supplejack API (this is a simplified overview of the process).</p>
+<h2 id="toc_0">Getting started</h2>
 
-<h3 id="toc_1">Link checking jobs</h3>
+<p>Before starting you should check that you have all the <a href="Dependancies">dependancies</a> installed.</p>
 
-<p>There are two kinds of link checking. Collection checking checks a few records from a collection and suppresses collections which are unavailable. Record checking checks individual records which have been visited recently (in the API) and suppresses records which are unavailable.</p>
+<p>Once that is complete we strongly recommend using the <a href="https://github.com/DigitalNZ/supplejack_template">Supplejack template</a> to create your app. This template will create a new app which includes the Supplejack API engine and then step through the configuration options. To install using the template simply run the following command from the command line</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">rails _3.2.12_ new mysupplejack_api -m https://raw.github.com/digitalnz/supplejack_template/master/template.rb
+</code></pre></div>
+<p>Once the install is complete you should have a working API. The next step is to <a href="Schema">configure your schema</a> so that you can configure the fields that are stored/returned by your API.</p>
 
 
                     </div>

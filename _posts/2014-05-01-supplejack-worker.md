@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Supplejack Worker"
-category: doc
+category: start
 date: 2014-05-01 15:01:48
 order: 5
 ---
