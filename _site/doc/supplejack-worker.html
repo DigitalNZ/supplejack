@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width">
 
-        <title>Supplejack : Supplejack</title>
+        <title>Supplejack : Supplejack Worker</title>
         <meta name="description" content="Documentation for the Supplejack stack">
 
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
@@ -89,11 +89,22 @@
                     </div>
 
                     <div id=content class=span10>
-                        <h3 id="toc_0">What is Supplejack?</h3>
+                        <div class=page-header>
+    <h2>Supplejack Worker
+        
+    </h2>
+</div>
 
-<p>Supplejack was built by <a href="http://digitalnz.org">DigitalNZ</a>....</p>
+<p>The harvester worker is a rails application that uses <a href="http://sidekiq.org/">Sidekiq</a> to run all of the various jobs that occur in the harvesting and link checking process.</p>
 
-<h3 id="toc_1">Getting started</h3>
+<h3 id="toc_0">Harvesting jobs</h3>
+
+<p>These use the harvester core gem to interpret a given parser which it uses to generate records and posts them to the Supplejack API (this is a simplified overview of the process).</p>
+
+<h3 id="toc_1">Link checking jobs</h3>
+
+<p>There are two kinds of link checking. Collection checking checks a few records from a collection and suppresses collections which are unavailable. Record checking checks individual records which have been visited recently (in the API) and suppresses records which are unavailable.</p>
+
 
                     </div>
                 

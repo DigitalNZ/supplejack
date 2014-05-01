@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width">
 
-        <title>Supplejack : Supplejack</title>
+        <title>Supplejack : Supplejack API</title>
         <meta name="description" content="Documentation for the Supplejack stack">
 
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
@@ -89,11 +89,25 @@
                     </div>
 
                     <div id=content class=span10>
-                        <h3 id="toc_0">What is Supplejack?</h3>
+                        <div class=page-header>
+    <h2>Supplejack API
+        
+    </h2>
+</div>
 
-<p>Supplejack was built by <a href="http://digitalnz.org">DigitalNZ</a>....</p>
+<p>The Supplejack API is a <a href="http://guides.rubyonrails.org/engines.html">mountable engine</a> which provides functionality to store, index and retrieve metadata via an API.</p>
 
-<h3 id="toc_1">Getting started</h3>
+<p>This wiki provides a guide on how to create and configure your API as well as an introduction to the rest of the Supplejack project.</p>
+
+<h2 id="toc_0">Getting started</h2>
+
+<p>Before starting you should check that you have all the <a href="Dependancies">dependancies</a> installed.</p>
+
+<p>Once that is complete we strongly recommend using the <a href="https://github.com/DigitalNZ/supplejack_template">Supplejack template</a> to create your app. This template will create a new app which includes the Supplejack API engine and then step through the configuration options. To install using the template simply run the following command from the command line</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">rails _3.2.12_ new mysupplejack_api -m https://raw.github.com/digitalnz/supplejack_template/master/template.rb
+</code></pre></div>
+<p>Once the install is complete you should have a working API. The next step is to <a href="Schema">configure your schema</a> so that you can configure the fields that are stored/returned by your API.</p>
+
 
                     </div>
                 

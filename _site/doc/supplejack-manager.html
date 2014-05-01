@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width">
 
-        <title>Supplejack : Supplejack</title>
+        <title>Supplejack : Supplejack Manager</title>
         <meta name="description" content="Documentation for the Supplejack stack">
 
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
@@ -89,11 +89,37 @@
                     </div>
 
                     <div id=content class=span10>
-                        <h3 id="toc_0">What is Supplejack?</h3>
+                        <div class=page-header>
+    <h2>Supplejack Manager
+        
+    </h2>
+</div>
 
-<p>Supplejack was built by <a href="http://digitalnz.org">DigitalNZ</a>....</p>
+<p>The harvester manager is a rails application that provides a visual interface into the harvesting and link checking processes within the harvester worker. The manager uses active resource to interface into the workers models using a restful interface. It allows the harvest operator to do the following:</p>
 
-<h3 id="toc_1">Getting started</h3>
+<ul>
+<li>Create parsers.</li>
+<li>Run/view harvests.</li>
+<li>Schedule harvests.</li>
+<li>Preview a record before it is harvested.</li>
+<li>Define parser templates.</li>
+<li>Suppress a collection in the Supplejack API.</li>
+<li>View all suppressed collections in the Supplejack API.</li>
+<li>Define rules for checking links in the Supplejack API.</li>
+<li>View the statistics for the link checker</li>
+</ul>
+
+<h2 id="toc_0">Writing parser scripts</h2>
+
+<ul>
+<li>[[Parser DSL (Domain Specific Language)|Parser-DSL-(Domain-Specific-Language)]]</li>
+<li>[[Validations|Validations]]</li>
+<li>[[XML-Namespaces|XML-Namespaces]]</li>
+<li>[[Attribute-Transformation-Options|Attribute-Transformation-Options]]</li>
+<li>[[Enrichment|Enrichment]]</li>
+<li>[[Modifiers|Modifiers]]</li>
+</ul>
+
 
                     </div>
                 

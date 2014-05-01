@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width">
 
-        <title>Supplejack : Supplejack</title>
+        <title>Supplejack : Dependancies</title>
         <meta name="description" content="Documentation for the Supplejack stack">
 
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
@@ -89,11 +89,47 @@
                     </div>
 
                     <div id=content class=span10>
-                        <h3 id="toc_0">What is Supplejack?</h3>
+                        <div class=page-header>
+    <h2>Dependancies
+        
+    </h2>
+</div>
 
-<p>Supplejack was built by <a href="http://digitalnz.org">DigitalNZ</a>....</p>
+<p>Supplejack requires the following to run the full stack. Please review this page carefully as some of these dependancies are version specific and failure to use the correct versions will cause problems.</p>
 
-<h3 id="toc_1">Getting started</h3>
+<h3 id="toc_0">Ruby</h3>
+
+<p><strong>Version: 1.9.3</strong></p>
+
+<p><strong>Description</strong>: Ruby is the language we use for all of the supplejack components. This is because we use the ruby on rails framework.</p>
+
+<p><strong>Installation instructions:</strong> We reccomend using RBENV to manage your ruby versions here is some information about how to install ruby with rbenv: <a href="https://github.com/sstephenson/rbenv">https://github.com/sstephenson/rbenv</a>.</p>
+
+<h3 id="toc_1">Mongo</h3>
+
+<p><strong>Version: 2.2 or greater</strong></p>
+
+<p><strong>Description</strong>: Supplejack uses mongo as a data store for all of it&#39;s components. You can find out more about mongo on their website or on the wikipedia page.</p>
+
+<p><strong>Installation Instructions:</strong> <a href="http://docs.mongodb.org/manual/installation/">http://docs.mongodb.org/manual/installation/</a>.</p>
+
+<h3 id="toc_2">Redis</h3>
+
+<p><strong>Version: 2.4 or greater</strong></p>
+
+<p><strong>Description:</strong> Supplejack uses redis for sidekiq and for resque as they both require redis as a concurrency safe data store. You can find out more about redis on their website or on the wikipedia page.</p>
+
+<p><strong>Installation instructions</strong>: <a href="http://redis.io/download">http://redis.io/download</a>, if you are using Mac OSX we would recommend using brew for installing redis with the following command: <code>brew install redis</code></p>
+
+<h3 id="toc_3">SOLR</h3>
+
+<p><strong>Version: 4.1</strong></p>
+
+<p><strong>Description:</strong> SOLR is used for full-text searching of records in supplejack.</p>
+
+<p><strong>Installation instructions:</strong> Most of the installation of SOLR is already done for you when you bundle the Supplejack API application. The sunspot-solr gem comes with an older version of SOLR so it&#39;s just a matter of upgrading the version of SOLR that sunspot-solr is using.<br>
+<strong>Note:</strong> You will have to upgrade SOLR after you have completed the installed process. You can find information on <a href="https://github.com/sunspot/sunspot/wiki/Upgrading-sunspot_solr-Solr-Instance">how to do that here</a>.</p>
+
 
                     </div>
                 
