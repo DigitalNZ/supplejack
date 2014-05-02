@@ -6,37 +6,90 @@ date: 2014-05-01 15:02:23
 order: 2
 ---
 
-Supplejack requires the following to run the full stack. Please review this page carefully as some of these dependancies are version specific and failure to use the correct versions will cause problems.
+Once you have installed all the [dependancies](supplejack/start/dependancies.html) you are now ready to install the rest of the stack. As all the components require configuration to interact we strongly recommend that you use the Rails Application templates that are provided for Supplejack.
 
-### Ruby
+## Install the entire stack
 
-**Version: 1.9.3**
+This script creates a new app using the Supplejack API and then installs and configures the Supplejack Manager and Supplejack Worker applications.
 
-**Description**: Ruby is the language we use for all of the supplejack components. This is because we use the ruby on rails framework.
+Once complete you will be able to access your API and harvest new data from exteranl sources. 
 
-**Installation instructions:** We reccomend using RBENV to manage your ruby versions here is some information about how to install ruby with rbenv: https://github.com/sstephenson/rbenv.
+To install the full stack run the following command  
 
-### Mongo
+#### This install template is NOT complete and will be available soon...
 
-**Version: 2.2 or greater**
+```bash
+rails _3.2.12_ new mysupplejack_api_name -m https://raw.github.com/digitalnz/supplejack_template/master/supplejack_template.rb
+```
 
-**Description**: Supplejack uses mongo as a data store for all of it's components. You can find out more about mongo on their website or on the wikipedia page.
+Once this is complete you do not need to run the commands below as all three components will be installed
 
-**Installation Instructions:** http://docs.mongodb.org/manual/installation/.
+## Install separate components
 
-### Redis
+### Installing the API
 
-**Version: 2.4 or greater**
+To create a new app using the Supplejack API engine run the following command
 
-**Description:** Supplejack uses redis for sidekiq and for resque as they both require redis as a concurrency safe data store. You can find out more about redis on their website or on the wikipedia page.
+```bash
+rails _3.2.12_ new mysupplejack_api_name -m https://raw.github.com/digitalnz/supplejack_template/master/supplejack_api_template.rb
+```
+**Note:** Be sure to note down the user API key that is printed to the terminal during the install process.
 
-**Installation instructions**: http://redis.io/download, if you are using Mac OSX we would recommend using brew for installing redis with the following command: `brew install redis`
+This will create a new Rails app with the Supplejack API engine configured. After running the command you will be able access http://localhost:3000/records.json?api_key=_USER-API-KEY_ in your browser to view records from your API.  
 
-### SOLR
+### Installing the Supplejack Manager and Supplejack Worker
 
-**Version: 4.1**
+**Prerequisites** 
 
-**Description:** SOLR is used for full-text searching of records in supplejack.
+- The MongoDB database is running.  
+- Supplejack API installed and running.  
 
-**Installation instructions:** Most of the installation of SOLR is already done for you when you bundle the Supplejack API application. The sunspot-solr gem comes with an older version of SOLR so it's just a matter of upgrading the version of SOLR that sunspot-solr is using.  
-**Note:** You will have to upgrade SOLR after you have completed the installed process. You can find information on [how to do that here](https://github.com/sunspot/sunspot/wiki/Upgrading-sunspot_solr-Solr-Instance).
+##### This section is NOT complete and will be updated soon...
+
+Clone the [Supplejack Manager](https://github.com/DigitalNZ/supplejack_manager) and the [Supplejack Worker](https://github.com/DigitalNZ/supplejack_worker) from Github. You require both applications as the Supplejack Manager creates jobs in the Supplejack Worker to process jobs in the background. 
+
+In simple terms, the Supplejack Manger has two purposes. 
+1. Create and manage [Parsers](supplejack/manager/parser-dsl-domain-specific-language.html).
+2. Create and mange jobs which the Supplejack Worker will process.
+
+In order for the Supplejack Manager to create the jobs it requires some information about the Supplejack Worker and vice versa. This information is stored in config/application.yml. We have provided an example for your reference in each application. You will also need to update the WORKER_API_URL and HARVESTER_IPS values in your API application.yml
+
+```yaml
+# Example Supplejack Manager application.yml file
+
+development:
+  WORKER_HOST: "http://localhost:3002"
+  WORKER_API_KEY: "rq6umblebJqPztcefxC8sX"
+  HARVESTER_CACHING_ENABLED: true
+  HONEYBADGER_API_KEY: "cd199c3f"
+  API_HOST: "http://localhost:3000"
+  API_MONGOID_HOSTS: "localhost:27017"
+
+test:
+  WORKER_HOST: "http://localhost:3002"
+  WORKER_API_KEY: "12345"
+  HARVESTER_CACHING_ENABLED: false
+  HONEYBADGER_API_KEY: "cd199c3f"
+  API_HOST: "http://localhost:3000"
+  API_MONGOID_HOSTS: localhost
+```
+
+Once all the applications have been configured you can then run all of them locally to test harvesting. We recommend running each application on a different port to avoid conflicts.
+
+```bash
+# From /path/to/api
+bundle exec rails s 
+
+# From /path/to/manager
+bundle exec rails s -p 3001
+
+# From /path/to/worker
+bundle exec rails s -p 3002
+```
+
+The final step is to run sidekiq within the worker directory you can do this by running the following command:
+
+```
+bundle exec sidekiq
+```
+

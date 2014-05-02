@@ -61,7 +61,10 @@
             
                 <li class=nav-header>Using the API</li>
             
-            <li data-order=""><a href="/supplejack/api/creating-a-schema.html">Creating a Schema</a></li>
+            <li data-order="2"><a href="/supplejack/api/schema-dsl-domain-specific-language.html">Schema DSL (Domain Specific Language)</a></li>
+        
+            
+            <li data-order="1"><a href="/supplejack/api/creating-a-schema.html">Creating a Schema</a></li>
         
     
         
@@ -110,46 +113,86 @@
 
                     <div id=content class=span10>
                         <div class=page-header>
-    <h2>Install & Setup
+    <h1>Install & Setup
         
-    </h2>
+    </h1>
 </div>
 
-<p>Supplejack requires the following to run the full stack. Please review this page carefully as some of these dependancies are version specific and failure to use the correct versions will cause problems.</p>
+<p>Once you have installed all the <a href="supplejack/start/dependancies.html">dependancies</a> you are now ready to install the rest of the stack. As all the components require configuration to interact we strongly recommend that you use the Rails Application templates that are provided for Supplejack.</p>
 
-<h3 id="toc_0">Ruby</h3>
+<h2 id="toc_0">Install the entire stack</h2>
 
-<p><strong>Version: 1.9.3</strong></p>
+<p>This script creates a new app using the Supplejack API and then installs and configures the Supplejack Manager and Supplejack Worker applications.</p>
 
-<p><strong>Description</strong>: Ruby is the language we use for all of the supplejack components. This is because we use the ruby on rails framework.</p>
+<p>Once complete you will be able to access your API and harvest new data from exteranl sources. </p>
 
-<p><strong>Installation instructions:</strong> We reccomend using RBENV to manage your ruby versions here is some information about how to install ruby with rbenv: <a href="https://github.com/sstephenson/rbenv">https://github.com/sstephenson/rbenv</a>.</p>
+<p>To install the full stack run the following command  </p>
 
-<h3 id="toc_1">Mongo</h3>
+<h4 id="toc_1">This install template is NOT complete and will be available soon...</h4>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">rails _3.2.12_ new mysupplejack_api_name -m https://raw.github.com/digitalnz/supplejack_template/master/supplejack_template.rb
+</code></pre></div>
+<p>Once this is complete you do not need to run the commands below as all three components will be installed</p>
 
-<p><strong>Version: 2.2 or greater</strong></p>
+<h2 id="toc_2">Install separate components</h2>
 
-<p><strong>Description</strong>: Supplejack uses mongo as a data store for all of it&#39;s components. You can find out more about mongo on their website or on the wikipedia page.</p>
+<h3 id="toc_3">Installing the API</h3>
 
-<p><strong>Installation Instructions:</strong> <a href="http://docs.mongodb.org/manual/installation/">http://docs.mongodb.org/manual/installation/</a>.</p>
+<p>To create a new app using the Supplejack API engine run the following command</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">rails _3.2.12_ new mysupplejack_api_name -m https://raw.github.com/digitalnz/supplejack_template/master/supplejack_api_template.rb
+</code></pre></div>
+<p><strong>Note:</strong> Be sure to note down the user API key that is printed to the terminal during the install process.</p>
 
-<h3 id="toc_2">Redis</h3>
+<p>This will create a new Rails app with the Supplejack API engine configured. After running the command you will be able access http://localhost:3000/records.json?api_key=_USER-API-KEY_ in your browser to view records from your API.  </p>
 
-<p><strong>Version: 2.4 or greater</strong></p>
+<h3 id="toc_4">Installing the Supplejack Manager and Supplejack Worker</h3>
 
-<p><strong>Description:</strong> Supplejack uses redis for sidekiq and for resque as they both require redis as a concurrency safe data store. You can find out more about redis on their website or on the wikipedia page.</p>
+<p><strong>Prerequisites</strong> </p>
 
-<p><strong>Installation instructions</strong>: <a href="http://redis.io/download">http://redis.io/download</a>, if you are using Mac OSX we would recommend using brew for installing redis with the following command: <code>brew install redis</code></p>
+<ul>
+<li>The MongoDB database is running.<br></li>
+<li>Supplejack API installed and running.<br></li>
+</ul>
 
-<h3 id="toc_3">SOLR</h3>
+<h5 id="toc_5">This section is NOT complete and will be updated soon...</h5>
 
-<p><strong>Version: 4.1</strong></p>
+<p>Clone the <a href="https://github.com/DigitalNZ/supplejack_manager">Supplejack Manager</a> and the <a href="https://github.com/DigitalNZ/supplejack_worker">Supplejack Worker</a> from Github. You require both applications as the Supplejack Manager creates jobs in the Supplejack Worker to process jobs in the background. </p>
 
-<p><strong>Description:</strong> SOLR is used for full-text searching of records in supplejack.</p>
+<p>In simple terms, the Supplejack Manger has two purposes. 
+1. Create and manage <a href="supplejack/manager/parser-dsl-domain-specific-language.html">Parsers</a>.
+2. Create and mange jobs which the Supplejack Worker will process.</p>
 
-<p><strong>Installation instructions:</strong> Most of the installation of SOLR is already done for you when you bundle the Supplejack API application. The sunspot-solr gem comes with an older version of SOLR so it&#39;s just a matter of upgrading the version of SOLR that sunspot-solr is using.<br>
-<strong>Note:</strong> You will have to upgrade SOLR after you have completed the installed process. You can find information on <a href="https://github.com/sunspot/sunspot/wiki/Upgrading-sunspot_solr-Solr-Instance">how to do that here</a>.</p>
+<p>In order for the Supplejack Manager to create the jobs it requires some information about the Supplejack Worker and vice versa. This information is stored in config/application.yml. We have provided an example for your reference in each application. You will also need to update the WORKER_API_URL and HARVESTER_IPS values in your API application.yml</p>
+<div class="highlight"><pre><code class="yaml language-yaml" data-lang="yaml"><span class="c1"># Example Supplejack Manager application.yml file</span>
 
+<span class="l-Scalar-Plain">development</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">WORKER_HOST</span><span class="p-Indicator">:</span> <span class="s">&quot;http://localhost:3002&quot;</span>
+  <span class="l-Scalar-Plain">WORKER_API_KEY</span><span class="p-Indicator">:</span> <span class="s">&quot;rq6umblebJqPztcefxC8sX&quot;</span>
+  <span class="l-Scalar-Plain">HARVESTER_CACHING_ENABLED</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+  <span class="l-Scalar-Plain">HONEYBADGER_API_KEY</span><span class="p-Indicator">:</span> <span class="s">&quot;cd199c3f&quot;</span>
+  <span class="l-Scalar-Plain">API_HOST</span><span class="p-Indicator">:</span> <span class="s">&quot;http://localhost:3000&quot;</span>
+  <span class="l-Scalar-Plain">API_MONGOID_HOSTS</span><span class="p-Indicator">:</span> <span class="s">&quot;localhost:27017&quot;</span>
+
+<span class="l-Scalar-Plain">test</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">WORKER_HOST</span><span class="p-Indicator">:</span> <span class="s">&quot;http://localhost:3002&quot;</span>
+  <span class="l-Scalar-Plain">WORKER_API_KEY</span><span class="p-Indicator">:</span> <span class="s">&quot;12345&quot;</span>
+  <span class="l-Scalar-Plain">HARVESTER_CACHING_ENABLED</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+  <span class="l-Scalar-Plain">HONEYBADGER_API_KEY</span><span class="p-Indicator">:</span> <span class="s">&quot;cd199c3f&quot;</span>
+  <span class="l-Scalar-Plain">API_HOST</span><span class="p-Indicator">:</span> <span class="s">&quot;http://localhost:3000&quot;</span>
+  <span class="l-Scalar-Plain">API_MONGOID_HOSTS</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">localhost</span>
+</code></pre></div>
+<p>Once all the applications have been configured you can then run all of them locally to test harvesting. We recommend running each application on a different port to avoid conflicts.</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="c"># From /path/to/api</span>
+bundle <span class="nb">exec </span>rails s 
+
+<span class="c"># From /path/to/manager</span>
+bundle <span class="nb">exec </span>rails s -p 3001
+
+<span class="c"># From /path/to/worker</span>
+bundle <span class="nb">exec </span>rails s -p 3002
+</code></pre></div>
+<p>The final step is to run sidekiq within the worker directory you can do this by running the following command:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">bundle exec sidekiq
+</code></pre></div>
 
                     </div>
                 

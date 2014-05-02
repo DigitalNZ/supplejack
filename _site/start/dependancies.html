@@ -61,7 +61,10 @@
             
                 <li class=nav-header>Using the API</li>
             
-            <li data-order=""><a href="/supplejack/api/creating-a-schema.html">Creating a Schema</a></li>
+            <li data-order="2"><a href="/supplejack/api/schema-dsl-domain-specific-language.html">Schema DSL (Domain Specific Language)</a></li>
+        
+            
+            <li data-order="1"><a href="/supplejack/api/creating-a-schema.html">Creating a Schema</a></li>
         
     
         
@@ -110,9 +113,9 @@
 
                     <div id=content class=span10>
                         <div class=page-header>
-    <h2>Dependancies
+    <h1>Dependancies
         
-    </h2>
+    </h1>
 </div>
 
 <p>Supplejack requires the following to run the full stack. Please review this page carefully as some of these dependancies are version specific and failure to use the correct versions will cause problems.</p>
@@ -123,7 +126,7 @@
 
 <p><strong>Description</strong>: Ruby is the language we use for all of the supplejack components. This is because we use the ruby on rails framework.</p>
 
-<p><strong>Installation instructions:</strong> We reccomend using RBENV to manage your ruby versions here is some information about how to install ruby with rbenv: <a href="https://github.com/sstephenson/rbenv">https://github.com/sstephenson/rbenv</a>.</p>
+<p><strong>Installation instructions:</strong> We recommend using RBENV to manage your ruby versions here is some information about how to install ruby with rbenv: <a href="https://github.com/sstephenson/rbenv">https://github.com/sstephenson/rbenv</a>.</p>
 
 <h3 id="toc_1">Mongo</h3>
 
@@ -147,8 +150,7 @@
 
 <p><strong>Description:</strong> SOLR is used for full-text searching of records in supplejack.</p>
 
-<p><strong>Installation instructions:</strong> Most of the installation of SOLR is already done for you when you bundle the Supplejack API application. The sunspot-solr gem comes with an older version of SOLR so it&#39;s just a matter of upgrading the version of SOLR that sunspot-solr is using.<br>
-<strong>Note:</strong> You will have to upgrade SOLR after you have completed the installed process. You can find information on <a href="https://github.com/sunspot/sunspot/wiki/Upgrading-sunspot_solr-Solr-Instance">how to do that here</a>.</p>
+<p><strong>Installation instructions:</strong> Solr is installed for you when running bundle install as it is included in the <a href="https://github.com/outoftime/sunspot/tree/master/sunspot_solr">sunspot_solr gem</a>.</p>
 
 
                     </div>
