@@ -120,48 +120,73 @@
 
 <h2 id="toc_0">Fields</h2>
 
-<h3 id="toc_1">Types</h3>
-
-<p>Fields can be one of four types: String, Integer, Boolean or Datetime. When defining your fields in your schema you must declare the type of the field first</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="c1"># Comments show example data that would be stored</span>
-<span class="n">string</span>   <span class="ss">:name</span>         <span class="c1"># &quot;Joe Smith&quot;</span>
-<span class="n">integer</span>  <span class="ss">:age</span>          <span class="c1"># 32</span>
-<span class="n">datetime</span> <span class="ss">:birthdate</span>    <span class="c1"># 2006-08-07T00:00:00.000Z</span>
-<span class="n">boolean</span>  <span class="ss">:employed</span>     <span class="c1"># true</span>
+<p>Fields are defined using the following syntax:</p>
+<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="n">type</span> <span class="nb">name</span> <span class="n">options</span> <span class="k">do</span>
+  <span class="n">block</span>
+<span class="k">end</span>
 </code></pre></div>
-<h3 id="toc_2">Multi value fields</h3>
+<p>where:</p>
 
-<p>Fields can be defined as multi value. This means that data will be stored as an array of values
-<code>ruby
-string :email,  multi_value: true   # e.g. [&quot;joe@test.com&quot;, &quot;joe.smith@example.com&quot;]
-</code></p>
+<ul>
+<li><code>type</code> is the type of the field. Must be one of [<code>string</code>, <code>integer</code>, <code>datetime</code>, <code>boolean</code>].</li>
+<li><code>name</code> can be any valid ruby identifier (i.e. must not start with a number or a <a href="http://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Lexicology#Reserved_Words">Ruby reserved word</a>).</li>
+<li><code>options</code> (all optional):
 
-<h3 id="toc_3">Search</h3>
+<ul>
+<li><code>search_boost</code> is an integer passed to Sunspot/Solr to increase the search relevance by the given factor. Default: <code>1</code>.</li>
+<li><code>search_as</code> determines whether the field is can be searched a filter, fulltext, or both. Valid values are <code>[:filter]</code>, <code>[:fulltext]</code> or <code>[:filter, :fulltext]</code>. Default: <code>[]</code>.</li>
+<li><code>store</code> is a boolean value which determines whether the field is stored in the Mongo database or not. Default: <code>true</code>.</li>
+<li><code>multi_value</code> is a boolean value which determines whether the value is stored as an array or single value. Default: <code>false</code>.</li>
+<li><code>solr_name</code> is a string which is the name of the field in Solr. Default: field&#39;s <code>name</code>.</li>
+</ul></li>
+<li><code>block</code>
 
-<h4 id="toc_4">Search boost</h4>
+<ul>
+<li><code>search_value</code> is a Ruby <code>Proc</code> which produces the value which should be indexed by Solr. The block is executed when the field is indexed. Must be the same type as the field&#39;s <code>type</code>. Default: <code>nil</code>.</li>
+</ul></li>
+</ul>
+<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="c1"># Examples</span>
 
-<p>Defining a search boost will add a boost to relevancy of the field when searching for records in SOLR. </p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="n">string</span> <span class="ss">:name</span><span class="p">,</span>    <span class="n">search_boost</span><span class="p">:</span> <span class="mi">10</span>
-<span class="n">string</span> <span class="ss">:address</span><span class="p">,</span> <span class="n">search_boost</span><span class="p">:</span> <span class="mi">2</span>
+<span class="n">string</span>  <span class="ss">:name</span><span class="p">,</span>     <span class="n">search_as</span><span class="p">:</span> <span class="o">[</span><span class="ss">:filter</span><span class="p">,</span> <span class="ss">:fulltext</span><span class="o">]</span>
+
+<span class="n">string</span>  <span class="ss">:address</span><span class="p">,</span>  <span class="n">search_as</span><span class="p">:</span> <span class="o">[</span><span class="ss">:fulltext</span><span class="o">]</span>
+
+<span class="n">string</span>  <span class="ss">:email</span><span class="p">,</span>    <span class="n">search_as</span><span class="p">:</span> <span class="o">[</span><span class="ss">:fulltext</span><span class="o">]</span><span class="p">,</span> <span class="n">multi_value</span><span class="p">:</span> <span class="kp">true</span>
+
+<span class="c1"># Create a full text field that is stored in SOLR but not in Mongo</span>
+<span class="n">string</span>  <span class="ss">:fulltext</span>  <span class="k">do</span>
+  <span class="n">search_as</span><span class="p">:</span> <span class="o">[</span><span class="ss">:fulltext</span><span class="o">]</span>
+  <span class="ss">store</span><span class="p">:</span> <span class="kp">false</span>
+  <span class="n">search_value</span> <span class="k">do</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="o">[]</span>
+    <span class="o">[</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:address</span><span class="p">,</span> <span class="ss">:email</span>
+    <span class="o">].</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+      <span class="n">value</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">public_send</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+      <span class="n">text</span> <span class="o">&lt;&lt;</span> <span class="n">value</span> <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">present?</span>
+    <span class="k">end</span>
+    <span class="n">text</span><span class="o">.</span><span class="n">flatten</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="n">solr_name</span> <span class="ss">:text</span>
+<span class="k">end</span> 
 </code></pre></div>
-<p>In the above example a search that matches values in the name field would receive a higher ranking than ones which match the address field.</p>
+<h2 id="toc_1">Groups</h2>
 
-<h4 id="toc_5">Search as</h4>
+<p>Groups allow you to collect several fields together and reference them using a single value. </p>
 
-<p>How the SOLR should search the field. Can either be filter, fulltext or both.<br>
-<strong>Fulltext</strong>:
-<strong>Filter</strong>:</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="n">string</span> <span class="ss">:name</span><span class="p">,</span>     <span class="n">search_as</span><span class="p">:</span> <span class="o">[</span><span class="ss">:filter</span><span class="p">,</span> <span class="ss">:fulltext</span><span class="o">]</span>
-<span class="n">string</span> <span class="ss">:address</span><span class="p">,</span>  <span class="n">search_as</span><span class="p">:</span> <span class="o">[</span><span class="ss">:fulltext</span><span class="o">]</span>
-</code></pre></div>
-<h4 id="toc_6">Search value</h4>
+<p>Groups are a set of fields which are returned from the API. There <em>must</em> be a single default group which is returned when no explicit group is requested.</p>
 
-<h4 id="toc_7">Store</h4>
+<p>The groups are exposed via the <code>fields</code> URL parameter, such as <a href="http://api.example.com/records/123?api_key=abc&amp;fields=verbose">http://api.example.com/records/123?api_key=abc&amp;fields=verbose</a></p>
 
-<h2 id="toc_8">Groups</h2>
+<p>A group consists of:</p>
 
-<p>Groups allow you to collect several fields together and reference them using a single value. Groups are used when determining which fields to return if none are specified in the request. This means that you must always define at least the &#39;default&#39; group.</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="n">group</span> <span class="ss">:default</span> <span class="k">do</span>
+<ul>
+<li><code>name</code> is a ruby identifier, must be unique. <em>Required</em><br></li>
+<li><code>default</code> is a boolean determining that this is the default group for a query.<br>
+At least one of the following must exist:</li>
+<li><code>fields</code> is an array of symbols defining the fields in that group. The fields must be defined (see above).</li>
+<li><code>includes</code> is an array of symbols signifing that all fields from the given group(s) are included in this group.</li>
+</ul>
+<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="n">group</span> <span class="ss">:default</span><span class="p">,</span> <span class="ss">default</span><span class="p">:</span> <span class="kp">true</span> <span class="k">do</span>
   <span class="n">fields</span> <span class="o">[</span>
     <span class="ss">:name</span><span class="p">,</span>
     <span class="ss">:address</span>
@@ -198,11 +223,29 @@ string :email,  multi_value: true   # e.g. [&quot;joe@test.com&quot;, &quot;joe.
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="toc_9">Roles</h2>
+<h2 id="toc_2">Roles</h2>
 
-<p>You are able to define several roles for users of the API. These can be used to expose different fields </p>
+<p>Roles are assigned to users, to attach field and record restrictions easily. There <em>must</em> be a single default role which is used when a new user is created.</p>
 
-<h3 id="toc_10">Restrictions</h3>
+<p>A role has field and restrictions. A field restriction means that the field value is hidden from the user, whereas a record restriction means that the whole record will be hidden from the user. This is useful if you have internal data (like URLs etc) which can&#39;t be given to external users.</p>
+
+<p>The groups consists of:</p>
+
+<ul>
+<li><code>name</code> is a ruby identifier, must be unique. <em>Required</em></li>
+<li><code>default</code> is a boolean determining that this is the default role for a new user.<br>
+Both are optional:</li>
+<li><code>field_restrictions</code> is a Hash where the key is the <code>field</code> to match, and the value is another Hash, the key of which is value of the <code>field</code> to match, and the value is the <code>field</code> is restricted. The value of <code>field</code> to match can either be a single <code>string</code> or a <code>RegEx</code>.
+
+<ul>
+<li>The example above restricts the <code>attachments</code> field when the <code>collection</code> is <code>NZ On Screen</code> and <code>large_thumbail_url</code> field when it includes <code>secret.com</code>.</li>
+</ul></li>
+<li><code>record_restrictions</code> is a Hash. If the hash key is equal to the hash value for the record, then the record is restricted.
+
+<ul>
+<li>The example above restricts records where <code>access_rights</code> is <code>false</code> if the request&#39;s API key has a <code>developer</code> role.</li>
+</ul></li>
+</ul>
 
 
                     </div>

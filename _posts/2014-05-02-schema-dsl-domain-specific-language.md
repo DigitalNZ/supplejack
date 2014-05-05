@@ -7,52 +7,71 @@ order: 2
 ---
 
 ## Fields
-### Types
-Fields can be one of four types: String, Integer, Boolean or Datetime. When defining your fields in your schema you must declare the type of the field first
+
+Fields are defined using the following syntax:
 
 ```ruby
-# Comments show example data that would be stored
-string   :name         # "Joe Smith"
-integer  :age          # 32
-datetime :birthdate    # 2006-08-07T00:00:00.000Z
-boolean  :employed     # true
+type name options do
+  block
+end
 ```
 
-### Multi value fields
-Fields can be defined as multi value. This means that data will be stored as an array of values
-```ruby
-string :email,  multi_value: true   # e.g. ["joe@test.com", "joe.smith@example.com"]
-```
-### Search
-#### Search boost
-Defining a search boost will add a boost to relevancy of the field when searching for records in SOLR. 
+where:
 
-```ruby
-string :name,    search_boost: 10
-string :address, search_boost: 2
-```
-
-In the above example a search that matches values in the name field would receive a higher ranking than ones which match the address field.
-
-#### Search as
-How the SOLR should search the field. Can either be filter, fulltext or both.  
-**Fulltext**:
-**Filter**:
+* `type` is the type of the field. Must be one of [`string`, `integer`, `datetime`, `boolean`].
+* `name` can be any valid ruby identifier (i.e. must not start with a number or a [Ruby reserved word](http://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Lexicology#Reserved_Words)).
+* `options` (all optional):
+    * `search_boost` is an integer passed to Sunspot/Solr to increase the search relevance by the given factor. Default: `1`.
+    * `search_as` determines whether the field is can be searched a filter, fulltext, or both. Valid values are `[:filter]`, `[:fulltext]` or `[:filter, :fulltext]`. Default: `[]`.
+    * `store` is a boolean value which determines whether the field is stored in the Mongo database or not. Default: `true`.
+    * `multi_value` is a boolean value which determines whether the value is stored as an array or single value. Default: `false`.
+    * `solr_name` is a string which is the name of the field in Solr. Default: field's `name`.
+* `block`
+    * `search_value` is a Ruby `Proc` which produces the value which should be indexed by Solr. The block is executed when the field is indexed. Must be the same type as the field's `type`. Default: `nil`.
 
 ```ruby
-string :name,     search_as: [:filter, :fulltext]
-string :address,  search_as: [:fulltext]
+# Examples
+
+string  :name,     search_as: [:filter, :fulltext]
+
+string  :address,  search_as: [:fulltext]
+
+string  :email,    search_as: [:fulltext], multi_value: true
+
+# Create a full text field that is stored in SOLR but not in Mongo
+string  :fulltext  do
+  search_as: [:fulltext]
+  store: false
+  search_value do
+    text = []
+    [ :name, :address, :email
+    ].each do |f|
+      value = record.public_send(f)
+      text << value if value.present?
+    end
+    text.flatten.join(" ")
+  end
+  solr_name :text
+end 
 ```
-
-#### Search value
-
-#### Store
 
 ## Groups
-Groups allow you to collect several fields together and reference them using a single value. Groups are used when determining which fields to return if none are specified in the request. This means that you must always define at least the 'default' group.
+Groups allow you to collect several fields together and reference them using a single value. 
+
+Groups are a set of fields which are returned from the API. There _must_ be a single default group which is returned when no explicit group is requested.
+
+The groups are exposed via the `fields` URL parameter, such as http://api.example.com/records/123?api_key=abc&fields=verbose
+
+A group consists of:
+
+* `name` is a ruby identifier, must be unique. _Required_    
+* `default` is a boolean determining that this is the default group for a query.  
+At least one of the following must exist:
+* `fields` is an array of symbols defining the fields in that group. The fields must be defined (see above).
+* `includes` is an array of symbols signifing that all fields from the given group(s) are included in this group.
 
 ```ruby
-group :default do
+group :default, default: true do
   fields [
     :name,
     :address
@@ -94,7 +113,18 @@ end
 ```
 
 ## Roles
-You are able to define several roles for users of the API. These can be used to expose different fields 
-### Restrictions
 
+Roles are assigned to users, to attach field and record restrictions easily. There _must_ be a single default role which is used when a new user is created.
+
+A role has field and restrictions. A field restriction means that the field value is hidden from the user, whereas a record restriction means that the whole record will be hidden from the user. This is useful if you have internal data (like URLs etc) which can't be given to external users.
+
+The groups consists of:
+
+* `name` is a ruby identifier, must be unique. _Required_
+* `default` is a boolean determining that this is the default role for a new user.  
+Both are optional:
+* `field_restrictions` is a Hash where the key is the `field` to match, and the value is another Hash, the key of which is value of the `field` to match, and the value is the `field` is restricted. The value of `field` to match can either be a single `string` or a `RegEx`.
+   * The example above restricts the `attachments` field when the `collection` is `NZ On Screen` and `large_thumbail_url` field when it includes `secret.com`.
+* `record_restrictions` is a Hash. If the hash key is equal to the hash value for the record, then the record is restricted.
+  * The example above restricts records where `access_rights` is `false` if the request's API key has a `developer` role.
 
