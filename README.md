@@ -32,7 +32,9 @@ If you are doing lots of changes or eould like to review your changes often you 
 jekyll build --watch
 ```
 
-This will rebuild the site automatically when you save changes.
+This will rebuild the site automatically when you save changes. Once you are happy with your changes commit them and push to Github. As soon as you have pushed you should see the changes reflected on http://digitalnz.github.io/supplejack/
+
+**Note:** For every file that you have edited there should be a corresponding HTML file to commit too.
 
 ## Creating new pages
 
