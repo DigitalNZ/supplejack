@@ -8,7 +8,7 @@ order: 1
 
 The heart of the Supplejack API is the Schema. This defines the fields for each record and how those fields should be stored and searched. It also defines the different user roles and any restrictions for those roles.
 
-
+More about creating schemas
 ### Copy of the example schema that is created after install
 ```ruby 
 class Schema < SupplejackApi::SupplejackSchema
