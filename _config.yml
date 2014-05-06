@@ -14,7 +14,7 @@ codeurl: 'https://github.com/DigitalNZ/supplejack_api'
 # Default categories (in order) to appear in the navigation
 sections: [
     ['start', 'Getting started'],
-    ['api', 'Using the API'],
+    ['api', 'Creating your API'],
     ['manager', 'Using the manger'],
     ['dev', 'Developers']
 ]

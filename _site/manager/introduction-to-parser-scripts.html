@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width">
 
-        <title>Supplejack : Attribute Transformation Options</title>
+        <title>Supplejack : Introduction to Parser scripts</title>
         <meta name="description" content="Documentation for the Supplejack stack">
 
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
@@ -116,68 +116,13 @@
 
                     <div id=content class=span10>
                         <div class=page-header>
-    <h1>Attribute Transformation Options
+    <h1>Introduction to Parser scripts
         
     </h1>
 </div>
 
-<p>Transformation options are changes made to the harvested values, global transformations are applied to every value and custom transformations are only applied when specified in the options for a attribute definition.</p>
+<p>All about parser scripts</p>
 
-<h2 id="toc_0">Global Transformations</h2>
-
-<h3 id="toc_1">Strip whitespace</h3>
-
-<p>By default leading and trailing whitespace will be removed from every attribute value.</p>
-
-<h3 id="toc_2">Strip HTML</h3>
-
-<p>By default every HTML tag will be removed from every attribute value</p>
-
-<h2 id="toc_3">Custom Transformations</h2>
-
-<h3 id="toc_4">Truncation</h3>
-
-<p>It will truncate the description to 300 characters</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="n">attribute</span> <span class="ss">:description</span><span class="p">,</span> <span class="ss">xpath</span><span class="p">:</span> <span class="s2">&quot;//dc:description&quot;</span><span class="p">,</span> <span class="ss">truncate</span><span class="p">:</span> <span class="mi">300</span>
-</code></pre></div>
-<p>By default it will add triple dots at the end of the truncated value. To change from three dots to something else do the following:</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="n">attribute</span> <span class="ss">:description</span><span class="p">,</span> <span class="ss">xpath</span><span class="p">:</span> <span class="s2">&quot;//dc:description&quot;</span><span class="p">,</span> <span class="ss">truncate</span><span class="p">:</span> <span class="p">{</span><span class="ss">length</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span> <span class="ss">omission</span><span class="p">:</span> <span class="s2">&quot;.....&quot;</span><span class="p">}</span>
-</code></pre></div>
-<p>The omission value is taken into account for the total size of the truncated value so that it will always be the specified size.</p>
-
-<h3 id="toc_5">Date</h3>
-
-<h4 id="toc_6">Generic date parser</h4>
-
-<p>It will try to intelligently understand and parse the date</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="n">attribute</span> <span class="ss">:date</span><span class="p">,</span> <span class="ss">xpath</span><span class="p">:</span> <span class="s2">&quot;//dc:date&quot;</span><span class="p">,</span> <span class="ss">date</span><span class="p">:</span> <span class="kp">true</span>
-</code></pre></div>
-<h4 id="toc_7">Template date parser</h4>
-
-<p>When the date is in a known specific format and is not understood by the generic date parser you can provide a template that will be used to interpret the date</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="n">attribute</span> <span class="ss">:date</span><span class="p">,</span> <span class="ss">xpath</span><span class="p">:</span> <span class="s2">&quot;//dc:date&quot;</span><span class="p">,</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%d/%m/%Y&quot;</span>
-</code></pre></div>
-<p>See <a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/date/rdoc/DateTime.html#method-i-strftime">Ruby strftime documentation</a> for more information.</p>
-
-<h3 id="toc_8">Join Values</h3>
-
-<p>It will join a array of values into a single string delimited by the character specified</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="n">attribute</span> <span class="ss">:tag</span><span class="p">,</span> <span class="ss">xpath</span><span class="p">:</span> <span class="s2">&quot;//tags&quot;</span><span class="p">,</span> <span class="ss">join</span><span class="p">:</span> <span class="s2">&quot;, &quot;</span>
-</code></pre></div>
-<h3 id="toc_9">Split values</h3>
-
-<p>It will split a string into a array of values based on the delimiter specified.</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="n">attribute</span> <span class="ss">:tag</span><span class="p">,</span> <span class="ss">xpath</span><span class="p">:</span> <span class="s2">&quot;//tags&quot;</span><span class="p">,</span> <span class="ss">separator</span><span class="p">:</span> <span class="s2">&quot;, &quot;</span>
-</code></pre></div>
-<h3 id="toc_10">Mapping Values</h3>
-
-<p>There are certain cases when values need to be mapped to some other values, the most common case in the parser configurations are the rights/licence where the type of license is extracted from a URL.</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="n">attribute</span> <span class="ss">:license</span><span class="p">,</span> <span class="ss">xpath</span><span class="p">:</span> <span class="s2">&quot;//tags&quot;</span><span class="p">,</span> <span class="ss">mappings</span><span class="p">:</span> <span class="p">{</span>
-                            <span class="s2">&quot;.*Attribution$&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;CC-BY&quot;</span><span class="p">,</span>
-                            <span class="s2">&quot;.*Attribution_-_Share_Alike$&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;CC-BY-SA&quot;</span><span class="p">,</span>
-                            <span class="s2">&quot;.*Attribution_-_Non-Commercial_-_No_Derivatives$&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;CC-BY-NC-ND&quot;</span>
-                          <span class="p">}</span>
-</code></pre></div>
 
                     </div>
                 
