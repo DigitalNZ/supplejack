@@ -8,8 +8,29 @@ order: 1
 
 The heart of the Supplejack API is the Schema. This defines the fields for each record and how those fields should be stored and searched. It also defines the different user roles and any restrictions for those roles.
 
-More about creating schemas
-### Copy of the example schema that is created after install
+When you first install the Supplejack API a default Schema file is created for (see the code at the bottom of the page for a copy). This gives you a template to start working from but you do not have keep any of the fields which are defined in the example.
+
+## Schema basics
+
+To start your Schema from scratch you first need the class definition.
+
+```ruby
+class Schema < SupplejackApi::SupplejackSchema
+
+end
+```
+
+You must name you class `Schema` and it must inherit from `SupplejackApi::SupplejackSchema` so that compulsory fields and groups are included in your Schema.
+
+Once you have defined your class you can begin adding fields, groups and roles. For more details about how to do this you can view the [Schema DSL documentation](supplejack/api/schema-dsl-domain-specific-language.html). You must define at least one group and role, and mark them as `default`, before you can view records from your API.
+
+### Some common issues
+
+* If you already have records saved in Mongo you will have to resave them each time you update your Schema before you see any change in what is returned from the API. 
+* Fields that are already saved will not be removed from the record, in Mongo, if you remove that field from the Schema.
+
+
+## Example schema
 ```ruby 
 class Schema < SupplejackApi::SupplejackSchema
 

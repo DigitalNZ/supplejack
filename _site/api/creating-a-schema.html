@@ -123,7 +123,27 @@
 
 <p>The heart of the Supplejack API is the Schema. This defines the fields for each record and how those fields should be stored and searched. It also defines the different user roles and any restrictions for those roles.</p>
 
-<h3 id="toc_0">Copy of the example schema that is created after install</h3>
+<p>When you first install the Supplejack API a default Schema file is created for (see the code at the bottom of the page for a copy). This gives you a template to start working from but you do not have keep any of the fields which are defined in the example.</p>
+
+<h2 id="toc_0">Schema basics</h2>
+
+<p>To start your Schema from scratch you first need the class definition.</p>
+<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Schema</span> <span class="o">&lt;</span> <span class="no">SupplejackApi</span><span class="o">::</span><span class="no">SupplejackSchema</span>
+
+<span class="k">end</span>
+</code></pre></div>
+<p>You must name you class <code>Schema</code> and it must inherit from <code>SupplejackApi::SupplejackSchema</code> so that compulsory fields and groups are included in your Schema.</p>
+
+<p>Once you have defined your class you can begin adding fields, groups and roles. For more details about how to do this you can view the <a href="supplejack/api/schema-dsl-domain-specific-language.html">Schema DSL documentation</a>. You must define at least one group and role, and mark them as <code>default</code>, before you can view records from your API.</p>
+
+<h3 id="toc_1">Some common issues</h3>
+
+<ul>
+<li>If you already have records saved in Mongo you will have to resave them each time you update your Schema before you see any change in what is returned from the API. </li>
+<li>Fields that are already saved will not be removed from the record, in Mongo, if you remove that field from the Schema.</li>
+</ul>
+
+<h2 id="toc_2">Example schema</h2>
 <div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Schema</span> <span class="o">&lt;</span> <span class="no">SupplejackApi</span><span class="o">::</span><span class="no">SupplejackSchema</span>
 
   <span class="c1"># Fields</span>
