@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Test page"
-category: developers
+category: dev
 date: 2014-05-01 16:01:30
 ---
 
