@@ -20,7 +20,7 @@ The harvester manager is a rails application that provides a visual interface in
 
 ## Installation instructions
 
-### Installing the Manager
+#### Installing the Manager
 
 Clone the manager from GitHub.
 `git clone https://github.com/DigitalNZ/supplejack_manager.git`
@@ -34,7 +34,7 @@ Modify `config/application.yml` file.
 
 Install worker.
 
-### Installing the Worker
+#### Installing the Worker
 
 Clone the worker from GitHub.
 `git clone https://github.com/DigitalNZ/supplejack_worker.git`
@@ -50,21 +50,19 @@ Modify `config/application.yml` file.
 
 ## Generating user keys
 
-### Generate Manager keys
+#### Generate Manager keys
 
 * From the Manager's project root, Run `rails c`.
 * Create your first user `User.create!(email: 'your@email.com', name: 'Joe Doe', password: 'p@ssw0rd', password_confirmation: 'p@ssw0rd')`.
 * Copy the generated `authentication_token`.
 * Paste it inside your Worker's `application.yml` as `MANAGER_API_KEY`.
 
-### Generate Worker keys
+#### Generate Worker keys
 
 * From the Worker's project root, Run `rails c`.
 * Create your first user `User.create!`.
 * Copy the generated `authentication_token`.
 * Paste it inside your Manager's `application.yml` as `WORKER_API_KEY`.
-
-## Running the stack
 
 ## Writing parser scripts
 * [[Parser DSL (Domain Specific Language)|Parser-DSL-(Domain-Specific-Language)]]
