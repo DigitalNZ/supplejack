@@ -10,8 +10,4 @@ Parser scripts are instructions that describe how data from a particular source 
 
 View the [introductory screencast](http://youtu.be/MLUURxcfcLc) for a general overview of how parser scripts work inside Supplejack. 
 
-You can also view the introductory tutorials that will take you through a step by step process in creating your first parser scripts:
-
-[Tutorial 1](https://drive.google.com/file/d/0B63EYVIeMWSfdThwRXhxcllwTVE/edit?usp=sharing)
-
-[Tutorial 2](https://drive.google.com/file/d/0B63EYVIeMWSfdERXYTJJYmR2cW8/edit?usp=sharing)
+You can also view the introductory tutorials that will take you through a step by step process in creating your first parser scripts [Tutorial 1](https://drive.google.com/file/d/0B63EYVIeMWSfdThwRXhxcllwTVE/edit?usp=sharing) [Tutorial 2](https://drive.google.com/file/d/0B63EYVIeMWSfdERXYTJJYmR2cW8/edit?usp=sharing)
