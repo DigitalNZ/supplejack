@@ -9,6 +9,8 @@ Supplejack is a platform for managing the harvesting and manipulation of metadat
 
 It's main purpose is to manage the process of acquiring data from remote sources, map data to a standard data schema, manage any quality control or enrichment processes, and surface the cleaned and unified data via a public API.
 
+<iframe width="420" height="315" src="//www.youtube.com/embed/MLUURxcfcLc" frameborder="0" allowfullscreen></iframe>
+
 Key features of the platfrom include:
 
 * Browser-based interface for managing harvesting processes
