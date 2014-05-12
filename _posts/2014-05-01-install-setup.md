@@ -56,22 +56,32 @@ In order for the Supplejack Manager to create the jobs it requires some informat
 
 ```yaml
 # Example Supplejack Manager application.yml file
+# This setup assumes that you have an API that runs on localhost:3000
+# and a Worker running on localhost:3002.
+# Running the Manager allows you to harvest in production environment.
 
 development:
-  WORKER_HOST: "http://localhost:3002"
-  WORKER_API_KEY: "rq6umblebJqPztcefxC8sX"
-  HARVESTER_CACHING_ENABLED: true
-  HONEYBADGER_API_KEY: "cd199c3f"
-  API_HOST: "http://localhost:3000"
-  API_MONGOID_HOSTS: "localhost:27017"
+  WORKER_HOST: http://localhost:3002
+  WORKER_API_KEY: <production worker key>
+  API_HOST: http://localhost:3000
+  API_MONGOID_HOSTS: localhost:27017
 
 test:
-  WORKER_HOST: "http://localhost:3002"
-  WORKER_API_KEY: "12345"
-  HARVESTER_CACHING_ENABLED: false
-  HONEYBADGER_API_KEY: "cd199c3f"
-  API_HOST: "http://localhost:3000"
-  API_MONGOID_HOSTS: localhost
+  WORKER_HOST: http://localhost:3002
+  WORKER_API_KEY: <production worker key>
+  API_HOST: http://localhost:3000
+  API_MONGOID_HOSTS: localhost:27017
+
+production:
+  WORKER_HOST: http://localhost:3002
+  WORKER_API_KEY: <production worker key>
+  API_HOST: http://localhost:3000
+
+# staging:
+#   WORKER_HOST: http://localhost:4002
+#   WORKER_API_KEY: <staging worker key>
+#   API_HOST: http://localhost:4000
+#   API_MONGOID_HOSTS: localhost:27017
 ```
 
 Once all the applications have been configured you can then run all of them locally to test harvesting. We recommend running each application on a different port to avoid conflicts.
