@@ -64,7 +64,9 @@ production:
 #   API_HOST: http://localhost:4000
 #   API_MONGOID_HOSTS: localhost:27017
 ```
+
 Example 2: Two environment setup
+
 ```yaml
 # Example Supplejack Manager application.yml file
 # This setup assumes that you have two APIs that runs on localhost:3000
