@@ -24,7 +24,8 @@ rails c
 
 Create your first user 
 
-```ruby
-  User.create!
+```bash
+ > User.create!
+=> #<User _id: 53714f99531163b56c000001, authentication_token: "RhymLHa9xRQGU8gyAYXP">
 ```
   
