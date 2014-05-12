@@ -12,7 +12,6 @@ It's main purpose is to manage the process of acquiring data from remote sources
 Key features of the platfrom include:
 
 * Browser-based interface for managing harvesting processes
-* 
 
 
 ### Architectural overview
