@@ -20,8 +20,80 @@ The harvester manager is a rails application that provides a visual interface in
 
 ### Generate Manager User keys
 
-1. From the Manager's project root, Run `rails c`.
-2. Create a user `User.create!(email: 'your@email.com', name: 'Joe Doe', password: 'p@ssw0rd', password_confirmation: 'p@ssw0rd')`.
+1. From the Manager's project root, Run the console.
+```bash
+rails c
+```
+2. Create a user 
+```bash
+User.create!(email: 'your@email.com', name: 'Joe Doe', password:
+'p@ssw0rd', password_confirmation: 'p@ssw0rd')`.
+```
+
+### Environment Configurations
+In order to start harvesting records, you need to specify what environments you need. You can choose `staging` or `production` or both. The example `application.yml` comes with `production` as default environment. If you wanted to have two environments, you can uncomment `staging` and specify the correct values for URLs and keys.
+
+Example 1: One environment setup
+
+```yaml
+# Example Supplejack Manager application.yml file
+# This setup assumes that you have an API that runs on localhost:3000
+# and a Worker running on localhost:3002.
+# Running the Manager allows you to harvest in production environment.
+  
+development:
+  WORKER_HOST: http://localhost:3002
+  WORKER_API_KEY: <production API key>
+  API_HOST: http://localhost:3000
+  API_MONGOID_HOSTS: localhost:27017
+
+test:
+  WORKER_HOST: http://localhost:3002
+  WORKER_API_KEY: <production API key>
+  API_HOST: http://localhost:3000
+  API_MONGOID_HOSTS: localhost:27017
+
+production:
+  WORKER_HOST: http://localhost:3002
+  WORKER_API_KEY: <production API key>
+  API_HOST: http://localhost:3000
+  
+# staging:
+#   WORKER_HOST: http://localhost:4002
+#   WORKER_API_KEY: <staging API key>
+#   API_HOST: http://localhost:4000
+#   API_MONGOID_HOSTS: localhost:27017
+```
+Example 2: Two environment setup
+```yaml
+# Example Supplejack Manager application.yml file
+# This setup assumes that you have two APIs that runs on localhost:3000
+# and localhost:4000. Workers running on localhost:3002 and localhost:4002.
+# Running the Manager allows you to harvest in production and staging environments.
+  
+development:
+  WORKER_HOST: http://localhost:4002
+  WORKER_API_KEY: <staging API key>
+  API_HOST: http://localhost:4000
+  API_MONGOID_HOSTS: localhost:27017
+
+test:
+  WORKER_HOST: http://localhost:4002
+  WORKER_API_KEY: <staging API key>
+  API_HOST: http://localhost:4000
+  API_MONGOID_HOSTS: localhost:27017
+
+production:
+  WORKER_HOST: http://localhost:3002
+  WORKER_API_KEY: <production API key>
+  API_HOST: http://localhost:3000
+  
+staging:
+  WORKER_HOST: http://localhost:4002
+  WORKER_API_KEY: <staging API key>
+  API_HOST: http://localhost:4000
+  API_MONGOID_HOSTS: localhost:27017
+```
 
 ### Writing parser scripts
 * [[Parser DSL (Domain Specific Language)|Parser-DSL-(Domain-Specific-Language)]]
