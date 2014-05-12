@@ -27,5 +27,7 @@ Create a user.
 ```ruby
  > User.create!
 => #<User _id: 53714f99531163b56c000001, authentication_token: "RhymLHa9xRQGU8gyAYXP">
+ > User.last.authentication_token
+=> "RhymLHa9xRQGU8gyAYXP"
 ```
   
