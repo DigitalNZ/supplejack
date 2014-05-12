@@ -20,13 +20,13 @@ The harvester manager is a rails application that provides a visual interface in
 
 ### Generate Manager User keys
 
-1. From the Manager's project root, Run the console.
+From the Manager's project root, Run the console.
 
 ```ruby
 rails c
 ```
 
-2. Create a user 
+Create a user 
 
 ```ruby
 User.create!(email: 'your@email.com', name: 'Joe Doe', password:
