@@ -46,24 +46,24 @@ Example 1: One environment setup
   
 development:
   WORKER_HOST: http://localhost:3002
-  WORKER_API_KEY: <production API key>
+  WORKER_API_KEY: <production worker key>
   API_HOST: http://localhost:3000
   API_MONGOID_HOSTS: localhost:27017
 
 test:
   WORKER_HOST: http://localhost:3002
-  WORKER_API_KEY: <production API key>
+  WORKER_API_KEY: <production worker key>
   API_HOST: http://localhost:3000
   API_MONGOID_HOSTS: localhost:27017
 
 production:
   WORKER_HOST: http://localhost:3002
-  WORKER_API_KEY: <production API key>
+  WORKER_API_KEY: <production worker key>
   API_HOST: http://localhost:3000
   
 # staging:
 #   WORKER_HOST: http://localhost:4002
-#   WORKER_API_KEY: <staging API key>
+#   WORKER_API_KEY: <staging worker key>
 #   API_HOST: http://localhost:4000
 #   API_MONGOID_HOSTS: localhost:27017
 ```
@@ -78,24 +78,24 @@ Example 2: Two environment setup
   
 development:
   WORKER_HOST: http://localhost:4002
-  WORKER_API_KEY: <staging API key>
+  WORKER_API_KEY: <staging worker key>
   API_HOST: http://localhost:4000
   API_MONGOID_HOSTS: localhost:27017
 
 test:
   WORKER_HOST: http://localhost:4002
-  WORKER_API_KEY: <staging API key>
+  WORKER_API_KEY: <staging worker key>
   API_HOST: http://localhost:4000
   API_MONGOID_HOSTS: localhost:27017
 
 production:
   WORKER_HOST: http://localhost:3002
-  WORKER_API_KEY: <production API key>
+  WORKER_API_KEY: <production worker key>
   API_HOST: http://localhost:3000
   
 staging:
   WORKER_HOST: http://localhost:4002
-  WORKER_API_KEY: <staging API key>
+  WORKER_API_KEY: <staging worker key>
   API_HOST: http://localhost:4000
   API_MONGOID_HOSTS: localhost:27017
 ```
