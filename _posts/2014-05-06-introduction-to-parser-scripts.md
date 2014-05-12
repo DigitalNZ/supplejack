@@ -53,5 +53,5 @@ The above example of a simple parser script starts by identifying the source of 
 
 Supplejack is supported by a [Parser DSL](/supplejack/manager/parser-dsl-domain-specific-language.html) (Domain Specific Language) that has been designed specifically to support the capture and manipulation of data. The Parser DSL provides rich functions for getting, namespacing, validating, transforming, and enriching your source data. Supplejack allows you to use xpath expressions and regex to get the data, as well as providing the option for ruby code if you need to do some heavy lifting.
 
-The tutorials above are a great place to start in understanding how to build your first parser script, with the DSL, and example scripts being the place to look for advanced support.
+The tutorials above are a great place to start in understanding how to build your first parser script, with the Parser DSL, and example scripts being the place to look for advanced support.
 
