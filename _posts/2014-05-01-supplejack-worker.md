@@ -16,15 +16,15 @@ There are two kinds of link checking. Collection checking checks a few records f
 
 ### Generate Worker User keys
 
-From the Worker's project root, Run the console 
+From the Worker's project root, Run the console.
 
 ```ruby
 rails c
 ```
 
-Create your first user 
+Create a user.
 
-```bash
+```ruby
  > User.create!
 => #<User _id: 53714f99531163b56c000001, authentication_token: "RhymLHa9xRQGU8gyAYXP">
 ```
