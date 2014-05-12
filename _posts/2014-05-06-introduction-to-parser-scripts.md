@@ -51,7 +51,7 @@ You can also view the introductory tutorials that will take you through a step b
 
 The above example of a simple parser script starts by identifying the source of the data to ingest from (base_url). Each script then identifies the data fields (attributes) to copy data into. Field names are based on the specific schema that has been set up for your Supplejack instance. 
 
-Supplejack is supported by a Parser DSL (Domain Specific Language) that has been designed specifically to support the capture and manipulation of data. The Parser DSL provides rich functions for getting, namespacing, validating, transforming, and enriching your source data. Supplejack allows you to use xpath expressions and regex to get the data, as well as providing the option for ruby code if you need to do some heavy lifting.
+Supplejack is supported by a [Parser DSL](http://digitalnz.github.io/supplejack/manager/parser-dsl-domain-specific-language.html) (Domain Specific Language) that has been designed specifically to support the capture and manipulation of data. The Parser DSL provides rich functions for getting, namespacing, validating, transforming, and enriching your source data. Supplejack allows you to use xpath expressions and regex to get the data, as well as providing the option for ruby code if you need to do some heavy lifting.
 
 The tutorials above are a great place to start in understanding how to build your first parser script, with the DSL, and example scripts being the place to look for advanced support.
 
