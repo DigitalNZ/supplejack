@@ -6,11 +6,12 @@ title: "Supplejack"
 
 Supplejack is a platform for managing the harvesting and manipulation of metadata. It was originally developed to manage the sourcing of metadata for the [DigitalNZ](http://www.digitalnz.org/) aggregation service, and has grown to a platform that can manage millions of records from hundreds of data sources.
 
-It's main purpose is to manage the process of fetching data from remote sources, mappaing data to a standard data schema, managing any quality control or enrichment processes, and surfacing the standardised data via a public API. Check out the screencast for an introduction to Supplejack:
+It's main purpose is to manage the process of fetching data from remote sources, mappaing data to a standard data schema, managing any quality control or enrichment processes, and surfacing the standardised data via a public API. The full [Supplejack code repo](https://github.com/DigitalNZ) is on GitHub. 
+
+Check out the screencast for an introduction to Supplejack:
 
 <iframe width="420" height="315" src="//www.youtube.com/embed/MLUURxcfcLc" frameborder="0" allowfullscreen></iframe>
 
-The full [Supplejack code repo](https://github.com/DigitalNZ) is on GitHub.
 
 
 ### Key features
