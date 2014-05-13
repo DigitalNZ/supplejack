@@ -121,7 +121,52 @@
     </h1>
 </div>
 
-<p>All about parser scripts</p>
+<p>Parser scripts are instructions that describe how data from a particular source is to be harvested into Supplejack. </p>
+
+<p>View the <a href="http://youtu.be/MLUURxcfcLc">introductory screencast</a> for a general overview of how parser scripts work inside Supplejack. </p>
+
+<p>You can also view the introductory tutorials that will take you through a step by step process in creating your first parser scripts <a href="https://drive.google.com/file/d/0B63EYVIeMWSfdThwRXhxcllwTVE/edit?usp=sharing">Tutorial 1</a> <a href="https://drive.google.com/file/d/0B63EYVIeMWSfdERXYTJJYmR2cW8/edit?usp=sharing">Tutorial 2</a></p>
+
+<h3 id="toc_0">What does a parser script look like?</h3>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">base_url &quot;http://www.95bfm.co.nz/sm/podcasts.rss&quot;!
+
+# Default fields!
+
+attributes :category, default: &quot;Audio&quot;!
+
+attributes :language, default: &quot;en&quot;!
+
+attributes :content_partner, :display_content_partner,!
+
+ :primary_collection, :creator, default: &quot;95bFM&quot;!
+
+attributes :usage, :copyright, default: &quot;All rights reserved&quot;!
+
+# Variable fields!
+
+attributes :landing_url, xpath: &quot;/item/link&quot;!
+
+attributes :title, xpath: &quot;/item/title&quot;!
+
+attributes :description, xpath: &quot;/item/description&quot;, truncate: 350!
+
+attributes :date, xpath: &quot;/item/pubDate&quot;, date: true!
+
+attributes :object_url, xpath: &quot;/item/enclosure/@url&quot;!
+
+attributes :dc_type, xpath: “/item/enclosure/@type&quot;!
+
+attributes :internal_identifier do!
+
+ get(:landing_url).downcase!
+
+end
+</code></pre></div>
+<p>The above example of a simple parser script starts by identifying the source of the data to ingest from (base_url). Each script then identifies the data fields (attributes) to copy data into. Field names are based on the specific schema that has been set up for your Supplejack instance. </p>
+
+<p>Supplejack is supported by a <a href="/supplejack/manager/parser-dsl-domain-specific-language.html">Parser DSL</a> (Domain Specific Language) that has been designed specifically to support the capture and manipulation of data. The Parser DSL provides rich functions for getting, namespacing, validating, transforming, and enriching your source data. Supplejack allows you to use xpath expressions and regex to get the data, as well as providing the option for ruby code if you need to do some heavy lifting.</p>
+
+<p>The tutorials above are a great place to start in understanding how to build your first parser script, with the Parser DSL, and example scripts being the place to look for advanced support.</p>
 
 
                     </div>

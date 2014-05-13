@@ -166,22 +166,32 @@
 
 <p>In order for the Supplejack Manager to create the jobs it requires some information about the Supplejack Worker and vice versa. This information is stored in config/application.yml. We have provided an example for your reference in each application. You will also need to update the WORKER_API_URL and HARVESTER_IPS values in your API application.yml</p>
 <div class="highlight"><pre><code class="yaml language-yaml" data-lang="yaml"><span class="c1"># Example Supplejack Manager application.yml file</span>
+<span class="c1"># This setup assumes that you have an API that runs on localhost:3000</span>
+<span class="c1"># and a Worker running on localhost:3002.</span>
+<span class="c1"># Running the Manager allows you to harvest in production environment.</span>
 
 <span class="l-Scalar-Plain">development</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">WORKER_HOST</span><span class="p-Indicator">:</span> <span class="s">&quot;http://localhost:3002&quot;</span>
-  <span class="l-Scalar-Plain">WORKER_API_KEY</span><span class="p-Indicator">:</span> <span class="s">&quot;rq6umblebJqPztcefxC8sX&quot;</span>
-  <span class="l-Scalar-Plain">HARVESTER_CACHING_ENABLED</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
-  <span class="l-Scalar-Plain">HONEYBADGER_API_KEY</span><span class="p-Indicator">:</span> <span class="s">&quot;cd199c3f&quot;</span>
-  <span class="l-Scalar-Plain">API_HOST</span><span class="p-Indicator">:</span> <span class="s">&quot;http://localhost:3000&quot;</span>
-  <span class="l-Scalar-Plain">API_MONGOID_HOSTS</span><span class="p-Indicator">:</span> <span class="s">&quot;localhost:27017&quot;</span>
+  <span class="l-Scalar-Plain">WORKER_HOST</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://localhost:3002</span>
+  <span class="l-Scalar-Plain">WORKER_API_KEY</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;production worker key&gt;</span>
+  <span class="l-Scalar-Plain">API_HOST</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://localhost:3000</span>
+  <span class="l-Scalar-Plain">API_MONGOID_HOSTS</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">localhost:27017</span>
 
 <span class="l-Scalar-Plain">test</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">WORKER_HOST</span><span class="p-Indicator">:</span> <span class="s">&quot;http://localhost:3002&quot;</span>
-  <span class="l-Scalar-Plain">WORKER_API_KEY</span><span class="p-Indicator">:</span> <span class="s">&quot;12345&quot;</span>
-  <span class="l-Scalar-Plain">HARVESTER_CACHING_ENABLED</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
-  <span class="l-Scalar-Plain">HONEYBADGER_API_KEY</span><span class="p-Indicator">:</span> <span class="s">&quot;cd199c3f&quot;</span>
-  <span class="l-Scalar-Plain">API_HOST</span><span class="p-Indicator">:</span> <span class="s">&quot;http://localhost:3000&quot;</span>
-  <span class="l-Scalar-Plain">API_MONGOID_HOSTS</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">localhost</span>
+  <span class="l-Scalar-Plain">WORKER_HOST</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://localhost:3002</span>
+  <span class="l-Scalar-Plain">WORKER_API_KEY</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;production worker key&gt;</span>
+  <span class="l-Scalar-Plain">API_HOST</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://localhost:3000</span>
+  <span class="l-Scalar-Plain">API_MONGOID_HOSTS</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">localhost:27017</span>
+
+<span class="l-Scalar-Plain">production</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">WORKER_HOST</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://localhost:3002</span>
+  <span class="l-Scalar-Plain">WORKER_API_KEY</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;production worker key&gt;</span>
+  <span class="l-Scalar-Plain">API_HOST</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://localhost:3000</span>
+
+<span class="c1"># staging:</span>
+<span class="c1">#   WORKER_HOST: http://localhost:4002</span>
+<span class="c1">#   WORKER_API_KEY: &lt;staging worker key&gt;</span>
+<span class="c1">#   API_HOST: http://localhost:4000</span>
+<span class="c1">#   API_MONGOID_HOSTS: localhost:27017</span>
 </code></pre></div>
 <p>Once all the applications have been configured you can then run all of them locally to test harvesting. We recommend running each application on a different port to avoid conflicts.</p>
 <div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="c"># From /path/to/api</span>

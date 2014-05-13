@@ -131,6 +131,17 @@
 
 <p>There are two kinds of link checking. Collection checking checks a few records from a collection and suppresses collections which are unavailable. Record checking checks individual records which have been visited recently (in the API) and suppresses records which are unavailable.</p>
 
+<h3 id="toc_2">Generate Worker User keys</h3>
+
+<p>From the Worker&#39;s project root, Run the console.</p>
+<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="n">rails</span> <span class="n">c</span>
+</code></pre></div>
+<p>Create a user.</p>
+<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"> <span class="o">&gt;</span> <span class="no">User</span><span class="o">.</span><span class="n">create!</span>
+<span class="o">=&gt;</span> <span class="c1">#&lt;User _id: 53714f99531163b56c000001, authentication_token: &quot;RhymLHa9xRQGU8gyAYXP&quot;&gt;</span>
+ <span class="o">&gt;</span> <span class="no">User</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">authentication_token</span>
+<span class="o">=&gt;</span> <span class="s2">&quot;RhymLHa9xRQGU8gyAYXP&quot;</span>
+</code></pre></div>
 
                     </div>
                 

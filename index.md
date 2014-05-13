@@ -30,7 +30,9 @@ Key features of the platfrom include:
 
 ### Architectural overview
 
-The basic componets of the platform are introduced in this [architecture diagram](https://drive.google.com/file/d/0B63EYVIeMWSfc0R5empaYWxSaHM/edit?usp=sharing) and include:
+The basic componets of the platform are introduced below ![Supplejack Architecture](images/Master-DigitalNZ-Infrastructure-Supplejack-View.png) 
+
+The Supplejack stack includes:
 
 * Manager user interface
 * Workers (for harvesting, enrichment, and link checking activity)
