@@ -22,7 +22,7 @@ class PublicAddressAndy < HarvesterCore::Rss::Base
   
   base_url "http://publicaddress.net/system/6.rss"
 
-	# Default mappings - the same attributes value for all records
+  # Default mappings - the same attributes value for all records
 
   attributes :content_partner, :display_content_partner, default: "Public Address"
   attributes :category, default: "Podcasts"
