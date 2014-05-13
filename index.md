@@ -43,3 +43,4 @@ Developed in Ruby on Rails, there are three core components of the Supplejack pl
 Supplejack relies on integration with both a search index (default is Solr) and a metadata repository (default is MongoDB).
 
 ![Supplejack Architecture](images/Master-DigitalNZ-Infrastructure-Supplejack-View.png) 
+![Supplejack Architecture](https://drive.google.com/file/d/0B63EYVIeMWSfc0R5empaYWxSaHM/edit?usp=sharing)
