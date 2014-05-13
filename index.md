@@ -2,7 +2,7 @@
 layout: default
 title: "Supplejack"
 ---
-### What is Supplejack?
+# What is Supplejack?
 
 Supplejack is a platform for managing the harvesting and manipulation of metadata. It was originally developed to manage the sourcing of metadata for the [DigitalNZ](http://www.digitalnz.org/) aggregation service, and has grown to a platform that can manage millions of records from hundreds of data sources.
 
