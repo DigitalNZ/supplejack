@@ -10,7 +10,7 @@ It's main purpose is to manage the process of fetching data from remote sources,
 
 Check out the screencast for an introduction to Supplejack:
 
-<iframe width="640" height="480" src="//www.youtube.com/embed/MLUURxcfcLc?rel=0" frameborder="0" allowfullscreen></iframe>
+<iframe width="480" height="360" src="//www.youtube.com/embed/MLUURxcfcLc?rel=0" frameborder="0" allowfullscreen></iframe>
 
 
 
