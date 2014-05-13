@@ -15,39 +15,36 @@ You can also view the introductory tutorials that will take you through a step b
 
 ### What does a parser script look like?
 
-    base_url "http://www.95bfm.co.nz/sm/podcasts.rss"!
+```ruby 
+class PublicAddressAndy < HarvesterCore::Rss::Base
 
-    # Default fields!
+  # Specify the location of the data
+  
+  base_url "http://publicaddress.net/system/6.rss"
 
-    attributes :category, default: "Audio"!
+	# Default mappings - the same attributes value for all records
 
-    attributes :language, default: "en"!
+  attributes :content_partner, :display_content_partner, default: "Public Address"
+  attributes :category, default: "Podcasts"
+  attributes :primary_collection, :display_collection, :collection, default: "Public Address Radio"
+  attributes :usage, default: "All rights reserved"
+  
+  # Variable mappings - different attribute values for each record
+  
+  attributes :title, xpath: "/item/title"
+  attributes :description, xpath: "item/description"
+  attributes :landing_url, xpath: "item/link"
+  attributes :display_date, xpath: "item/pubDate"
+  attributes :date, xpath: "item/pubDate", date: true
+  attributes :category, xpath: "item/pubDate"
+  
+  attributes :internal_identifier do
+    get(:landing_url).downcase
+  end
 
-    attributes :content_partner, :display_content_partner,!
-
-     :primary_collection, :creator, default: "95bFM"!
-
-    attributes :usage, :copyright, default: "All rights reserved"!
-
-    # Variable fields!
-
-    attributes :landing_url, xpath: "/item/link"!
-
-    attributes :title, xpath: "/item/title"!
-
-    attributes :description, xpath: "/item/description", truncate: 350!
-
-    attributes :date, xpath: "/item/pubDate", date: true!
-
-    attributes :object_url, xpath: "/item/enclosure/@url"!
-
-    attributes :dc_type, xpath: “/item/enclosure/@type"!
-
-    attributes :internal_identifier do!
-
-     get(:landing_url).downcase!
-
-    end
+  
+end
+```
 
 The above example of a simple parser script starts by identifying the source of the data to ingest from (base_url). Each script then identifies the data fields (attributes) to copy data into. Field names are based on the specific schema that has been set up for your Supplejack instance. 
 
