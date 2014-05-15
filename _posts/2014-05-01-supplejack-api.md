@@ -14,10 +14,8 @@ This wiki provides a guide on how to create and configure your API as well as an
 
 Before starting you should check that you have all the [dependancies](Dependancies) installed.
 
-Once that is complete we strongly recommend using the [Supplejack template](https://github.com/DigitalNZ/supplejack_template) to create your app. This template will create a new app which includes the Supplejack API engine and then step through the configuration options. To install using the template simply run the following command from the command line
+Once that is complete we strongly recommend using the [Supplejack template](https://github.com/DigitalNZ/supplejack_template) to create your app. This template will create a new app which includes the Supplejack API engine and then step through the configuration options. 
 
-```bash
-rails _3.2.12_ new mysupplejack_api -m https://raw.github.com/digitalnz/supplejack_template/master/template.rb
-```
+For details about how to install Supplejack Template, see [Install & Setup](Install & Setup)
 
 Once the install is complete you should have a working API. The next step is to [configure your schema](Schema) so that you can configure the fields that are stored/returned by your API.
