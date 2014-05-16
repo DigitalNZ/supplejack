@@ -1,4 +1,4 @@
-# Supplejack docs hosted at http://digitalnz.github.io/supplejack/
+# [Supplejack docs](http://digitalnz.github.io/supplejack/)
 
 These docs are built using Jekyll.
 
