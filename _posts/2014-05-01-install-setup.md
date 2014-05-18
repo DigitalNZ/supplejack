@@ -17,7 +17,7 @@ We have written a [Rails Application Template](http://guides.rubyonrails.org/rai
 To install the full stack run the following command:
 
 ```bash
-rails _3.2.12_ new mysupplejack_api_name --skip-bundle -m https://raw.github.com/digitalnz/supplejack_template/master/supplejack_template.rb
+rails _3.2.12_ new mysupplejack_api_name --skip-bundle -m https://raw.github.com/digitalnz/supplejack_installation/master/supplejack_api_template.rb
 ```
 
 **Note:** Be sure to note down the user API key that is printed to the terminal during the install process.
