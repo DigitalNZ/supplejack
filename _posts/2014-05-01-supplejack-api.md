@@ -12,10 +12,10 @@ This wiki provides a guide on how to create and configure your API as well as an
 
 ## Getting started
 
-Before starting you should check that you have all the [dependancies](Dependancies) installed.
+Before starting you should check that you have all the [dependancies](http://digitalnz.github.io/supplejack/start/dependancies.html) installed.
 
-Once that is complete we strongly recommend using the [Supplejack template](https://github.com/DigitalNZ/supplejack_template) to create your app. This template will create a new app which includes the Supplejack API engine and then step through the configuration options. 
+Once that is complete we strongly recommend using the [Supplejack template](https://github.com/DigitalNZ/supplejack_installation) to create your app. This template will create a new app which includes the Supplejack API engine and then step through the configuration options. 
 
-For details about how to install Supplejack Template, see [Install & Setup](Install & Setup)
+For details about how to install Supplejack Template, see [Install & Setup](http://digitalnz.github.io/supplejack/start/install-setup.html)
 
-Once the install is complete you should have a working API. The next step is to [configure your schema](Schema) so that you can configure the fields that are stored/returned by your API.
+Once the install is complete you should have a working API. The next step is to [configure your schema](http://digitalnz.github.io/supplejack/api/creating-a-schema.html) so that you can configure the fields that are stored/returned by your API.
