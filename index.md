@@ -29,6 +29,7 @@ Check out the screencast for an introduction to Supplejack:
 * Broken link monitoring with automatic search index suppression and restoration routines
 * Manual control for the suppression of records or collections from the search index
 * API framework for the sharing of stadardised data
+* API dashboard for monitoring API key activity and setting query throttle rates
 
 
 
