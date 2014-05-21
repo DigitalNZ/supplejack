@@ -89,7 +89,7 @@ group :all_fields do
 end
 ```
 
-```json
+```javascript
 // Sample requests with different groups
 // api.supplejack.com/records/123.json?api_key=abc123
 {
