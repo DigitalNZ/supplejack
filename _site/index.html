@@ -61,6 +61,9 @@
             
                 <li class=nav-header>Creating your API</li>
             
+            <li data-order="1"><a href="/supplejack/api/api-admin.html">API Admin</a></li>
+        
+            
             <li data-order="2"><a href="/supplejack/api/schema-dsl-domain-specific-language.html">Schema DSL (Domain Specific Language)</a></li>
         
             
@@ -74,7 +77,7 @@
             
                 <li class=nav-header>Using the manger</li>
             
-            <li data-order="1"><a href="/supplejack/manager/introduction-to-parser-scripts.html">Introduction to Parser scripts</a></li>
+            <li data-order="1"><a href="/supplejack/manager/introduction-to-parser-scripts.html">Introduction to parser scripts</a></li>
         
             
             <li data-order=""><a href="/supplejack/manager/parser-dsl-domain-specific-language.html">Parser DSL (Domain Specific Language)</a></li>
@@ -115,44 +118,48 @@
                     </div>
 
                     <div id=content class=span10>
-                        <h3 id="toc_0">What is Supplejack?</h3>
+                        <h1 id="toc_0">What is Supplejack?</h1>
 
 <p>Supplejack is a platform for managing the harvesting and manipulation of metadata. It was originally developed to manage the sourcing of metadata for the <a href="http://www.digitalnz.org/">DigitalNZ</a> aggregation service, and has grown to a platform that can manage millions of records from hundreds of data sources.</p>
 
-<p>It&#39;s main purpose is to manage the process of acquiring data from remote sources, map data to a standard data schema, manage any quality control or enrichment processes, and surface the cleaned and unified data via a public API.</p>
+<p>It&#39;s main purpose is to manage the process of fetching data from remote sources, mappaing data to a standard data schema, managing any quality control or enrichment processes, and surfacing the standardised data via a public API. The full <a href="https://github.com/DigitalNZ">Supplejack code repo</a> is on GitHub. </p>
 
-<iframe width="420" height="315" src="//www.youtube.com/embed/MLUURxcfcLc" frameborder="0" allowfullscreen></iframe>
+<p>Check out the screencast for an introduction to Supplejack:</p>
 
-<p>Key features of the platfrom include:</p>
+<iframe width="480" height="360" src="//www.youtube.com/embed/MLUURxcfcLc?rel=0" frameborder="0" allowfullscreen></iframe>
+
+<h3 id="toc_1">Key features</h3>
 
 <ul>
-<li>Browser-based interface for managing harvesting processes</li>
-<li>Scheduling features for regular reharvests and incremental updates and deletions. Can be set to any increment such as every hour, day, month etc. at a specific time</li>
-<li>Throttling to control the rate at which we reharvest from individual data sources</li>
+<li>Responsive designed web interface for managing harvesting activity</li>
+<li>Support for all types of data sources, including XML, OAI-PMH, RSS, HTML, MARC, RDF, JSON</li>
+<li>Customisable <a href="http://digitalnz.github.io/supplejack/api/creating-a-schema.html">data schema</a></li>
+<li>A rich <a href="http://digitalnz.github.io/supplejack/manager/introduction-to-parser-scripts.html">Domain Specific Language</a> for writing the harvest instructions for each data source</li>
+<li>Ability to embed ruby code into parser scripts for complex data harvests or enrichments</li>
+<li>Inbuilt error-checking, and notification routines during the harvesting and enrichment processes</li>
+<li>Code snippets that can be used to insert parser scripting blocks for reuse across different harvests</li>
+<li>Support for <a href="http://digitalnz.github.io/supplejack/manager/modifiers.html">manipulation</a>, <a href="http://digitalnz.github.io/supplejack/manager/validations.html">validation</a>, <a href="http://digitalnz.github.io/supplejack/manager/xml-namespaces.html">namespacing</a>, <a href="http://digitalnz.github.io/supplejack/manager/attribute-transformation-options.html">transformation</a>, and <a href="http://digitalnz.github.io/supplejack/manager/enrichments.html">enrichment</a> of data</li>
+<li>Scheduling options for regular reharvests and incremental updates and deletions. Can be set to any increment such as every hour, day, month etc. at a specific time</li>
+<li>Throttling and response time control to specifiy rate at which individual harvests run</li>
 <li>Broken link monitoring with automatic search index suppression and restoration routines</li>
-<li>Manual control for the suppression of records or collections from the search index… to support take-down requests and partner outages</li>
-<li>A very rich Domain Specific Language for scripting the harvest instructions. The functions we have built into the parsing language cover support for all types of data issues we have encountered over five years of harvesting. These functions are fully documented</li>
-<li>Customisable code &quot;snippets&quot; that can be used to insert scripting blocks for reuse across different harvests</li>
-<li>Enrichment support that allows a single record to be created from multiple data sources. For example, we can grab the location of thumbnails from a webpage if it&#39;s not listed in an RSS feed, call a geocoding service to add lat-long co-ordinates to a record, or request a full graph of a collection hierarchy so as to calculate child counts on the fly. Enrichment support is designed with data provenance in mind so that, for a record with multiple data sources, we can update the field data from one particular source without over-writing all the other field data from other sources</li>
-<li>Support for authority data. For example, we ingest library and archive authority files into our DigitalNZ search indexes. The system has been designed so that, when coupled with the enrichment model, we can create linked data structures from different authority sources. Harvesting and linking NZ authority sources is part of our planned work over the next several years and there are more ways we can enhance Supplejack to support LD</li>
-<li>Inbuilt validation, error-checking, and notification routines during the harvesting and enrichment processes</li>
-<li>Ability to work at scale. We are currently harvesting from more than 200 data sources, with more than 100 reoccurring reharvests that happen automatically. We don&#39;t really know what the effective limit would be, but we believe the interface and architecture can support scale into the thousands of data sources… I think we have to assume some refactoring over time though</li>
-<li>As a bonus… the responsive web design allows the harvests to be managed from the field. Have used it on an iPad from time-to-time, and even had to administer from a phone on one occasion. Not the most efficient form factor, but good to know it works!</li>
+<li>Manual control for the suppression of records or collections from the search index</li>
+<li>API framework for the sharing of stadardised data</li>
+<li>API dashboard for monitoring API key activity and setting query throttle rates</li>
 </ul>
 
-<h3 id="toc_1">Architectural overview</h3>
+<h3 id="toc_2">Architecture</h3>
 
-<p>The basic componets of the platform are introduced below <img src="images/Master-DigitalNZ-Infrastructure-Supplejack-View.png" alt="Supplejack Architecture"> </p>
-
-<p>The Supplejack stack includes:</p>
+<p>Developed in Ruby on Rails, there are three core components of the Supplejack platform:</p>
 
 <ul>
-<li>Manager user interface</li>
-<li>Workers (for harvesting, enrichment, and link checking activity)</li>
-<li>Integration with search index (default is Solr) </li>
-<li>Integration with metadata repository (default is MongoDB)</li>
-<li>API (public API wrapper to search index and metadata repository)</li>
+<li><a href="http://digitalnz.github.io/supplejack/start/supplejack-manager.html">Manager</a> (user interface for controlling activity)</li>
+<li><a href="http://digitalnz.github.io/supplejack/start/supplejack-worker.html">Worker</a> (for harvesting, enrichment, and link checking activity)</li>
+<li><a href="http://digitalnz.github.io/supplejack/start/supplejack-api.html">API</a> (public API wrapper to search index and metadata repository)</li>
 </ul>
+
+<p>Supplejack relies on integration with both a search index (default is Solr) and a metadata repository (default is MongoDB).</p>
+
+<p><img src="images/Master-DigitalNZ-Infrastructure-Supplejack.png" alt="Supplejack Architecture"> </p>
 
                     </div>
                 

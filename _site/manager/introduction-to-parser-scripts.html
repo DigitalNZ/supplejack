@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width">
 
-        <title>Supplejack : Introduction to Parser scripts</title>
+        <title>Supplejack : Introduction to parser scripts</title>
         <meta name="description" content="Documentation for the Supplejack stack">
 
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
@@ -61,6 +61,9 @@
             
                 <li class=nav-header>Creating your API</li>
             
+            <li data-order="1"><a href="/supplejack/api/api-admin.html">API Admin</a></li>
+        
+            
             <li data-order="2"><a href="/supplejack/api/schema-dsl-domain-specific-language.html">Schema DSL (Domain Specific Language)</a></li>
         
             
@@ -74,7 +77,7 @@
             
                 <li class=nav-header>Using the manger</li>
             
-            <li data-order="1"><a href="/supplejack/manager/introduction-to-parser-scripts.html">Introduction to Parser scripts</a></li>
+            <li data-order="1"><a href="/supplejack/manager/introduction-to-parser-scripts.html">Introduction to parser scripts</a></li>
         
             
             <li data-order=""><a href="/supplejack/manager/parser-dsl-domain-specific-language.html">Parser DSL (Domain Specific Language)</a></li>
@@ -116,7 +119,7 @@
 
                     <div id=content class=span10>
                         <div class=page-header>
-    <h1>Introduction to Parser scripts
+    <h1>Introduction to parser scripts
         
     </h1>
 </div>
@@ -128,39 +131,34 @@
 <p>You can also view the introductory tutorials that will take you through a step by step process in creating your first parser scripts <a href="https://drive.google.com/file/d/0B63EYVIeMWSfdThwRXhxcllwTVE/edit?usp=sharing">Tutorial 1</a> <a href="https://drive.google.com/file/d/0B63EYVIeMWSfdERXYTJJYmR2cW8/edit?usp=sharing">Tutorial 2</a></p>
 
 <h3 id="toc_0">What does a parser script look like?</h3>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">base_url &quot;http://www.95bfm.co.nz/sm/podcasts.rss&quot;!
+<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">PublicAddressAndy</span> <span class="o">&lt;</span> <span class="no">HarvesterCore</span><span class="o">::</span><span class="no">Rss</span><span class="o">::</span><span class="no">Base</span>
 
-# Default fields!
+  <span class="c1"># Specify the location of the data</span>
 
-attributes :category, default: &quot;Audio&quot;!
+  <span class="n">base_url</span> <span class="s2">&quot;http://publicaddress.net/system/6.rss&quot;</span>
 
-attributes :language, default: &quot;en&quot;!
+  <span class="c1"># Default mappings - the same attributes value for all records</span>
 
-attributes :content_partner, :display_content_partner,!
+  <span class="n">attributes</span> <span class="ss">:content_partner</span><span class="p">,</span> <span class="ss">:display_content_partner</span><span class="p">,</span> <span class="ss">default</span><span class="p">:</span> <span class="s2">&quot;Public Address&quot;</span>
+  <span class="n">attributes</span> <span class="ss">:category</span><span class="p">,</span> <span class="ss">default</span><span class="p">:</span> <span class="s2">&quot;Podcasts&quot;</span>
+  <span class="n">attributes</span> <span class="ss">:primary_collection</span><span class="p">,</span> <span class="ss">:display_collection</span><span class="p">,</span> <span class="ss">:collection</span><span class="p">,</span> <span class="ss">default</span><span class="p">:</span> <span class="s2">&quot;Public Address Radio&quot;</span>
+  <span class="n">attributes</span> <span class="ss">:usage</span><span class="p">,</span> <span class="ss">default</span><span class="p">:</span> <span class="s2">&quot;All rights reserved&quot;</span>
 
- :primary_collection, :creator, default: &quot;95bFM&quot;!
+  <span class="c1"># Variable mappings - different attribute values for each record</span>
 
-attributes :usage, :copyright, default: &quot;All rights reserved&quot;!
+  <span class="n">attributes</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">xpath</span><span class="p">:</span> <span class="s2">&quot;/item/title&quot;</span>
+  <span class="n">attributes</span> <span class="ss">:description</span><span class="p">,</span> <span class="ss">xpath</span><span class="p">:</span> <span class="s2">&quot;item/description&quot;</span>
+  <span class="n">attributes</span> <span class="ss">:landing_url</span><span class="p">,</span> <span class="ss">xpath</span><span class="p">:</span> <span class="s2">&quot;item/link&quot;</span>
+  <span class="n">attributes</span> <span class="ss">:display_date</span><span class="p">,</span> <span class="ss">xpath</span><span class="p">:</span> <span class="s2">&quot;item/pubDate&quot;</span>
+  <span class="n">attributes</span> <span class="ss">:date</span><span class="p">,</span> <span class="ss">xpath</span><span class="p">:</span> <span class="s2">&quot;item/pubDate&quot;</span><span class="p">,</span> <span class="ss">date</span><span class="p">:</span> <span class="kp">true</span>
+  <span class="n">attributes</span> <span class="ss">:category</span><span class="p">,</span> <span class="ss">xpath</span><span class="p">:</span> <span class="s2">&quot;item/pubDate&quot;</span>
 
-# Variable fields!
+  <span class="n">attributes</span> <span class="ss">:internal_identifier</span> <span class="k">do</span>
+    <span class="n">get</span><span class="p">(</span><span class="ss">:landing_url</span><span class="p">)</span><span class="o">.</span><span class="n">downcase</span>
+  <span class="k">end</span>
 
-attributes :landing_url, xpath: &quot;/item/link&quot;!
 
-attributes :title, xpath: &quot;/item/title&quot;!
-
-attributes :description, xpath: &quot;/item/description&quot;, truncate: 350!
-
-attributes :date, xpath: &quot;/item/pubDate&quot;, date: true!
-
-attributes :object_url, xpath: &quot;/item/enclosure/@url&quot;!
-
-attributes :dc_type, xpath: “/item/enclosure/@type&quot;!
-
-attributes :internal_identifier do!
-
- get(:landing_url).downcase!
-
-end
+<span class="k">end</span>
 </code></pre></div>
 <p>The above example of a simple parser script starts by identifying the source of the data to ingest from (base_url). Each script then identifies the data fields (attributes) to copy data into. Field names are based on the specific schema that has been set up for your Supplejack instance. </p>
 

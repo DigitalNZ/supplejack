@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width">
 
-        <title>Supplejack : Creating a Schema</title>
+        <title>Supplejack : API Admin</title>
         <meta name="description" content="Documentation for the Supplejack stack">
 
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
@@ -119,72 +119,34 @@
 
                     <div id=content class=span10>
                         <div class=page-header>
-    <h1>Creating a Schema
+    <h1>API Admin
         
     </h1>
 </div>
 
-<p>The heart of the Supplejack API is the Schema. This defines the fields for each record and how those fields should be stored and searched. It also defines the different user roles and any restrictions for those roles.</p>
-
-<p>When you first install the Supplejack API a default Schema file is created for (see the code at the bottom of the page for a copy). This gives you a template to start working from but you do not have keep any of the fields which are defined in the example.</p>
-
-<h2 id="toc_0">Schema basics</h2>
-
-<p>To start your Schema from scratch you first need the class definition.</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Schema</span> <span class="o">&lt;</span> <span class="no">SupplejackApi</span><span class="o">::</span><span class="no">SupplejackSchema</span>
-
-<span class="k">end</span>
-</code></pre></div>
-<p>You must name you class <code>Schema</code> and it must inherit from <code>SupplejackApi::SupplejackSchema</code> so that compulsory fields and groups are included in your Schema.</p>
-
-<p>Once you have defined your class you can begin adding fields, groups and roles. For more details about how to do this you can view the <a href="supplejack/api/schema-dsl-domain-specific-language.html">Schema DSL documentation</a>. You must define at least one group and role, and mark them as <code>default</code>, before you can view records from your API.</p>
-
-<h3 id="toc_1">Some common issues</h3>
+<p>Supplejack API comes with an admin page that lets you do the following:</p>
 
 <ul>
-<li>If you already have records saved in Mongo you will have to resave them each time you update your Schema before you see any change in what is returned from the API. </li>
-<li>Fields that are already saved will not be removed from the record, in Mongo, if you remove that field from the Schema.</li>
+<li>Track users activities.</li>
+<li>Track API usage by date.</li>
+<li>Update users&#39; Max Requests value.</li>
+<li>Export data to CSV.</li>
 </ul>
 
-<h2 id="toc_2">Example schema</h2>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Schema</span> <span class="o">&lt;</span> <span class="no">SupplejackApi</span><span class="o">::</span><span class="no">SupplejackSchema</span>
+<h2 id="toc_0">Accessing API Admin</h2>
 
-  <span class="c1"># Fields</span>
-  <span class="n">string</span>    <span class="ss">:name</span><span class="p">,</span>         <span class="n">search_boost</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>      <span class="n">search_as</span><span class="p">:</span> <span class="o">[</span><span class="ss">:filter</span><span class="p">,</span> <span class="ss">:fulltext</span><span class="o">]</span>
-  <span class="n">string</span>    <span class="ss">:address</span><span class="p">,</span>      <span class="n">search_boost</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>       <span class="n">search_as</span><span class="p">:</span> <span class="o">[</span><span class="ss">:filter</span><span class="p">,</span> <span class="ss">:fulltext</span><span class="o">]</span>
-  <span class="n">string</span>    <span class="ss">:email</span><span class="p">,</span>        <span class="n">multi_value</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>     <span class="n">search_as</span><span class="p">:</span> <span class="o">[</span><span class="ss">:filter</span><span class="o">]</span>
-  <span class="n">string</span>    <span class="ss">:children</span><span class="p">,</span>     <span class="n">multi_value</span><span class="p">:</span> <span class="kp">true</span>
-  <span class="n">string</span>    <span class="ss">:contact</span><span class="p">,</span>      <span class="n">multi_value</span><span class="p">:</span> <span class="kp">true</span>
-  <span class="n">integer</span>   <span class="ss">:age</span>
-  <span class="n">datetime</span>  <span class="ss">:birth_date</span>
-  <span class="n">boolean</span>   <span class="ss">:nz_citizen</span><span class="p">,</span>                          <span class="n">search_as</span><span class="p">:</span> <span class="o">[</span><span class="ss">:filter</span><span class="o">]</span>
+<p>After running your Supplejack API instance, visit <code>localhost:3000/admin/users/sign_in</code>. If you build your API instance using <a href="https://github.com/DigitalNZ/supplejack_installation">installation template</a>, you&#39;ll be given a default admin user with the following credentials:</p>
 
-  <span class="c1"># Groups</span>
-  <span class="n">group</span> <span class="ss">:default</span> <span class="k">do</span>
-    <span class="n">fields</span> <span class="o">[</span>
-      <span class="ss">:name</span><span class="p">,</span>
-      <span class="ss">:address</span>
-    <span class="o">]</span>
-  <span class="k">end</span>
-  <span class="n">group</span> <span class="ss">:all</span> <span class="k">do</span>
-    <span class="n">includes</span> <span class="o">[</span><span class="ss">:default</span><span class="o">]</span>
-    <span class="n">fields</span> <span class="o">[</span>
-      <span class="ss">:email</span><span class="p">,</span>
-      <span class="ss">:children</span><span class="p">,</span>
-      <span class="ss">:nz_citizen</span><span class="p">,</span>
-      <span class="ss">:birth_date</span><span class="p">,</span>
-      <span class="ss">:age</span>
-    <span class="o">]</span>
-  <span class="k">end</span>
+<ul>
+<li><code>email: test@example.com</code></li>
+<li><code>password: supplejack</code></li>
+</ul>
 
-   <span class="c1"># Roles</span>
-  <span class="n">role</span> <span class="ss">:developer</span> <span class="k">do</span>
-    <span class="n">default</span> <span class="kp">true</span>
-  <span class="k">end</span>
-  <span class="n">role</span> <span class="ss">:admin</span>
-
-<span class="k">end</span>
+<p>Otherwise, you can create your own user by accessing the console.</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">  &gt; SupplejackApi::User.create<span class="o">(</span>email: <span class="s1">&#39;your@email.com&#39;</span>, name: <span class="s1">&#39;Your name&#39;</span>, username: <span class="s1">&#39;yourusername&#39;</span>, role: <span class="s1">&#39;admin&#39;</span>, password: <span class="s1">&#39;supplejack&#39;</span>, password_confirmation: <span class="s1">&#39;supplejack&#39;</span><span class="o">)</span>
 </code></pre></div>
+<p><img src="../images/supplejack-api-admin.png" alt="Supplejack API Admin"></p>
+
 
                     </div>
                 
