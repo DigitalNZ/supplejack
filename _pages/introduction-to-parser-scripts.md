@@ -1,1 +1,0 @@
-/Users/jesse/dev/digitalnz/supplejack/supplejack/_posts/2014-05-06-introduction-to-parser-scripts.md

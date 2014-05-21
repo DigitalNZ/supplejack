@@ -1,1 +1,0 @@
-/Users/jesse/dev/digitalnz/supplejack/supplejack/_posts/2014-05-01-supplejack-manager.md
