@@ -3,6 +3,7 @@ layout: page
 title: "Attribute Transformation Options"
 category: manager
 date: 2014-05-01 16:11:48
+order: 5
 ---
 
 Transformation options are changes made to the harvested values, global transformations are applied to every value and custom transformations are only applied when specified in the options for a attribute definition.

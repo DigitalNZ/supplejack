@@ -3,6 +3,7 @@ layout: page
 title: "XML Namespaces"
 category: manager
 date: 2014-05-01 16:12:04
+order: 4
 ---
 
 Many XML, RSS and OAI sources we harvest make use of XML Namespaces. Understanding namespaces and using them correctly is important to make parsers behave predictably.

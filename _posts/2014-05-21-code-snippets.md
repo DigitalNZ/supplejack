@@ -3,6 +3,7 @@ layout: page
 title: "Code Snippets"
 category: manager
 date: 2014-05-21 11:53:13
+order: 8
 ---
 
 Code snippets allow the harvest operator to create pieces of code that can be used across different parsers.

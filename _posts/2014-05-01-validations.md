@@ -3,6 +3,7 @@ layout: page
 title: "Validations"
 category: manager
 date: 2014-05-01 16:12:17
+order: 3
 ---
 
 Validations allow the harvest operator to specify a minimum set of requirements on the quality of the metadata of a specific record that has to be fullfilled in order for the record to be sent to the API.

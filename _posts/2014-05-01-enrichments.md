@@ -3,6 +3,7 @@ layout: page
 title: "Enrichments"
 category: manager
 date: 2014-05-01 16:11:33
+order: 6
 ---
 
 Enrichment is the process by which a record's metadata can be augmented by either fetching information from an external resource or by performing data analysis on a Collection of records.

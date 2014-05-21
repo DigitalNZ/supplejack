@@ -3,6 +3,7 @@ layout: page
 title: "Modifiers"
 category: manager
 date: 2014-05-01 16:11:14
+order: 7
 ---
 
 Modifiers are methods that provide an easy way to accomplish common tasks to manipulate or retrieve data in specific ways.
