@@ -1,12 +1,12 @@
 ---
 layout: page
-title: "Dependancies"
+title: "Dependencies"
 category: start
 date: 2014-05-01 15:02:05
 order: 1
 ---
 
-Supplejack requires the following to run the full stack. Please review this page carefully as some of these dependancies are version specific and failure to use the correct versions will cause problems.
+Supplejack requires the following to run the full stack. Please review this page carefully as some of these dependencies are version specific and failure to use the correct versions will cause problems.
 
 ### Ruby
 

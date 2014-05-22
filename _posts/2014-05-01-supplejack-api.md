@@ -12,7 +12,7 @@ This wiki provides a guide on how to create and configure your API as well as an
 
 ## Getting started
 
-Before starting you should check that you have all the [dependancies](/supplejack/start/dependancies.html) installed.
+Before starting you should check that you have all the [dependencies](/supplejack/start/dependencies.html) installed.
 
 Once that is complete we strongly recommend using the [Supplejack template](https://github.com/DigitalNZ/supplejack_installation) to create your app. This template will create a new app which includes the Supplejack API engine and then step through the configuration options. 
 

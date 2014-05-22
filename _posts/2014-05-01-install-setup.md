@@ -6,7 +6,7 @@ date: 2014-05-01 15:02:23
 order: 2
 ---
 
-Once you have installed all the [dependancies](http://digitalnz.github.io/supplejack/start/dependancies.html) you are now ready to install the rest of the stack. As all the components require configuration to interact we strongly recommend that you use the [installation template](https://github.com/DigitalNZ/supplejack_installation) which is a [Rails Application Template](http://guides.rubyonrails.org/rails_application_templates.html) which is provided for Supplejack.
+Once you have installed all the [dependencies](http://digitalnz.github.io/supplejack/start/dependencies.html) you are now ready to install the rest of the stack. As all the components require configuration to interact we strongly recommend that you use the [installation template](https://github.com/DigitalNZ/supplejack_installation) which is a [Rails Application Template](http://guides.rubyonrails.org/rails_application_templates.html) which is provided for Supplejack.
 
 ## Install the Supplejack Stack
 
