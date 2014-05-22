@@ -14,6 +14,10 @@ __Define a JSON enrichment__
 
 ```ruby
 enrichment :google_placenames do
+  requires :country do
+    "New Zealand"
+  end
+  
   url "http://maps.google.com"
   format "json"
 
@@ -22,6 +26,10 @@ enrichment :google_placenames do
       latitude: path("place/lat"),
       longitude: path("place/lng")
     }
+  end
+  
+  attribute :address do
+    "Wellington, #{requirements[:country]}"
   end
 end
 ```
