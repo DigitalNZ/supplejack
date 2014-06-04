@@ -17,6 +17,8 @@ The  [installation template](https://github.com/DigitalNZ/supplejack_installatio
 To install the full stack run the following command:
 
 ```bash
+# You should replace 'mysupplejack_api_name' with the name of your app.
+
 rails _3.2.12_ new mysupplejack_api_name --skip-bundle -m https://raw.github.com/digitalnz/supplejack_installation/master/supplejack_api_template.rb
 ```
 
