@@ -14,27 +14,34 @@ end
 
 Note: You must name you class `ConceptSchema` and it must inherit from `SupplejackApi::SupplejackSchema` so that compulsory fields and groups are included in your Concept schema.
 
-Once you have defined your class you can begin adding fields, groups and roles.
+Once you have defined your class you can begin adding fields, namespaces, groups and roles.
 
 ### Example Concept Schema ###
 
 ```ruby
 class ConceptSchema < SupplejackApi::SupplejackSchema
 
+  #namespaces
+  namespace :skos,   url: 'http://www.w3.org/2004/02/skos/core'
+  namespace :foaf,   url: 'http://xmlns.com/foaf/0.1/'
+  namespace :rdaGr2, url: 'http://rdvocab.info/ElementsGr2/'
+  namespace :edm,    url: 'http://www.europeana.eu/schemas/edm/'
+  namespace :owl,    url: 'http://www.w3.org/2002/07/owl'
+
   # Fields
-  string    :type,                              search_as: [:filter]
-  string    :name,          search_boost: 10,   search_as: [:filter, :fulltext]
-  string    :label,         search_boost: 5,    search_as: [:filter, :fulltext]
-  string    :description,   search_boost: 2,    search_as: [:filter, :fulltext]
-  datetime  :dateOfBirth,                       search_as: [:filter]
-  datetime  :dateOfDeath,                       search_as: [:filter]
-  string    :placeOfBirth
-  string    :placeOfDeath
-  string    :gender,                            search_as: [:filter]
-  string    :isRelatedTo,   multi_value: true
-  string    :hasMet,        multi_value: true
-  string    :sameAs,        multi_value: true
-  string    :role
+  string    :@type
+  string    :name,          search_boost: 10,   search_as: [:filter, :fulltext], namespace: :foaf
+  string    :label,         search_boost: 5,    search_as: [:filter, :fulltext], namespace: :skos, namespace_field: :prefLabel
+  string    :description,   search_boost: 2,    search_as: [:filter, :fulltext], namespace: :rdaGr2, namespace_field: :biographicalInformation
+  datetime  :dateOfBirth,   namespace: :rdaGr2
+  datetime  :dateOfDeath,   namespace: :rdaGr2
+  string    :placeOfBirth,  namespace: :rdaGr2
+  string    :placeOfDeath,  namespace: :rdaGr2
+  string    :role,          namespace: :rdaGr2, namespace_field: :professionOrOccupation
+  string    :gender,        namespace: :rdaGr2
+  string    :isRelatedTo,   multi_value: true, namespace: :edm
+  string    :hasMet,        multi_value: true, namespace: :edm
+  string    :sameAs,        multi_value: true, namespace: :owl
 
   # Groups
   group :default do
@@ -60,7 +67,6 @@ class ConceptSchema < SupplejackApi::SupplejackSchema
       :sameAs,
     ]
   end
-
 end
 ```
 
@@ -90,8 +96,12 @@ Using `text`.
         "result_count": 1,
         "results": [
             {
-                "@context": {...},
-                "@id": "http://digitalnz.org/person/rita-angus",
+                "@context": {
+                  "foaf": "http://xmlns.com/foaf/0.1/",
+                  "name": "foaf:name",
+                  "skos": "http://www.w3.org/2004/02/skos/core",
+                  "label": "skos:prefLabel"
+                },
                 "type": "person",
                 "name": "Angus",
                 "label": "Rita"
@@ -139,7 +149,10 @@ Display specific fields using `fields`.
         "result_count": 1,
         "results": [
             {
-                "@context": {...},
+                "@context": {
+                  "skos": "http://www.w3.org/2004/02/skos/core",
+                  "label": "skos:prefLabel"
+                },
                 "type": "person",
                 "label": "Rita"
             }
@@ -162,7 +175,10 @@ Search within a specific fields using `query_fields`.
         "result_count": 1,
         "results": [
             {
-                "@context": {...},
+                "@context": {
+                  "rdaGr2": "http://rdvocab.info/ElementsGr2/",
+                  "description": "rdaGr2:biographicalInformation"
+                },
                 "description": "Short Rita Angus description"
             }
         ],
