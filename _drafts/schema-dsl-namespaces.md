@@ -131,3 +131,21 @@ Both are optional:
    * The example above restricts the `attachments` field when the `collection` is `NZ On Screen` and `large_thumbail_url` field when it includes `secret.com`.
 * `record_restrictions` is a Hash. If the hash key is equal to the hash value for the record, then the record is restricted.
   * The example above restricts records where `access_rights` is `false` if the request's API key has a `developer` role.
+
+## Mongo Indexes
+
+[Mongo indexes](http://docs.mongodb.org/manual/indexes/) provide high performance read operations for frequently used queries. By default indexes are defined for the core fields in the Supplejack Schema. 
+
+You can add extra indexes in your schema if required. To do so you must pass a name for the index, the fields you wish to index and direction and then any options. Both fields and index_options _must_ be an Array containing a single Hash. 
+
+For a full list of options and more details about indexing view the [Mongoid documentation](http://mongoid.org/en/mongoid/docs/indexing.html)
+
+```ruby
+# Simple index
+mongo_index :type, fields: [{type: 1}]
+
+# Multiple field index with options
+mongo_index :type_date, fields: [{type: 1, date: 1}], index_options: [{unique: true, background: true}] 
+
+```
+
