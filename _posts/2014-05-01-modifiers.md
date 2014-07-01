@@ -191,6 +191,14 @@ attribute :subjects do
   compose(get(:tag), "New Zealand", get(:title))
 end
 ```
+#### concept_lookup(url)
+It returns concept ids if the sameAs of the concept fragment contains given url
+
+```ruby
+attribute :concept_ids do
+  concept_lookup("http://www.google.com")
+end
+```
 
 #### to_date
 It tries to parse the values into real dates.
