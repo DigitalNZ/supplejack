@@ -38,7 +38,7 @@ Create a user
 ### Environment Configurations
 In order to start harvesting records, you need to specify what environments you need. You can choose `staging` or `production` or both. The example `application.yml` comes with `production` as default environment. If you wanted to have two environments, you can uncomment `staging` and specify the correct values for URLs and keys.
 
-By default, supplejack manager can only create parser to harvest record. In order to create parser for concept harvesting, you need to set ``PARSER_TYPE_ENABLED`` constant in **parser_type.rb** to true.
+By default, supplejack manager can only create parser to harvest record. In order to create parser for concept harvesting, you need to set ``PARSER_TYPE_ENABLED`` in **application.yml** to true.
 
 Example 1: One environment setup
 
