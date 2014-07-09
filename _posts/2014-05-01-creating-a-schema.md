@@ -44,34 +44,68 @@ Once you have defined your class you can begin adding fields, groups and roles. 
 
 ## Example schema
 ```ruby 
-class Schema < SupplejackApi::SupplejackSchema
+class RecordSchema < SupplejackApi::SupplejackSchema
+
+  # Namespaces
+  namespace :dc,        url: 'http://purl.org/dc/elements/1.1/'
+  namespace :sj,        url: ''
 
   # Fields
-  string    :name,         search_boost: 10,      search_as: [:filter, :fulltext]
-  string    :address,      search_boost: 2,       search_as: [:filter, :fulltext]
-  string    :email,        multi_value: true,     search_as: [:filter]
-  string    :children,     multi_value: true
-  string    :contact,      multi_value: true
-  integer   :age
-  datetime  :birth_date
-  boolean   :nz_citizen,                          search_as: [:filter]
+  string    :record_id,                   store: false,                                           namespace: :sj
+  string    :concept_ids,                                                                         namespace: :sj
+  string    :title,                       search_boost: 10,     search_as: [:filter, :fulltext],  namespace: :dc
+  string    :description,                 search_boost: 2,      search_as: [:filter, :fulltext],  namespace: :dc
+  string    :creator,                     multi_value: true,                                      namespace: :dc
+  datetime  :date,                                                                                namespace: :dc
+  string    :display_date,                                                                        namespace: :dc
+  string    :subject,                                                                             namespace: :dc
+  string    :identifier,                                                                          namespace: :dc
+  string    :rights,                                                                              namespace: :dc
+  string    :license,                                                                             namespace: :dc
+  string    :type,                        multi_value: true,    search_as: [:filter, :fulltext],  namespace: :dc
+  string    :coverage,                                                                            namespace: :dc
+  string    :language,                                                                            namespace: :dc
+        
+  string    :source_provider_name,                              search_as: [:filter, :fulltext],  namespace: :sj
+  string    :source_contributor_name,     multi_value: true,    search_as: [:filter, :fulltext],  namespace: :sj
+  string    :source_website_name,                               search_as: [:filter, :fulltext],  namespace: :sj
+  string    :source_url,                                                                          namespace: :sj
+  string    :thumbnail_url
 
   # Groups
   group :default do
     fields [
-      :name,
-      :address
+      :title,
+      :description
     ]
   end
+
   group :all do
     includes [:default]
     fields [
-      :email,
-      :children,
-      :nz_citizen,
-      :birth_date,
-      :age
+      :record_id,
+      :concept_ids,
+      :title,
+      :description,
+      :creator,
+      :date,
+      :display_date,
+      :subject,
+      :identifier,
+      :rights,
+      :type,
+      :coverage,
+      :language,
+      :source_provider_name,
+      :source_contributor_name,
+      :source_website_name,
+      :source_url,
+      :thumbnail_url
     ]
+  end
+
+  group :core do
+    fields [:record_id]
   end
 
    # Roles
