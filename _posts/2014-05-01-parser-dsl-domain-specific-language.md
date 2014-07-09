@@ -132,6 +132,22 @@ priority 5
 
 Unintuitively, sources with more negative priorities are used first, and more positive priorities are used last. This could also be expressed as higher priorities are lower priority.
 
+
+## Concepts
+### Matching
+
+To specify the type of concept matching required, set the @match_concepts@ directive as below.
+
+```
+match_concepts :create_or_update
+```
+
+It can be set to:
+
+* `:create` which doesn't perform any matching, always creating new concepts
+* `:match` which will only match (and update the sameAs field on the matching concept with data from this harvest)
+* `:create_or_update` which will match if it exists, otherwise create a new concept.
+
 ## XML Specific
 ### Record Selector
 
