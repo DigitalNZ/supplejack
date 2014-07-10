@@ -6,7 +6,7 @@ title: "Supplejack"
 
 Supplejack is a platform for managing the harvesting and manipulation of metadata. It was originally developed to manage the sourcing of metadata for the [DigitalNZ](http://www.digitalnz.org/) aggregation service, and has grown to a platform that can manage millions of records from hundreds of data sources.
 
-It's main purpose is to manage the process of fetching data from remote sources, mappaing data to a standard data schema, managing any quality control or enrichment processes, and surfacing the standardised data via a public API. The full [Supplejack code repo](https://github.com/DigitalNZ) is on GitHub. 
+It's main purpose is to manage the process of fetching data from remote sources, mapping data to a standard data schema, managing any quality control or enrichment processes, and surfacing the standardised data via a public API. The full [Supplejack code repo](https://github.com/DigitalNZ) is on GitHub. 
 
 Check out the screencast for an introduction to Supplejack:
 
@@ -30,18 +30,3 @@ Check out the screencast for an introduction to Supplejack:
 * Manual control for the suppression of records or collections from the search index
 * API framework for the sharing of stadardised data
 * API dashboard for monitoring API key activity and setting query throttle rates
-
-
-
-### Architecture
-
-Developed in Ruby on Rails, there are three core components of the Supplejack platform:
-
-* [Manager](http://digitalnz.github.io/supplejack/start/supplejack-manager.html) (user interface for controlling activity)
-* [Worker](http://digitalnz.github.io/supplejack/start/supplejack-worker.html) (for harvesting, enrichment, and link checking activity)
-* [API](http://digitalnz.github.io/supplejack/start/supplejack-api.html) (public API wrapper to search index and metadata repository)
-
-Supplejack relies on integration with both a search index (default is Solr) and a metadata repository (default is MongoDB).
-
-![Supplejack Architecture](images/Master-DigitalNZ-Infrastructure-Supplejack.png) 
-

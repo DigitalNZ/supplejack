@@ -18,6 +18,18 @@ code {
     color: inherit;
 }
 
+a {
+    color: #F87A06;
+}
+
+h4 {
+    padding: 10px 0px;
+}
+
+a:hover {
+    color: #333333;
+}
+
 #header {
     border-bottom: 1px solid #eee;
     margin-bottom: 20px;
@@ -55,4 +67,17 @@ code {
 #navigation .nav-header {
     padding-left: 0;
     padding-right: 0;
+}
+
+a.brand {
+    font-size: 32px;
+    padding: 0 10px;
+}
+
+.nav-header {
+    color: #333333;
+}
+
+.version {
+    margin-left: 650px;
 }
