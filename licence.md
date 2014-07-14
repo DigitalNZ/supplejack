@@ -1,7 +1,5 @@
 ---
 layout: page
 title: "Licence"
-category: dev
 date: 2014-05-01 15:03:05
-order: 1
 ---

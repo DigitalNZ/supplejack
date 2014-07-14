@@ -1,6 +1,6 @@
 # Site title and subtitle. This is used in _includes/header.html
 title: 'Supplejack'
-subtitle: 'Documentation for the Supplejack stack'
+subtitle: 'Documentation'
 
 # Enable/show navigation. There are there options:
 #   0 - always hide
@@ -16,7 +16,7 @@ sections: [
     ['start', 'Getting started'],
     ['api', 'Creating your API'],
     ['manager', 'Using the manager'],
-    ['dev', 'Developers']
+    ['dev']
 ]
 
 # Keep as an empty string if served up at the root. If served up at a specific
