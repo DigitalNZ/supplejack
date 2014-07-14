@@ -71,13 +71,9 @@ a:hover {
 
 a.brand {
     font-size: 32px;
-    padding: 0 10px;
+    padding: 0 10px 0 0;
 }
 
 .nav-header {
     color: #333333;
-}
-
-.version {
-    margin-left: 800px;
 }
