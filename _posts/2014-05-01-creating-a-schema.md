@@ -42,7 +42,7 @@ Once you have defined your class you can begin adding fields, groups and roles. 
 * Fields that are already saved will not be removed from the record, in Mongo, if you remove that field from the Schema.
 
 
-## Example schema
+## Example schema (Record)
 ```ruby 
 class RecordSchema < SupplejackApi::SupplejackSchema
 

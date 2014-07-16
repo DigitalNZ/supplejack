@@ -1,4 +1,10 @@
-# Supplejack API Concepts #
+---
+layout: page
+title: "Concepts"
+category: api
+date: 2014-05-01 16:01:30
+order: 2
+---
 
 This documention provides implementation details for a new DigitalNZ concepts API. It is expected that the API will handle several different types of concept, in the first instance people and places.
 
@@ -21,7 +27,7 @@ Once you have defined your class you can begin adding fields, namespaces, groups
 ```ruby
 class ConceptSchema < SupplejackApi::SupplejackSchema
 
-  # Namespaces
+  #namespaces
   namespace :skos,   url: 'http://www.w3.org/2004/02/skos/core'
   namespace :foaf,   url: 'http://xmlns.com/foaf/0.1/'
   namespace :rdaGr2, url: 'http://rdvocab.info/ElementsGr2/'
@@ -30,8 +36,12 @@ class ConceptSchema < SupplejackApi::SupplejackSchema
 
   # Fields
   string    :concept_id,    store: false
+  string    :landing_url,   store: false
   string    :type
+  string    :match_status,  search_as: [:filter]
   string    :name,          search_boost: 10,     search_as: [:filter, :fulltext], namespace: :foaf
+  string    :givenName,     search_boost: 10,     search_as: [:filter, :fulltext], namespace: :foaf
+  string    :familyName,    search_boost: 10,     search_as: [:filter, :fulltext], namespace: :foaf
   string    :label,         search_boost: 5,      search_as: [:filter, :fulltext], namespace: :skos, namespace_field: :prefLabel
   string    :description,   search_boost: 2,      search_as: [:filter, :fulltext], namespace: :rdaGr2, namespace_field: :biographicalInformation
   datetime  :dateOfBirth,   search_as: [:filter], namespace: :rdaGr2
@@ -48,14 +58,19 @@ class ConceptSchema < SupplejackApi::SupplejackSchema
   group :default do
     fields [
       :type,
-      :name,
       :label,
       :role
     ]
   end
+
   group :all do
     includes [:default]
     fields [
+      :landing_url,
+      :match_status,
+      :name,
+      :givenName,
+      :familyName,
       :description,
       :dateOfBirth,
       :dateOfDeath,
@@ -64,9 +79,10 @@ class ConceptSchema < SupplejackApi::SupplejackSchema
       :gender,
       :isRelatedTo,
       :hasMet,
-      :sameAs,
+      :sameAs
     ]
   end
+
   group :core do
     fields [:concept_id]
   end
@@ -83,7 +99,7 @@ end
 ## Search ##
 
 ### Search for concepts ###
-`http://localhost:3000/concepts.json?api_key=your-api-key&text=David`
+`http://localhost:3000/concepts.json?api_key=your-api-key&text=Salomon`
 
 #### Request ####
 
@@ -100,7 +116,7 @@ end
 
 Search using `text`.
 
-`http://localhost:3000/concepts.json?api_key=your-api-key&text=david`
+`http://localhost:3000/concepts.json?api_key=your-api-key&text=Salomon`
 
 ```json
 {
@@ -109,36 +125,30 @@ Search using `text`.
         "results": [
             {
                 "@context": {
-                    "foaf": "http://xmlns.com/foaf/0.1/",
-                    "name": "foaf:name",
                     "skos": "http://www.w3.org/2004/02/skos/core",
                     "label": "skos:prefLabel",
                     "rdaGr2": "http://rdvocab.info/ElementsGr2/",
                     "role": "rdaGr2:professionOrOccupation"
                 },
                 "type": "foaf:person",
-                "name": "David Lange",
-                "label": "David Lange",
-                "role": "politician"
+                "label": "Salomon van Abb",
+                "role": null
             },
             {
                 "@context": {
-                    "foaf": "http://xmlns.com/foaf/0.1/",
-                    "name": "foaf:name",
                     "skos": "http://www.w3.org/2004/02/skos/core",
                     "label": "skos:prefLabel",
                     "rdaGr2": "http://rdvocab.info/ElementsGr2/",
                     "role": "rdaGr2:professionOrOccupation"
                 },
-                "type": "foaf:person",
-                "name": "David Hill",
-                "label": "David Hill",
-                "role": "author"
+                "type": "[\"foaf:person\"]",
+                "label": "Salomon van Abbé",
+                "role": null
             }
         ],
         "per_page": 20,
         "page": 1,
-        "request_url": "http://localhost:3000/concepts.json?api_key=your-api-key&text=david",
+        "request_url": "http://localhost:3000/concepts.json?api_key=your-api-key&text=Salomon",
         "facets": {}
     }
 }
@@ -146,94 +156,27 @@ Search using `text`.
 
 Using `facets`.
 
-`http://localhost:3000/concepts.json?api_key=your-api-key&facets=name`
+`http://localhost:3000/concepts.json?api_key=your-api-key&facets=label`
 
 ```json
 {
     "search": {
         "result_count": 5,
         "results": [
-            {
-                "@context": {
-                    "foaf": "http://xmlns.com/foaf/0.1/",
-                    "name": "foaf:name",
-                    "skos": "http://www.w3.org/2004/02/skos/core",
-                    "label": "skos:prefLabel",
-                    "rdaGr2": "http://rdvocab.info/ElementsGr2/",
-                    "role": "rdaGr2:professionOrOccupation"
-                },
-                "type": "foaf:person",
-                "name": "David Lange",
-                "label": "David Lange",
-                "role": "politician"
-            },
-            {
-                "@context": {
-                    "foaf": "http://xmlns.com/foaf/0.1/",
-                    "name": "foaf:name",
-                    "skos": "http://www.w3.org/2004/02/skos/core",
-                    "label": "skos:prefLabel",
-                    "rdaGr2": "http://rdvocab.info/ElementsGr2/",
-                    "role": "rdaGr2:professionOrOccupation"
-                },
-                "type": "foaf:person",
-                "name": "Robert Muldoon",
-                "label": "Robert Muldoon",
-                "role": "politician"
-            },
-            {
-                "@context": {
-                    "foaf": "http://xmlns.com/foaf/0.1/",
-                    "name": "foaf:name",
-                    "skos": "http://www.w3.org/2004/02/skos/core",
-                    "label": "skos:prefLabel",
-                    "rdaGr2": "http://rdvocab.info/ElementsGr2/",
-                    "role": "rdaGr2:professionOrOccupation"
-                },
-                "type": "foaf:person",
-                "name": "Colin McCahon",
-                "label": "Colin McCahon",
-                "role": "artist"
-            },
-            {
-                "@context": {
-                    "foaf": "http://xmlns.com/foaf/0.1/",
-                    "name": "foaf:name",
-                    "skos": "http://www.w3.org/2004/02/skos/core",
-                    "label": "skos:prefLabel",
-                    "rdaGr2": "http://rdvocab.info/ElementsGr2/",
-                    "role": "rdaGr2:professionOrOccupation"
-                },
-                "type": "foaf:person",
-                "name": "Rita Angus",
-                "label": "Rita Angus",
-                "role": "artist"
-            },
-            {
-                "@context": {
-                    "foaf": "http://xmlns.com/foaf/0.1/",
-                    "name": "foaf:name",
-                    "skos": "http://www.w3.org/2004/02/skos/core",
-                    "label": "skos:prefLabel",
-                    "rdaGr2": "http://rdvocab.info/ElementsGr2/",
-                    "role": "rdaGr2:professionOrOccupation"
-                },
-                "type": "foaf:person",
-                "name": "David Hill",
-                "label": "David Hill",
-                "role": "author"
-            }
+            .
+            .
+            .
         ],
         "per_page": 20,
         "page": 1,
-        "request_url": "http://localhost:3000/concepts.json?api_key=your-api-key&facets=name",
+        "request_url": "http://localhost:3000/concepts.json?api_key=your-api-key&facets=label",
         "facets": {
-            "name": {
-                "Colin McCahon": 1,
-                "David Hill": 1,
-                "David Lange": 1,
+            "label": {
+                "Frances Hodgkins": 1,
                 "Rita Angus": 1,
-                "Robert Muldoon": 1
+                "Salomon van Abb": 1,
+                "Salomon van Abbé": 1,
+                "Wilhelm Dittmer": 1
             }
         }
     }
@@ -242,7 +185,7 @@ Using `facets`.
 
 Display specific fields using `fields`.
 
-`http://localhost:3000/concepts.json?api_key=your-api-key&text=rita&fields=name,description`
+`http://localhost:3000/concepts.json?api_key=your-api-key&text=Salomon&fields=label,familyName,givenName`
 
 ```json
 {
@@ -251,18 +194,20 @@ Display specific fields using `fields`.
         "results": [
             {
                 "@context": {
+                    "skos": "http://www.w3.org/2004/02/skos/core",
+                    "label": "skos:prefLabel",
                     "foaf": "http://xmlns.com/foaf/0.1/",
-                    "name": "foaf:name",
-                    "rdaGr2": "http://rdvocab.info/ElementsGr2/",
-                    "description": "rdaGr2:biographicalInformation"
+                    "givenName": "foaf:givenName",
+                    "familyName": "foaf:familyName"
                 },
-                "name": "Rita Angus",
-                "description": "Rita Angus description"
+                "label": "Rita Angus",
+                "familyName": "Angus",
+                "givenName": "Rita"
             }
         ],
         "per_page": 20,
         "page": 1,
-        "request_url": "http://localhost:3000/concepts.json?api_key=your-api-key&text=rita&fields=name,description",
+        "request_url": "http://localhost:3000/concepts.json?api_key=your-api-key&text=Rita&fields=label,familyName,givenName",
         "facets": {}
     }
 }
@@ -270,7 +215,7 @@ Display specific fields using `fields`.
 
 Search within a specific fields using `query_fields`.
 
-`http://localhost:3000/concepts.json?api_key=your-api-key&text=Rita&text=rita description&query_fields=description`
+`http://localhost:3000/concepts.json?api_key=your-api-key&text=Angus&query_fields=familyName`
 
 ```json
 {
@@ -279,22 +224,19 @@ Search within a specific fields using `query_fields`.
         "results": [
             {
                 "@context": {
-                    "foaf": "http://xmlns.com/foaf/0.1/",
-                    "name": "foaf:name",
                     "skos": "http://www.w3.org/2004/02/skos/core",
                     "label": "skos:prefLabel",
                     "rdaGr2": "http://rdvocab.info/ElementsGr2/",
                     "role": "rdaGr2:professionOrOccupation"
                 },
-                "type": "foaf:person",
-                "name": "Rita Angus",
+                "type": "[\"foaf:person\"]",
                 "label": "Rita Angus",
-                "role": "artist"
+                "role": null
             }
         ],
         "per_page": 20,
         "page": 1,
-        "request_url": "http://localhost:3000/concepts.json?api_key=your-api-key&text=rita%20description&query_fields=description",
+        "request_url": "http://localhost:3000/concepts.json?api_key=your-api-key&text=Angus&query_fields=familyName",
         "facets": {}
     }
 }
@@ -302,7 +244,7 @@ Search within a specific fields using `query_fields`.
 
 Sorting search results using `sort` and `direction`.
 
-`http://localhost:3000/concepts.json?api_key=your-api-keysort=dateOfBirth&direction=asc&fields=dateOfBirth`
+`http://localhost:3000/concepts.json?api_key=your-api-key&sort=dateOfBirth&direction=asc&fields=dateOfBirth,label`
 
 ```json
 {
@@ -312,42 +254,57 @@ Sorting search results using `sort` and `direction`.
             {
                 "@context": {
                     "rdaGr2": "http://rdvocab.info/ElementsGr2/",
-                    "dateOfBirth": "rdaGr2:dateOfBirth"
+                    "dateOfBirth": "rdaGr2:dateOfBirth",
+                    "skos": "http://www.w3.org/2004/02/skos/core",
+                    "label": "skos:prefLabel"
                 },
-                "dateOfBirth": "1600-01-01T00:00:00+00:00"
+                "dateOfBirth": "1866-01-01T12:00:00+00:00",
+                "label": "Wilhelm Dittmer"
             },
             {
                 "@context": {
                     "rdaGr2": "http://rdvocab.info/ElementsGr2/",
-                    "dateOfBirth": "rdaGr2:dateOfBirth"
+                    "dateOfBirth": "rdaGr2:dateOfBirth",
+                    "skos": "http://www.w3.org/2004/02/skos/core",
+                    "label": "skos:prefLabel"
                 },
-                "dateOfBirth": "1700-01-01T00:00:00+00:00"
+                "dateOfBirth": "1869-01-01T12:00:00+00:00",
+                "label": "Frances Hodgkins"
             },
             {
                 "@context": {
                     "rdaGr2": "http://rdvocab.info/ElementsGr2/",
-                    "dateOfBirth": "rdaGr2:dateOfBirth"
+                    "dateOfBirth": "rdaGr2:dateOfBirth",
+                    "skos": "http://www.w3.org/2004/02/skos/core",
+                    "label": "skos:prefLabel"
                 },
-                "dateOfBirth": "1915-06-11T05:37:47+00:00"
+                "dateOfBirth": "1883-01-01T12:00:00+00:00",
+                "label": "Salomon van Abbé"
             },
             {
                 "@context": {
                     "rdaGr2": "http://rdvocab.info/ElementsGr2/",
-                    "dateOfBirth": "rdaGr2:dateOfBirth"
+                    "dateOfBirth": "rdaGr2:dateOfBirth",
+                    "skos": "http://www.w3.org/2004/02/skos/core",
+                    "label": "skos:prefLabel"
                 },
-                "dateOfBirth": "1950-01-01T00:00:00+00:00"
+                "dateOfBirth": "1883-07-31T12:00:00+00:00",
+                "label": "Salomon van Abb"
             },
             {
                 "@context": {
                     "rdaGr2": "http://rdvocab.info/ElementsGr2/",
-                    "dateOfBirth": "rdaGr2:dateOfBirth"
+                    "dateOfBirth": "rdaGr2:dateOfBirth",
+                    "skos": "http://www.w3.org/2004/02/skos/core",
+                    "label": "skos:prefLabel"
                 },
-                "dateOfBirth": "1964-06-11T05:37:11+00:00"
+                "dateOfBirth": "1908-03-12T12:00:00+00:00",
+                "label": "Rita Angus"
             }
         ],
         "per_page": 20,
         "page": 1,
-        "request_url": "http://localhost:3000/concepts.json?api_key=your-api-key&sort=dateOfBirth&direction=asc&fields=dateOfBirth",
+        "request_url": "http://localhost:3000/concepts.json?api_key=your-api-key&sort=dateOfBirth&direction=asc&fields=dateOfBirth,label",
         "facets": {}
     }
 }
