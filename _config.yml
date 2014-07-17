@@ -15,6 +15,7 @@ codeurl: 'https://github.com/DigitalNZ/supplejack_api'
 sections: [
     ['start', 'Getting started'],
     ['api', 'Creating your API'],
+    ['api_usage', 'Using the API'],
     ['manager', 'Using the manager'],
     ['dev']
 ]
