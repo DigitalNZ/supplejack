@@ -42,7 +42,7 @@ Once you have defined your class you can begin adding fields, groups and roles. 
 * Fields that are already saved will not be removed from the record, in Mongo, if you remove that field from the Schema.
 
 
-## Example schema (Record)
+### Example Record Schema
 ```ruby 
 class RecordSchema < SupplejackApi::SupplejackSchema
 
@@ -109,6 +109,88 @@ class RecordSchema < SupplejackApi::SupplejackSchema
   end
 
    # Roles
+  role :developer do
+    default true
+  end
+  role :admin
+
+end
+```
+
+## Concept Schema ##
+
+To start using Concept, you need to define a new Schema definition called `ConceptSchema`.
+
+Note: You must name you class `ConceptSchema` and it must inherit from `SupplejackApi::SupplejackSchema` so that compulsory fields and groups are included in your Concept schema.
+
+Once you have defined your class you can begin adding fields, namespaces, groups and roles.
+
+### Example Concept Schema ###
+
+```ruby
+class ConceptSchema < SupplejackApi::SupplejackSchema
+
+  #namespaces
+  namespace :skos,   url: 'http://www.w3.org/2004/02/skos/core'
+  namespace :foaf,   url: 'http://xmlns.com/foaf/0.1/'
+  namespace :rdaGr2, url: 'http://rdvocab.info/ElementsGr2/'
+  namespace :edm,    url: 'http://www.europeana.eu/schemas/edm/'
+  namespace :owl,    url: 'http://www.w3.org/2002/07/owl'
+
+  # Fields
+  string    :concept_id,    store: false
+  string    :landing_url,   store: false
+  string    :type
+  string    :match_status,  search_as: [:filter]
+  string    :name,          search_boost: 10,     search_as: [:filter, :fulltext], namespace: :foaf
+  string    :givenName,     search_boost: 10,     search_as: [:filter, :fulltext], namespace: :foaf
+  string    :familyName,    search_boost: 10,     search_as: [:filter, :fulltext], namespace: :foaf
+  string    :label,         search_boost: 5,      search_as: [:filter, :fulltext], namespace: :skos, namespace_field: :prefLabel
+  string    :description,   search_boost: 2,      search_as: [:filter, :fulltext], namespace: :rdaGr2, namespace_field: :biographicalInformation
+  datetime  :dateOfBirth,   search_as: [:filter], namespace: :rdaGr2
+  datetime  :dateOfDeath,   search_as: [:filter], namespace: :rdaGr2
+  string    :placeOfBirth,  namespace: :rdaGr2  
+  string    :placeOfDeath,  namespace: :rdaGr2  
+  string    :role,          namespace: :rdaGr2,   namespace_field: :professionOrOccupation
+  string    :gender,        search_as: [:filter], namespace: :rdaGr2
+  string    :isRelatedTo,   multi_value: true,    namespace: :edm
+  string    :hasMet,        multi_value: true,    namespace: :edm
+  string    :sameAs,        multi_value: true,    namespace: :owl
+
+  # Groups
+  group :default do
+    fields [
+      :type,
+      :label,
+      :role
+    ]
+  end
+
+  group :all do
+    includes [:default]
+    fields [
+      :landing_url,
+      :match_status,
+      :name,
+      :givenName,
+      :familyName,
+      :description,
+      :dateOfBirth,
+      :dateOfDeath,
+      :placeOfBirth,
+      :placeOfDeath,
+      :gender,
+      :isRelatedTo,
+      :hasMet,
+      :sameAs
+    ]
+  end
+
+  group :core do
+    fields [:concept_id]
+  end
+
+  # Roles
   role :developer do
     default true
   end
