@@ -52,3 +52,68 @@ Supplejack is supported by a [Parser DSL](/supplejack/manager/parser-dsl-domain-
 
 The tutorials above are a great place to start in understanding how to build your first parser script, with the Parser DSL, and example scripts being the place to look for advanced support.
 
+### Concept parser script
+
+Below is an example of a parser for harvesting concepts. Make sure that your Manager is [configured](/supplejack/manager/concepts-configuration.html) to harvest concepts.
+
+```ruby
+class AucklandArtGalleryPeopleConcepts < SupplejackCommon::Xml::Base
+  
+  # Issues
+  # http://49.50.242.36/search.do?view=detail&db=person&keyword=Katsukawa+Shunko
+  
+  base_url "file:////data/arts.xml"
+
+  record_selector "//vernon"
+  record_format :xml
+  
+  match_concepts :create_or_match
+  
+  attributes :internal_identifier, :landing_url do 
+    compose("http://aucklandart.govt.nz/Person/", fetch("//person_id"))
+  end
+  
+  attributes :type,                       default: "foaf:person"
+  
+  attributes :label,                      xpath: "//display_name"
+  attributes :name,                       xpath: "//display_name"
+  attributes :dateOfBirth do
+    fetch("//birth_date").to_date
+  end
+  
+  attributes :dateOfDeath do
+    fetch("//death_date").to_date
+  end
+
+  attributes :givenName do
+    fetch("//display_name").split(" ").first
+  end
+  
+  attributes :familyName do
+    fetch("//display_name").split(" ").select(:last)
+  end
+  
+  attributes :gender do
+    fetch("//person_type").split("|").select(2).downcase
+  end
+  
+  attributes :sameAs do
+    compose("http://www.aucklandartgallery.com/the-collection/browse-artists/", fetch("/person/@ext_id").first) # this page has a redirect
+  end
+  
+  attributes :placeOfBirth do
+    fetch("//birth_place")
+  end
+  
+  attributes :placeOfDeath do
+    fetch("//death_place")
+  end
+  
+  reject_if do
+    not (get(:dateOfBirth).present? and get(:dateOfDeath).present? and get(:familyName).present? and get(:givenName).present?)
+  end 
+
+end
+```
+
+The above example will posts data to the API with concept schema [configured](/supplejack/api/creating-schemas.html).
