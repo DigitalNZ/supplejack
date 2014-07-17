@@ -1,12 +1,12 @@
 ---
 layout: page
-title: "Harvesting concepts"
+title: "Concepts Configuration"
 category: manager
-date: 2014-05-01 16:01:30
+date: 2014-05-21 11:53:13
 order: 10
 ---
 
-Harvesting concepts is similar to harvesting normal records. You need to have a working Supplejack API with concept schema. For more information on how to set up concept schema, please refer to <link>.
+Harvesting concepts is similar to harvesting normal records. You need to have a working Supplejack API with concept schema. For more information on how to set up concept schema, please refer to [Creating Schemas](http://digitalnz.github.io/supplejack/api/creating-schemas.html).
 
 ## Configuration
 
@@ -25,9 +25,4 @@ Restart the Manager.
 
 Creating new parser will give you another option to select a data type.
 
-![Parser Data Type](images/supplejack-manager-concept-datatype.png)
-
-
-
-
-
+![Parser Data Type](../images/supplejack-manager-concept-datatype.png)
