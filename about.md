@@ -4,8 +4,6 @@ title: About
 category: supplejack
 ---
 
-# About
-
 ### Key features
 
 * Responsive designed web interface for managing harvesting activity
