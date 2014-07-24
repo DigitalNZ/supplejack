@@ -15,12 +15,13 @@ When you first install the Supplejack API a default Schema file is created (see 
 To start your Schema from scratch you first need the class definition.
 
 ```ruby
-class Schema < SupplejackApi::SupplejackSchema
+class Schema
+  include SupplejackApi::SupplejackSchema
 
 end
 ```
 
-You must name your class `Schema` and it must inherit from `SupplejackApi::SupplejackSchema` so that compulsory fields and groups are included in your Schema.
+You must name your class `Schema` and it must include `SupplejackApi::SupplejackSchema` so that compulsory fields and groups are included in your Schema.
 
 ```ruby
 # Supplejack API core fields, these fields are automatically added to your Schema.
@@ -44,7 +45,8 @@ Once you have defined your class you can begin adding fields, groups and roles. 
 
 ### Example Record Schema
 ```ruby 
-class RecordSchema < SupplejackApi::SupplejackSchema
+class RecordSchema
+  include SupplejackApi::SupplejackSchema
 
   # Namespaces
   namespace :dc,        url: 'http://purl.org/dc/elements/1.1/'
@@ -121,14 +123,15 @@ end
 
 To start using Concept, you need to define a new Schema definition called `ConceptSchema`.
 
-Note: You must name you class `ConceptSchema` and it must inherit from `SupplejackApi::SupplejackSchema` so that compulsory fields and groups are included in your Concept schema.
+Note: You must name you class `ConceptSchema` and it must include `SupplejackApi::SupplejackSchema` so that compulsory fields and groups are included in your Concept schema.
 
 Once you have defined your class you can begin adding fields, namespaces, groups and roles.
 
 ### Example Concept Schema ###
 
 ```ruby
-class ConceptSchema < SupplejackApi::SupplejackSchema
+class ConceptSchema
+  include SupplejackApi::SupplejackSchema
 
   #namespaces
   namespace :skos,   url: 'http://www.w3.org/2004/02/skos/core'
