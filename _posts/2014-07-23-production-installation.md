@@ -24,9 +24,7 @@ Install Supplejack Stack using [application template](http://digitalnz.github.io
 
 Note: the application template automatically starts development servers, which you don't want to run in production so shut them down.
 
-+ **Configure Supplejack Manager**
-
-Follow this [guide](/supplejack/start/supplejack-manager.html) to setup Manager.
+1. Configure Supplejack Manager following this [guide](/supplejack/start/supplejack-manager.html).
 
 + **Configure Supplejack Worker**
 
