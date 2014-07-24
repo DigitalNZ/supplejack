@@ -18,4 +18,4 @@ Once that is complete we strongly recommend using the [Supplejack template](http
 
 For details about how to install Supplejack Template, see [Install & Setup](/supplejack/start/install-setup.html)
 
-Once the install is complete you should have a working API. The next step is to [configure your schema](/supplejack/api/creating-a-schema.html) so that you can configure the fields that are stored/returned by your API.
+Once the install is complete you should have a working API. The next step is to [configure your schema](/supplejack/api/creating-schemas.html) so that you can configure the fields that are stored/returned by your API.

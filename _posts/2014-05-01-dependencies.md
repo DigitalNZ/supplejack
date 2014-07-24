@@ -14,7 +14,12 @@ Supplejack requires the following to run the full stack. Please review this page
 
 **Description**: Ruby is the language we use for all of the supplejack components. This is because we use the ruby on rails framework.
 
-**Installation instructions:** We recommend using RBENV to manage your ruby versions here is some information about how to install ruby with rbenv: https://github.com/sstephenson/rbenv.
+**Installation instructions:** 
+
++ **OSX/Linux/Unix:** We recommend using RBENV to manage your ruby versions. More information about how to install ruby with rbenv: https://github.com/sstephenson/rbenv.
++ **Windows:** You can use RubyInstaller to set up a full Ruby development environment on Windows.
+
+For more information on how to install ruby, you can refer to official ruby guide https://www.ruby-lang.org/en/installation/#rubyinstaller
 
 ### Mongo
 
@@ -38,4 +43,6 @@ Supplejack requires the following to run the full stack. Please review this page
 
 **Description:** SOLR is used for full-text searching of records in supplejack.
 
-**Installation instructions:** Solr is installed for you when running bundle install as it is included in the [sunspot_solr gem](https://github.com/outoftime/sunspot/tree/master/sunspot_solr).
+**Installation instructions:** 
+
+A development version of Solr is installed  for you when running `bundle install` as it is included in the [sunspot_solr gem](https://github.com/outoftime/sunspot/tree/master/sunspot_solr). For production installation see **Production Install** 
