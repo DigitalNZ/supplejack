@@ -20,7 +20,7 @@ Its main purpose is to make it easy to aggregate heterogeneous data at scale and
 8. Monitoring API key activity and set query throttle rates
 8. View collected data on a demo website
 
-Supplejack was designed to provide assurance to the quality of data management activities when working at scale. The largest known user of Supplejack currently uses it to manage the harvesting from more than 200 data sources on a 24/7 basis and supports more than 10 million external API queries a month. Some data updates automatically every hour.
+Supplejack was designed to provide assurance to the quality of data management activities when working at scale. The largest known user of Supplejack currently uses it to manage the harvesting from more than 200 data sources on a 24/7 basis and supports more than 10 million external API queries a month.
 
 ### Features
 
