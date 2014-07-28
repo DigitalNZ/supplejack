@@ -193,6 +193,7 @@ Note: API traffic isn't handled by Apache, it just provides a reverse proxy.
 1. Install HAProxy v`1.4.24`
 1. Ensure you can access http://HOST:22002
 1. Add this section to the HAPRoxy configuration (`/etc/haproxy/haprpoxy.cfg`) to:
+
 ```
 listen application 0.0.0.0:81
   balance  roundrobin
