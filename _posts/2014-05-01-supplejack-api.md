@@ -19,3 +19,20 @@ Once that is complete we strongly recommend using the [Supplejack template](http
 For details about how to install Supplejack Template, see [Install & Setup](/supplejack/start/install-setup.html)
 
 Once the install is complete you should have a working API. The next step is to [configure your schema](/supplejack/api/creating-schemas.html) so that you can configure the fields that are stored/returned by your API.
+
+### Generate API User keys
+
+From the Worker's project root, Run the console.
+
+```ruby
+rails c
+```
+
+Create a user.
+
+```ruby
+ > SupplejackApi::User.create(email: 'your@email.com', name: 'Your Name', username: 'your_username')
+=> #<SupplejackApi::User _id: 53d58681f694195642000002, created_at: 2014-07-27 23:08:49 UTC, updated_at: 2014-07-27 23:08:49 UTC, email: "your@email.com", encrypted_password: nil, name: "Your Name", username: "your_username", sign_in_count: nil, current_sign_in_at: nil, last_sign_in_at: nil, current_sign_in_ip: nil, last_sign_in_ip: nil, authentication_token: "JmVe15z2BSHDwaVsjMvA", daily_requests: 0, monthly_requests: 0, max_requests: 10000, role: "developer", daily_activity: nil, daily_activity_stored: true>
+ > SupplejackApi::User.last.authentication_token
+=> "RhymLHa9xRQGU8gyAYXP"
+```

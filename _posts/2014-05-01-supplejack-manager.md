@@ -20,15 +20,10 @@ The harvester manager is a rails application that provides a visual interface in
 
 ### Generate Manager User keys
 
-From the Manager's project root, Run the console.
+From the Manager's project root, create a user from the console:
 
 ```ruby
 rails c
-```
-
-Create a user 
-
-```ruby
  > User.create!(email: 'your@email.com', name: 'Joe Doe', password: 'p@ssw0rd', password_confirmation: 'p@ssw0rd').
 => #<User _id: 5371508b5311633df8000001, created_at: 2014-05-12 22:51:55 UTC, updated_at: 2014-05-12 22:51:55 UTC, name: "Joe Doe", email: "your@email.com", encrypted_password: "$2a$10$pKS9ydWHRWtbywuIWBBiy.Yn16QR3ZKmuPXFzQIyJqJHZtrb5c1uq", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 0, current_sign_in_at: nil, last_sign_in_at: nil, current_sign_in_ip: nil, last_sign_in_ip: nil, authentication_token: "BYh6ovEAWwLyxJpqRrwE"> 
  > User.last.authentication_token
@@ -105,9 +100,9 @@ staging:
 ```
 
 ### Writing parser scripts
-* [[Parser DSL (Domain Specific Language)|Parser-DSL-(Domain-Specific-Language)]]
-* [[Validations|Validations]]
-* [[XML-Namespaces|XML-Namespaces]]
-* [[Attribute-Transformation-Options|Attribute-Transformation-Options]]
-* [[Enrichment|Enrichment]]
-* [[Modifiers|Modifiers]]
+* [Parser DSL (Domain Specific Language)](/manager/parser-dsl-domain-specific-language.html)
+* [Validations](/manager/validations.html)
+* [XML Namespaces](/manager/xml-namespaces.html)
+* [Attribute Transformation Options](/manager/attribute-transformation-options.html)
+* [Enrichments](/manager/enrichments.html)
+* [Modifiers](/manager/modifiers.html)
