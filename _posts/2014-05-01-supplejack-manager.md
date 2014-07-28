@@ -100,9 +100,9 @@ staging:
 ```
 
 ### Writing parser scripts
-* [Parser DSL (Domain Specific Language)](/manager/parser-dsl-domain-specific-language.html)
-* [Validations](/manager/validations.html)
-* [XML Namespaces](/manager/xml-namespaces.html)
-* [Attribute Transformation Options](/manager/attribute-transformation-options.html)
-* [Enrichments](/manager/enrichments.html)
-* [Modifiers](/manager/modifiers.html)
+* [Parser DSL (Domain Specific Language)](/supplejack/manager/parser-dsl-domain-specific-language.html)
+* [Validations](/supplejack/manager/validations.html)
+* [XML Namespaces](/supplejack/manager/xml-namespaces.html)
+* [Attribute Transformation Options](/supplejack/manager/attribute-transformation-options.html)
+* [Enrichments](/supplejack/manager/enrichments.html)
+* [Modifiers](/supplejack/manager/modifiers.html)
