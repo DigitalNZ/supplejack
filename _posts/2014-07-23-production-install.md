@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Production Installation"
+title: "Production Install"
 category: start
 date: 2014-07-23 15:02:05
 order: 3
