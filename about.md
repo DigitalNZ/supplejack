@@ -4,20 +4,20 @@ title: About
 category: supplejack
 ---
 
-Supplejack was developed by the DigitalNZ Team at the National Library of New Zealand and Department of Internal Affairs, with the support of local vendors in Wellington. The software came out of an effort by the National Library to aggregate the collections of NZ libraries, archives, museums, broadcasters, communities, government. Supplejack is the 2nd-generation toolset for DigitalNZ. The 1st-generation toolset was built in 2008, with this current stack beginning development in 2012.
+Supplejack was developed by the DigitalNZ Team at the National Library of New Zealand and Department of Internal Affairs, with the support of local vendors in Wellington. The software came out of an effort by the National Library to aggregate the collections of NZ libraries, archives, museums, broadcasters, communities, and government so as to better support the use of NZ digital material. DigitalNZ's first generation harvesting tools were built in 2008, and after several years of rapid growth it became clear that a new approach for working at scale was required. Supplejack is DigitalNZ's second generation toolset, and it became an active production service in 2013.
 
-### What does Supplejack do?
+### What Supplejack does
 
-Its main purpose is to make it easy to aggregate heterogeneous data at scale and provide ways to surface that data so it is more useful. From an information management perspective there are several things you can do with Supplejack:
+Its main purpose is to make it easy to aggregate heterogeneous data at scale, and provide ways to surface that data so it is more useful. From a data management perspective there are several things you can do with Supplejack:
 
 1. Define common data schema that incoming data should map to
-2. Create Solr and MongoDB indexes that conform to your schema
+2. Create search and database indexes that conform to your chosen schema
 3. Script instructions for extracting and mapping data from many different data sources 
 4. Set up validation rules for your data harvesting activity
 5. Schedule data harvests to run at whatever frequency you like
 6. Run enhancement scripts to improve the quality or completeness of harvested data
 7. Deliver a public API of the standardised data
-8. Monitoring API key activity and set query throttle rates
+8. Monitor API key activity and set query throttle rates
 8. View collected data on a demo website
 
 Supplejack was designed to provide assurance to the quality of data management activities when working at scale. The largest known user of Supplejack currently uses it to manage the harvesting from more than 200 data sources on a 24/7 basis and supports more than 10 million external API queries a month.
@@ -44,3 +44,29 @@ Supplejack was designed to provide assurance to the quality of data management a
 * Environment configuration for staging and prodcution environments
 * Client gem for support the build of ruby applications against the API
 * Demo website application for out-of-the-box display of standardised data
+
+## Introducing fragments
+
+
+
+## Introducing records and concepts
+
+WARNING: Here be dragons. This feature is still in experimental mode and does not yet work reliably. We would welcome comments and suggestion for improvement.
+
+The standard use case for Supplejack is in collecting metadata RECORDS about images, documents, books, publications, audio, video, and other types of items (although there is no reason why Supplejack couldn't be used for any kind of data service). In the [creating schema](/supplejack/api/creating-schemas.html) documentation you will find an example schema for setting up such a service for aggregating RECORDS. 
+
+In addition to supporting the collection of RECORDS, Supplejack also includes a prototype for the aggregation of CONCEPTS. In the world of library science, CONCEPTS are more commonly referred to as [Authorities](http://en.wikipedia.org/wiki/Authority_control). Supplejack uses the idea of CONCEPTS to build out a new feature for the crosswalking of authorities, and in our case we are starting with people. In the [creating schema](/supplejack/api/creating-schemas.html) documentation you will find an example schema for a people CONCEPT. If you wanted to harvest people authorities from different sources (such as VIAF, Library of Congress, or Wikipedia) and create a crosswalking service where all information could be queried, you can use the CONCEPT prototype to:
+
+* harvest multiple CONCEPT (authority) sources
+* find the matching CONCEPTs across different sources (e.g. find the people who appear in multiple authority files)
+* record all matching CONCEPTs  in a sameAs field
+* decide whether field data from a matching CONCEPT should add to or overwrite existing field data (e.g. add a place of death if that data is not already stored in a specific person CONCEPT)
+* link item RECORDS to a stored CONCEPT (e.g. link a photo to a photographers person CONCEPT)
+* use the Supplejack API to query all the matching CONCEPTs to find possible matches (e.g. search for a particular person and see what people names match)
+
+For details on setting up CONCEPTS, see the following documentation:
+* [creating schema](/supplejack/api/creating-schemas.html)
+* [CONCEPT configuration](/supplejack/manager/concept-configuration.html)
+* [concept matching](/supplejack/manager/parser-dsl-domain-specific-language.html])
+* [CONCEPT API](/supplejack/api_usage/concepts-api.html)
+
