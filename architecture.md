@@ -11,6 +11,8 @@ Developed in Ruby on Rails, there are several core components of the Supplejack 
 * [Common](/supplejack/start/supplekack-common.html) (shared helpers for the the Worker and Manager)
 
 Additionally, the Suppejack stack includes:
+* [API](/supplejack/start/supplejack-api.html) (public API wrapper to search index and metadata repository)
+* [Common](/supplejack/start/supplekack-common.html) (shared helpers for the the Worker and Manager)
 * [Website](/supplejack/start/supplejack-website.html) (demo web application that provides simple search, result, filtering, and view interfaces to collected items)
 * [Client](/supplejack/start/supplejack-client.html) (client gem used by the demo website to interface with the Supplejack API)
 
