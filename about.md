@@ -47,12 +47,10 @@ Supplejack was designed to provide assurance to the quality of data management a
 
 ### Introducing fragments
 
-Fragments are a fundamental part of the Supplejack data model that support a level of data provenance. A separate data fragment is created each time a new data source updates a RECORD. This enables enrichment scripts to run somewhat independently from an original harvest. For example if a RECORD is created from Source 1, and then a particular field is updated from Source 2 (such as when a geo-coding service might provide lat-long co-ordinates) then the data from different sources is stored in separate fragments. This means that a reharvest from a source will not overwrite the other source updates. The Supplejack API retrieves data from an additional merged fragment that brings together all the data from respective fragments.
+Fragments are a fundamental part of the Supplejack data model that support a level of data provenance. A separate data fragment is created each time a new data source updates a RECORD or CONCEPT (see below for an explanation of the difference). This enables enrichment scripts to run somewhat independently from an original harvest. For example if a RECORD is created from Source 1, and then a particular field is updated from Source 2 (such as when a geo-coding service might provide lat-long co-ordinates) then the data from different sources is stored in separate fragments. This means that a reharvest from a source will not overwrite the other source updates. The Supplejack API retrieves data from an additional merged fragment that brings together all the data from respective fragments.
 
 
 ### Introducing records and concepts
-
-WARNING: Here be dragons. This feature is still in experimental mode and does not yet work reliably. We would welcome comments and suggestions for improvement.
 
 The standard use case for Supplejack is in collecting metadata RECORDS about images, documents, books, publications, audio, video, and other types of items (although there is no reason why Supplejack couldn't be used for any kind of data service). In the [creating schema](/supplejack/api/creating-schemas.html) documentation you will find an example schema for setting up such a service for aggregating RECORDS. 
 
@@ -64,6 +62,8 @@ In addition to supporting the collection of RECORDS, Supplejack also includes a 
 * decide whether field data from a matching CONCEPT should add to or overwrite existing field data (e.g. add a place of death if that data is not already stored in a specific person CONCEPT)
 * link item RECORDS to a stored CONCEPT (e.g. link a photo to a photographers person CONCEPT)
 * use the Supplejack API to query all the matching CONCEPTs to find possible matches (e.g. search for a particular person and see what people's names match)
+
+*WARNING: Here be dragons. This CONCEPT feature is still in experimental mode and does not yet work reliably. We would welcome comments and suggestions for improvement.*
 
 For details on setting up CONCEPTS, see the following documentation on [creating schema](/supplejack/api/creating-schemas.html), [CONCEPT configuration](/supplejack/manager/concept-configuration.html), [CONCEPT matching](/supplejack/manager/parser-dsl-domain-specific-language.html), [CONCEPT API](/supplejack/api_usage/concepts-api.html)
 
