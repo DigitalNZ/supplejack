@@ -47,23 +47,23 @@ Supplejack was designed to provide assurance to the quality of data management a
 
 ### Introducing fragments
 
-Fragments are a fundamental part of the Supplejack data model that support a level of data provenance. A separate data fragment is created each time a new data source updates a RECORD. This enables enrichment scripts to run somewhat independently from an original harvest. For example if a RECORD is created from Source 1, and then a particular field is updated from Source 2 (such as when a geo-coding service might provide lat-long co-ordinates) then the data from different sources are stored in separate fragments. This means that a reharvest from a source will not overwrite the other source updates. The Supplejack API retrieved data from an additional merged fragment that brings together all the data from respective fragments.
+Fragments are a fundamental part of the Supplejack data model that support a level of data provenance. A separate data fragment is created each time a new data source updates a RECORD. This enables enrichment scripts to run somewhat independently from an original harvest. For example if a RECORD is created from Source 1, and then a particular field is updated from Source 2 (such as when a geo-coding service might provide lat-long co-ordinates) then the data from different sources is stored in separate fragments. This means that a reharvest from a source will not overwrite the other source updates. The Supplejack API retrieves data from an additional merged fragment that brings together all the data from respective fragments.
 
 
 ### Introducing records and concepts
 
-WARNING: Here be dragons. This feature is still in experimental mode and does not yet work reliably. We would welcome comments and suggestion for improvement.
+WARNING: Here be dragons. This feature is still in experimental mode and does not yet work reliably. We would welcome comments and suggestions for improvement.
 
 The standard use case for Supplejack is in collecting metadata RECORDS about images, documents, books, publications, audio, video, and other types of items (although there is no reason why Supplejack couldn't be used for any kind of data service). In the [creating schema](/supplejack/api/creating-schemas.html) documentation you will find an example schema for setting up such a service for aggregating RECORDS. 
 
-In addition to supporting the collection of RECORDS, Supplejack also includes a prototype for the aggregation of CONCEPTS. In the world of library science, CONCEPTS are more commonly referred to as [Authorities](http://en.wikipedia.org/wiki/Authority_control). Supplejack uses the idea of CONCEPTS to build out a new feature for the crosswalking of authorities, and in our case we are starting with people. In the [creating schema](/supplejack/api/creating-schemas.html) documentation you will find an example schema for a people CONCEPT. If you wanted to harvest people authorities from different sources (such as VIAF, Library of Congress, or Wikipedia) and create a crosswalking service where all information could be queried, you can use the CONCEPT prototype to:
+In addition to supporting the collection of RECORDS, Supplejack also includes a prototype for the aggregation of CONCEPTS. In the world of library science, CONCEPTS are more commonly referred to as [Authorities](http://en.wikipedia.org/wiki/Authority_control). Supplejack uses the idea of CONCEPTS to build out a new feature for the crosswalking of authorities, and in our case we are starting with people. In the [creating schema](/supplejack/api/creating-schemas.html) documentation you will also find an example schema for a people CONCEPT. If you wanted to harvest people authorities from different sources (such as VIAF, Library of Congress, or Wikipedia) and create a crosswalking service where all information could be queried, you can use the CONCEPT prototype to:
 
 * harvest multiple CONCEPT (authority) sources
-* find the matching CONCEPTs across different sources (e.g. find the people who appear in multiple authority files)
-* record all matching CONCEPTs  in a sameAs field
+* find the matching CONCEPTS across different sources (e.g. find the people who appear in multiple authority files)
+* record all matching CONCEPTS  in a sameAs field
 * decide whether field data from a matching CONCEPT should add to or overwrite existing field data (e.g. add a place of death if that data is not already stored in a specific person CONCEPT)
 * link item RECORDS to a stored CONCEPT (e.g. link a photo to a photographers person CONCEPT)
-* use the Supplejack API to query all the matching CONCEPTs to find possible matches (e.g. search for a particular person and see what people names match)
+* use the Supplejack API to query all the matching CONCEPTs to find possible matches (e.g. search for a particular person and see what people's names match)
 
 For details on setting up CONCEPTS, see the following documentation:
 * [creating schema](/supplejack/api/creating-schemas.html)
