@@ -11,8 +11,8 @@ Developed in Ruby on Rails, there are several core components of the Supplejack 
 * [Common](/supplejack/start/supplekack-common.html) (shared helpers for the the Worker and Manager)
 
 Additionally, the Suppejack stack includes:
-* [Website](/supplejack/start/supplejack-website.html) (Demo web application that provides simple search, search result, filtering, and view interfaces to collected items)
-* [Client](/supplejack/start/supplejack-client.html) (Client gem used by the demo website to interface with the Supplejack API)
+* [Website](/supplejack/start/supplejack-website.html) (demo web application that provides simple search, result, filtering, and view interfaces to collected items)
+* [Client](/supplejack/start/supplejack-client.html) (client gem used by the demo website to interface with the Supplejack API)
 
 Supplejack relies on integration with both a search index (default is Solr) and a metadata repository (default is MongoDB). 
 The code and documentation provided is tailored for a monolithic install, however in a full production environment DigitalNZ runs a cluster of front-end services delivering the public API, supported by a back-end service dedicated to harvesting.
