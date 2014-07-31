@@ -65,9 +65,5 @@ In addition to supporting the collection of RECORDS, Supplejack also includes a 
 * link item RECORDS to a stored CONCEPT (e.g. link a photo to a photographers person CONCEPT)
 * use the Supplejack API to query all the matching CONCEPTs to find possible matches (e.g. search for a particular person and see what people's names match)
 
-For details on setting up CONCEPTS, see the following documentation:
-* [creating schema](/supplejack/api/creating-schemas.html)
-* [CONCEPT configuration](/supplejack/manager/concept-configuration.html)
-* [CONCEPT matching](/supplejack/manager/parser-dsl-domain-specific-language.html)
-* [CONCEPT API](/supplejack/api_usage/concepts-api.html)
+For details on setting up CONCEPTS, see the following documentation on [creating schema](/supplejack/api/creating-schemas.html), [CONCEPT configuration](/supplejack/manager/concept-configuration.html), [CONCEPT matching](/supplejack/manager/parser-dsl-domain-specific-language.html), [CONCEPT API](/supplejack/api_usage/concepts-api.html)
 
