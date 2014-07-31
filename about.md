@@ -45,11 +45,12 @@ Supplejack was designed to provide assurance to the quality of data management a
 * Client gem for support the build of ruby applications against the API
 * Demo website application for out-of-the-box display of standardised data
 
-## Introducing fragments
+### Introducing fragments
+
+Fragments are a fundamental part of the Supplejack data model that support a level of data provenance. A separate data fragment is created each time a new data source updates a RECORD. This enables enrichment scripts to run somewhat independently from an original harvest. For example if a RECORD is created from Source 1, and then a particular field is updated from Source 2 (such as when a geo-coding service might provide lat-long co-ordinates) then the data from different sources are stored in separate fragments. This means that a reharvest from a source will not overwrite the other source updates. The Supplejack API retrieved data from an additional merged fragment that brings together all the data from respective fragments.
 
 
-
-## Introducing records and concepts
+### Introducing records and concepts
 
 WARNING: Here be dragons. This feature is still in experimental mode and does not yet work reliably. We would welcome comments and suggestion for improvement.
 
@@ -67,6 +68,6 @@ In addition to supporting the collection of RECORDS, Supplejack also includes a 
 For details on setting up CONCEPTS, see the following documentation:
 * [creating schema](/supplejack/api/creating-schemas.html)
 * [CONCEPT configuration](/supplejack/manager/concept-configuration.html)
-* [concept matching](/supplejack/manager/parser-dsl-domain-specific-language.html])
+* [CONCEPT matching](/supplejack/manager/parser-dsl-domain-specific-language.html)
 * [CONCEPT API](/supplejack/api_usage/concepts-api.html)
 
