@@ -52,6 +52,8 @@ Fragments are a fundamental part of the Supplejack data model that support a lev
 
 ### Introducing records and concepts
 
+*WARNING: Here be dragons. The CONCEPT feature is still in experimental mode and does not yet work reliably. We would welcome comments and suggestions for improvement.*
+
 The standard use case for Supplejack is in collecting metadata RECORDS about images, documents, books, publications, audio, video, and other types of items (although there is no reason why Supplejack couldn't be used for any kind of data service). In the [creating schema](/supplejack/api/creating-schemas.html) documentation you will find an example schema for setting up such a service for aggregating RECORDS. 
 
 In addition to supporting the collection of RECORDS, Supplejack also includes a prototype for the aggregation of CONCEPTS. In the world of library science, CONCEPTS are more commonly referred to as [Authorities](http://en.wikipedia.org/wiki/Authority_control). Supplejack uses the idea of CONCEPTS to build out a new feature for the crosswalking of authorities, and in our case we are starting with people. In the [creating schema](/supplejack/api/creating-schemas.html) documentation you will also find an example schema for a people CONCEPT. If you wanted to harvest people authorities from different sources (such as VIAF, Library of Congress, or Wikipedia) and create a crosswalking service where all information could be queried, you can use the CONCEPT prototype to:
@@ -62,8 +64,6 @@ In addition to supporting the collection of RECORDS, Supplejack also includes a 
 * decide whether field data from a matching CONCEPT should add to or overwrite existing field data (e.g. add a place of death if that data is not already stored in a specific person CONCEPT)
 * link item RECORDS to a stored CONCEPT (e.g. link a photo to a photographers person CONCEPT)
 * use the Supplejack API to query all the matching CONCEPTs to find possible matches (e.g. search for a particular person and see what people's names match)
-
-*WARNING: Here be dragons. This CONCEPT feature is still in experimental mode and does not yet work reliably. We would welcome comments and suggestions for improvement.*
 
 For details on setting up CONCEPTS, see the following documentation on [creating schema](/supplejack/api/creating-schemas.html), [CONCEPT configuration](/supplejack/manager/concept-configuration.html), [CONCEPT matching](/supplejack/manager/parser-dsl-domain-specific-language.html), [CONCEPT API](/supplejack/api_usage/concepts-api.html)
 
