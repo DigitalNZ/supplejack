@@ -16,10 +16,22 @@ Supplejack requires the following to run the full stack. Please review this page
 
 **Installation instructions:** 
 
-+ **OSX/Linux/Unix:** We recommend using RBENV to manage your ruby versions. More information about how to install ruby with rbenv: https://github.com/sstephenson/rbenv.
++ **OSX/Linux/Unix:** We strongly recommend using RBENV to manage your ruby versions. More information about how to install ruby with rbenv: https://github.com/sstephenson/rbenv.
 + **Windows:** You can use RubyInstaller to set up a full Ruby development environment on Windows.
 
 For more information on how to install ruby, you can refer to official ruby guide https://www.ruby-lang.org/en/installation/#rubyinstaller
+
+### Rails
+
+**Version: 3.2.12**
+
+**Description**: Rails is an open source web application framework written in Ruby.
+
+**Installation instructions:** http://rubyonrails.org/download/
+
+If you are using [rbenv](https://github.com/sstephenson/rbenv), simply enter the following command:
+
+`gem install rails -v '3.2.12'`
 
 ### Mongo
 
