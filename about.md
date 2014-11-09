@@ -8,7 +8,7 @@ category: supplejack
 
 Supplejack was developed by the DigitalNZ Team at the National Library of New Zealand and Department of Internal Affairs, with the support of local vendors in Wellington. The software came out of an effort by the National Library to aggregate the collections of NZ libraries, archives, museums, broadcasters, communities, and government so as to better support the use of NZ digital material. DigitalNZ's first generation harvesting tools were built in 2008, and after several years of rapid growth it became clear that a new approach for working at scale was required. Supplejack is DigitalNZ's second generation toolset, and it became an active production service in 2013.
 
-![Welcome](../images/supplejack-home.png)
+![Welcome](http://digitalnz.github.io/supplejack/images/supplejack-home.png)
 
 ### What Supplejack does
 
