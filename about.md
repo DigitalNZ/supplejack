@@ -6,13 +6,13 @@ category: supplejack
 
 ### History
 
-Supplejack was developed by the DigitalNZ Team at the National Library of New Zealand and Department of Internal Affairs, with the support of local vendors in Wellington. The software came out of an effort by the National Library to aggregate the collections of NZ libraries, archives, museums, broadcasters, communities, and government so as to better support the use of NZ digital material. DigitalNZ's first generation harvesting tools were built in 2008, and after several years of rapid growth it became clear that a new approach for working at scale was required. Supplejack is DigitalNZ's second generation toolset, and it became an active production service in 2013.
+Supplejack was developed by the DigitalNZ Team at the National Library of New Zealand and Department of Internal Affairs, with the support of local vendors in Wellington. The software came out of an effort by the National Library to aggregate the collections of NZ libraries, archives, museums, broadcasters, communities and government so as to better support the use of NZ digital material. DigitalNZ's first generation harvesting tools were built in 2008. After several years of rapid growth, it became clear that a new approach for working at scale was required. Supplejack is DigitalNZ's second generation toolset. It became an active production service in 2013.
 
-![Welcome](http://digitalnz.github.io/supplejack/images/supplejack-home.png)
+![Welcome](images/supplejack-home.png)
 
 ### What Supplejack does
 
-Its main purpose is to make it easy to aggregate heterogeneous data at scale, and provide ways to surface that data so it is more useful. From a data management perspective there are several things you can do with Supplejack:
+It's main purpose is to make it easy to aggregate heterogeneous data at scale and provide ways to surface that data so it is more useful. From a data management perspective there are several things you can do with Supplejack:
 
 1. Define common data schema that incoming data should map to
 2. Create search and database indexes that conform to your chosen schema
@@ -29,7 +29,7 @@ Supplejack was designed to provide assurance to the quality of data management a
 ### Features
 
 * Responsive designed web interface for managing harvesting activity
-* Support for all types of data sources, including XML, OAI-PMH, RSS, HTML, MARC, RDF, JSON
+* Support for a wide range of common data sources, including XML, OAI-PMH, RSS, HTML, MARC, RDF, JSON
 * Customisable [data schema](http://digitalnz.github.io/supplejack/api/creating-a-schema.html)
 * A rich [Domain Specific Language](http://digitalnz.github.io/supplejack/manager/introduction-to-parser-scripts.html) for writing the harvest instructions for each data source
 * History of all edits to parser scripts
