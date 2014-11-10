@@ -4,29 +4,29 @@ title: About
 category: supplejack
 ---
 
-## The short story
+# Supplejack - The short story...
 
 Supplejack is open source software that enables you to harvest data from a range of diverse sources, standardise it in a common format and then open it up for query through an API. It works like this.
 
-Identify data sources to bring into Supplejack.
+*Identify data sources to bring into Supplejack.*
 
 ![DigitalNZ Parser](images/dnz-source.png)
 
-Create parser scripts to extract and transform data from your sources.
+*Create parser scripts to extract and transform data from your sources.*
 
 ![DigitalNZ Parser](images/dnz-parser.png)
 
-Preview how the data will be stored in your MongoDB database and get surfaced through your API.
+*Preview how the data will be stored in your MongoDB database and get surfaced through your API.*
 
 ![DigitalNZ Parser](images/preview-dnz.png)
 
-Schedule regular harvests or run them on demand.
+*Schedule regular harvests or run them on demand.*
 
 ![DigitalNZ Parser](images/scheduled-jobs.png)
 
-Build cool stuff on top of your Supplejack APIs or open them up to other developers.
+*Build cool stuff on top of your Supplejack APIs or open them up to other developers.*
 
-## The long story
+# Supplejack - The long story...
 
 ### History
 
