@@ -6,7 +6,7 @@ title: "Supplejack"
 
 Supplejack is a Ruby on Rails platform for managing the harvesting and manipulation of data, typically metadata about collection items. It was originally developed to manage the sourcing of collection metadata for the [DigitalNZ](http://www.digitalnz.org/) aggregation service, and has grown to a platform that can manage millions of records from hundreds of data sources.
 
-Its main purpose is to manage the process of fetching data from remote sources, mapping data to a standard data schema, managing any quality control or enrichment processes, and surfacing the standardised data via a public API. Find out [more about its features](/supplejack/about.html) and review the [architecture](/supplejack/architecture.html).
+Its main purpose is to manage the process of fetching data from remote sources, mapping data to a standard data schema, managing any quality control or enrichment processes, and surfacing the standardised data via a public API. Find out [more about its features](/supplejack/about.html),  review the [architecture](/supplejack/architecture.html) and join our [Google Group](https://groups.google.com/forum/?hl=en#!forum/supplejack).
 
 
 ### Introduction to Supplejack
