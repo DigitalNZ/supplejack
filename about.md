@@ -4,30 +4,6 @@ title: About
 category: supplejack
 ---
 
-## The short explanation
-
-Supplejack is open source software that enables you to harvest data from a range of diverse sources, standardise it in a common format and then open it up for query through an API. It works like this.
-
-**Identify data sources to bring into Supplejack.**
-
-![DigitalNZ Parser](images/dnz-source.png)
-
-**Create parser scripts to extract and transform data from your sources.**
-
-![DigitalNZ Parser](images/dnz-parser.png)
-
-**Preview how the data will be stored in your MongoDB database and get surfaced through your API.**
-
-![DigitalNZ Parser](images/preview-dnz.png)
-
-**Schedule regular harvests or run them on demand.**
-
-![DigitalNZ Parser](images/scheduled-jobs.png)
-
-**Build cool applications on top of your Supplejack APIs or open them up to other developers.**
-
-## The long explanation
-
 ### History
 
 Supplejack was developed by the DigitalNZ Team at the National Library of New Zealand and Department of Internal Affairs, with the support of local vendors in Wellington. The software came out of an effort by the National Library to aggregate the collections of NZ libraries, archives, museums, broadcasters, communities and government so as to better support the use of NZ digital material. DigitalNZ's first generation harvesting tools were built in 2008. After several years of rapid growth, it became clear that a new approach for working at scale was required. Supplejack is DigitalNZ's second generation toolset. It became an active production service in 2013.
