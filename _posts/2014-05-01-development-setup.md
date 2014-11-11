@@ -8,6 +8,17 @@ order: 2
 
 Once you have installed all the [dependencies](/supplejack/start/dependencies.html) you are now ready to install the rest of the stack. As all the components require configuration to interact we strongly recommend that you use the [installation template](https://github.com/DigitalNZ/supplejack_installation) which is a [Rails Application Template](http://guides.rubyonrails.org/rails_application_templates.html) which is provided for Supplejack.
 
+If you are a Mac user using [Homebrew](http://brew.sh/) we strongly recommend you cleanly run brew doctor before installing. 
+
+`brew update`
+
+`brew doctor`
+
+Resolving issues that `brew doctor` picks up will alleviate many problems you might encounter installing Supplejack.
+
+Please also note there is a known installation issue involving the _ibv8_ gem for Yosemite users. We are working to resolve this.
+
+
 ## Install the Supplejack Stack
 
 The Supplejack Stack refers to the Supplejack API, Supplejack Manager and the Supplejack Worker applications. 
