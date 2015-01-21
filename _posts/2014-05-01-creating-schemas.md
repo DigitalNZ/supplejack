@@ -74,6 +74,14 @@ class RecordSchema
   string    :source_url,                                                                          namespace: :sj
   string    :thumbnail_url
 
+  # Alias thumbnail_url with thumbnail
+  string    :thumbnail do
+    store false
+    search_value do |record|
+      record.thumbnail_url
+    end
+  end
+
   # Groups
   group :default do
     fields [
