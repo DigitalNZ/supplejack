@@ -37,6 +37,32 @@ You must name your class `Schema` and it must include `SupplejackApi::Supplejack
 
 Once you have defined your class you can begin adding fields, groups and roles. For more details about how to do this you can view the [Schema DSL documentation](supplejack/api/schema-dsl-domain-specific-language.html). You must define at least one group and role, and mark them as `default`, before you can view records from your API.
 
+### Aliasing and Solr name
+If you need to create an alias or a virtual field, you can do that using the `search_value`.
+
+```ruby
+  # Alias thumbnail_url with thumbnail
+  string    :thumbnail do
+    store false
+    search_value do |record|
+      record.thumbnail_url
+    end
+  end
+```
+
+You can also change the name of the Solr field using `solr_name`.
+
+```ruby
+  # Store "name" in Mongo but search as "full_name" in Solr.
+  string    :name do
+    search_as [:full_text]
+    solr_name :full_name
+  end
+
+  # Or using shorthand version
+  string    :name,    search_as: [:full_text],    solr_name: :full_name
+```
+
 ### Some common issues
 
 * If you already have records saved in Mongo you will have to resave them each time you update your Schema before you see any change in what is returned from the API. 
@@ -81,6 +107,9 @@ class RecordSchema
       record.thumbnail_url
     end
   end
+
+  # Change the Solr name
+  string    :name,                        multi_value: true,    search_as: [:filter, :fulltext],  namespace: :sj, solr_name: :full_name
 
   # Groups
   group :default do
