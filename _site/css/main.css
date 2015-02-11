@@ -1,6 +1,5 @@
 body {
     font-weight: 400;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
 }
 
 pre, code {
@@ -16,6 +15,18 @@ pre {
 
 code {
     color: inherit;
+}
+
+a {
+    color: #F87A06;
+}
+
+h4 {
+    padding: 10px 0px;
+}
+
+a:hover {
+    color: #333333;
 }
 
 #header {
@@ -56,3 +67,32 @@ code {
     padding-left: 0;
     padding-right: 0;
 }
+
+a.brand {
+    font-size: 32px;
+    padding: 0 10px 0 0;
+}
+
+.nav-header {
+    color: #333333;
+}
+
+table {
+  border: 1px solid #373737;
+  margin-bottom: 20px;
+  text-align: left;
+  border-collapse: collapse;
+  border-spacing: 0;
+ }
+
+th {
+  font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  padding: 10px;
+  background: #373737;
+  color: #fff;
+ }
+
+td {
+  padding: 10px;
+  border: 1px solid #373737;
+ }
