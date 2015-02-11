@@ -98,6 +98,8 @@ class RecordSchema
   string    :source_contributor_name,     multi_value: true,    search_as: [:filter, :fulltext],  namespace: :sj
   string    :source_website_name,                               search_as: [:filter, :fulltext],  namespace: :sj
   string    :source_url,                                                                          namespace: :sj
+  string    :source_type,                                                                         default_value: "Unknown"
+  string    :display_date,                                                                        date_format: "%y/%d/%m"  
   string    :thumbnail_url
 
   # Alias thumbnail_url with thumbnail
