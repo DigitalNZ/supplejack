@@ -110,6 +110,14 @@ class RecordSchema
     end
   end
 
+  # Geospatial features require a field defined with latlon. A record should have fields named lat and lng
+  latlon(:lat_lng) do
+    search_as [:filter]
+    search_value do |record|
+      Sunspot::Util::Coordinates.new(record.lat, record.lng)
+    end
+  end  
+
   # Change the Solr name
   string    :name,                        multi_value: true,    search_as: [:filter, :fulltext],  namespace: :sj, solr_name: :full_name
 
