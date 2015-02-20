@@ -23,7 +23,7 @@ For more information on how to install ruby, you can refer to official ruby guid
 
 ### Rails
 
-**Version: 3.2.12**
+**Version: 4.1.7**
 
 **Description**: Rails is an open source web application framework written in Ruby.
 
@@ -31,7 +31,7 @@ For more information on how to install ruby, you can refer to official ruby guid
 
 If you are using [rbenv](https://github.com/sstephenson/rbenv), simply enter the following command:
 
-`gem install rails -v '3.2.12'`
+`gem install rails -v '4.1.7'`
 
 ### Mongo
 
