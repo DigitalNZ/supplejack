@@ -16,13 +16,9 @@ Supplejack requires the following to run the full stack. Please review this page
 
 **Installation instructions OSX/Linux/Unix:**
 
-We strongly recommend using [rbenv](https://github.com/sstephenson/rbenv) to manage your ruby versions. 
+We strongly recommend using [rbenv](https://github.com/sstephenson/rbenv) to manage your ruby versions. OSX and *nix users can install rbenv from Github checkout: https://github.com/sstephenson/rbenv#installation
 
-_Installation via Github checkout_
-
-OSX and *nix users can install rbenv from Github checkout: https://github.com/sstephenson/rbenv#installation
-
-_Installation via Homebrew_
+**Alternative installation for OSX using Homebrew:**
 
 OSX users should consider an alternative mode of installation using the [Homebrew](http://brew.sh/) package manager.
 
