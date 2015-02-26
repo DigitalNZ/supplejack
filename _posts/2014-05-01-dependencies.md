@@ -14,13 +14,15 @@ Supplejack requires the following to run the full stack. Please review this page
 
 **Description**: Ruby is the language we use for all of the supplejack components. This is because we use the ruby on rails framework.
 
-**Installation instructions:** 
-
-**_OSX/Linux/Unix_**
+**Installation instructions OSX/Linux/Unix:**
 
 We strongly recommend using [rbenv](https://github.com/sstephenson/rbenv) to manage your ruby versions. 
 
+_Installation via Github checkout_
+
 OSX and *nix users can install rbenv from Github checkout: https://github.com/sstephenson/rbenv#installation
+
+_Installation via Homebrew_
 
 OSX users should consider an alternative mode of installation using the [Homebrew](http://brew.sh/) package manager.
 
@@ -32,7 +34,7 @@ $ echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi' >> ~/.bash_
 
 Installing rbenv with Homebrew notes: https://github.com/sstephenson/rbenv#homebrew-on-mac-os-x
 
-**_Windows_**
+**Installation instructions Windows:**
 
 You can use RubyInstaller to set up a full Ruby development environment on Windows.
 
