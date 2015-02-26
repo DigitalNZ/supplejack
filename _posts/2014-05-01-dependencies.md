@@ -16,8 +16,25 @@ Supplejack requires the following to run the full stack. Please review this page
 
 **Installation instructions:** 
 
-+ **OSX/Linux/Unix:** We strongly recommend using RBENV to manage your ruby versions. More information about how to install ruby with rbenv: https://github.com/sstephenson/rbenv.
-+ **Windows:** You can use RubyInstaller to set up a full Ruby development environment on Windows.
+**_OSX/Linux/Unix_**
+
+We strongly recommend using [rbenv](https://github.com/sstephenson/rbenv) to manage your ruby versions. 
+
+OSX and *nix users can install rbenv from Github checkout: https://github.com/sstephenson/rbenv#installation
+
+OSX users should consider an alternative mode of installation using the [Homebrew](http://brew.sh/) package manager.
+
+```
+$ brew update
+$ brew install rbenv ruby-build
+$ echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi' >> ~/.bash_profile
+```
+
+Installing rbenv with Homebrew notes: https://github.com/sstephenson/rbenv#homebrew-on-mac-os-x
+
+**_Windows_**
+
+You can use RubyInstaller to set up a full Ruby development environment on Windows.
 
 For more information on how to install ruby, you can refer to official ruby guide https://www.ruby-lang.org/en/installation/#rubyinstaller
 
