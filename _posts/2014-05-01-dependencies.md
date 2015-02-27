@@ -8,8 +8,8 @@ order: 1
 
 Supplejack requires the following to run the full stack. Please review this page carefully as some of these dependencies are version specific and failure to use the correct versions will cause problems.
 
-**Note for OSX users*
-To simplify this process, OSX users should consider using the [Homebrew](http://brew.sh/) package manager to manage the installation of Ruby,  MongoDB and Redis. If you're new to Homebrew, here is an [introductory overview](http://matthewcarriere.com/2013/08/05/how-to-install-and-use-homebrew/).
+**Note for OSX users**
+We recommend OSX users use the [Homebrew](http://brew.sh/) package manager to manage the installation of Ruby,  MongoDB and Redis. If you're new to Homebrew, here is an [introduction](http://matthewcarriere.com/2013/08/05/how-to-install-and-use-homebrew/).
 
 * We recommend performing `brew update` to update your Homebrew formula list. This does not update your installed packages. It simply updates the versions and availability of packages you could install. Although `brew update` is listed for each installation, you probably only need to run the command at the start of an installation session.
 * Use `brew doctor` after system changes or if you need to troubleshoot your Homebrew installation. 
@@ -112,7 +112,7 @@ $ brew install redis
 
 **Installation instructions for OSX:** http://support.apple.com/kb/DL1572
 
-### Solr
+### Apache Solr
 
 **Version: 4.1**
 
