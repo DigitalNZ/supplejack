@@ -41,9 +41,31 @@ To install the full stack run the following command:
 ```bash
 # You should replace 'mysupplejack_api_name' with the name of your app.
 
-rails _3.2.12_ new mysupplejack_api_name --skip-bundle -m https://raw.github.com/digitalnz/supplejack_installation/master/supplejack_api_template.rb
+$ rails _3.2.12_ new mysupplejack_api_name --skip-bundle -m https://raw.github.com/digitalnz/supplejack_installation/master/supplejack_api_template.rb
+```
+**Note:** Be sure to record the user API key that is printed to the terminal during the install process.
+
+This operation will create three directories and many files:
+```
+/mysupplejack_api_name
+/supplejack_manager
+/supplejack_worker
 ```
 
-**Note:** Be sure to note down the user API key that is printed to the terminal during the install process.
+If you ever want to remove this supplejack project, simply delete these three directories. Once the operation is complete you need to [bundle install](http://bundler.io/) the various gems and libraries that Supplejack relies on.
+
+```
+$ cd mysupplejack_api_name
+$ bundle install
+```
+
+
+
+Finally start a rails server from within `/mysupplejack_api_name`.
+
+```
+$ rails server
+```
+
 
 Once complete you will be able to access your API (at http://localhost:3000/records.json?api_key=USER_API_KEY) and harvest new data from external sources.
