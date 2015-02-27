@@ -8,6 +8,9 @@ order: 1
 
 Supplejack requires the following to run the full stack. Please review this page carefully as some of these dependencies are version specific and failure to use the correct versions will cause problems.
 
+**Note for OSX users*
+To simplify this process, OSX users should consider managing the installation of Ruby,  MongoDB and Redis using the [Homebrew](http://brew.sh/) package manager. If you're new to Homebrew, here is an [introductory overview](http://matthewcarriere.com/2013/08/05/how-to-install-and-use-homebrew/).
+
 ### Ruby
 
 **Version: 1.9.3**
@@ -30,6 +33,7 @@ OSX users should consider an alternative mode of installation using the [Homebre
 
 ```
 $ brew update
+$ brew doctor
 $ brew install rbenv ruby-build
 $ echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi' >> ~/.bash_profile
 ```
@@ -111,4 +115,4 @@ $ brew install redis
 
 A development version of Solr is installed during [Supplejack installation](http://digitalnz.github.io/supplejack/start/development-setup.html).
 
-For production installation see **Production Install** 
+For production installation see [Production Install](http://digitalnz.github.io/supplejack/start/production-install.html).
