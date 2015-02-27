@@ -12,13 +12,13 @@ Supplejack requires the following to run the full stack. Please review this page
 
 **Version: 1.9.3**
 
-**Description**: Ruby is the language we use for all of the supplejack components. This is because we use the ruby on rails framework.
+**Description**: The Rails web framework and all Supplejack components are written in Ruby.
 
 **Installation instructions OSX/Linux/Unix:**
 
 We strongly recommend using [rbenv](https://github.com/sstephenson/rbenv) to manage your ruby versions. OSX and *nix users can install rbenv from Github checkout: https://github.com/sstephenson/rbenv#installation
 
-**Alternative installation for OSX using Homebrew:**
+**Alternative installation for OSX using _Homebrew_:**
 
 OSX users should consider an alternative mode of installation using the [Homebrew](http://brew.sh/) package manager.
 
@@ -40,7 +40,7 @@ For more information on how to install ruby, you can refer to official ruby guid
 
 **Version: 4.1.7**
 
-**Description**: Rails is an open source web application framework written in Ruby.
+**Description**: Rails is a full-stack open source web application framework.
 
 **Installation instructions:** http://rubyonrails.org/download/
 
@@ -56,19 +56,43 @@ If you are using [rbenv](https://github.com/sstephenson/rbenv), simply enter the
 
 **Installation Instructions:** http://docs.mongodb.org/manual/installation/.
 
+**Alternative installation for OSX using _Homebrew_:**
+```
+$ brew update
+$ brew install mongodb
+```
+
 ### Redis
 
 **Version: 2.4 or greater**
 
 **Description:** Supplejack uses redis for sidekiq and for resque as they both require redis as a concurrency safe data store. You can find out more about redis on their website or on the wikipedia page.
 
-**Installation instructions**: http://redis.io/download, if you are using Mac OSX we would recommend using brew for installing redis with the following command: `brew install redis`
+**Installation instructions**: http://redis.io/download
 
-### SOLR
+**Alternative installation for OSX using _Homebrew_:**
+If you are using Mac OSX we would recommend using brew for installing redis with the following command:
+
+```
+$ brew update
+$ brew install redis
+```
+
+### Java
+
+**Version: 6 or greater**
+
+**Description:** Java is a general purpose programming language. The Solr search platform is written in Java.
+
+**Installation instructions:** https://www.java.com/en/download/help/download_options.xml
+
+**Installation instructions for Mac:** http://support.apple.com/kb/DL1572
+
+### Solr
 
 **Version: 4.1**
 
-**Description:** SOLR is used for full-text searching of records in supplejack.
+**Description:** SOLR is the full-text search platform that underpins the Supplejack Records API.
 
 **Installation instructions:** 
 
