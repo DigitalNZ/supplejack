@@ -10,14 +10,25 @@ Once you have installed all the [dependencies](/supplejack/start/dependencies.ht
 
 If you are a Mac user using [Homebrew](http://brew.sh/) we strongly recommend you cleanly run brew doctor before installing. 
 
-`brew update`
-
-`brew doctor`
+```
+$ brew update
+$ brew doctor
+```
 
 Resolving issues that `brew doctor` picks up will alleviate many problems you might encounter installing Supplejack.
 
-Please also note there is a known installation issue involving the _ibv8_ gem for Yosemite users. We are working to resolve this.
+Please also note there is a known installation issue involving the _ibv8_ gem, which can affect Yosemite users. We are working to resolve this.
 
+## Start MongoDB
+`mongod` is the primary daemon process for the MongoDB system. It handles data requests, manages data access, and performs background management operations. You need to run mongod in order to install Supplejack and whenever Supplejack is in use.
+
+Assuming your installation went smoothly and your paths are set up correctly you should be able to run mongod from the command line.
+
+```
+$ mongod
+```
+
+If mongod doesn't start, review the [MongoDB installation documention](http://docs.mongodb.org/manual/tutorial/) for your system.
 
 ## Install the Supplejack Stack
 
