@@ -59,7 +59,19 @@ $ cd mysupplejack_api_name
 $ bundle install
 ```
 
+## Configure Solr
 
+Supplejack uses the [sunspot](https://github.com/sunspot/sunspot) gem to interact with Solr. There is currently an issue with Sunspot and Solr 4. For development instances, [please follow these configuration instructions](https://github.com/sunspot/sunspot/wiki/Upgrading-sunspot_solr-Solr-Instance). When asked which version of Solr to download, select [solr-4.1.0.tgz or solr-4.1.0.zip ](http://archive.apache.org/dist/lucene/solr/4.1.0/).
+
+Confirm that you have configured Solr by starting an instance and visiting the admin dashboard at either: http://localhost:8982/solr or http://localhost:8983/solr.
+
+Whenever you want to start Solr execute the following command from `/mysupplejack_api_name`.
+
+```
+$ bundle exec rake sunspot:solr:start
+```
+
+## Start Supplejack
 
 Finally start a rails server from within `/mysupplejack_api_name`.
 
