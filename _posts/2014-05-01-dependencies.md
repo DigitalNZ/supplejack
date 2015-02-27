@@ -14,6 +14,7 @@ We recommend OSX users use the [Homebrew](http://brew.sh/) package manager to ma
 * We recommend performing `brew update` to update your Homebrew formula list. This does not update your installed packages. It simply updates the versions and availability of packages you could install. Although `brew update` is listed for each installation, you probably only need to run the command at the start of an installation session.
 * Use `brew doctor` after system changes or if you need to troubleshoot your Homebrew installation. 
 
+
 ### Ruby
 
 **Version: 1.9.3**
@@ -54,6 +55,7 @@ You can use RubyInstaller to set up a full Ruby development environment on Windo
 
 For more information on how to install ruby, you can refer to [official ruby guide](https://www.ruby-lang.org/en/installation/#rubyinstaller).
 
+
 ### Rails
 
 **Version: 4.1.7**
@@ -65,6 +67,7 @@ For more information on how to install ruby, you can refer to [official ruby gui
 If you are using [rbenv](https://github.com/sstephenson/rbenv), simply enter the following command:
 
 `gem install rails -v '4.1.7'`
+
 
 ### MongoDB
 
@@ -84,6 +87,7 @@ $ brew doctor
 $ brew install mongodb
 ```
 
+
 ### Redis
 
 **Version: 2.4 or greater**
@@ -102,6 +106,7 @@ $ brew doctor
 $ brew install redis
 ```
 
+
 ### Java
 
 **Version: 6 or greater**
@@ -112,6 +117,7 @@ $ brew install redis
 
 **Installation instructions for OSX:** http://support.apple.com/kb/DL1572
 
+
 ### Apache Solr
 
 **Version: 4.1**
@@ -120,6 +126,6 @@ $ brew install redis
 
 **Installation instructions:** 
 
-A development version of Solr is installed during [Supplejack installation](http://digitalnz.github.io/supplejack/start/development-setup.html).
+A development version of Solr is automatically installed during [Supplejack installation](http://digitalnz.github.io/supplejack/start/development-setup.html).
 
 For production installation see [Production Install](http://digitalnz.github.io/supplejack/start/production-install.html).
