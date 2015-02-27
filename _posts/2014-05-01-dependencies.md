@@ -11,7 +11,8 @@ Supplejack requires the following to run the full stack. Please review this page
 **Note for OSX users*
 To simplify this process, OSX users should consider using the [Homebrew](http://brew.sh/) package manager to manage the installation of Ruby,  MongoDB and Redis. If you're new to Homebrew, here is an [introductory overview](http://matthewcarriere.com/2013/08/05/how-to-install-and-use-homebrew/).
 
-We recommend performing `brew update` to ensure that the package manager is up to date. Use `brew doctor` after system changes or if you need to troubleshoot your Homebrew installation. 
+* We recommend performing `brew update` to update your Homebrew formula list. This does not update your installed packages. It simply updates the versions and availability of packages you could install. Although `brew update` is listed for each installation, you probably only need to run the command at the start of an installation session.
+* Use `brew doctor` after system changes or if you need to troubleshoot your Homebrew installation. 
 
 ### Ruby
 
@@ -23,7 +24,7 @@ We recommend performing `brew update` to ensure that the package manager is up t
 
 We strongly recommend using [rbenv](https://github.com/sstephenson/rbenv) to manage your ruby versions. OSX and *nix users can install rbenv from Github checkout: https://github.com/sstephenson/rbenv#installation
 
-Once rbenv is installed, you can [install Ruby 1.9.3](https://github.com/sstephenson/rbenv#choosing-the-ruby-version).
+Once rbenv is installed, you should [install Ruby 1.9.3](https://github.com/sstephenson/rbenv#choosing-the-ruby-version).
 
 ```
 $ rbenv install 1.9.3-p551
@@ -40,7 +41,7 @@ $ brew install rbenv ruby-build
 $ echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi' >> ~/.bash_profile
 ```
 
-Once rbenv is installed, you can [install Ruby 1.9.3](https://github.com/sstephenson/rbenv#choosing-the-ruby-version).
+Once rbenv is installed, you should [install Ruby 1.9.3](https://github.com/sstephenson/rbenv#choosing-the-ruby-version).
 
 ```
 $ rbenv install 1.9.3-p551
@@ -79,6 +80,7 @@ If you are using Mac OSX we recommend [installing MongoDB with Homebrew](http://
 
 ```
 $ brew update
+$ brew doctor
 $ brew install mongodb
 ```
 
@@ -96,6 +98,7 @@ If you are using Mac OSX we recommend using Homebrew to install Redis:
 
 ```
 $ brew update
+$ brew doctor
 $ brew install redis
 ```
 
