@@ -18,7 +18,13 @@ Supplejack requires the following to run the full stack. Please review this page
 
 We strongly recommend using [rbenv](https://github.com/sstephenson/rbenv) to manage your ruby versions. OSX and *nix users can install rbenv from Github checkout: https://github.com/sstephenson/rbenv#installation
 
-**Alternative installation for OSX using _Homebrew_:**
+Once rbenv is installed, you can install Ruby 1.9.3.
+
+```
+$ rbenv install 1.9.3-p551
+```
+
+**Alternative _rbnenv_ installation for OSX using _Homebrew_:**
 
 OSX users should consider an alternative mode of installation using the [Homebrew](http://brew.sh/) package manager.
 
@@ -29,6 +35,13 @@ $ echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi' >> ~/.bash_
 ```
 
 Installing rbenv with Homebrew notes: https://github.com/sstephenson/rbenv#homebrew-on-mac-os-x
+
+Once rbenv is installed, you can install Ruby 1.9.3.
+
+```
+$ rbenv install 1.9.3-p551
+```
+
 
 **Installation instructions Windows:**
 
@@ -54,7 +67,7 @@ If you are using [rbenv](https://github.com/sstephenson/rbenv), simply enter the
 
 **Description**: Supplejack uses mongo as a data store for all of it's components. You can find out more about mongo on their website or on the wikipedia page.
 
-**Installation Instructions:** http://docs.mongodb.org/manual/installation/.
+**Installation instructions:** http://docs.mongodb.org/manual/installation/.
 
 **Alternative installation for OSX using _Homebrew_:**
 ```
@@ -86,7 +99,7 @@ $ brew install redis
 
 **Installation instructions:** https://www.java.com/en/download/help/download_options.xml
 
-**Installation instructions for Mac:** http://support.apple.com/kb/DL1572
+**Installation instructions for OSX:** http://support.apple.com/kb/DL1572
 
 ### Solr
 
@@ -96,4 +109,6 @@ $ brew install redis
 
 **Installation instructions:** 
 
-A development version of Solr is installed  for you when running `bundle install` as it is included in the [sunspot_solr gem](https://github.com/outoftime/sunspot/tree/master/sunspot_solr). For production installation see **Production Install** 
+A development version of Solr is installed during [Supplejack installation](http://digitalnz.github.io/supplejack/start/development-setup.html).
+
+For production installation see **Production Install** 
