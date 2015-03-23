@@ -92,6 +92,20 @@ Supplejack.configure do |config|
     :default
   ]
 
+  # ===> Special Fields
+  # This will allow to define any special fields under any group
+  # Can also format the fields to be lower case, upper case or camelcase
+  config.special_fields = {
+    user: { 
+      fields: [:field_1, :field_2, :field_3,]
+      },
+      admin: { fields: [:field_1, :field_2, :field_3, :field_4, field_5]
+      },
+      operator: { fields: [:field_6, :field_7,], 
+                  format: 'camelcase' 
+      }                             
+  }
+
   # ===> Number of facet values
   # This will limit the number of facet values returned for each facet
   # Be carefull not to make it too high for performance reasons

@@ -26,7 +26,7 @@ Once you have made and saved your changes run the following command to generate 
 jekyll build
 ```
 
-If you are doing lots of changes or eould like to review your changes often you can use 
+If you are doing lots of changes or would like to review your changes often you can use 
 
 ```bash
 jekyll build --watch
