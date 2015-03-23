@@ -96,12 +96,12 @@ Supplejack.configure do |config|
   # This will allow to define any special fields under any group
   # Can also format the fields to be lower case, upper case or camelcase
   config.special_fields = {
-    user: { 
-      fields: [:field_1, :field_2, :field_3,]
+      user: { 
+        fields: [:field_1, :field_2, :field_3,]
       },
-      admin: { fields: [:field_1, :field_2, :field_3, :field_4, :field_5]
+        admin: { fields: [:field_1, :field_2, :field_3, :field_4, :field_5]
       },
-      operator: { fields: [:field_6, :field_7,], format: 'camelcase' 
+        operator: { fields: [:field_6, :field_7,], format: 'camelcase' 
       }                             
   }
 
