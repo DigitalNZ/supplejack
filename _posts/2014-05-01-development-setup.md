@@ -17,7 +17,7 @@ $ brew doctor
 
 Resolving issues that `brew doctor` picks up will alleviate many problems you might encounter installing Supplejack.
 
-Please also note there is a known installation issue involving the _ibv8_ gem, which can affect Yosemite users. We are working to resolve this.
+Please also note there is a known installation issue involving the _libv8_ gem, which can affect Yosemite users. We are working to resolve this.
 
 ## Start MongoDB
 `mongod` is the primary daemon process for the MongoDB system. It handles data requests, manages data access, and performs background management operations. You need to run mongod in order to install Supplejack and whenever Supplejack is in use.
