@@ -128,3 +128,18 @@ Both are optional:
 * `record_restrictions` is a Hash. If the hash key is equal to the hash value for the record, then the record is restricted.
   * The example above restricts records where `access_rights` is `false` if the request's API key has a `developer` role.
 
+## Mongo Indexing
+
+All the fields that you define in the schema will be part of the Fragment. You can index those fields using `mongo_index` DSL.
+
+```ruby
+mongo_index :status, fields: [{status: 1}]
+```
+
+## Record Fields
+
+You can specify the fields that you want to be part of the Record model instead of the Fragment by using `model_field` DSL.
+
+```ruby
+model_field :landing_url, field_options: { type: String }, index_fields: { landing_url: 1 }, index_options: { background: true }, validation: { url: true }
+```
