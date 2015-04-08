@@ -163,6 +163,20 @@ class RecordSchema
   end
   role :admin
 
+  # Mongo indexes
+  mongo_index :title, fields: [{ title: 1 }]
+  mongo_index :description, fields: [{ description: 1 }]
+
+  # Record fields
+  model_field :status, field_options: { type: Boolean }, index_fields: { status: 1 }, index_options: { background: true }, validation: { presence: true }
+
+  # or using block
+  model_field :state do
+    field_options { type: Boolean }
+    index_fields { state: 1 }
+    index_options { background: true }
+    validation { presence: true }
+  end
 end
 ```
 
@@ -180,7 +194,7 @@ Once you have defined your class you can begin adding fields, namespaces, groups
 class ConceptSchema
   include SupplejackApi::SupplejackSchema
 
-  #namespaces
+  # Namespaces
   namespace :skos,   url: 'http://www.w3.org/2004/02/skos/core'
   namespace :foaf,   url: 'http://xmlns.com/foaf/0.1/'
   namespace :rdaGr2, url: 'http://rdvocab.info/ElementsGr2/'
