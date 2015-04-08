@@ -130,7 +130,8 @@ Both are optional:
 
 ## Mongo Indexing
 
-All the fields that you define in the schema will be part of the Fragment. You can index those fields using `mongo_index` DSL.
+By default Supplejack does not index fragments. You should set this up yourself.
+All the fields that you define in the schema will be part of the Fragment. You shoul index those fields using the `mongo_index` DSL.
 
 ```ruby
 mongo_index :status, fields: [{status: 1}]
