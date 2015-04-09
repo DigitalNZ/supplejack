@@ -138,7 +138,7 @@ All the fields that you define in the schema will be part of the Fragment. You s
 mongo_index :status, fields: [{status: 1}]
 ```
 
-See [Example Concept Schema](/supplejack/api/creating-schemas.html) for an example of Mongo Indexing.
+See the main _Example Concept Schema_ example in [Creating Schemas](/supplejack/api/creating-schemas.html) for a demonstration of setting up Mongo Indexing.
 
 ## Record Fields
 
