@@ -37,7 +37,7 @@ rails c
 ```
 
 ### Environment Configurations
-In order to start harvesting records, you need to specify what environments you need. You can choose `staging` or `production` or both. The example `application.yml` comes with `production` as default environment. If you wanted to have two environments, you can uncomment `staging` and specify the correct values for URLs and keys.
+In order to start harvesting records, you need to specify what environments you need by tagging parser script. You can choose `staging` or `production` or both. The example `application.yml` comes with `staging` as default environment. You can add a new environment eg production by selecting the new key and correct url.
 
 By default, supplejack manager can only create parser to harvest record. In order to create parser for concept harvesting, you need to set ``PARSER_TYPE_ENABLED`` in **application.yml** to true.
 
