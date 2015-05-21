@@ -18,6 +18,12 @@ The harvester manager is a rails application that provides a visual interface in
 * Define rules for checking links in the Supplejack API.
 * View the statistics for the link checker
 
+**Notes:**
+
+* There are two user roles: **admin** and **user**
+* Admin user is superuser, requires at least one available
+* Normal user is created by default
+
 ### Generate Manager User keys
 
 From the Manager's project root, create a user from the console:
