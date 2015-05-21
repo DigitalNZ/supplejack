@@ -68,13 +68,13 @@ To start resque, run these lines in order:
 $ cd mysupplejack_api_name
 $ bundle exec resque-pool --daemon --environment development
 ```
-These commands will start resque pool manager which is configurable in `config/resque-pool.yml`. See to [resque-pool](https://github.com/nevans/resque-pool) for documentation.
+These commands will start resque pool manager which is configurable in `config/resque-pool.yml`. See [resque-pool](https://github.com/nevans/resque-pool) for documentation.
 
 ```
 $ cd mysupplejack_api_name
 $ bundle exec rake resque:scheduler BACKGROUND=true
 ```
-These commands will start resque-scheduler which is configurable in `config/resque-scheduler.yml`. See to [resque-scheduler](https://github.com/resque/resque-scheduler) for documentation.
+These commands will start resque-scheduler which is configurable in `config/resque-scheduler.yml`. See [resque-scheduler](https://github.com/resque/resque-scheduler) for documentation.
 
 ## Configure Solr
 
