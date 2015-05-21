@@ -59,6 +59,23 @@ $ cd mysupplejack_api_name
 $ bundle install
 ```
 
+## Configure Resque
+Supplejack uses resque to manage indexing job. Make sure you have installed Redis as Resque depends on it.
+
+To start resque, run these lines in order:
+
+```
+$ cd mysupplejack_api_name
+$ bundle exec resque-pool --daemon --environment development
+```
+These commands will start resque pool manager which is configurable in `config/resque-pool.yml`. See to [resque-pool](https://github.com/nevans/resque-pool) for documentation.
+
+```
+$ cd mysupplejack_api_name
+$ bundle exec rake resque:scheduler BACKGROUND=true
+```
+These commands will start resque-scheduler which is configurable in `config/resque-scheduler.yml`. See to [resque-scheduler](https://github.com/resque/resque-scheduler) for documentation.
+
 ## Configure Solr
 
 Supplejack uses the [sunspot](https://github.com/sunspot/sunspot) gem to interact with Solr. There is currently an issue with Sunspot and Solr 4. For development instances, [please follow these configuration instructions](https://github.com/sunspot/sunspot/wiki/Upgrading-sunspot_solr-Solr-Instance). When asked which version of Solr to download, select [solr-4.1.0.tgz or solr-4.1.0.zip ](http://archive.apache.org/dist/lucene/solr/4.1.0/).

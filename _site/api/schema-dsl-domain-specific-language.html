@@ -292,6 +292,20 @@ Both are optional:</li>
 </ul></li>
 </ul>
 
+<h2 id="mongo-indexing">Mongo Indexing</h2>
+
+<p>By default Supplejack does not index fragments. You should set this up yourself.</p>
+
+<p>All the fields that you define in the schema will be part of the Fragment. You shoul index those fields using the <code>mongo_index</code> DSL.</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">mongo_index</span> <span class="ss">:status</span><span class="p">,</span> <span class="ss">fields</span><span class="p">:</span> <span class="o">[</span><span class="p">{</span><span class="ss">status</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span><span class="o">]</span>
+</code></pre></div>
+<p>See the main <em>Example Concept Schema</em> example in <a href="/supplejack/api/creating-schemas.html">Creating Schemas</a> for a demonstration of setting up Mongo Indexing.</p>
+
+<h2 id="record-fields">Record Fields</h2>
+
+<p>You can specify the fields that you want to be part of the Record model instead of the Fragment by using <code>model_field</code> DSL.</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">model_field</span> <span class="ss">:landing_url</span><span class="p">,</span> <span class="ss">field_options</span><span class="p">:</span> <span class="p">{</span> <span class="ss">type</span><span class="p">:</span> <span class="nb">String</span> <span class="p">},</span> <span class="ss">index_fields</span><span class="p">:</span> <span class="p">{</span> <span class="ss">landing_url</span><span class="p">:</span> <span class="mi">1</span> <span class="p">},</span> <span class="ss">index_options</span><span class="p">:</span> <span class="p">{</span> <span class="ss">background</span><span class="p">:</span> <span class="kp">true</span> <span class="p">},</span> <span class="ss">validation</span><span class="p">:</span> <span class="p">{</span> <span class="ss">url</span><span class="p">:</span> <span class="kp">true</span> <span class="p">}</span>
+</code></pre></div>
 
                     </div>
                 
