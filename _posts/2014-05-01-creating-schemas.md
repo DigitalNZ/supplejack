@@ -10,6 +10,8 @@ The heart of the Supplejack API is the Schema. The Schema defines the fields for
 
 When you first install the Supplejack API a default Schema file is created (see the code at the bottom of the page for a copy). This gives you a template to start working from but you do not have keep any of the fields which are defined in the example. By default the schema file is created at the following location `app/supplejack_api/schema.rb`.
 
+**It is important that you have set up schema correctly as other components eg Supplejack Manager is dependent on it** 
+
 ## Schema basics
 
 To start your Schema from scratch you first need the class definition.
@@ -36,6 +38,23 @@ You must name your class `Schema` and it must include `SupplejackApi::Supplejack
 ```
 
 Once you have defined your class you can begin adding fields, groups and roles. For more details about how to do this you can view the [Schema DSL documentation](supplejack/api/schema-dsl-domain-specific-language.html). You must define at least one group and role, and mark them as `default`, before you can view records from your API.
+
+### Field definition
+
+Field definition is important. The format is `[field_type] [field_name], [options]`
+
+For example, if you want a field called `title` of type `String`
+```ruby
+   string        :title,          search_boost: 1, search_as: [:filter, :fulltext]
+[field_type]  [field_name]        [options]
+```
+
+##### Keywords :book:
+* `search_as`: Define search behavior, `:filter` means the field is facetable, `:fulltext` means searchable
+* `store`: Make the field writable to DB, default is `true`
+* `search_boost`: Define Solr search priority
+
+There are for 4 field types: `string`, `integer`, `datetime`, `boolean`. You can refer to sample record schema as example.
 
 ### Aliasing and Solr name
 If you need to create an alias or a virtual field, you can do that using the `search_value`.
@@ -65,12 +84,12 @@ You can also change the name of the Solr field using `solr_name`.
 
 ### Some common issues
 
-* If you already have records saved in Mongo you will have to resave them each time you update your Schema before you see any change in what is returned from the API. 
+* If you already have records saved in Mongo you will have to resave them each time you update your Schema before you see any change in what is returned from the API.
 * Fields that are already saved will not be removed from the record, in Mongo, if you remove that field from the Schema.
 
 
 ### Example Record Schema
-```ruby 
+```ruby
 class RecordSchema
   include SupplejackApi::SupplejackSchema
 
@@ -93,7 +112,7 @@ class RecordSchema
   string    :type,                        multi_value: true,    search_as: [:filter, :fulltext],  namespace: :dc
   string    :coverage,                                                                            namespace: :dc
   string    :language,                                                                            namespace: :dc
-        
+
   string    :source_provider_name,                              search_as: [:filter, :fulltext],  namespace: :sj
   string    :source_contributor_name,     multi_value: true,    search_as: [:filter, :fulltext],  namespace: :sj
   string    :source_website_name,                               search_as: [:filter, :fulltext],  namespace: :sj
