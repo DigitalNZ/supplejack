@@ -6,7 +6,33 @@ date: 2014-07-17 15:00:53
 order: 3
 ---
 
-## Search ##
+### Display context ###
+`http://localhost:3000/schema`
+
+### Display a single concept ###
+`http://localhost:3000/concepts/1.json?api_key=your-api-key`
+
+#### Request ####
+
+| Parameter        | Description           |
+| ------------- |-------------| -----|
+| facets        | Facet filtering query. This parameter can be defined more than once |
+| fields        | The fields to return |
+| inline_context| Displays @context values (defaults to false) |
+
+### Display a records associated with a concept ###
+`http://localhost:3000/concepts/1/records.json?api_key=your-api-key`
+
+#### Request ####
+
+| Parameter        | Description           |
+| ------------- |-------------| -----|
+| text          | The search term(s) |
+| facets        | Facet filtering query. This parameter can be defined more than once |
+| fields        | The fields to return |
+| query_fields  | Fields filtering query |
+| sort          | Fields for sorting query |
+| direction     | Order of the sort `asc` or `desc` |
 
 ### Search for concepts ###
 `http://localhost:3000/concepts.json?api_key=your-api-key&text=Salomon`
@@ -30,36 +56,32 @@ Search using `text`.
 
 ```json
 {
-    "search": {
-        "result_count": 2,
+    "concept_search": {
+        "result_count": 1,
         "results": [
             {
-                "@context": {
-                    "skos": "http://www.w3.org/2004/02/skos/core",
-                    "label": "skos:prefLabel",
-                    "rdaGr2": "http://rdvocab.info/ElementsGr2/",
-                    "role": "rdaGr2:professionOrOccupation"
-                },
-                "type": "foaf:person",
-                "label": "Salomon van Abb",
-                "role": null
-            },
-            {
-                "@context": {
-                    "skos": "http://www.w3.org/2004/02/skos/core",
-                    "label": "skos:prefLabel",
-                    "rdaGr2": "http://rdvocab.info/ElementsGr2/",
-                    "role": "rdaGr2:professionOrOccupation"
-                },
-                "type": "[\"foaf:person\"]",
-                "label": "Salomon van Abbé",
-                "role": null
+                "@context": "http://api.digitalnz.org/schema",
+                "@type": "edm:Agent",
+                "@id": "http://api.digitalnz.org/concepts/2380",
+                "altLabel": [
+                    "Walter Auburn",
+                    "Walter Salomon (Dr) Auburn"
+                ],
+                "biographicalInformation": "",
+                "concept_id": 2380,
+                "dateOfBirth": "1906-06-25",
+                "dateOfDeath": "1979-06-25",
+                "name": "Walter Salomon (Dr)  Auburn",
+                "prefLabel": "Walter Auburn",
+                "sameAs": [
+                    "http://www.aucklandartgallery.com/the-collection/browse-artists/2804",
+                    "http://natlib.govt.nz/records/22391954"
+                ]
             }
         ],
         "per_page": 20,
         "page": 1,
-        "request_url": "http://localhost:3000/concepts.json?api_key=your-api-key&text=Salomon",
-        "facets": {}
+        "request_url": "http://localhost:3000/concepts.json?api_key=our-api-key&text=Salomon"
     }
 }
 ```
@@ -70,7 +92,7 @@ Using `facets`.
 
 ```json
 {
-    "search": {
+    "concept_search": {
         "result_count": 5,
         "results": [
             .
@@ -95,7 +117,7 @@ Using `facets`.
 
 Display specific fields using `fields`.
 
-`http://localhost:3000/concepts.json?api_key=your-api-key&text=Salomon&fields=label,familyName,givenName`
+`http://localhost:3000/concepts.json?api_key=your-api-key&text=Salomon&fields=prefLabel`
 
 ```json
 {
@@ -103,50 +125,16 @@ Display specific fields using `fields`.
         "result_count": 1,
         "results": [
             {
-                "@context": {
-                    "skos": "http://www.w3.org/2004/02/skos/core",
-                    "label": "skos:prefLabel",
-                    "foaf": "http://xmlns.com/foaf/0.1/",
-                    "givenName": "foaf:givenName",
-                    "familyName": "foaf:familyName"
-                },
-                "label": "Rita Angus",
-                "familyName": "Angus",
-                "givenName": "Rita"
+                "@context": "http://api.digitalnz.org/schema",
+                "@type": "edm:Agent",
+                "@id": "http://api.digitalnz.org/concepts/4043",
+                "concept_id": 4043,
+                "prefLabel": "Lanyon, Peter"
             }
         ],
         "per_page": 20,
         "page": 1,
-        "request_url": "http://localhost:3000/concepts.json?api_key=your-api-key&text=Rita&fields=label,familyName,givenName",
-        "facets": {}
-    }
-}
-```
-
-Search within a specific fields using `query_fields`.
-
-`http://localhost:3000/concepts.json?api_key=your-api-key&text=Angus&query_fields=familyName`
-
-```json
-{
-    "search": {
-        "result_count": 1,
-        "results": [
-            {
-                "@context": {
-                    "skos": "http://www.w3.org/2004/02/skos/core",
-                    "label": "skos:prefLabel",
-                    "rdaGr2": "http://rdvocab.info/ElementsGr2/",
-                    "role": "rdaGr2:professionOrOccupation"
-                },
-                "type": "[\"foaf:person\"]",
-                "label": "Rita Angus",
-                "role": null
-            }
-        ],
-        "per_page": 20,
-        "page": 1,
-        "request_url": "http://localhost:3000/concepts.json?api_key=your-api-key&text=Angus&query_fields=familyName",
+        "request_url": "http://localhost:3000/concepts.json?api_key=your-api-key&text=Rita&fields=prefLabel",
         "facets": {}
     }
 }
@@ -162,52 +150,27 @@ Sorting search results using `sort` and `direction`.
         "result_count": 5,
         "results": [
             {
-                "@context": {
-                    "rdaGr2": "http://rdvocab.info/ElementsGr2/",
-                    "dateOfBirth": "rdaGr2:dateOfBirth",
-                    "skos": "http://www.w3.org/2004/02/skos/core",
-                    "label": "skos:prefLabel"
-                },
+                "@context": "http://api.digitalnz.org/schema",
                 "dateOfBirth": "1866-01-01T12:00:00+00:00",
                 "label": "Wilhelm Dittmer"
             },
             {
-                "@context": {
-                    "rdaGr2": "http://rdvocab.info/ElementsGr2/",
-                    "dateOfBirth": "rdaGr2:dateOfBirth",
-                    "skos": "http://www.w3.org/2004/02/skos/core",
-                    "label": "skos:prefLabel"
-                },
+                "@context": "http://api.digitalnz.org/schema",
                 "dateOfBirth": "1869-01-01T12:00:00+00:00",
                 "label": "Frances Hodgkins"
             },
             {
-                "@context": {
-                    "rdaGr2": "http://rdvocab.info/ElementsGr2/",
-                    "dateOfBirth": "rdaGr2:dateOfBirth",
-                    "skos": "http://www.w3.org/2004/02/skos/core",
-                    "label": "skos:prefLabel"
-                },
+                "@context": "http://api.digitalnz.org/schema",
                 "dateOfBirth": "1883-01-01T12:00:00+00:00",
                 "label": "Salomon van Abbé"
             },
             {
-                "@context": {
-                    "rdaGr2": "http://rdvocab.info/ElementsGr2/",
-                    "dateOfBirth": "rdaGr2:dateOfBirth",
-                    "skos": "http://www.w3.org/2004/02/skos/core",
-                    "label": "skos:prefLabel"
-                },
+                "@context": "http://api.digitalnz.org/schema",
                 "dateOfBirth": "1883-07-31T12:00:00+00:00",
                 "label": "Salomon van Abb"
             },
             {
-                "@context": {
-                    "rdaGr2": "http://rdvocab.info/ElementsGr2/",
-                    "dateOfBirth": "rdaGr2:dateOfBirth",
-                    "skos": "http://www.w3.org/2004/02/skos/core",
-                    "label": "skos:prefLabel"
-                },
+                "@context": "http://api.digitalnz.org/schema",
                 "dateOfBirth": "1908-03-12T12:00:00+00:00",
                 "label": "Rita Angus"
             }

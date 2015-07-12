@@ -211,73 +211,48 @@ Once you have defined your class you can begin adding fields, namespaces, groups
 
 ```ruby
 class ConceptSchema
-  include SupplejackApi::SupplejackSchema
+  include SupplejackApi::SchemaDefinition
 
   # Namespaces
-  namespace :skos,   url: 'http://www.w3.org/2004/02/skos/core'
-  namespace :foaf,   url: 'http://xmlns.com/foaf/0.1/'
-  namespace :rdaGr2, url: 'http://rdvocab.info/ElementsGr2/'
-  namespace :edm,    url: 'http://www.europeana.eu/schemas/edm/'
-  namespace :owl,    url: 'http://www.w3.org/2002/07/owl'
+  namespace :dcterms,     url: 'http://purl.org/dc/terms/'
+  namespace :edm,         url: 'http://www.europeana.eu/schemas/edm/'
+  namespace :foaf,        url: 'http://xmlns.com/foaf/0.1/'
+  namespace :owl,         url: 'http://www.w3.org/2002/07/owl#'
+  namespace :rdaGr2,      url: 'http://rdvocab.info/ElementsGr2/'
+  namespace :rdf,         url: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+  namespace :rdfs,        url: 'http://www.w3.org/2000/01/rdf-schema#'
+  namespace :skos,        url: 'http://www.w3.org/2004/02/skos/core#'
+  namespace :xsd,         url: 'http://www.w3.org/2001/XMLSchema#'
+  namespace :dc,          url: 'http://purl.org/dc/elements/1.1/'
 
-  # Fields
-  string    :concept_id,    store: false
-  string    :landing_url,   store: false
-  string    :type
-  string    :match_status,  search_as: [:filter]
-  string    :name,          multi_value: true,    search_boost: 10,     search_as: [:filter, :fulltext], namespace: :foaf
-  string    :givenName,     search_boost: 10,     search_as: [:filter, :fulltext], namespace: :foaf
-  string    :familyName,    search_boost: 10,     search_as: [:filter, :fulltext], namespace: :foaf
-  string    :label,         search_boost: 5,      search_as: [:filter, :fulltext], namespace: :skos, namespace_field: :prefLabel
-  string    :description,   search_boost: 2,      search_as: [:filter, :fulltext], namespace: :rdaGr2, namespace_field: :biographicalInformation
-  datetime  :dateOfBirth,   search_as: [:filter], namespace: :rdaGr2
-  datetime  :dateOfDeath,   search_as: [:filter], namespace: :rdaGr2
-  string    :placeOfBirth,  namespace: :rdaGr2  
-  string    :placeOfDeath,  namespace: :rdaGr2  
-  string    :role,          namespace: :rdaGr2,   namespace_field: :professionOrOccupation
-  string    :gender,        search_as: [:filter], namespace: :rdaGr2
-  string    :isRelatedTo,   multi_value: true,    namespace: :edm
-  string    :hasMet,        multi_value: true,    namespace: :edm
-  string    :sameAs,        multi_value: true,    namespace: :owl
+  # Fields (SourceAuthority fields)
+  string      :name
+  string      :prefLabel
+  string      :altLabel,                  multi_value: true
+  datetime    :dateOfBirth
+  datetime    :dateOfDeath
+  string      :biographicalInformation
+  string      :sameAs,                    multi_value: true
+  string      :givenName
+  string      :familyName
+  integer     :birthYear
+  integer     :deathYear
 
-  # Groups
-  group :default do
-    fields [
-      :type,
-      :label,
-      :role
-    ]
-  end
-
-  group :all do
-    includes [:default]
-    fields [
-      :landing_url,
-      :match_status,
-      :name,
-      :givenName,
-      :familyName,
-      :description,
-      :dateOfBirth,
-      :dateOfDeath,
-      :placeOfBirth,
-      :placeOfDeath,
-      :gender,
-      :isRelatedTo,
-      :hasMet,
-      :sameAs
-    ]
-  end
-
-  group :core do
-    fields [:concept_id]
-  end
-
-  # Roles
-  role :developer do
-    default true
-  end
-  role :admin
-
+  group :source_authorities
+  group :reverse
+  
+  model_field :name, field_options: { type: String }, search_as: [:fulltext], search_boost: 6, namespace: :foaf
+  model_field :prefLabel, field_options: { type: String }, namespace: :skos
+  model_field :altLabel, field_options: { type: Array }, search_as: [:fulltext], search_boost: 2, namespace: :skos
+  model_field :dateOfBirth, field_options: { type: Date }, namespace: :rdaGr2
+  model_field :dateOfDeath, field_options: { type: Date }, namespace: :rdaGr2
+  model_field :biographicalInformation, field_options: { type: String }, search_as: [:fulltext], search_boost: 1,  namespace: :rdaGr2
+  model_field :sameAs, field_options: { type: Array }, namespace: :owl
+  
+  # Use store: false to display the fields in the /schema
+  model_field :title, store: false, namespace: :dc
+  model_field :date, store: false, namespace: :dc
+  model_field :description, store: false, namespace: :dc
+  model_field :agents, store: false, namespace: :edm
 end
 ```
