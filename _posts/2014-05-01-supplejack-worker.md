@@ -15,7 +15,9 @@ These use the harvester core gem to interpret a given parser which it uses to ge
 There are two kinds of link checking. Collection checking checks a few records from a collection and suppresses collections which are unavailable. Record checking checks individual records which have been visited recently (in the API) and suppresses records which are unavailable.
 
 ### Sidekiq
-Jobs are processed by Sidekiq, which runs as a part of the worker. In order to start Sidekiq run `bundle exec sidekiq start`. You can then look at http://WORKER_HOST/sidekiq to view progress.
+Jobs are processed by Sidekiq, which runs as a part of the worker. In order to start Sidekiq run `bundle exec sidekiq start`. You can then look at http://WORKER_HOST/sidekiq to view progress.  
+
+If you are having issues with your Sidekiq worker jobs not running correctly you can add log output by following [these](https://github.com/javan/whenever/wiki/Output-redirection-aka-logging-your-cron-jobs) instructions. The most likely cause of issues is that the environment variables are not setup correctly for the cron script and the workers are unable to find the Ruby gems installed on the system
 
 ### Generate Worker User keys
 
