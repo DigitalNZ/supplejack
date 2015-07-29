@@ -44,6 +44,36 @@ attribute :creator do
 end
 ```
 
+For the XML based strategy you can supply an optional sanitize\_config argument to configure how HTML is stripped (by default all HTML is stripped)
+
+With this you can specify  
+
+##### Tags to keep
+```ruby
+attribute :creator do
+  # This will not strip BR tags from the fetched HTML, all other tags will be stripped
+  # the array parameter in the second argument is the XML namespaces argument, it must be 
+  # passed becuase the sanitize_config is the third argument
+  fetch("//author", [], sanitize_config: {elements: ['br']})
+end
+```
+
+##### Custom replacments for stripped tags
+```ruby
+attribute :creator do
+  sanitize_config = {
+    whitespace_elements: {
+      # "before" is what the tag will be replaced with, "after" is what the nodes children will be replaced with (if any)
+      "br" => {before: ' \n', after: ''}
+    }
+  }
+  fetch("//author", [], sanitize_config: sanitize_config)
+end
+```
+
+For more extensive documention refer to the [documentation for the sanitization library used](https://github.com/rgrove/sanitize)  
+For an overview of all the configuration parameters refer to the [default sanitize config](https://github.com/rgrove/sanitize/blob/master/lib/sanitize/config/default.rb)
+
 ### Convinience Methods
 The following set of methods allow the operator to inspect the values of a particular field. These methods are specially usefull when the operator needs to acomplish conditional 
 
