@@ -48,7 +48,13 @@ Then do `Search.new(params)` or `Item.find(id)`
 
 ## Configuration
 
-Modify the initializer at `config/initializers/supplejack_client.rb`.
+Below is the sample `config/initializers/supplejack_client.rb` file that comes with supplejack website. You need to modify it if you make any changes in supplejack record schema.
+
+####Notes:
+
+* It is very important that you specify **config.fields** in `supplejack_client.rb` correctly. The fields must be declared in supplejack api record schema.
+* The **config.facets** list facets to be returned from the api. The facets must be declared in supplejack api record schema.
+* Supplejack demo website and supplejack api are highly dependent on each other. For example: In supplejack website 's `supplejack_client.rb` file, **config.facets** lists `category`. `category` facet is used to build search tab in supplejack website, check out [Github code](https://github.com/DigitalNZ/supplejack_website/blob/master/app/models/search_tab.rb#L26). It is declared in supplejack api record schema as a facet. If you want to rename `category` differently eg `type`, you need to update the code accordingly.
 
 ```ruby
 Supplejack.configure do |config|
@@ -56,25 +62,23 @@ Supplejack.configure do |config|
   # ===> Credentials
   # Use the api_key for your Supplejack user
   # Please replace XXXX with your own api key
-  config.api_key = "XXXX"
+  config.api_key = API_KEY
   #
   # ===> End point
   # For production use default url which is http://api.youapihost.org
-  config.api_url = "http://youapihost.org"
+  config.api_url = API_HOST
   #
   # ===> URL Format
   # This is the format use for the url's in the application
-  # The default is the item hash which looks like: "text='dog'&i[content_partner]=NLNZ&i[category]=Images"
-  config.url_format = :item_hash
+  # The default is the item hash which looks like: "text='dog'&i[content_partner]=NLNZ&i[type]=Images"
+  # config.url_format = :item_hash
   #
   # ===> Facets
   # The is the list of facets that are going to be requested to the api
   # When you ask for the facets, they are going to be ordered in the
   # order presented here
   config.facets = [
-    :name,
-    :description,
-    :age
+    :category
   ]
   #
   # ===> Facet values sorting
@@ -82,63 +86,51 @@ Supplejack.configure do |config|
   # The sorting options are :index and :count
   # :index means lexical sorting (Alphabetical)
   # :count means is ordered by the number of results for each facet value
-  config.facets_sort = nil
+  # config.facets_sort = nil
   #
   # ===> Fields
   # This is a list of fields/groups that will be requested to the API for every
   # record. :default will return the default set of fields.
   #
   config.fields = [
-    :default
+    :default,
+    :source_contributor_name,
+    :source_website_name,
+    :subject
   ]
-
-  # ===> Special Fields
-  # This will allow to define any special fields under any group
-  # Can also format the fields to be lower case, upper case or camelcase
-  config.special_fields = {
-      user: { 
-        fields: [:field_1, :field_2, :field_3,]
-      },
-      admin: { 
-        fields: [:field_1, :field_2, :field_3, :field_4, :field_5]
-      },
-      operator: { 
-        fields: [:field_6, :field_7,], format: 'camelcase' 
-      }                             
-  }
 
   # ===> Number of facet values
   # This will limit the number of facet values returned for each facet
   # Be carefull not to make it too high for performance reasons
-  config.facets_per_page = 10
+  # config.facets_per_page = 10
   #
   # ===> Per Page
   # Number of results returned per page
-  config.per_page = 20
+  # config.per_page = 20
   #
   # ===> Timeout
   # By default the request to the API will timeout after 30 seconds
-  config.timeout = 30
+  # config.timeout = 30
   #
   # ===> Single value methods
   # Some of the values returned by the API are actually multiple values
   # so they are returned as a array. But most of the time we are only intereseted
   # in one of those values. Here you can define which values would you like to
   # be converted to a string.
-  config.single_value_methods = [
-    :email
-  ]
+  # config.single_value_methods = [
+  #   :email
+  # ]
   #
   # ===> Search attributes
   # The search object can store any number of attributes which are actually
   # the filters passed to the search
   # Here you can define which attributes you want the search to accept.
   # This is going to allow you to do:
-  #   search = Search.new(text: 'dog', i: {category: 'Images'})
-  #   search.category
+  #   search = Search.new(text: 'dog', i: {type: 'Images'})
+  #   search.type
   #
   config.search_attributes = [
-    :category
+    :subject
   ]
   #
   # ===> Record klass
@@ -146,10 +138,10 @@ Supplejack.configure do |config|
   # This is used to initialize objects of this class when the list of
   # favourites is fetched.
   #
-  config.record_klass = "Record"
+  # config.record_klass = "Record"
   #
   # ===> Enable Debugging
-  # Set this flag to true in order to get display errors and the actual SOLR requests 
+  # Set this flag to true in order to get display errors and the actual SOLR requests
   # in the logs generated by the API.
   #
   config.enable_debugging = true
@@ -157,6 +149,6 @@ Supplejack.configure do |config|
   # ===> Enable Caching
   # Set this flag to true in order to cache the facet_value response and the search counts
   #
-  config.enable_caching = true  
+  config.enable_caching = false
 end
 ```

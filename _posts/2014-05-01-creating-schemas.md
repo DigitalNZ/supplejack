@@ -10,7 +10,7 @@ The heart of the Supplejack API is the Schema. The Schema defines the fields for
 
 When you first install the Supplejack API a default Schema file is created (see the code at the bottom of the page for a copy). This gives you a template to start working from but you do not have keep any of the fields which are defined in the example. By default the schema file is created at the following location `app/supplejack_api/schema.rb`.
 
-**It is important that you have set up schema correctly as other components eg Supplejack Manager is dependent on it** 
+**It is important that you have set up schema correctly as other components eg Supplejack Manager is dependent on it**
 
 ## Schema basics
 
@@ -99,76 +99,32 @@ class RecordSchema
 
   # Fields
   string    :record_id,                   store: false,                                           namespace: :sj
-  string    :concept_ids,                                                                         namespace: :sj
   string    :title,                       search_boost: 10,     search_as: [:filter, :fulltext],  namespace: :dc
   string    :description,                 search_boost: 2,      search_as: [:filter, :fulltext],  namespace: :dc
-  string    :creator,                     multi_value: true,                                      namespace: :dc
-  datetime  :date,                                                                                namespace: :dc
-  string    :display_date,                                                                        namespace: :dc
-  string    :subject,                                                                             namespace: :dc
-  string    :identifier,                                                                          namespace: :dc
-  string    :rights,                                                                              namespace: :dc
-  string    :license,                                                                             namespace: :dc
-  string    :type,                        multi_value: true,    search_as: [:filter, :fulltext],  namespace: :dc
-  string    :coverage,                                                                            namespace: :dc
-  string    :language,                                                                            namespace: :dc
 
   string    :source_provider_name,                              search_as: [:filter, :fulltext],  namespace: :sj
   string    :source_contributor_name,     multi_value: true,    search_as: [:filter, :fulltext],  namespace: :sj
   string    :source_website_name,                               search_as: [:filter, :fulltext],  namespace: :sj
   string    :source_url,                                                                          namespace: :sj
-  string    :source_type,                                                                         default_value: "Unknown"
-  string    :display_date,                                                                        date_format: "%y/%d/%m"  
   string    :thumbnail_url
-
-  # Alias thumbnail_url with thumbnail
-  string    :thumbnail do
-    store false
-    search_value do |record|
-      record.thumbnail_url
-    end
-  end
-
-  # Geospatial features require a field defined with latlon. A record should have fields named lat and lng
-  latlon(:lat_lng) do
-    search_as [:filter]
-    search_value do |record|
-      Sunspot::Util::Coordinates.new(record.lat, record.lng)
-    end
-  end  
-
-  # Change the Solr name
-  string    :name,                        multi_value: true,    search_as: [:filter, :fulltext],  namespace: :sj, solr_name: :full_name
+  string    :subject,                                                                             namespace: :dc
+  string    :display_date,                                                                        namespace: :dc
+  string    :creator,                     multi_value: true,                                      namespace: :dc
+  string    :category,                    multi_value: true,    search_as: [:filter]
 
   # Groups
   group :default do
     fields [
-      :title,
-      :description
-    ]
-  end
-
-  group :all do
-    includes [:default]
-    fields [
       :record_id,
-      :concept_ids,
       :title,
       :description,
-      :creator,
-      :date,
-      :display_date,
       :subject,
-      :identifier,
-      :rights,
-      :type,
-      :coverage,
-      :language,
       :source_provider_name,
-      :source_contributor_name,
-      :source_website_name,
       :source_url,
-      :thumbnail_url
+      :thumbnail_url,
+      :display_date,
+      :creator,
+      :category
     ]
   end
 
@@ -182,22 +138,17 @@ class RecordSchema
   end
   role :admin
 
-  # Mongo indexes
-  mongo_index :title, fields: [{ title: 1 }]
-  mongo_index :description, fields: [{ description: 1 }]
+  mongo_index :source_url,         fields: [{source_url: 1}]
 
-  # Record fields
-  model_field :status, field_options: { type: Boolean }, index_fields: { status: 1 }, index_options: { background: true }, validation: { presence: true }
-
-  # or using block
-  model_field :state do
-    field_options { type: Boolean }
-    index_fields { state: 1 }
-    index_options { background: true }
-    validation { presence: true }
-  end
 end
 ```
+
+####Notes:
+
+The example record schema comes with the default supplejack api installation. Supplejack demo website is dependent on it so you should not modify it.
+
+However, if you modify the schema, you need to modify supplejack website as well if you want to use it. Please refer to [Supplejack Website](/supplejack/start/supplejack-website.html#notes) to know what to modify.
+
 
 ## Concept Schema ##
 
@@ -240,7 +191,7 @@ class ConceptSchema
 
   group :source_authorities
   group :reverse
-  
+
   model_field :name, field_options: { type: String }, search_as: [:fulltext], search_boost: 6, namespace: :foaf
   model_field :prefLabel, field_options: { type: String }, namespace: :skos
   model_field :altLabel, field_options: { type: Array }, search_as: [:fulltext], search_boost: 2, namespace: :skos
@@ -248,7 +199,7 @@ class ConceptSchema
   model_field :dateOfDeath, field_options: { type: Date }, namespace: :rdaGr2
   model_field :biographicalInformation, field_options: { type: String }, search_as: [:fulltext], search_boost: 1,  namespace: :rdaGr2
   model_field :sameAs, field_options: { type: Array }, namespace: :owl
-  
+
   # Use store: false to display the fields in the /schema
   model_field :title, store: false, namespace: :dc
   model_field :date, store: false, namespace: :dc

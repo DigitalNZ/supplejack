@@ -8,7 +8,7 @@ order: 7
 
 The Supplejack Website is part of the standard Supplejack platform that can aggregate data and content from many different sources.
 
-It uses the `supplejack_client` gem to connect to the Supplejack API. For more information about Supplejack Client gem, please refer to the [documentation](http://digitalnz.github.io/supplejack/start/supplejack-client.html)
+It uses the `supplejack_client` gem to connect to the Supplejack API. For more information about Supplejack Client gem, please refer to the [documentation](http://digitalnz.github.io/supplejack/start/supplejack-client.html#configuration)
 
 ## Installation
 
@@ -24,7 +24,7 @@ Create a `local_env.rb` file and place it inside `config/`
 # config/local_env.rb
 API_HOST = 'http://localhost:3000'
 API_KEY = 'your_api_key'
-THUMBNAIL_SERVER_URL = 'http://thumbnails.digitalnz.org'
+THUMBNAIL_SERVER_URL = "http://magickly.afeld.me/'
 ```
 
 Run bundle install
@@ -38,3 +38,9 @@ Run Rails server
 ```bash
 rails s
 ```
+
+####Notes
+
+* Supplejack demo website should work out of the box, providing no modification in supplejack api record schema.
+* You need to update `config/initializers/supplejack_client.rb` if you modify the sample supplejack api record schema. Refer to [Supplejack Client](/supplejack/start/supplejack-client.html) doc to understand the configuration steps.
+* Please always check [Website github](https://github.com/DigitalNZ/supplejack_website) source code to know what to fix.
