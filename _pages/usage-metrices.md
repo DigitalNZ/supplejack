@@ -1,1 +1,0 @@
-/Users/edwinrozario/Git/DNZ/supplejack/_posts/2015-08-13-usage-metrices.md
