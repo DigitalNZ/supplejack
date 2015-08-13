@@ -150,5 +150,12 @@ Supplejack.configure do |config|
   # Set this flag to true in order to cache the facet_value response and the search counts
   #
   config.enable_caching = false
+  #
+  # ===> Enable Request Logging for Usage Metrics
+  # Set this flag to true in order to enable logging
+  #
+  config.request_logger           = true
+  # Specify which field from the record model is to be logged
+  config.request_logger_field     = :primary_collection  
 end
 ```
