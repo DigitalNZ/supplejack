@@ -69,5 +69,5 @@ If the standard Supplejack controllers are to be overridden, developer will have
 If the field thats configured on the supplejack configuration is wrong or if a record cant access the field mentioned, the api will throw a warning on the API log
 
 ```ruby
-  "[RequestLog][Warning] Field #{field} does not exist"
+  "[RequestLog][Warning] Field <field name> does not exist"
 ```
