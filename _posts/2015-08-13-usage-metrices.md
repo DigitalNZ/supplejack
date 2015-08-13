@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Usage Metrices"
+title: "Usage Metrics"
 category: metrices
 date: 2015-08-13 17:16:19
 ---
@@ -62,3 +62,12 @@ If the standard Supplejack controllers are to be overridden, developer will have
 # show method in UserSetsController
   @user_set = UserSet.custom_find(params[:id])
   SupplejackApi::RequestLog.create_user_set(@user_set, params[:request_logger_field]) if params[:request_logger]
+```
+
+## Errors
+
+If the field thats configured on the supplejack configuration is wrong or if a record cant access the field mentioned, the api will throw a warning on the API log
+
+```ruby
+  "[RequestLog][Warning] Field #{field} does not exist"
+```
