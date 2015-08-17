@@ -12,5 +12,8 @@ If the worker is run in full mode then it will do a full scan of all the records
 
 ### Modifying the tracked metrics
 
-There is currently no configuration for what fields are tracked in the item metrics, but they can be manually changed in `app/workers/supplejack_api/daily_item_metrics_worker.rb`, 
+There is currently no configuration for what fields are tracked in the item metrics, but they can be manually changed in `app/workers/supplejack_api/daily_item_metrics_worker.rb`. To change how they are stored in the database you can change the models at `app/models/supplejack_api/daily_item_metric.rb` and `app/models/supplejack_api/display_collection_metric.rb`. 
+
 The metrics are queried using the MongoDB map reduce framework, depending on how different the fields are from the originally tracked ones some understanding of the map reduce framework is required.  
+
+If your schema does not contain the display\_collection, category and copyright fields (or if category and copyright have been changed from multi value to single value fields) then the map reduce query will require updating.
