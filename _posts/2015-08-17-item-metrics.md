@@ -4,7 +4,7 @@ title: "Item Metrics"
 category: metrics
 date: 2015-08-17 11:52:56
 ---
-Supplejack can be configured to generate metrics about the number of records in the database, broken down by display collection (which is then further broken down by category and copyright). The worker that generates these metrics can be run in two modes, full and incremental. 
+Supplejack can be configured to generate metrics about the number of records in the document store. It will only work out-of-the-box if you use the generic schema provided. The generic schema will provide reporting broken down by display collection (which is then further broken down by category and copyright). The worker that generates these metrics can be run in two modes, full and incremental.
 
 ### Different modes
 
