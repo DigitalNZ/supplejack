@@ -12,7 +12,9 @@ If the worker is run in full mode then it will do a full scan of all the records
 
 ### Modifying the tracked metrics
 
-There is currently no configuration for what fields are tracked in the item metrics, but they can be manually changed in `app/workers/supplejack_api/daily_item_metrics_worker.rb`. To change how they are stored in the database you can change the models at `app/models/supplejack_api/daily_item_metric.rb` and `app/models/supplejack_api/display_collection_metric.rb`. 
+The field that records get grouped on (primary\_key) and the fields that get counted (secondary\_keys, these must be multivalue fields, eg an array of values) can be configured in `app/workers/supplejack_api/daily_item_metrics_worker.rb`
+
+Changing the secondary keys will require modifying the DisplayCollectionMetric model (`app/models/supplejack_api/display_collection_metric.rb`), it must have a field in the form of `"#{secondary_key_name}_counts"` for each of the secondary\_keys
 
 The metrics are queried using the MongoDB map reduce framework, depending on how different the fields are from the originally tracked ones some understanding of the map reduce framework is required.  
 
