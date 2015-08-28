@@ -17,7 +17,7 @@ sections: [
     ['api', 'Creating your API'],
     ['api_usage', 'Using the API'],
     ['manager', 'Using the manager'],
-    ['metrices', 'Activity Metrics'],
+    ['metrics', 'Activity Metrics'],
     ['dev']
 ]
 

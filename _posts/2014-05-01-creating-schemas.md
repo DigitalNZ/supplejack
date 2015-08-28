@@ -101,16 +101,15 @@ class RecordSchema
   string    :record_id,                   store: false,                                           namespace: :sj
   string    :title,                       search_boost: 10,     search_as: [:filter, :fulltext],  namespace: :dc
   string    :description,                 search_boost: 2,      search_as: [:filter, :fulltext],  namespace: :dc
-
-  string    :source_provider_name,                              search_as: [:filter, :fulltext],  namespace: :sj
-  string    :source_contributor_name,     multi_value: true,    search_as: [:filter, :fulltext],  namespace: :sj
-  string    :source_website_name,                               search_as: [:filter, :fulltext],  namespace: :sj
+        
+  string    :display_content_partner,                           search_as: [:filter, :fulltext],  namespace: :sj
+  string    :display_collection,                                search_as: [:filter, :fulltext],  namespace: :sj
   string    :source_url,                                                                          namespace: :sj
   string    :thumbnail_url
-  string    :subject,                                                                             namespace: :dc
-  string    :display_date,                                                                        namespace: :dc
+  string    :subject,                     multi_value: true,                                      namespace: :dc
+  string    :display_date,                                                                        namespace: :sj
   string    :creator,                     multi_value: true,                                      namespace: :dc
-  string    :category,                    multi_value: true,    search_as: [:filter]
+  string    :category,                    multi_value: true,    search_as: [:filter],             namespace: :sj
 
   # Groups
   group :default do

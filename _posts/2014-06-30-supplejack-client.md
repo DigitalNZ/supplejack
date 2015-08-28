@@ -55,6 +55,7 @@ Below is the sample `config/initializers/supplejack_client.rb` file that comes w
 * It is very important that you specify **config.fields** in `supplejack_client.rb` correctly. The fields must be declared in supplejack api record schema.
 * The **config.facets** list facets to be returned from the api. The facets must be declared in supplejack api record schema.
 * Supplejack demo website and supplejack api are highly dependent on each other. For example: In supplejack website 's `supplejack_client.rb` file, **config.facets** lists `category`. `category` facet is used to build search tab in supplejack website, check out [Github code](https://github.com/DigitalNZ/supplejack_website/blob/master/app/models/search_tab.rb#L26). It is declared in supplejack api record schema as a facet. If you want to rename `category` differently eg `type`, you need to update the code accordingly.
+* For a full list of configuration options, see the [base config](https://github.com/DigitalNZ/supplejack_client/blob/master/lib/supplejack/config.rb)
 
 ```ruby
 Supplejack.configure do |config|

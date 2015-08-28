@@ -1,24 +1,24 @@
 ---
 layout: page
 title: "Usage Metrics"
-category: metrices
+category: metrics
 date: 2015-08-13 17:16:19
 ---
 
-Supplejack has an option to log the usage of data. This can be [configured](/supplejack/start/supplejack-client.html) from the supplejack client. As of now only one field from the record schema can be logged to create an Usage Matrics.
+Supplejack has an option to log metrics for record views. This can be [configured](/supplejack/start/supplejack-client.html) from the supplejack client. As of now only one field from the record schema can be logged for Usage Metrics.
 
-A module named RequestLog logs the usage of data. There are three type of requests namely get, search and user set view. This module is called into action on every search and view of records.
+A model called RequestLog tracks intermediate metrics data. There are three type of requests get, search and user set view. For each request of this type a new RequestLog model is created.
 
 ## RequestLog Model
 
-Currently request log only has two fields.
+Currently RequestLog has only two fields.
 
 ```ruby
   field :request_type,  type: String
   field :log_values,    type: Array
 ```
 
-The data logged on request log table are to summed up to create the UsageMetrics. This is handled by a worked module named UsageMetricsWorker. A resque pool and scheduler needs to be configured at the api app for this.
+The RequestLog models that are created on each request are summed up to create the UsageMetrics. This is handled by a worker named UsageMetricsWorker. A resque pool and scheduler needs to be configured in the api app for this to function.
 
 ## Resque scheduler config
 
@@ -36,7 +36,7 @@ usage_metrics_scheduler:
 
 ## UsageMetrics Model
 
-This table is populated when the worker runs.
+This table is populated when the worker runs and collates the existing RequestLog models.
 
 ```ruby
 	field :record_field_value,  type: String
@@ -48,7 +48,7 @@ This table is populated when the worker runs.
 
 ## When overriding the controllers
 
-If the standard Supplejack controllers are to be overridden, developer will have to add few lines of code to records controller and user set controller. 
+If the standard Supplejack controllers are overridden, the following lines of code will need to be aded to Records and UserSet controllers. 
 
 ```ruby
 # index method in RecordsController
@@ -66,7 +66,7 @@ If the standard Supplejack controllers are to be overridden, developer will have
 
 ## Errors
 
-If the field thats configured on the supplejack configuration is wrong or if a record cant access the field mentioned, the api will throw a warning on the API log
+If the field thats configured in the supplejack configuration is wrong or if a record can't access the field mentioned, the api will log a warning in the API log
 
 ```ruby
   "[RequestLog][Warning] Field <field name> does not exist"
