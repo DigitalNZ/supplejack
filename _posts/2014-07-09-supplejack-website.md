@@ -52,3 +52,4 @@ rails s
 * You need to update `config/initializers/supplejack_client.rb` if you modify the sample supplejack api record schema. Refer to [Supplejack Client](/supplejack/start/supplejack-client.html) doc to understand the configuration steps.
 * Please always check [Website github](https://github.com/DigitalNZ/supplejack_website) source code to know what to fix.
 * Supplejack website comes with devise for authentication and the user have email and password as default fields. To add custom fields to user follow [tutorial](http://jacopretorius.net/2014/03/adding-custom-fields-to-your-devise-user-model-in-rails-4.html)
+* Follow Rails standard mailer configuration for any mail sending to work for the website.
