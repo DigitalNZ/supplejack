@@ -53,12 +53,12 @@ With this you can specify
 attribute :creator do
   # This will not strip BR tags from the fetched HTML, all other tags will be stripped
   # the array parameter in the second argument is the XML namespaces argument, it must be 
-  # passed becuase the sanitize_config is the third argument
+  # passed because the sanitize_config is the third argument
   fetch("//author", [], sanitize_config: {elements: ['br']})
 end
 ```
 
-##### Custom replacments for stripped tags
+##### Custom replacements for stripped tags
 ```ruby
 attribute :creator do
   sanitize_config = {
