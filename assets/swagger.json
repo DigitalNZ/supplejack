@@ -1,0 +1,186 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "3.0.0",
+        "title": "DNZ Metrics API"
+    },
+    "host": "api.digitalnz.org",
+    "basePath": "/v3/metrics",
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "text/plain"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/metrics": {
+            "get": {
+                "description": "Retrieves metrics result for a given date or range of dates\n",
+                "parameters": [
+                    {
+                        "name": "start_date",
+                        "in": "query",
+                        "description": "Start of date range to return",
+                        "required": false,
+                        "type": "string",
+                        "format": "date"
+                    },
+                    {
+                        "name": "end_date",
+                        "in": "query",
+                        "description": "End of date range to return",
+                        "required": false,
+                        "type": "string",
+                        "format": "date"
+                    },
+                    {
+                        "name": "metrics",
+                        "in": "query",
+                        "description": "Names of metrics to return in response",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "enum": [
+                                "display_collection",
+                                "usage"
+                            ]
+                        },
+                        "collectionFormat": "csv"
+                    },
+                    {
+                        "name": "api_key",
+                        "in": "query",
+                        "description": "Your Supplejack API key",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Succesfully returned metrics information",
+                        "schema": {
+                            "$ref": "#/definitions/metric_response"
+                        }
+                    },
+                    "403": {
+                        "description": "Your API key is invalid"
+                    },
+                    "404": {
+                        "description": "Either the day you requested metrics information for does not exist\nor not all of the days in the requested range have metrics information\n"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "metric_response": {
+            "description": "Response object from /metrics",
+            "type": "object",
+            "required": [
+                "day",
+                "total_active_records",
+                "total_new_records"
+            ],
+            "properties": {
+                "day": {
+                    "description": "Day this metrics object refers to",
+                    "type": "string",
+                    "format": "date"
+                },
+                "total_active_records": {
+                    "type": "number"
+                },
+                "total_new_records": {
+                    "type": "number"
+                },
+                "record": {
+                    "$ref": "#/definitions/display_collection_metrics"
+                },
+                "usage": {
+                    "$ref": "#/definitions/usage_metrics"
+                }
+            }
+        },
+        "display_collection_metrics": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/display_collection"
+            }
+        },
+        "display_collection": {
+            "description": "Represents display_collection related metrics for a single day",
+            "type": "object",
+            "required": [
+                "id",
+                "total_active_records",
+                "total_new_records",
+                "category_counts",
+                "copyright_counts"
+            ],
+            "properties": {
+                "id": {
+                    "description": "Value of key that metric is grouped by (which defaults to display_collection)",
+                    "type": "string"
+                },
+                "total_active_records": {
+                    "description": "Total number of active records for this group",
+                    "type": "number"
+                },
+                "total_new_records": {
+                    "description": "Total number of new records harvested on this day for group",
+                    "type": "number"
+                },
+                "category_counts": {
+                    "description": "Object with the keys being the category name, values being the count",
+                    "type": "object"
+                },
+                "copyright_counts": {
+                    "description": "Object with the keys being the copyright type, values being the count",
+                    "type": "object"
+                }
+            }
+        },
+        "usage_metrics": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/usage_metric"
+            }
+        },
+        "usage_metric": {
+            "description": "Represents Record views for a single day",
+            "type": "object",
+            "required": [
+                "id",
+                "searches",
+                "record_page_views",
+                "user_set_views",
+                "total"
+            ],
+            "properties": {
+                "id": {
+                    "description": "Value of key that metric is grouped by (which defaults to display_collection)",
+                    "type": "string"
+                },
+                "searches": {
+                    "description": "Number of times records from this group appeared in search results",
+                    "type": "number"
+                },
+                "record_page_views": {
+                    "description": "Number of times records from this were viewed on their landing page",
+                    "type": "number"
+                },
+                "user_set_views": {
+                    "description": "Number of times records from this group were viewed as part of a user set",
+                    "type": "number"
+                },
+                "total": {
+                    "description": "Cumulative view count",
+                    "type": "number"
+                }
+            }
+        }
+    }
+}
