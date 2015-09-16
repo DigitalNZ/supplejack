@@ -4,7 +4,7 @@
         "version": "3.0.0",
         "title": "DNZ Metrics API"
     },
-    "host": "api.digitalnz.org",
+    "host": "api.dnz0a.digitalnz.org",
     "basePath": "/v3/metrics",
     "schemes": [
         "http"
