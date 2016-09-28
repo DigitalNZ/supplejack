@@ -148,7 +148,7 @@ The example record schema comes with the default supplejack api installation. Su
 
 However, if you modify the schema, you need to modify supplejack website as well if you want to use it. Please refer to [Supplejack Website](/supplejack/start/supplejack-website.html#notes) to know what to modify.
 
-## Sets Schema ##
+## Sets ##
 
 To start using Sets, you need to define two groups on the `RecordSchema`. These groups are `:sets` and `:valid_set_fields`.
 
