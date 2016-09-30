@@ -101,7 +101,7 @@ class RecordSchema
   string    :record_id,                   store: false,                                           namespace: :sj
   string    :title,                       search_boost: 10,     search_as: [:filter, :fulltext],  namespace: :dc
   string    :description,                 search_boost: 2,      search_as: [:filter, :fulltext],  namespace: :dc
-        
+
   string    :display_content_partner,                           search_as: [:filter, :fulltext],  namespace: :sj
   string    :display_collection,                                search_as: [:filter, :fulltext],  namespace: :sj
   string    :source_url,                                                                          namespace: :sj
@@ -148,6 +148,36 @@ The example record schema comes with the default supplejack api installation. Su
 
 However, if you modify the schema, you need to modify supplejack website as well if you want to use it. Please refer to [Supplejack Website](/supplejack/start/supplejack-website.html#notes) to know what to modify.
 
+## Sets ##
+
+To start using Sets, you need to define two groups on the `RecordSchema`. These groups are `:sets` and `:valid_set_fields`.
+
+The `:sets` group acts as the default list of fields that will be used to display records inside of a Set.
+
+The `:valid_set_fields` group acts as a way to validate additional fields that have been passed to a user set.
+
+For example, when you are querying for User Set data `/sets/SET_ID.json?api_key=API_KEY&fields=name`, the passed field will need to be in the `:valid_set_fields` group, otherwise it will be ignored.
+
+
+### Example Set Groups ###
+
+```ruby
+group :sets do
+  fields [
+    :title,
+    :description
+  ]
+end
+
+group :valid_set_fields do
+  includes [:sets]
+  fields [
+    :name
+  ]
+end
+```
+
+Now, when you use Sets, the records inside of a set will display the `title` and `description` fields. A user will also be able to request the additional `name` field using the fields parameter.
 
 ## Concept Schema ##
 
