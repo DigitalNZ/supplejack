@@ -59,22 +59,16 @@ $ cd mysupplejack_api_name
 $ bundle install
 ```
 
-## Configure Resque
-Supplejack uses resque to manage indexing job. Make sure you have installed Redis as Resque depends on it.
+## Configure Sidekiq
+Supplejack uses Sidekiq to manage indexing jobs. Make sure you have installed Redis as Sidekiq depends on it.
 
-To start resque, run these lines in order:
-
-```
-$ cd mysupplejack_api_name
-$ bundle exec resque-pool --daemon --environment development
-```
-These commands will start resque pool manager which is configurable in `config/resque-pool.yml`. See [resque-pool](https://github.com/nevans/resque-pool) for documentation.
+To start Sidekiq, run the following command
 
 ```
 $ cd mysupplejack_api_name
-$ bundle exec rake resque:scheduler BACKGROUND=true
+$ bundle exec sidekiq
 ```
-These commands will start resque-scheduler which is configurable in `config/resque-scheduler.yml`. See [resque-scheduler](https://github.com/resque/resque-scheduler) for documentation.
+These commands will start Sidekiq and have it start listening for jobs to process from Redis
 
 ## Configure Solr
 

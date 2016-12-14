@@ -92,7 +92,7 @@ $ brew install mongodb
 
 **Version: 2.4 or greater**
 
-**Description:** Supplejack uses [Sidekiq](http://sidekiq.org/) and [Resque](https://github.com/resque/resque) for background processing and queue management. Both technologies require [Redis](http://redis.io/) as a concurrency safe data store.
+**Description:** Supplejack uses [Sidekiq](http://sidekiq.org/) for background processing and queue management. Sidekiq requires [Redis](http://redis.io/) as a concurrency safe data store.
 
 **Installation instructions**: http://redis.io/download
 

@@ -8,7 +8,7 @@ order: 9
 
 ## Remove stuck workers from Sidekiq
 
-If [Sidekiq web interface](http://locahost:3002/sidekiq) shows workers which are processing failed jobs, you need to delete the jobs from `redis`.
+If [Sidekiq web interface](http://localhost:3002/sidekiq) shows workers which are processing failed jobs, you need to delete the jobs from `redis`.
 
 ```js
 $ redis-cli
