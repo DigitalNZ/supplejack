@@ -11,8 +11,17 @@ The harvester worker is a rails application that uses [Sidekiq](http://sidekiq.o
 ### Harvesting jobs
 These use the harvester core gem to interpret a given parser which it uses to generate records and posts them to the Supplejack API (this is a simplified overview of the process).
 
+### Preview Job
+A preview job is initiated from the manager when a parser is previewed. The worker returns a snapshot of the how the records will look like when created.
+
 ### Link checking jobs
-There are two kinds of link checking. Collection checking checks a few records from a collection and suppresses collections which are unavailable. Record checking checks individual records which have been visited recently (in the API) and suppresses records which are unavailable.
+This job checks individual records which have been visited recently (in the API) and suppresses records which are unavailable.
+
+### Source checking job
+This job checks a few records from a collection and suppresses collections which are unavailable.
+
+### Job priorities
+There are 3 priority levels for Jobs in supplejack worker. Preview is the only `critical` priority job, which is the highest priority. Link Check job has `low` priority. All the other jobs are configured with `default` priority. 
 
 ### Sidekiq
 Jobs are processed by Sidekiq, which runs as a part of the worker. In order to start Sidekiq run `bundle exec sidekiq start`. You can then look at http://WORKER_HOST/sidekiq to view progress.  
