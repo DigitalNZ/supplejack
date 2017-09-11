@@ -20,6 +20,21 @@ For details about how to install Supplejack Template, see [Install & Setup](/sup
 
 Once the install is complete you should have a working API. The next step is to [configure your schema](/supplejack/api/creating-schemas.html) so that you can configure the fields that are stored/returned by your API.
 
+## Setup a custom record model from your API [OPTIONAL]
+
+If you want to use a custom SupplejackApi::Record model, you can define a supplejack_api.rb initializer file and define the following block:
+
+```ruby
+SupplejackApi.setup do |config|
+  config.record_class = YourCustomClass
+  config.preview_record_class = YourPreviewCustomClass
+end
+```
+
+Make sure your model follow the same structure as the [SupplejackApi::Record](https://github.com/DigitalNZ/supplejack_api/blob/master/app/models/supplejack_api/record.rb) and [SupplejackApi::PreviewRecord](https://github.com/DigitalNZ/supplejack_api/blob/master/app/models/supplejack_api/preview_record.rb)
+
+By setting a custom class you will be able to do for example: YourCustomClass.custom_find(<id>)
+
 ### Generate API User keys
 
 From the Worker's project root, Run the console.
