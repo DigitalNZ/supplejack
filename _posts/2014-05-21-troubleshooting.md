@@ -18,3 +18,11 @@ $ redis-cli
 ```
 
 Refresh the web interface and the stuck workers should be gone.
+
+## Forbidden 403 errors on Manager when harvesting records or previwing
+
+Check if your `harvester` user `authentication_token` in your Supplejack API
+`SupplejackApi::User.where(role: 'harvester')`
+
+Make sure the same `authentication_token` is set for your Manager and Worker Environment variables
+`HARVESTER_API_KEY: "harvester access token"`
