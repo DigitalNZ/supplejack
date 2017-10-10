@@ -36,6 +36,10 @@ rails c
 => "BYh6ovEAWwLyxJpqRrwE"
 ```
 
+### Supplejack API integration
+
+Supplejack API harvester endpoints requires an API key with harvester privileges that is configured as enrironment variable. `HARVESTER_API_KEY`.
+
 ### Environment Configurations
 In order to start harvesting records, you need to specify what environments you need by tagging parser script. You can choose `staging` or `production` or both. The example `application.yml` comes with `staging` as default environment. You can add a new environment eg production by selecting the new key and correct url.
 
@@ -85,23 +89,27 @@ development:
   WORKER_HOST: http://localhost:4002
   WORKER_API_KEY: <staging worker key>
   API_HOST: http://localhost:4000
+  HARVESTER_API_KEY: "#{api_key_with_harvester_privileges}"
   API_MONGOID_HOSTS: localhost:27017
 
 test:
   WORKER_HOST: http://localhost:4002
   WORKER_API_KEY: <staging worker key>
   API_HOST: http://localhost:4000
+  HARVESTER_API_KEY: "#{api_key_with_harvester_privileges}"
   API_MONGOID_HOSTS: localhost:27017
 
 production:
   WORKER_HOST: http://localhost:3002
   WORKER_API_KEY: <production worker key>
   API_HOST: http://localhost:3000
+  HARVESTER_API_KEY: "#{api_key_with_harvester_privileges}"
   
 staging:
   WORKER_HOST: http://localhost:4002
   WORKER_API_KEY: <staging worker key>
   API_HOST: http://localhost:4000
+  HARVESTER_API_KEY: "#{api_key_with_harvester_privileges}"
   API_MONGOID_HOSTS: localhost:27017
 ```
 
