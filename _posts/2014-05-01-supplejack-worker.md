@@ -23,6 +23,9 @@ This job checks a few records from a collection and suppresses collections which
 ### Job priorities
 There are 3 priority levels for Jobs in supplejack worker. Preview is the only `critical` priority job, which is the highest priority. Link Check job has `low` priority. All the other jobs are configured with `default` priority. 
 
+### Supplejack API integration
+Supplejack API harvester endpoints requires an API key with harvester privileges that is configured as enrironment variable. `HARVESTER_API_KEY`.
+
 ### Sidekiq
 Jobs are processed by Sidekiq, which runs as a part of the worker. In order to start Sidekiq run `bundle exec sidekiq start`. You can then look at http://WORKER_HOST/sidekiq to view progress.  
 
@@ -47,6 +50,7 @@ rails c
 
 development:
   API_HOST: "http://localhost:3000"
+  HARVESTER_API_KEY: "#{api_key_with_harvester_privileges}"
   API_MONGOID_HOSTS: "localhost:27017"
   MANAGER_HOST: "http://localhost:3001"
   MANAGER_API_KEY: "#{manager_key}"
@@ -57,6 +61,7 @@ development:
 
 production:
   API_HOST: "http://api.example.com"
+  HARVESTER_API_KEY: "#{api_key_with_harvester_privileges}"
   API_MONGOID_HOSTS: "localhost:27017"
   MANAGER_HOST: "http://harvester.example.com"
   MANAGER_API_KEY: "MANAGER_API_KEY"
