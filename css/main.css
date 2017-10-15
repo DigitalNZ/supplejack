@@ -18,7 +18,7 @@ code {
 }
 
 a {
-    color: #F87A06;
+    color: #118a0f;
 }
 
 h4 {
@@ -36,6 +36,19 @@ a:hover {
 
 #header a:hover {
     text-decoration: none;
+}
+
+#header img {
+  width: 180px;
+  height: auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+#header small {
+  font-weight: normal;
+  line-height: 1;
+  color: #999999;
 }
 
 #footer {

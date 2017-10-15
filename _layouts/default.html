@@ -5,6 +5,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width">
 
+        <link rel="apple-touch-icon" sizes="144x144" href="{{ site.baseurl }}/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ site.baseurl }}/favicon-16x16.png">
+        <link rel="manifest" href="{{ site.baseurl }}/manifest.json">
+        <link rel="mask-icon" href="{{ site.baseurl }}/safari-pinned-tab.svg" color="#118a0f">
+        <meta name="theme-color" content="#118a0f">
+
         <title>{{ site.title }}{% if page.title %} : {{ page.title }}{% endif %}</title>
         <meta name="description" content="{{ site.subtitle }}">
 
@@ -17,7 +24,10 @@
         <div class="container">
             <div class=row-fluid>
                 <div id=header class=span12>
-                    {% include header.html %}
+                    <a href="{{ site.baseurl }}/">
+                      <img src="{{ site.baseurl }}/images/supplejack_logo.png" alt='Supplejack' />
+                    </a>
+                    <small>Documentation (Version 0.1)</small>
                 </div>
             </div>
 
