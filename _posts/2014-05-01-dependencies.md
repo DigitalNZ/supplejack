@@ -12,12 +12,12 @@ Supplejack requires the following to run the full stack. Please review this page
 We recommend OSX users use the [Homebrew](http://brew.sh/) package manager to manage the installation of Ruby,  MongoDB and Redis. If you're new to Homebrew, here is an [introduction](http://matthewcarriere.com/2013/08/05/how-to-install-and-use-homebrew/).
 
 * We recommend performing `brew update` to update your Homebrew formula list. This does not update your installed packages. It simply updates the versions and availability of packages you could install. Although `brew update` is listed for each installation, you probably only need to run the command at the start of an installation session.
-* Use `brew doctor` after system changes or if you need to troubleshoot your Homebrew installation. 
+* Use `brew doctor` after system changes or if you need to troubleshoot your Homebrew installation.
 
 
 ### Ruby
 
-**Version: 1.9.3**
+**Version: 2.3.0**
 
 **Description**: [Ruby](https://www.ruby-lang.org/) is a general purpose programming language. The Rails web framework and all Supplejack components are written in Ruby.
 
@@ -25,10 +25,10 @@ We recommend OSX users use the [Homebrew](http://brew.sh/) package manager to ma
 
 We strongly recommend using [rbenv](https://github.com/sstephenson/rbenv) to manage your ruby versions. OSX and *nix users can install rbenv from Github checkout: https://github.com/sstephenson/rbenv#installation
 
-Once rbenv is installed, you should [install Ruby 1.9.3](https://github.com/sstephenson/rbenv#choosing-the-ruby-version).
+Once rbenv is installed, you should [install Ruby 2.3.0](https://github.com/sstephenson/rbenv#choosing-the-ruby-version).
 
 ```
-$ rbenv install 1.9.3-p551
+$ rbenv install 2.3.0
 ```
 
 **Alternative _rbnenv_ installation for OSX using _Homebrew_:**
@@ -42,10 +42,10 @@ $ brew install rbenv ruby-build
 $ echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi' >> ~/.bash_profile
 ```
 
-Once rbenv is installed, you should [install Ruby 1.9.3](https://github.com/sstephenson/rbenv#choosing-the-ruby-version).
+Once rbenv is installed, you should [install Ruby 2.3.0](https://github.com/sstephenson/rbenv#choosing-the-ruby-version).
 
 ```
-$ rbenv install 1.9.3-p551
+$ rbenv install 2.3.0
 ```
 
 
@@ -124,7 +124,7 @@ $ brew install redis
 
 **Description:** [Solr](http://lucene.apache.org/solr/) is the full-text search platform that underpins the Supplejack Records API.
 
-**Installation instructions:** 
+**Installation instructions:**
 
 A development version of Solr is automatically installed during [Supplejack installation](http://digitalnz.github.io/supplejack/start/development-setup.html).
 

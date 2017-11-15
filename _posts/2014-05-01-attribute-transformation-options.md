@@ -51,7 +51,7 @@ When the date is in a known specific format and is not understood by the generic
 attribute :date, xpath: "//dc:date", date: "%d/%m/%Y"
 ```
 
-See [Ruby strftime documentation](http://ruby-doc.org/stdlib-1.9.3/libdoc/date/rdoc/DateTime.html#method-i-strftime) for more information.
+See [Ruby strftime documentation](http://ruby-doc.org/stdlib-2.3.0/libdoc/date/rdoc/DateTime.html#method-i-strftime) for more information.
 
 ### Join Values
 
