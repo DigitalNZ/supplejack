@@ -159,9 +159,194 @@ The documentation for the parser DSL can be found here:
 
 http://digitalnz.github.io/supplejack/
 
-## ADD STEP SIX
+#### Step Six
 
-If you have a successful preview, close the modal window, scroll to the bottom of the page, enter some text in the message field, and click Update Parser Script.  Next, in the righthand columns, click on the name of your parser script under **History**, thenclick the blue button **Tag as Staging**.
+Log into your manager and click ‘New Data Source’, give it a **name** and a **contributor**.
+
+Once it completes, hover over ‘Contributors and Scripts’ in the top navigation, click ‘Parser Scripts’, and then click ‘New Parser Script’.
+
+Name your parser, `Otago Hocken`, select the contributor and data source that you created before, and then choose OAI format.
+
+The click ‘Create Parser Script’.
+
+You will now have a screen which will allow you to write your parser script for the harvester, this parser is written in Ruby and has it’s own DSL, which is documented at the link that I provided earlier.
+
+Make your parser look like this:
+
+
+```ruby
+class OtagoHocken < SupplejackCommon::Oai::Base
+  base_url "http://otago.ourheritage.ac.nz/oai-pmh-repository/request"
+  validates :usage, inclusion: {in: ["Share", "Modify", "Use commercially", "All rights reserved", "Unknown"]}
+
+  validates :landing_url, format: {with: /\Ahttps?:/}
+  validates :thumbnail_url, format: {with: /\Ahttps?:/}
+  validates :large_thumbnail_url, format: {with: /\Ahttps?:/}
+  validates :landing_url, size: { is: 1 }
+  validates :internal_identifier, size: { is: 1 }
+
+  namespaces dc: 'http://purl.org/dc/elements/1.1/',
+  			 oai_dc: 'http://www.openarchives.org/OAI/2.0/oai_dc/',
+  					xsi: 'http://www.w3.org/2001/XMLSchema-instance',
+  			dcterms: 'http://purl.org/dc/terms/',
+  						o: 'http://www.openarchives.org/OAI/2.0/'
+
+  attributes :content_partner, :display_content_partner,     default: "University of Otago"
+  attributes :display_collection, :primary_collection,       default: "Otago University Research Heritage"
+  attribute  :collection,															       default: ["Otago University Research Heritage"]
+  attributes :copyright, :usage,                             default: "All rights reserved"
+  attributes :dc_rights, :rights_url,                        default: "http://digital.otago.ac.nz/terms.php"
+  #attribute :dc_type, default: "Watercolors"
+
+  attribute :title,         xpath: "//dc:title"
+  attribute :description,   xpath: "//dc:description"
+  attribute :date,          xpath: "//dc:date",        date: true
+  attribute :display_date,  xpath: "//dc:date"
+  attribute :contributor,   xpath: "//dc:contributor"
+  attribute :publisher,     xpath: "//dc:publisher"
+  attribute :subject,	      xpath: "//dc:subject"
+  attribute :source,	      xpath: "//dc:source"
+  attribute :creator,	      xpath: "//dc:creator"
+  attribute :dc_type,	      xpath: "//dc:type"
+  attribute :format,	      xpath: "//dc:format"
+
+  attribute :category do
+    category = "Images"
+    category = "Videos" if get(:dc_type).find_with(/^Video$/).present?
+    category
+  end
+
+  attributes :landing_url do
+    fetch("//dc:identifier").find_with(/^http:\/\/otago.ourheritage.ac.nz\/items\/show/)
+  end
+
+  attribute :internal_identifier do
+    get(:landing_url).downcase
+  end
+
+  attributes :large_thumbnail_url do
+    fetch("//dc:identifier").find_with(/\.jpg$/).mapping(/original/ => 'fullsize').first
+  end
+
+  attributes :thumbnail_url do
+    get(:large_thumbnail_url).mapping(/fullsize/ => 'square_thumbnails')
+  end
+
+  attribute :dc_identifier do
+    dcidentifier = get(:dc_identifier)
+    dcidentifier += fetch("//header/identifier")
+    dcidentifier += fetch("//metadata//identifier").find_without(/^http/)
+    dcidentifier
+  end
+
+  reject_if do
+    not get(:landing_url).find_with(/^http/i).present?
+  end
+end
+```
+
+You should now be able to preview your parser! Click the preview button and the various components of Supplejack will whurr into a working state.
+
+If you get an error such as ‘Unable to connect to localhost:3001 over (1)’ you will need to change the `config/application.yml` of the MANAGER and the WORKER to have the API HOST, MANAGER HOST, and WORKER HOST, as `http://127.0.0.1:port` instead of `http://localhost:port`.
+
+If you do not get any records coming through in your preview, look in the Sidekiq pane of your terminal. If there is an error about not being able to find a Record with a specific ID, you will have a mismatch within the `Record` and `PreviewRecord` IDs. The best thing to do here is to go into the API project, run the rails console and delete the `SupplejackApi::Record` and `SupplejackApi::PreviewRecord` models.
+
+You can do this with `SupplejackApi::Record.destroy_all` and `SupplejackApi::PreviewRecord.destroy_all`
+
+If your preview is successful, you will see a modal window appear a json object of the potential records. Something like this:
+
+```json
+{
+  "priority": 0,
+  "match_concepts": null,
+  "content_partner": [
+    "University of Otago"
+  ],
+  "display_content_partner": [
+    "University of Otago"
+  ],
+  "display_collection": [
+    "Otago University Research Heritage"
+  ],
+  "primary_collection": [
+    "Otago University Research Heritage"
+  ],
+  "collection": [
+    "Otago University Research Heritage"
+  ],
+  "copyright": [
+    "All rights reserved"
+  ],
+  "usage": [
+    "All rights reserved"
+  ],
+  "dc_rights": [
+    "http://digital.otago.ac.nz/terms.php"
+  ],
+  "rights_url": [
+    "http://digital.otago.ac.nz/terms.php"
+  ],
+  "title": [
+    "Gog and Magog, Stewart Island. 1880."
+  ],
+  "description": [
+    "Lower left (l.l.) in ink: W. Deverell Jany 1880; margin below image in pencil: Gog &amp; Magog Stewart Island."
+  ],
+  "date": [
+
+  ],
+  "display_date": [
+
+  ],
+  "contributor": [
+
+  ],
+  "publisher": [
+
+  ],
+  "subject": [
+    "Islands",
+    "Landscape"
+  ],
+  "source": [
+    "Found uncatalogued in Hocken 1947. Dr T.M. Hocken’s Collection"
+  ],
+  "creator": [
+    "unknown"
+  ],
+  "dc_type": [
+    "Image",
+    "Still Image",
+    "Watercolors",
+    "Art"
+  ],
+  "format": [
+
+  ],
+  "category": [
+    "Images"
+  ],
+  "landing_url": [
+    "http://otago.ourheritage.ac.nz/items/show/4480"
+  ],
+  "internal_identifier": [
+    "http://otago.ourheritage.ac.nz/items/show/4480"
+  ],
+  "large_thumbnail_url": [
+    "http://s3.amazonaws.com/ourheritagemedia%2Ffullsize%2Fa24297b36e4d17d4b8bd4da8f7d6bb6c.jpg"
+  ],
+  "thumbnail_url": [
+    "http://s3.amazonaws.com/ourheritagemedia%2Fsquare_thumbnails%2Fa24297b36e4d17d4b8bd4da8f7d6bb6c.jpg"
+  ],
+  "dc_identifier": [
+    "oai:otago.ourheritage.ac.nz:4480"
+  ],
+  "source_id": "otago-hocken",
+  "data_type": "record"
+}
+```
+
+If you have a successful preview, close the modal window, scroll to the bottom of the page, enter some text in the message field, and click Update Parser Script.  Next, in the righthand columns, click on the name of your parser script under **History**, then click the blue button **Tag as Staging**.
 
 You can now run a staging harvest, note that ‘Staging’ is a term bound to the Manager and does not relate to the Rails environment.
 
@@ -192,9 +377,6 @@ SupplejackApi::PreviewRecord.destroy_all
 You can now see your records on the API! Go to `http://localhost:3000/records.json?api_key=YOUR_API_KEY&fields=verbose,title,thumbnail_url,large_thumbnail_url` to see the serialized JSON response from Solr.
 
 **Note the fields that are returned by default are determined by the groups on your RecordSchema. You can alter the your RecordSchema to whichever fields you would like, check out the docs here.**
-
-Oliver: I don't think you mean this url:
-`http://localhost:3000/records.json?api_key=devkey&fields=verbose,title,thumbnail_url,large_thumbnail_url`
 
 ### Step Eight - Using the supplejack client to pull data from your API
 
@@ -261,7 +443,7 @@ Now you can add two templates, one for the index page and one for the show page.
 Make your `app/views/records/index.html.erb` file look like this
 
 ```ERB
-<h1>Parser</h1>
+<h1>Otago Hocken</h1>
 <% @records.each do |record| %>
   <%= link_to(record.title, record_path(record.record_id)) %>
   <%= image_tag(record.thumbnail_url) %>
@@ -278,7 +460,9 @@ And your `app/views/records/show.html.erb` file look like this:
 
 Now boot up your application, `bundle exec rails s -p 3005` and visit the /records page.
 
-You will be able to see the harvested Flickr content! There will be no styling but feel free to template up the site and make it look how you want.
+You will be able to see the harvested content! There will be no styling but feel free to template up the site and make it look how you want.
 You can search against the API by going to /records?text=your_text_string
 
 The API also supports pagination, so you can pass &per_page=number and &page=number to do this. You can find out the total number of items on the @search object itself, it has a method ‘total’.
+
+You now have every element of the Supplejack stack working together correctly, awesome job!
