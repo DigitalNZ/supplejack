@@ -361,7 +361,7 @@ Cd into your api repository, enter the rails console and run the following.
 
 ```Ruby
 Sunspot.session = Sunspot::Rails.build_session
-SupplejackApi::Record.all.map(&:index)
+Sunspot.index(SupplejackApi::Record.all)
 Sunspot.commit
 ```
 
