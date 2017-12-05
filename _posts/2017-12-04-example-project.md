@@ -3,6 +3,7 @@ layout: page
 title: "Example Project"
 category: start
 date: 2017-12-04 14:57:08
+order: 11
 ---
 
 ## Goal
