@@ -109,7 +109,7 @@ $ brew install redis
 
 ### Java
 
-**Version: 6 or greater**
+**Version: 7 or greater**
 
 **Description:** [Java](http://en.wikipedia.org/wiki/Java_%28programming_language%29) is a general purpose programming language. The Solr search platform is written in Java.
 
@@ -120,7 +120,7 @@ $ brew install redis
 
 ### Apache Solr
 
-**Version: 4.1**
+**Version: 5.3.1**
 
 **Description:** [Solr](http://lucene.apache.org/solr/) is the full-text search platform that underpins the Supplejack Records API.
 

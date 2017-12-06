@@ -14,24 +14,24 @@ order: 3
 
 See the [Dependencies](/supplejack/start/dependencies.html) for instructions and versions.
 
-### 2. Install Supplejack Applications 
+### 2. Install Supplejack Applications
 
 Installing the applications and configuring them can be quite tricky. Refer to the [application template code](https://github.com/DigitalNZ/supplejack_installation/blob/master/supplejack_api_template.rb) to see what we do if you get stuck.
 
-The Rails applications need to be installed in separate folders which will be refered in the Apache configuration. Typically this is a mounted volume, so could be something like `/data/sites/supplejack_manager`.
+The Rails applications need to be installed in separate folders which will be referred in the Apache configuration. Typically this is a mounted volume, so could be something like `/data/sites/supplejack_manager`.
 
-1. Clone the Manager from git via `git clone git@github.com:DigitalNZ/supplejack_manager.git`. 
+1. Clone the Manager from git via `git clone git@github.com:DigitalNZ/supplejack_manager.git`.
 1. Run `bundle install` from the `supplejack_manager` directory.
-1. Clone the Worker from git via `git clone git@github.com:DigitalNZ/supplejack_worker.git` 
+1. Clone the Worker from git via `git clone git@github.com:DigitalNZ/supplejack_worker.git`
 1. Run `bundle install` from the `supplejack_worker` directory.
-1. Clone **your** API which includes the Supplejack API Engine from **your git repository**. 
+1. Clone **your** API which includes the Supplejack API Engine from **your git repository**.
 1. Run `bundle install` from the `api` directory.
 
-### 3. Generatate User API Keys
+### 3. Generate User API Keys
 
 The applications orchestrate harvesting activities by communicating over Restful JSON APIs. In order for this work, user API keys need to be created in each application. The API keys is a random assortment of numbers and letters, like `RhymLHa9xRQGU8gyAYXP`. Perform the following:
 
-1. Generate (and take note) of the Supplejack Manager user key by the 'Generate Manager User keys' section of the [documentation](/supplejack/start/supplejack-manager.html). 
+1. Generate (and take note) of the Supplejack Manager user key by the 'Generate Manager User keys' section of the [documentation](/supplejack/start/supplejack-manager.html).
 1. Generate (and take note) of the Supplejack Worker user key by the 'Generate Worker User keys' section of the [documentation](/supplejack/start/supplejack-worker.html).
 1. Generate (and take note) of the Supplejack API user key by the 'Generate API User keys' section of the [documentation](/supplejack/start/supplejack-api.html).
 
@@ -39,7 +39,7 @@ The applications orchestrate harvesting activities by communicating over Restful
 
 Refer to the [Supplejack Manager documentation](/supplejack/start/supplejack-manager.html).
 
-Create an Environment Configuration in `application.yml`, based on the 'Example 1: One environment setup' example. 
+Create an Environment Configuration in `application.yml`, based on the 'Example 1: One environment setup' example.
 
 Note: You will need the Worker API key from 3.2. For the `WORKER_HOST` and `API_HOST` use the external address you intend to host these applications as, such as `worker.example.com` and `api.example.com`. We will setup this configuration in Apache later.
 
@@ -60,16 +60,15 @@ There is nothing to configure for Supplejack API as the configuration is inside 
 
 ### 7. Install Java Development Kit (JDK)
 
-[Apache Solr](http://lucene.apache.org/solr/) requires a Java Runtime environment to be installed. Install Oracle JDK version `jdk-6u34` for your platform. See [Oracle's Website](http://www.oracle.com/technetwork/java/javasebusiness/downloads/java-archive-downloads-javase6-419409.html#jdk-6u34-oth-JPR) for details.
+[Apache Solr](http://lucene.apache.org/solr/) requires a Java Runtime environment to be installed.
+
+Install Oracle JDK for your platform. See [Oracle's Website](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html) for details
 
 ### 8. Install Solr and Tomcat
-   
-[Apache Solr](http://lucene.apache.org/solr/) powers the search functions of the API. It needs to be installed inside a Java Servlet container for example [Apache Tomcat](http://tomcat.apache.org/). We use  and Tomcat.
 
-1. Install Apache Tomcat v`6.0.35.0` for your platform
-1. Start Tomcat and confirm that it starts successfully and you can access http://localhost:8080
-1. [Download](http://archive.apache.org/dist/lucene/solr/4.1.0/) Solr v`4.1.0`
-1. Follow [the instructions to install Solr inside Tomcat](https://wiki.apache.org/solr/SolrTomcat). When you get to the 'Installing Solr instances under Tomcat' section, use [our version of solrconfig.xml](https://github.com/DigitalNZ/supplejack_api/blob/master/spec/dummy/solr/collection1/conf/solrconfig.xml)
+We recommend using Solr5, please read the Getting Started and Taking Solr to Production information on their documentation for information on how to get up and running.
+
+http://archive.apache.org/dist/lucene/solr/ref-guide/apache-solr-ref-guide-5.5.pdf
 
 ### 9. Install and configure Apache with Passenger
 
@@ -188,7 +187,7 @@ Note: API traffic isn't handled by Apache, it just provides a reverse proxy.
 
 ### 11. Install HAProxy
 
-[HAProxy](http://www.haproxy.org/) is a HTTP load-balancer. We use it to distribute the load across the 8 `thin` instances we created above, exposing them a single server running on port `81`. 
+[HAProxy](http://www.haproxy.org/) is a HTTP load-balancer. We use it to distribute the load across the 8 `thin` instances we created above, exposing them a single server running on port `81`.
 
 1. Install HAProxy v`1.4.24`
 1. Ensure you can access http://HOST:22002

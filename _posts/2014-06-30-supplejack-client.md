@@ -15,7 +15,7 @@ For more information on how to configure and use this application refer to the [
 Add it to your Gemfile:
 
 ```ruby
-gem 'supplejack_client', github: 'git@github.com:DigitalNZ/supplejack_client.git'
+gem 'supplejack_client', git: 'https://github.com/DigitalNZ/supplejack_api.git'
 ```
 
 Run bundle install:
@@ -39,12 +39,12 @@ You should set the variables needed by the Supplejack API:
 To start using Supplejack gem you have add the following line to any plain ruby class
 
 ```ruby
-class Item
+class Record
   include Supplejack::Record
 end
 ```
 
-Then do `Search.new(params)` or `Item.find(id)`
+Then do `Supplejack::Search.new(params)` or `Record.find(id)`
 
 ## Configuration
 
