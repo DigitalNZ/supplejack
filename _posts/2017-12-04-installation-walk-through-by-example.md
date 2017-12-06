@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Example Project"
+title: "Installation Walk-through by Example"
 category: start
 date: 2017-12-04 14:57:08
 order: 11
