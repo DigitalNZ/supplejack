@@ -8,7 +8,7 @@ Supplejack is a Ruby on Rails platform for managing the harvesting and manipulat
 
 Its main purpose is to manage the process of fetching data from remote sources, mapping data to a standard data schema, managing any quality control or enrichment processes, and surfacing the standardised data via a public API. Find out [more about its features](/supplejack/about.html),  review the [architecture](/supplejack/architecture.html) and join our [Google Group](https://groups.google.com/forum/?hl=en#!forum/supplejack).
 
-If you want to get started easily, check out our Installation Walk-through by Example [here](/supplejack/start/installation-walk-through-by-example).
+If you want to get started easily, check out our [Installation Walk-through by Example](/supplejack/start/installation-walk-through-by-example).
 
 ### Introduction to Supplejack
 
