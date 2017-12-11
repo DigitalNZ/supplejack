@@ -21,7 +21,7 @@ This job checks individual records which have been visited recently (in the API)
 This job checks a few records from a collection and suppresses collections which are unavailable.
 
 ### Job priorities
-There are 3 priority levels for Jobs in supplejack worker. Preview is the only `critical` priority job, which is the highest priority. Link Check job has `low` priority. All the other jobs are configured with `default` priority. 
+There are 3 priority levels for Jobs in supplejack worker. Preview is the only `critical` priority job, which is the highest priority. Link Check job has `low` priority. All the other jobs are configured with `default` priority.
 
 ### Supplejack API integration
 Supplejack API harvester endpoints requires an API key with harvester privileges that is configured as enrironment variable. `HARVESTER_API_KEY`.
@@ -50,23 +50,23 @@ rails c
 
 development:
   API_HOST: "http://localhost:3000"
-  HARVESTER_API_KEY: "#{api_key_with_harvester_privileges}"
+  HARVESTER_API_KEY: <YOUR_HARVESTER_KEY>
   API_MONGOID_HOSTS: "localhost:27017"
   MANAGER_HOST: "http://localhost:3001"
-  MANAGER_API_KEY: "#{manager_key}"
   HARVESTER_CACHING_ENABLED: true
   AIRBRAKE_API_KEY: "abc123"
   LINK_CHECKING_ENABLED: "true"
   LINKCHECKER_RECIPIENTS: "test@example.com"
+  WORKER_KEY: <YOUR_WORKER_KEY>
 
 production:
   API_HOST: "http://api.example.com"
-  HARVESTER_API_KEY: "#{api_key_with_harvester_privileges}"
+  HARVESTER_API_KEY: <YOUR_HARVESTER_KEY>
   API_MONGOID_HOSTS: "localhost:27017"
   MANAGER_HOST: "http://harvester.example.com"
-  MANAGER_API_KEY: "MANAGER_API_KEY"
   HARVESTER_CACHING_ENABLED: true
   AIRBRAKE_API_KEY: "abc123"
   LINK_CHECKING_ENABLED: "true"
   LINKCHECKER_RECIPIENTS: "test@example.com"
+  WORKER_KEY: <YOUR_WORKER_KEY>
 ```

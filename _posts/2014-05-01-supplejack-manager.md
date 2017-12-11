@@ -31,7 +31,7 @@ From the Manager's project root, create a user from the console:
 ```ruby
 rails c
  > User.create!(email: 'your@email.com', name: 'Joe Doe', password: 'p@ssw0rd', password_confirmation: 'p@ssw0rd').
-=> #<User _id: 5371508b5311633df8000001, created_at: 2014-05-12 22:51:55 UTC, updated_at: 2014-05-12 22:51:55 UTC, name: "Joe Doe", email: "your@email.com", encrypted_password: "$2a$10$pKS9ydWHRWtbywuIWBBiy.Yn16QR3ZKmuPXFzQIyJqJHZtrb5c1uq", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 0, current_sign_in_at: nil, last_sign_in_at: nil, current_sign_in_ip: nil, last_sign_in_ip: nil, authentication_token: "BYh6ovEAWwLyxJpqRrwE"> 
+=> #<User _id: 5371508b5311633df8000001, created_at: 2014-05-12 22:51:55 UTC, updated_at: 2014-05-12 22:51:55 UTC, name: "Joe Doe", email: "your@email.com", encrypted_password: "$2a$10$pKS9ydWHRWtbywuIWBBiy.Yn16QR3ZKmuPXFzQIyJqJHZtrb5c1uq", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 0, current_sign_in_at: nil, last_sign_in_at: nil, current_sign_in_ip: nil, last_sign_in_ip: nil, authentication_token: "BYh6ovEAWwLyxJpqRrwE">
  > User.last.authentication_token
 => "BYh6ovEAWwLyxJpqRrwE"
 ```
@@ -52,29 +52,31 @@ Example 1: One environment setup
 # This setup assumes that you have an API that runs on localhost:3000
 # and a Worker running on localhost:3002.
 # Running the Manager allows you to harvest in production environment.
-  
+
 development:
-  WORKER_HOST: http://localhost:3002
-  WORKER_API_KEY: <production worker key>
-  API_HOST: http://localhost:3000
+  WORKER_HOST: http://127.0.0.1:3002
+  API_HOST: http://127.0.0.1:3000
+  HARVESTER_API_KEY: <YOUR_HARVESTER_KEY>
   API_MONGOID_HOSTS: localhost:27017
+  AIRBRAKE_PROJECT_ID: <YOUR_AIRBRAKE_PROJECT_ID>
+  AIRBRAKE_PROJECT_API_KEY: <YOUR_AIRBRAKE_PROJECT_API_KEY>
+  WORKER_KEY: <YOUR_WORKER_KEY>
 
 test:
-  WORKER_HOST: http://localhost:3002
-  WORKER_API_KEY: <production worker key>
-  API_HOST: http://localhost:3000
+  WORKER_HOST: http://127.0.0.1:3002
+  API_HOST: http://127.0.0.1:3000
+  HARVESTER_API_KEY: <YOUR_HARVESTER_KEY>
   API_MONGOID_HOSTS: localhost:27017
+  AIRBRAKE_PROJECT_ID: <YOUR_AIRBRAKE_PROJECT_ID>
+  AIRBRAKE_PROJECT_API_KEY: <YOUR_PROJECT_API_KEY>
+  WORKER_KEY: <YOUR_WORKER_KEY>
 
-production:
-  WORKER_HOST: http://localhost:3002
-  WORKER_API_KEY: <production worker key>
-  API_HOST: http://localhost:3000
-  
 # staging:
-#   WORKER_HOST: http://localhost:4002
-#   WORKER_API_KEY: <staging worker key>
-#   API_HOST: http://localhost:4000
+#   WORKER_HOST: http://127.0.0.1:3002
+#   API_HOST: http://127.0.0.1:3000
+#   HARVESTER_API_KEY: <YOUR_HARVESTER_KEY>
 #   API_MONGOID_HOSTS: localhost:27017
+#   WORKER_KEY: <YOUR_WORKER_KEY>
 ```
 
 Example 2: Two environment setup
@@ -84,33 +86,31 @@ Example 2: Two environment setup
 # This setup assumes that you have two APIs that runs on localhost:3000
 # and localhost:4000. Workers running on localhost:3002 and localhost:4002.
 # Running the Manager allows you to harvest in production and staging environments.
-  
+
 development:
-  WORKER_HOST: http://localhost:4002
-  WORKER_API_KEY: <staging worker key>
-  API_HOST: http://localhost:4000
-  HARVESTER_API_KEY: "#{api_key_with_harvester_privileges}"
+  WORKER_HOST: http://127.0.0.1:3002
+  API_HOST: http://127.0.0.1:3000
+  HARVESTER_API_KEY: <YOUR_HARVESTER_KEY>
   API_MONGOID_HOSTS: localhost:27017
+  AIRBRAKE_PROJECT_ID: <YOUR_AIRBRAKE_PROJECT_ID>
+  AIRBRAKE_PROJECT_API_KEY: <YOUR_AIRBRAKE_PROJECT_API_KEY>
+  WORKER_KEY: <YOUR_WORKER_KEY>
 
 test:
-  WORKER_HOST: http://localhost:4002
-  WORKER_API_KEY: <staging worker key>
-  API_HOST: http://localhost:4000
-  HARVESTER_API_KEY: "#{api_key_with_harvester_privileges}"
+  WORKER_HOST: http://127.0.0.1:3002
+  API_HOST: http://127.0.0.1:3000
+  HARVESTER_API_KEY: <YOUR_HARVESTER_KEY>
   API_MONGOID_HOSTS: localhost:27017
+  AIRBRAKE_PROJECT_ID: <YOUR_AIRBRAKE_PROJECT_ID>
+  AIRBRAKE_PROJECT_API_KEY: <YOUR_PROJECT_API_KEY>
+  WORKER_KEY: <YOUR_WORKER_KEY>
 
-production:
-  WORKER_HOST: http://localhost:3002
-  WORKER_API_KEY: <production worker key>
-  API_HOST: http://localhost:3000
-  HARVESTER_API_KEY: "#{api_key_with_harvester_privileges}"
-  
 staging:
-  WORKER_HOST: http://localhost:4002
-  WORKER_API_KEY: <staging worker key>
-  API_HOST: http://localhost:4000
-  HARVESTER_API_KEY: "#{api_key_with_harvester_privileges}"
+  WORKER_HOST: http://127.0.0.1:3002
+  API_HOST: http://127.0.0.1:3000
+  HARVESTER_API_KEY: <YOUR_HARVESTER_KEY>
   API_MONGOID_HOSTS: localhost:27017
+  WORKER_KEY: <YOUR_WORKER_KEY>
 ```
 
 ### Writing parser scripts

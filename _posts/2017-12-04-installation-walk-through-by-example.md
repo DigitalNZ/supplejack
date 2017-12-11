@@ -18,21 +18,21 @@ https://github.com/DigitalNZ/supplejack_manager as 'manager'. https://github.com
 
 ### Step Two - Setting up the Manager:
 
-The Manager and Worker need API keys to communicate with each other, the instructions below will tell you how to create them.
+The Manager and Worker need a key to communicate with each other, the instructions below will tell you how to create them.
 
 cd into your manager directory and run `bundle install`. This will install all of the dependencies of the application.
 
-Once this has finished, copy the `config/application.yml.example` to `config/application.yml`. This file contains the environment variables that your manager needs to run. Looking at this file will show you the ports that the other applications in the app need to run on, and it is where you add the API keys.
+Once this has finished, copy the `config/application.yml.example` to `config/application.yml`. This file contains the environment variables that your manager needs to run. Looking at this file will show you the ports that the other applications in the app need to run on, and it is where you add the keys.
 
 Now, boot up the rails console `rails c` and run `User.create(email: 'your@email.com', name: 'Your Name', password: 'yourpassword', password_confirmation: 'yourpassword', role: 'admin')`. These details are also what you will use to login to the Manager web interface.
 
 **Make sure you make yourself an admin otherwise you will not be able to create parser scripts**.
 
-This will create your user that you will use to login to the manager, the user also has the authentication_token that will need to be shared with the worker.
+This will create your user that you will use to login to the manager, you can also use this key to authenticate with the worker.
 
 You can see this key by running `User.last.authentication_token` in the rails console. If you have multiple accounts, you can use `User.find_by(email: ‘your_email@email.com’).authentication_token` to find the token of a particular user.
 
-Write this key down, it is the **MANAGER_API_KEY**.
+Write this key down, it is the **WORKER_KEY**
 
 ### Step Three - Setting up the Worker
 
@@ -40,19 +40,15 @@ As with the manager, cd into your worker directory and run bundle install.
 
 Once this has finished, copy the `config/application.yml.example` to `config/application.yml`.
 
-Now boot up the rails console and run `User.create`. This will generate your worker user. There is no web interface so you do not need to enter a username or a password. You can get this key by running `User.last.authentication_token`.
-
-Write this key down, it is the **WORKER_API_KEY** and will need to be shared with the manager.
-
 ### Step Four - Sharing keys and Booting up the Manager and Worker.
 
 #### For the Manager:
 
-Add your **WORKER_API_KEY** to the `manager/config/application.yml` where it states **WORKER_API_KEY**. You will need to add this for each environment listed in this file.
+Add your **WORKER_KEY** to the `manager/config/application.yml` where it states **WORKER_KEY**. You will need to add this for each environment listed in this file.
 
 #### For the Worker:
 
-Add your **MANAGER_API_KEY** to the `worker/config/application.yml` in the specified place. You will need to do this for the test, development, and staging environments.
+Add your **WORKER_KEY** to the `worker/config/application.yml` in the specified place. You will need to do this for the test, development, and staging environments.
 
 *You can now boot up the Manager and the Worker*
 
