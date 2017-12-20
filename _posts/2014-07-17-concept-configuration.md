@@ -15,7 +15,7 @@ To start harvesting concepts, you need to enable concepts in the Manager. `confi
 ```yaml
 development:
   WORKER_HOST: http://localhost:3002
-  WORKER_API_KEY: 5dFn4V9r63BCNpK6TsaU
+  WORKER_KEY: <WORKER_KEY>
   API_HOST: http://localhost:3000
   API_MONGOID_HOSTS: localhost:27017
   PARSER_TYPE_ENABLED: true # Set this to true
