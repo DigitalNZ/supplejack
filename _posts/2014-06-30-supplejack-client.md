@@ -50,7 +50,7 @@ Then do `Supplejack::Search.new(params)` or `Record.find(id)`
 | Param name | Default value | Details |
 | ---------- | ------- | -------- |
 | text | '' | Text to be searched |
-| geo_bbox | `not defined` | ? |
+| geo_bbox | `not defined` | A geographic bounding box scoping a search to a geographic region. Order of latitude-longitude coordinates is north, west, south, east. The following example searches the Wellington region: `&geo_bbox=-41,174,-42,175` |
 | record_type | 0 | ? |
 | page | 1 | Page to display |
 | per_page | `Supplejack.per_page` | Items per page |
