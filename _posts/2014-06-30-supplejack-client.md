@@ -46,11 +46,32 @@ end
 
 Then do `Supplejack::Search.new(params)` or `Record.find(id)`
 
+## Search params
+| Param name | Default value | Details |
+| ---------- | ------- | -------- |
+| text | '' | Text to be searched |
+| geo_bbox | `not defined` | ? |
+| record_type | 0 | ? |
+| page | 1 | Page to display |
+| per_page | `Supplejack.per_page` | Items per page |
+| and | [] | `and` for filter results from search |
+| without | [] | `without` filters to exclude results from search |
+| facets | `not defined` | Array of facets to display |
+| facets_per_page | 0 | Number of facets per page |
+| fields | `Supplejack.fields` | Fields to be returned |
+| query_fields | `not defined` | All fields to be searched by text |
+| ignore_metrics | `not defined` | If set, api requests will be ignored from metrics |
+| solr_query | `not defined` | ? |
+| sort | `not defined` | Define a facet to be ordered by |
+| direction | `asc` | Define a sort direction |
+| exclude_filters_from_facets | `false` | Set this value to true in order to exclude filters from facets so you can retain facets values while drilling down the search |
+
+
 ## Configuration
 
 Below is the sample `config/initializers/supplejack_client.rb` file that comes with supplejack website. You need to modify it if you make any changes in supplejack record schema.
 
-####Notes:
+#### Notes:
 
 * It is very important that you specify **config.fields** in `supplejack_client.rb` correctly. The fields must be declared in supplejack api record schema.
 * The **config.facets** list facets to be returned from the api. The facets must be declared in supplejack api record schema.
