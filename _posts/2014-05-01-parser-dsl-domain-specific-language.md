@@ -61,9 +61,18 @@ http_header({'x-api-key': 'api-key', 'Authorization': 'Token token="token"'})
 
 Allows the operator to paginate through a API and specify the name of the parameters used by the particular API as well as the values for those parameters.
 
+#### Numbered pagination
+
 ```ruby
 base_url "http://gdata.youtube.com/feeds/api/videos"
 paginate page_parameter: "start-index", type: "item", per_page_parameter: "max-results", per_page: 50, page: 1, total_selector: "//openSearch:totalResults"
+```
+
+#### Tokenised pagination
+
+```ruby
+base_url "http://gdata.youtube.com/feeds/api/videos"
+  paginate tokenised: true, type: 'page', next_page_token_location: "$.nextPageToken", per_page: 1, per_page_parameter: "maxResults", page_parameter: 'pageToken'
 ```
 
 The above example will execute the following requests:
