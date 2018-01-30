@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="apple-touch-icon" sizes="144x144" href="/supplejack/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/supplejack/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/supplejack/favicon-16x16.png">
+        <link rel="manifest" href="/supplejack/manifest.json">
+        <link rel="mask-icon" href="/supplejack/safari-pinned-tab.svg" color="#118a0f">
+        <meta name="theme-color" content="#118a0f">
+
+        <title>Supplejack : Creating Schemas</title>
+        <meta name="description" content="Documentation">
+
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/supplejack/css/syntax.css">
+        <link rel="stylesheet" href="/supplejack/css/main.css">
+    </head>
+    <body>
+
+        <div class="container">
+            <div class=row-fluid>
+                <div id=header class=span12>
+                    <a href="/supplejack/">
+                      <img src="/supplejack/images/supplejack_logo.png" alt='Supplejack' />
+                    </a>
+                    <small>Documentation (Version 0.1)</small>
+                </div>
+            </div>
+
+            <div class=row-fluid>
+                
+                
+                    <div id=navigation class=span2>
+                        <ul class="nav nav-list">
+    <li><a href="/supplejack/">Home</a></li>
+    <li><a href="/supplejack/about.html">About</a></li>
+    <li><a href="/supplejack/screenshots.html">Screenshots</a></li>
+    <li><a href="/supplejack/architecture.html">Architecture</a></li>
+    <li><a href="/supplejack/licence.html">Licence</a></li>
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Installation</li>
+            
+            <li data-order="11"><a href="/supplejack/start/installation-walk-through-by-example.html">Installation Walk-through by Example</a></li>
+        
+            
+            <li data-order="3"><a href="/supplejack/start/production-install.html">Production Install</a></li>
+        
+            
+            <li data-order="7"><a href="/supplejack/start/supplejack-website.html">Supplejack Website</a></li>
+        
+            
+            <li data-order="6"><a href="/supplejack/start/supplejack-client.html">Supplejack Client</a></li>
+        
+            
+            <li data-order="9"><a href="/supplejack/start/troubleshooting.html">Troubleshooting</a></li>
+        
+            
+            <li data-order="8"><a href="/supplejack/start/supplejack-common.html">Supplejack Common</a></li>
+        
+            
+            <li data-order="2"><a href="/supplejack/start/development-setup.html">Development Setup</a></li>
+        
+            
+            <li data-order="1"><a href="/supplejack/start/dependencies.html">Dependencies</a></li>
+        
+            
+            <li data-order="5"><a href="/supplejack/start/supplejack-worker.html">Supplejack Worker</a></li>
+        
+            
+            <li data-order="4"><a href="/supplejack/start/supplejack-manager.html">Supplejack Manager</a></li>
+        
+            
+            <li data-order="3"><a href="/supplejack/start/supplejack-api.html">Supplejack API</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Creating your API</li>
+            
+            <li data-order="3"><a href="/supplejack/api/api-admin.html">API Admin</a></li>
+        
+            
+            <li data-order="2"><a href="/supplejack/api/schema-dsl-domain-specific-language.html">Schema DSL (Domain Specific Language)</a></li>
+        
+            
+            <li data-order="1"><a href="/supplejack/api/creating-schemas.html">Creating Schemas</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Using the API</li>
+            
+            <li data-order=""><a href="/supplejack/api_usage/metrics-api.html">Metrics API</a></li>
+        
+            
+            <li data-order="2"><a href="/supplejack/api_usage/user-sets.html">Sets API</a></li>
+        
+            
+            <li data-order="1"><a href="/supplejack/api_usage/records-api.html">Records API</a></li>
+        
+            
+            <li data-order="3"><a href="/supplejack/api_usage/concepts-api.html">Concepts API</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Using the manager</li>
+            
+            <li data-order="11"><a href="/supplejack/manager/job-status.html">Job Status</a></li>
+        
+            
+            <li data-order="10"><a href="/supplejack/manager/concept-configuration.html">Concepts Configuration</a></li>
+        
+            
+            <li data-order="9"><a href="/supplejack/manager/linkchecker.html">Link Checker</a></li>
+        
+            
+            <li data-order="8"><a href="/supplejack/manager/code-snippets.html">Code Snippets</a></li>
+        
+            
+            <li data-order="1"><a href="/supplejack/manager/introduction-to-parser-scripts.html">Introduction to parser scripts</a></li>
+        
+            
+            <li data-order="2"><a href="/supplejack/manager/parser-dsl-domain-specific-language.html">Parser DSL (Domain Specific Language)</a></li>
+        
+            
+            <li data-order="3"><a href="/supplejack/manager/validations.html">Validations</a></li>
+        
+            
+            <li data-order="4"><a href="/supplejack/manager/xml-namespaces.html">XML Namespaces</a></li>
+        
+            
+            <li data-order="5"><a href="/supplejack/manager/attribute-transformation-options.html">Attribute Transformation Options</a></li>
+        
+            
+            <li data-order="6"><a href="/supplejack/manager/enrichments.html">Enrichments</a></li>
+        
+            
+            <li data-order="7"><a href="/supplejack/manager/modifiers.html">Modifiers</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Activity Metrics</li>
+            
+            <li data-order=""><a href="/supplejack/metrics/item-metrics.html">Item Metrics</a></li>
+        
+            
+            <li data-order=""><a href="/supplejack/metrics/usage-metrics.html">Usage Metrics</a></li>
+        
+    
+        
+        
+
+        
+    
+<!-- List additional links. It is recommended to add a divider
+    e.g. <li class=divider></li> first to break up the content. -->
+</ul>
+
+                    </div>
+
+                    <div id=content class=span10>
+                        <div class=page-header>
+    <h1>Creating Schemas
+        
+    </h1>
+</div>
+
+<p>The heart of the Supplejack API is the Schema. The Schema defines the fields for each record and how those fields should be stored and searched. It also defines the different user roles and any restrictions for those roles.</p>
+
+<p>When you first install the Supplejack API a default Schema file is created (see the code at the bottom of the page for a copy). This gives you a template to start working from but you do not have keep any of the fields which are defined in the example. By default the schema file is created at the following location <code>app/supplejack_api/schema.rb</code>.</p>
+
+<p><strong>It is important that you have set up schema correctly as other components eg Supplejack Manager is dependent on it</strong></p>
+
+<h2 id="schema-basics">Schema basics</h2>
+
+<p>To start your Schema from scratch you first need the class definition.</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">class Schema
+  include SupplejackApi::SupplejackSchema
+
+end
+</code></pre></figure>
+<p>You must name your class <code>Schema</code> and it must include <code>SupplejackApi::SupplejackSchema</code> so that compulsory fields and groups are included in your Schema.</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"># Supplejack API core fields, these fields are automatically added to your Schema.
+:internal_identifier,   # Use to store record identifier. It is expected that you would create this value.
+:status,                # Used by Mongoid to mark the record as deleted.
+:landing_url,           # A url to view the record.
+:created_at,            # When the record was created.
+:updated_at             # When the record was last updated.
+
+# You can view the core fields on a record by adding &amp;fields=internal_fields to a request
+# e.g. http://localhost:3000/records/1.json?api_key=zNyseQUT9vybmZsBo-af&amp;fields=internal_fields
+</code></pre></figure>
+<p>Once you have defined your class you can begin adding fields, groups and roles. For more details about how to do this you can view the <a href="supplejack/api/schema-dsl-domain-specific-language.html">Schema DSL documentation</a>. You must define at least one group and role, and mark them as <code>default</code>, before you can view records from your API.</p>
+
+<h3 id="field-definition">Field definition</h3>
+
+<p>Field definition is important. The format is <code>[field_type] [field_name], [options]</code></p>
+
+<p>For example, if you want a field called <code>title</code> of type <code>String</code>
+<code>ruby
+   string        :title,          search_boost: 1, search_as: [:filter, :fulltext]
+[field_type]  [field_name]        [options]
+</code></p>
+
+<h5 id="keywords-:book:">Keywords :book:</h5>
+
+<ul>
+<li><code>search_as</code>: Define search behavior, <code>:filter</code> means the field is facetable, <code>:fulltext</code> means searchable</li>
+<li><code>store</code>: Make the field writable to DB, default is <code>true</code></li>
+<li><code>search_boost</code>: Define Solr search priority</li>
+</ul>
+
+<p>There are for 4 field types: <code>string</code>, <code>integer</code>, <code>datetime</code>, <code>boolean</code>. You can refer to sample record schema as example.</p>
+
+<h3 id="aliasing-and-solr-name">Aliasing and Solr name</h3>
+
+<p>If you need to create an alias or a virtual field, you can do that using the <code>search_value</code>.</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">  # Alias thumbnail_url with thumbnail
+  string    :thumbnail do
+    store false
+    search_value do |record|
+      record.thumbnail_url
+    end
+  end
+</code></pre></figure>
+<p>You can also change the name of the Solr field using <code>solr_name</code>.</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">  # Store &quot;name&quot; in Mongo but search as &quot;full_name&quot; in Solr.
+  string    :name do
+    search_as [:full_text]
+    solr_name :full_name
+  end
+
+  # Or using shorthand version
+  string    :name,    search_as: [:full_text],    solr_name: :full_name
+</code></pre></figure>
+<h3 id="some-common-issues">Some common issues</h3>
+
+<ul>
+<li>If you already have records saved in Mongo you will have to resave them each time you update your Schema before you see any change in what is returned from the API.</li>
+<li>Fields that are already saved will not be removed from the record, in Mongo, if you remove that field from the Schema.</li>
+</ul>
+
+<h3 id="example-record-schema">Example Record Schema</h3>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">class RecordSchema
+  include SupplejackApi::SupplejackSchema
+
+  # Namespaces
+  namespace :dc,        url: &#39;http://purl.org/dc/elements/1.1/&#39;
+  namespace :sj,        url: &#39;&#39;
+
+  # Fields
+  string    :record_id,                   store: false,                                           namespace: :sj
+  string    :title,                       search_boost: 10,     search_as: [:filter, :fulltext],  namespace: :dc
+  string    :description,                 search_boost: 2,      search_as: [:filter, :fulltext],  namespace: :dc
+
+  string    :display_content_partner,                           search_as: [:filter, :fulltext],  namespace: :sj
+  string    :display_collection,                                search_as: [:filter, :fulltext],  namespace: :sj
+  string    :source_url,                                                                          namespace: :sj
+  string    :thumbnail_url
+  string    :subject,                     multi_value: true,                                      namespace: :dc
+  string    :display_date,                                                                        namespace: :sj
+  string    :creator,                     multi_value: true,                                      namespace: :dc
+  string    :category,                    multi_value: true,    search_as: [:filter],             namespace: :sj
+
+  # Groups
+  group :default do
+    fields [
+      :record_id,
+      :title,
+      :description,
+      :subject,
+      :source_provider_name,
+      :source_url,
+      :thumbnail_url,
+      :display_date,
+      :creator,
+      :category
+    ]
+  end
+
+  group :core do
+    fields [:record_id]
+  end
+
+   # Roles
+  role :developer do
+    default true
+  end
+  role :admin
+
+  mongo_index :source_url,         fields: [{source_url: 1}]
+
+end
+</code></pre></figure>
+<h4 id="notes:">Notes:</h4>
+
+<p>The example record schema comes with the default supplejack api installation. Supplejack demo website is dependent on it so you should not modify it.</p>
+
+<p>However, if you modify the schema, you need to modify supplejack website as well if you want to use it. Please refer to <a href="/supplejack/start/supplejack-website.html#notes">Supplejack Website</a> to know what to modify.</p>
+
+<h2 id="sets">Sets</h2>
+
+<p>To start using Sets, you need to define two groups on the <code>RecordSchema</code>. These groups are <code>:sets</code> and <code>:valid_set_fields</code>.</p>
+
+<p>The <code>:sets</code> group acts as the default list of fields that will be used to display records inside of a Set.</p>
+
+<p>The <code>:valid_set_fields</code> group acts as a way to validate additional fields that have been passed to a user set.</p>
+
+<p>For example, when you are querying for User Set data <code>/sets/SET_ID.json?api_key=API_KEY&amp;fields=name</code>, the passed field will need to be in the <code>:valid_set_fields</code> group, otherwise it will be ignored.</p>
+
+<h3 id="example-set-groups">Example Set Groups</h3>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">group :sets do
+  fields [
+    :title,
+    :description
+  ]
+end
+
+group :valid_set_fields do
+  includes [:sets]
+  fields [
+    :name
+  ]
+end
+</code></pre></figure>
+<p>Now, when you use Sets, the records inside of a set will display the <code>title</code> and <code>description</code> fields. A user will also be able to request the additional <code>name</code> field using the fields parameter.</p>
+
+<h2 id="concept-schema">Concept Schema</h2>
+
+<p>To start using Concept, you need to define a new Schema definition called <code>ConceptSchema</code>.</p>
+
+<p>Note: You must name you class <code>ConceptSchema</code> and it must include <code>SupplejackApi::SupplejackSchema</code> so that compulsory fields and groups are included in your Concept schema.</p>
+
+<p>Once you have defined your class you can begin adding fields, namespaces, groups and roles.</p>
+
+<h3 id="example-concept-schema">Example Concept Schema</h3>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">class ConceptSchema
+  include SupplejackApi::SchemaDefinition
+
+  # Namespaces
+  namespace :dcterms,     url: &#39;http://purl.org/dc/terms/&#39;
+  namespace :edm,         url: &#39;http://www.europeana.eu/schemas/edm/&#39;
+  namespace :foaf,        url: &#39;http://xmlns.com/foaf/0.1/&#39;
+  namespace :owl,         url: &#39;http://www.w3.org/2002/07/owl#&#39;
+  namespace :rdaGr2,      url: &#39;http://rdvocab.info/ElementsGr2/&#39;
+  namespace :rdf,         url: &#39;http://www.w3.org/1999/02/22-rdf-syntax-ns#&#39;
+  namespace :rdfs,        url: &#39;http://www.w3.org/2000/01/rdf-schema#&#39;
+  namespace :skos,        url: &#39;http://www.w3.org/2004/02/skos/core#&#39;
+  namespace :xsd,         url: &#39;http://www.w3.org/2001/XMLSchema#&#39;
+  namespace :dc,          url: &#39;http://purl.org/dc/elements/1.1/&#39;
+
+  # Fields (SourceAuthority fields)
+  string      :name
+  string      :prefLabel
+  string      :altLabel,                  multi_value: true
+  datetime    :dateOfBirth
+  datetime    :dateOfDeath
+  string      :biographicalInformation
+  string      :sameAs,                    multi_value: true
+  string      :givenName
+  string      :familyName
+  integer     :birthYear
+  integer     :deathYear
+
+  group :source_authorities
+  group :reverse
+
+  model_field :name, field_options: { type: String }, search_as: [:fulltext], search_boost: 6, namespace: :foaf
+  model_field :prefLabel, field_options: { type: String }, namespace: :skos
+  model_field :altLabel, field_options: { type: Array }, search_as: [:fulltext], search_boost: 2, namespace: :skos
+  model_field :dateOfBirth, field_options: { type: Date }, namespace: :rdaGr2
+  model_field :dateOfDeath, field_options: { type: Date }, namespace: :rdaGr2
+  model_field :biographicalInformation, field_options: { type: String }, search_as: [:fulltext], search_boost: 1,  namespace: :rdaGr2
+  model_field :sameAs, field_options: { type: Array }, namespace: :owl
+
+  # Use store: false to display the fields in the /schema
+  model_field :title, store: false, namespace: :dc
+  model_field :date, store: false, namespace: :dc
+  model_field :description, store: false, namespace: :dc
+  model_field :agents, store: false, namespace: :edm
+end
+</code></pre></figure>
+
+                    </div>
+                
+            </div>
+
+        </div>
+
+        <script>
+            function orderNav() {
+                var list,
+                    section,
+                    header,
+                    sections = [],
+                    lists = {},
+                    headers = {};
+
+                var navUl = document.querySelectorAll('#navigation ul')[0],
+                    navLis = document.querySelectorAll('#navigation ul li');
+
+                if (!navUl) return;
+
+                for (var i = 0; i < navLis.length; i++) {
+                    var order, li = navLis[i];
+
+                    if (li.classList.contains('nav-header')) {
+                        section = li.textContent || li.innerText;
+                        sections.push(section);
+                        headers[section] = li;
+                        continue;
+                    }
+
+                    if (!lists[section]) {
+                        lists[section] = [];
+                    }
+
+                    order = parseFloat(li.getAttribute('data-order'))
+                    lists[section].push([order, li]);
+                }
+
+                for (var i = 0; i < sections.length; i++) {
+                    section = sections[i];
+                    list = lists[section].sort(function(a, b) {
+                        return a[0] - b[0];
+                    });
+
+                    if (header = headers[section]) {
+                        navUl.appendChild(header);
+                    }
+                    for (var j = 0; j < list.length; j++) {
+                        navUl.appendChild(list[j][1]);
+                    }
+                }
+            }
+
+            if (document.querySelectorAll) orderNav();
+        </script>
+    </body>
+</html>

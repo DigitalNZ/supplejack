@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="apple-touch-icon" sizes="144x144" href="/supplejack/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/supplejack/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/supplejack/favicon-16x16.png">
+        <link rel="manifest" href="/supplejack/manifest.json">
+        <link rel="mask-icon" href="/supplejack/safari-pinned-tab.svg" color="#118a0f">
+        <meta name="theme-color" content="#118a0f">
+
+        <title>Supplejack : Introduction to parser scripts</title>
+        <meta name="description" content="Documentation">
+
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/supplejack/css/syntax.css">
+        <link rel="stylesheet" href="/supplejack/css/main.css">
+    </head>
+    <body>
+
+        <div class="container">
+            <div class=row-fluid>
+                <div id=header class=span12>
+                    <a href="/supplejack/">
+                      <img src="/supplejack/images/supplejack_logo.png" alt='Supplejack' />
+                    </a>
+                    <small>Documentation (Version 0.1)</small>
+                </div>
+            </div>
+
+            <div class=row-fluid>
+                
+                
+                    <div id=navigation class=span2>
+                        <ul class="nav nav-list">
+    <li><a href="/supplejack/">Home</a></li>
+    <li><a href="/supplejack/about.html">About</a></li>
+    <li><a href="/supplejack/screenshots.html">Screenshots</a></li>
+    <li><a href="/supplejack/architecture.html">Architecture</a></li>
+    <li><a href="/supplejack/licence.html">Licence</a></li>
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Installation</li>
+            
+            <li data-order="11"><a href="/supplejack/start/installation-walk-through-by-example.html">Installation Walk-through by Example</a></li>
+        
+            
+            <li data-order="3"><a href="/supplejack/start/production-install.html">Production Install</a></li>
+        
+            
+            <li data-order="7"><a href="/supplejack/start/supplejack-website.html">Supplejack Website</a></li>
+        
+            
+            <li data-order="6"><a href="/supplejack/start/supplejack-client.html">Supplejack Client</a></li>
+        
+            
+            <li data-order="9"><a href="/supplejack/start/troubleshooting.html">Troubleshooting</a></li>
+        
+            
+            <li data-order="8"><a href="/supplejack/start/supplejack-common.html">Supplejack Common</a></li>
+        
+            
+            <li data-order="2"><a href="/supplejack/start/development-setup.html">Development Setup</a></li>
+        
+            
+            <li data-order="1"><a href="/supplejack/start/dependencies.html">Dependencies</a></li>
+        
+            
+            <li data-order="5"><a href="/supplejack/start/supplejack-worker.html">Supplejack Worker</a></li>
+        
+            
+            <li data-order="4"><a href="/supplejack/start/supplejack-manager.html">Supplejack Manager</a></li>
+        
+            
+            <li data-order="3"><a href="/supplejack/start/supplejack-api.html">Supplejack API</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Creating your API</li>
+            
+            <li data-order="3"><a href="/supplejack/api/api-admin.html">API Admin</a></li>
+        
+            
+            <li data-order="2"><a href="/supplejack/api/schema-dsl-domain-specific-language.html">Schema DSL (Domain Specific Language)</a></li>
+        
+            
+            <li data-order="1"><a href="/supplejack/api/creating-schemas.html">Creating Schemas</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Using the API</li>
+            
+            <li data-order=""><a href="/supplejack/api_usage/metrics-api.html">Metrics API</a></li>
+        
+            
+            <li data-order="2"><a href="/supplejack/api_usage/user-sets.html">Sets API</a></li>
+        
+            
+            <li data-order="1"><a href="/supplejack/api_usage/records-api.html">Records API</a></li>
+        
+            
+            <li data-order="3"><a href="/supplejack/api_usage/concepts-api.html">Concepts API</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Using the manager</li>
+            
+            <li data-order="11"><a href="/supplejack/manager/job-status.html">Job Status</a></li>
+        
+            
+            <li data-order="10"><a href="/supplejack/manager/concept-configuration.html">Concepts Configuration</a></li>
+        
+            
+            <li data-order="9"><a href="/supplejack/manager/linkchecker.html">Link Checker</a></li>
+        
+            
+            <li data-order="8"><a href="/supplejack/manager/code-snippets.html">Code Snippets</a></li>
+        
+            
+            <li data-order="1"><a href="/supplejack/manager/introduction-to-parser-scripts.html">Introduction to parser scripts</a></li>
+        
+            
+            <li data-order="2"><a href="/supplejack/manager/parser-dsl-domain-specific-language.html">Parser DSL (Domain Specific Language)</a></li>
+        
+            
+            <li data-order="3"><a href="/supplejack/manager/validations.html">Validations</a></li>
+        
+            
+            <li data-order="4"><a href="/supplejack/manager/xml-namespaces.html">XML Namespaces</a></li>
+        
+            
+            <li data-order="5"><a href="/supplejack/manager/attribute-transformation-options.html">Attribute Transformation Options</a></li>
+        
+            
+            <li data-order="6"><a href="/supplejack/manager/enrichments.html">Enrichments</a></li>
+        
+            
+            <li data-order="7"><a href="/supplejack/manager/modifiers.html">Modifiers</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Activity Metrics</li>
+            
+            <li data-order=""><a href="/supplejack/metrics/item-metrics.html">Item Metrics</a></li>
+        
+            
+            <li data-order=""><a href="/supplejack/metrics/usage-metrics.html">Usage Metrics</a></li>
+        
+    
+        
+        
+
+        
+    
+<!-- List additional links. It is recommended to add a divider
+    e.g. <li class=divider></li> first to break up the content. -->
+</ul>
+
+                    </div>
+
+                    <div id=content class=span10>
+                        <div class=page-header>
+    <h1>Introduction to parser scripts
+        
+    </h1>
+</div>
+
+<p>Parser scripts are instructions that describe how data from a particular source is to be harvested into Supplejack. </p>
+
+<p>View the <a href="http://youtu.be/MLUURxcfcLc">introductory screencast</a> for a general overview of how parser scripts work inside Supplejack. </p>
+
+<p>You can also view the introductory tutorials that will take you through a step by step process in creating your first parser scripts <a href="https://drive.google.com/file/d/0B63EYVIeMWSfdThwRXhxcllwTVE/edit?usp=sharing">Tutorial 1</a> <a href="https://drive.google.com/file/d/0B63EYVIeMWSfdERXYTJJYmR2cW8/edit?usp=sharing">Tutorial 2</a></p>
+
+<h3 id="what-does-a-parser-script-look-like?">What does a parser script look like?</h3>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">class PublicAddressAndy &lt; HarvesterCore::Rss::Base
+
+  # Specify the location of the data
+
+  base_url &quot;http://publicaddress.net/system/6.rss&quot;
+
+  # Default mappings - the same attributes value for all records
+
+  attributes :content_partner, :display_content_partner, default: &quot;Public Address&quot;
+  attributes :category, default: &quot;Podcasts&quot;
+  attributes :primary_collection, :display_collection, :collection, default: &quot;Public Address Radio&quot;
+  attributes :usage, default: &quot;All rights reserved&quot;
+
+  # Variable mappings - different attribute values for each record
+
+  attributes :title, xpath: &quot;/item/title&quot;
+  attributes :description, xpath: &quot;item/description&quot;
+  attributes :landing_url, xpath: &quot;item/link&quot;
+  attributes :display_date, xpath: &quot;item/pubDate&quot;
+  attributes :date, xpath: &quot;item/pubDate&quot;, date: true
+  attributes :category, xpath: &quot;item/pubDate&quot;
+
+  attributes :internal_identifier do
+    get(:landing_url).downcase
+  end
+
+
+end
+</code></pre></figure>
+<p>The above example of a simple parser script starts by identifying the source of the data to ingest from (base_url). Each script then identifies the data fields (attributes) to copy data into. Field names are based on the specific schema that has been set up for your Supplejack instance. </p>
+
+<p>Supplejack is supported by a <a href="/supplejack/manager/parser-dsl-domain-specific-language.html">Parser DSL</a> (Domain Specific Language) that has been designed specifically to support the capture and manipulation of data. The Parser DSL provides rich functions for getting, namespacing, validating, transforming, and enriching your source data. Supplejack allows you to use xpath expressions and regex to get the data, as well as providing the option for ruby code if you need to do some heavy lifting.</p>
+
+<p>The tutorials above are a great place to start in understanding how to build your first parser script, with the Parser DSL, and example scripts being the place to look for advanced support.</p>
+
+<h3 id="concept-parser-script">Concept parser script</h3>
+
+<p>Below is an example of a parser for harvesting concepts. Make sure that your Manager is <a href="/supplejack/manager/concepts-configuration.html">configured</a> to harvest concepts.</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">class AucklandArtGalleryPeopleConcepts &lt; SupplejackCommon::Xml::Base
+
+  # Issues
+  # http://49.50.242.36/search.do?view=detail&amp;db=person&amp;keyword=Katsukawa+Shunko
+
+  base_url &quot;file:////data/arts.xml&quot;
+
+  record_selector &quot;//vernon&quot;
+  record_format :xml
+
+  match_concepts :create_or_match
+
+  attributes :internal_identifier, :landing_url do 
+    compose(&quot;http://aucklandart.govt.nz/Person/&quot;, fetch(&quot;//person_id&quot;))
+  end
+
+  attributes :type,                       default: &quot;foaf:person&quot;
+
+  attributes :label,                      xpath: &quot;//display_name&quot;
+  attributes :name,                       xpath: &quot;//display_name&quot;
+  attributes :dateOfBirth do
+    fetch(&quot;//birth_date&quot;).to_date
+  end
+
+  attributes :dateOfDeath do
+    fetch(&quot;//death_date&quot;).to_date
+  end
+
+  attributes :givenName do
+    fetch(&quot;//display_name&quot;).split(&quot; &quot;).first
+  end
+
+  attributes :familyName do
+    fetch(&quot;//display_name&quot;).split(&quot; &quot;).select(:last)
+  end
+
+  attributes :gender do
+    fetch(&quot;//person_type&quot;).split(&quot;|&quot;).select(2).downcase
+  end
+
+  attributes :sameAs do
+    compose(&quot;http://www.aucklandartgallery.com/the-collection/browse-artists/&quot;, fetch(&quot;/person/@ext_id&quot;).first) # this page has a redirect
+  end
+
+  attributes :placeOfBirth do
+    fetch(&quot;//birth_place&quot;)
+  end
+
+  attributes :placeOfDeath do
+    fetch(&quot;//death_place&quot;)
+  end
+
+  reject_if do
+    not (get(:dateOfBirth).present? and get(:dateOfDeath).present? and get(:familyName).present? and get(:givenName).present?)
+  end 
+
+end
+</code></pre></figure>
+<p>The above example will posts data to the API with concept schema <a href="/supplejack/api/creating-schemas.html">configured</a>.</p>
+
+
+                    </div>
+                
+            </div>
+
+        </div>
+
+        <script>
+            function orderNav() {
+                var list,
+                    section,
+                    header,
+                    sections = [],
+                    lists = {},
+                    headers = {};
+
+                var navUl = document.querySelectorAll('#navigation ul')[0],
+                    navLis = document.querySelectorAll('#navigation ul li');
+
+                if (!navUl) return;
+
+                for (var i = 0; i < navLis.length; i++) {
+                    var order, li = navLis[i];
+
+                    if (li.classList.contains('nav-header')) {
+                        section = li.textContent || li.innerText;
+                        sections.push(section);
+                        headers[section] = li;
+                        continue;
+                    }
+
+                    if (!lists[section]) {
+                        lists[section] = [];
+                    }
+
+                    order = parseFloat(li.getAttribute('data-order'))
+                    lists[section].push([order, li]);
+                }
+
+                for (var i = 0; i < sections.length; i++) {
+                    section = sections[i];
+                    list = lists[section].sort(function(a, b) {
+                        return a[0] - b[0];
+                    });
+
+                    if (header = headers[section]) {
+                        navUl.appendChild(header);
+                    }
+                    for (var j = 0; j < list.length; j++) {
+                        navUl.appendChild(list[j][1]);
+                    }
+                }
+            }
+
+            if (document.querySelectorAll) orderNav();
+        </script>
+    </body>
+</html>

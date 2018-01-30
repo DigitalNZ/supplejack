@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="apple-touch-icon" sizes="144x144" href="/supplejack/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/supplejack/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/supplejack/favicon-16x16.png">
+        <link rel="manifest" href="/supplejack/manifest.json">
+        <link rel="mask-icon" href="/supplejack/safari-pinned-tab.svg" color="#118a0f">
+        <meta name="theme-color" content="#118a0f">
+
+        <title>Supplejack : Parser DSL (Domain Specific Language)</title>
+        <meta name="description" content="Documentation">
+
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/supplejack/css/syntax.css">
+        <link rel="stylesheet" href="/supplejack/css/main.css">
+    </head>
+    <body>
+
+        <div class="container">
+            <div class=row-fluid>
+                <div id=header class=span12>
+                    <a href="/supplejack/">
+                      <img src="/supplejack/images/supplejack_logo.png" alt='Supplejack' />
+                    </a>
+                    <small>Documentation (Version 0.1)</small>
+                </div>
+            </div>
+
+            <div class=row-fluid>
+                
+                
+                    <div id=navigation class=span2>
+                        <ul class="nav nav-list">
+    <li><a href="/supplejack/">Home</a></li>
+    <li><a href="/supplejack/about.html">About</a></li>
+    <li><a href="/supplejack/screenshots.html">Screenshots</a></li>
+    <li><a href="/supplejack/architecture.html">Architecture</a></li>
+    <li><a href="/supplejack/licence.html">Licence</a></li>
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Installation</li>
+            
+            <li data-order="11"><a href="/supplejack/start/installation-walk-through-by-example.html">Installation Walk-through by Example</a></li>
+        
+            
+            <li data-order="3"><a href="/supplejack/start/production-install.html">Production Install</a></li>
+        
+            
+            <li data-order="7"><a href="/supplejack/start/supplejack-website.html">Supplejack Website</a></li>
+        
+            
+            <li data-order="6"><a href="/supplejack/start/supplejack-client.html">Supplejack Client</a></li>
+        
+            
+            <li data-order="9"><a href="/supplejack/start/troubleshooting.html">Troubleshooting</a></li>
+        
+            
+            <li data-order="8"><a href="/supplejack/start/supplejack-common.html">Supplejack Common</a></li>
+        
+            
+            <li data-order="2"><a href="/supplejack/start/development-setup.html">Development Setup</a></li>
+        
+            
+            <li data-order="1"><a href="/supplejack/start/dependencies.html">Dependencies</a></li>
+        
+            
+            <li data-order="5"><a href="/supplejack/start/supplejack-worker.html">Supplejack Worker</a></li>
+        
+            
+            <li data-order="4"><a href="/supplejack/start/supplejack-manager.html">Supplejack Manager</a></li>
+        
+            
+            <li data-order="3"><a href="/supplejack/start/supplejack-api.html">Supplejack API</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Creating your API</li>
+            
+            <li data-order="3"><a href="/supplejack/api/api-admin.html">API Admin</a></li>
+        
+            
+            <li data-order="2"><a href="/supplejack/api/schema-dsl-domain-specific-language.html">Schema DSL (Domain Specific Language)</a></li>
+        
+            
+            <li data-order="1"><a href="/supplejack/api/creating-schemas.html">Creating Schemas</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Using the API</li>
+            
+            <li data-order=""><a href="/supplejack/api_usage/metrics-api.html">Metrics API</a></li>
+        
+            
+            <li data-order="2"><a href="/supplejack/api_usage/user-sets.html">Sets API</a></li>
+        
+            
+            <li data-order="1"><a href="/supplejack/api_usage/records-api.html">Records API</a></li>
+        
+            
+            <li data-order="3"><a href="/supplejack/api_usage/concepts-api.html">Concepts API</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Using the manager</li>
+            
+            <li data-order="11"><a href="/supplejack/manager/job-status.html">Job Status</a></li>
+        
+            
+            <li data-order="10"><a href="/supplejack/manager/concept-configuration.html">Concepts Configuration</a></li>
+        
+            
+            <li data-order="9"><a href="/supplejack/manager/linkchecker.html">Link Checker</a></li>
+        
+            
+            <li data-order="8"><a href="/supplejack/manager/code-snippets.html">Code Snippets</a></li>
+        
+            
+            <li data-order="1"><a href="/supplejack/manager/introduction-to-parser-scripts.html">Introduction to parser scripts</a></li>
+        
+            
+            <li data-order="2"><a href="/supplejack/manager/parser-dsl-domain-specific-language.html">Parser DSL (Domain Specific Language)</a></li>
+        
+            
+            <li data-order="3"><a href="/supplejack/manager/validations.html">Validations</a></li>
+        
+            
+            <li data-order="4"><a href="/supplejack/manager/xml-namespaces.html">XML Namespaces</a></li>
+        
+            
+            <li data-order="5"><a href="/supplejack/manager/attribute-transformation-options.html">Attribute Transformation Options</a></li>
+        
+            
+            <li data-order="6"><a href="/supplejack/manager/enrichments.html">Enrichments</a></li>
+        
+            
+            <li data-order="7"><a href="/supplejack/manager/modifiers.html">Modifiers</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Activity Metrics</li>
+            
+            <li data-order=""><a href="/supplejack/metrics/item-metrics.html">Item Metrics</a></li>
+        
+            
+            <li data-order=""><a href="/supplejack/metrics/usage-metrics.html">Usage Metrics</a></li>
+        
+    
+        
+        
+
+        
+    
+<!-- List additional links. It is recommended to add a divider
+    e.g. <li class=divider></li> first to break up the content. -->
+</ul>
+
+                    </div>
+
+                    <div id=content class=span10>
+                        <div class=page-header>
+    <h1>Parser DSL (Domain Specific Language)
+        
+    </h1>
+</div>
+
+<h2 id="records-source">Records source</h2>
+
+<h3 id="base_url">base_url</h3>
+
+<p>The base_url method allows the operator to specify where to fetch the harvest resources from. It accepts a URL or a absolute path in disk. Additionally the operator can specify different urls/paths for each environment.</p>
+
+<h3 id="web-resource">Web resource</h3>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">base_url &quot;http://gdata.youtube.com/feeds/api/videos&quot;
+</code></pre></figure>
+<h3 id="path">Path</h3>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">base_url &quot;file:///data/sites/harvester/resources/nz_museum.xml&quot;
+</code></pre></figure>
+<h3 id="different-paths-per-environment">Different paths per environment</h3>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">base_url staging: &quot;file:///data/sites/harvester/staging/nz_museum.xml&quot;
+base_url production: &quot;file:///data/sites/harvester/production/nz_museum.xml&quot;
+</code></pre></figure>
+<h3 id="all-the-files-in-a-directory">All the files in a directory</h3>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">Dir.glob(&#39;/export/home/harvest/nlnzcat/updates/*&#39;).sort.each do |filename|
+  base_url &quot;file://#{filename}&quot;
+end
+</code></pre></figure>
+<h2 id="authentication">Authentication</h2>
+
+<h3 id="basic_auth">basic_auth</h3>
+
+<p>Allows to the operator to add HTTP Basic Authentication to all requests executed by the parser applied to it.</p>
+
+<p>The first string is the username and the second is the password.</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">basic_auth &quot;username&quot;, &quot;password&quot;
+</code></pre></figure>
+<p>This will basically append &quot;username:password&quot; to the URL&#39;s of the requests executed by this parser. So a request to: &quot;<a href="http://gdata.youtube.com/feeds/api/videos">http://gdata.youtube.com/feeds/api/videos</a>&quot; will be converted to &quot;<a href="http://username:password@gdata.youtube.com/feeds/api/videos">http://username:password@gdata.youtube.com/feeds/api/videos</a>&quot;</p>
+
+<h3 id="http_header">http_header</h3>
+
+<p>Allows the operator to add http headers to the request, so that requests can be made to protected endpoints.</p>
+
+<p>It can be used like</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">http_header({&#39;x-api-key&#39;: &#39;api-key&#39;, &#39;Authorization&#39;: &#39;Token token=&quot;token&quot;&#39;})
+</code></pre></figure>
+<h2 id="pagination">Pagination</h2>
+
+<h3 id="paginate">paginate</h3>
+
+<p>Allows the operator to paginate through a API and specify the name of the parameters used by the particular API as well as the values for those parameters.</p>
+
+<h4 id="numbered-pagination">Numbered pagination</h4>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">base_url &quot;http://gdata.youtube.com/feeds/api/videos&quot;
+paginate page_parameter: &quot;start-index&quot;, type: &quot;item&quot;, per_page_parameter: &quot;max-results&quot;, per_page: 50, page: 1, total_selector: &quot;//openSearch:totalResults&quot;
+</code></pre></figure>
+<h4 id="tokenised-pagination">Tokenised pagination</h4>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">base_url &quot;http://gdata.youtube.com/feeds/api/videos&quot;
+  paginate tokenised: true, type: &#39;page&#39;, next_page_token_location: &quot;$.nextPageToken&quot;, per_page: 1, per_page_parameter: &quot;maxResults&quot;, page_parameter: &#39;pageToken&#39;
+</code></pre></figure>
+<p>The above example will execute the following requests:</p>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">http://gdata.youtube.com/feeds/api/videos?start-index=1&amp;max-results=50
+http://gdata.youtube.com/feeds/api/videos?start-index=51&amp;max-results=50
+http://gdata.youtube.com/feeds/api/videos?start-index=101&amp;max-results=50
+etc...
+</code></pre></figure>
+<p>The total_selector option is to extract the total amount of records so that the paginator knows when to stop.</p>
+
+<p>The type option refers to the weather the pagination is implemented by specifiying the starting index like in the above case where you need to specify &quot;item&quot; or the case where you specify the actual page value, for this case use the value &quot;page&quot;.</p>
+
+<h2 id="reject-records">Reject records</h2>
+
+<h3 id="reject_if">reject_if</h3>
+
+<p>The operator can use the reject_if directive to reject records which match the criteria specified.</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">reject_if do
+  get(:title).find_with(/Weekly Review/).present?
+end
+</code></pre></figure>
+<h2 id="delete-records">Delete records</h2>
+
+<h3 id="delete_if">delete_if</h3>
+
+<p>The operator can use the delete_if directive to mark records as deleted in the api which match the criteria specified.</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">delete_if do
+  get(:title).find_with(/Weekly Review/).present?`
+end
+</code></pre></figure>
+<p>When the block of code returns a true value the record will be marked as deleted in the API. In the particular case above all records with a title that matches &quot;Weekly Review&quot; will be deleted.</p>
+
+<h2 id="throttling">Throttling</h2>
+
+<h3 id="throttle">throttle</h3>
+
+<p>To throttle the requests to a specific host add a throttle directive to the parser configuration.</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">class TestParser &lt; HarvesterCore::Xml::Base
+  throttle :host =&gt; &quot;gdata.youtube.com&quot;, :delay =&gt; 10
+end
+</code></pre></figure>
+<p>The effect of the throttle directive above will be that requests to the gdata.youtube.com host will be at least 10 seconds apart from each other.</p>
+
+<p>Fractions of a second are also allowed for finer grained control.</p>
+
+<h2 id="request-timeout">Request timeout</h2>
+
+<h3 id="request_timeout">request_timeout</h3>
+
+<p>To change the length of time that the harvester will wait before timing out a request you can do the following:</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">class TestParser &lt; HarvesterCore::Xml::Base
+  request_timeout 60000
+end
+</code></pre></figure>
+<p><em>Note:</em> The time is in milliseconds, so the above example will set a request timeout of 60 seconds</p>
+
+<h2 id="harvesting-non-primary-sources">Harvesting non-primary sources</h2>
+
+<h3 id="priority">priority</h3>
+
+<p>By defining a priority, the harvest operator indicates that this parser will not overwrite the primary source, but will create an additional source on the record with a matching internal identifier. The priority is a positive or negative integer, a value of 0 will disable this feature (overwrite the primary source).</p>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">priority 5
+</code></pre></figure>
+<p>Unintuitively, sources with more negative priorities are used first, and more positive priorities are used last. This could also be expressed as higher priorities are lower priority.</p>
+
+<h2 id="concepts">Concepts</h2>
+
+<h3 id="matching">Matching</h3>
+
+<p>To specify the type of concept matching required, set the @match_concepts@ directive as below.</p>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">match_concepts :create_or_update
+</code></pre></figure>
+<p>It can be set to:</p>
+
+<ul>
+<li><code>:create</code> which doesn&#39;t perform any matching, always creating new concepts</li>
+<li><code>:match</code> which will only match (and update the sameAs field on the matching concept with data from this harvest)</li>
+<li><code>:create_or_update</code> which will match if it exists, otherwise create a new concept.</li>
+</ul>
+
+<h2 id="xml-specific">XML Specific</h2>
+
+<h3 id="record-selector">Record Selector</h3>
+
+<p>When the source of the records is in one big XML file it is necessary to split the document into XML fragments that represent each record.</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">class TestParser &lt; HarvesterCore::Xml::Base
+  record_selector &quot;//item&quot;
+end
+</code></pre></figure>
+<p>The &quot;//item&quot; string represents the xpath that will split the XML file.</p>
+
+<h3 id="sitemap-entry-selector">Sitemap Entry Selector</h3>
+
+<p>In cases where the base_url points to a sitemap, the operator can specify the xpath that matches each URL in the sitemap.</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">class TestParser &lt; HarvesterCore::Xml::Base
+  sitemap_entry_selector &quot;//loc&quot;
+end
+</code></pre></figure>
+<p>The most common use case for this is sitemaps and the typical node where sitemaps store the URL is a node.</p>
+
+<h3 id="record-format">Record Format</h3>
+
+<p>When harvesting from a sitemap the most common case is that the resources specified in the sitemap are HTML web pages, but there are cases when they are XML.</p>
+
+<p>For these cases it is necessary to specify what is the format of the web resources.</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">class NzOnScreen &lt; HarvesterCore::Xml::Base
+  sitemap_entry_selector &quot;//loc&quot;
+  record_format :xml`
+end
+</code></pre></figure>
+<h3 id="multiple-records-from-multiple-sitemap-entries">Multiple Records from multiple Sitemap entries</h3>
+
+<p>Sometimes a sitemap_entry_selector will specify a location that specifies multiple records, in this case you will need to use all 3 of the above attributes in conjunction with each other, for example:</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">class NzOnScreen &lt; HarvesterCore::Xml::Base
+  sitemap_entry_selector &quot;//loc&quot;
+  record_selector &quot;//feed//entry&quot;
+  record_format :xml`
+end
+</code></pre></figure>
+<p>In this instance the sitemap entries are nodes. At each location specified by a sitemap entry there are multiple record entries which can be selected by specifying the record_selector. In this instance the expected format of the records entries is XML.</p>
+
+<h3 id="namespaces">Namespaces</h3>
+
+<p><em>See XML Namespaces</em> --  link to namepaces page soon</p>
+
+<p>The harvest operator can define namespaces at the class level. This allows the operator to then specify which namespace it wants to use for specific xpath queries.</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">class NzOnScreen &lt; HarvesterCore::Xml::Base
+  namespaces dc: &quot;http://purl.org/dc/elements/1.1/&quot;
+  attribute :category, xpath: &quot;//dc:identifier&quot;
+end
+</code></pre></figure>
+<h3 id="node">Node</h3>
+
+<p>Sometimes the data will contain groups of tags which relate to each other. For example a number of authors, each with a first name and last name. In this case the harvest operator can select the group node and then access the children in a block.</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">attribute :contributor do
+  contributor = get(:contributor)
+
+  node(&quot;//person&quot;).each do |node|
+    contributor += compose(node.xpath(&quot;first-name&quot;).text, &quot; &quot;, node.xpath(&quot;last-name&quot;).text)
+  end
+
+  contributor
+end
+</code></pre></figure>
+<p>If you are wanting to use predefined namespaces inside of a node block you will need to add self._namespaces to all your xpath method calls. This is because within the node block the node is just a nokogiri element.</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">node(&quot;./metadata/m:record/m:datafield[@tag=&#39;260&#39;]&quot;).each do |node|
+  text &lt;&lt; node.xpath(&quot;./m:subfield&quot;, self._namespaces).map(&amp;:text).join(&quot;; &quot;)
+end
+</code></pre></figure>
+<h2 id="oai-specific">OAI Specific</h2>
+
+<p>(this line seems wrong - the default OAI implementation should not specify a &quot;set&quot; at all)</p>
+
+<p>By default, the OAI implementation uses &amp;metadataPrefix=oai_dc with no set value, but these can be configured on a per-parser basis, as below:</p>
+
+<h3 id="metadataprefix">MetadataPrefix</h3>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">base_url &quot;http://emu.tepapa.govt.nz/oai/oai.php&quot;
+metadata_prefix &#39;oai_dc_mm&#39;
+</code></pre></figure>
+<h3 id="set">Set</h3>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">base_url &quot;http://emu.tepapa.govt.nz/oai/oai.php&quot;
+set &#39;CEISMIC&#39;
+</code></pre></figure>
+<h2 id="json-specific">JSON Specific</h2>
+
+<h3 id="record-selector">Record Selector</h3>
+
+<p>When there are many records in one JSON file, it is necessary to select the array containing records.</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">class TestParser &lt; HarvesterCore::Json::Base
+  record_selector &quot;$.items&quot;
+end
+</code></pre></figure>
+<p>This is a JsonPath expression that selects the array. If the root of the file is an array, you would use &quot;$&quot;</p>
+
+<h3 id="paths">Paths</h3>
+
+<p>Attributes are selected within each record using JsonPath</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">attribute :title, path: &quot;$.title&quot;
+attribute :author, path: &quot;$.author.name&quot;
+</code></pre></figure>
+<p>See <a href="http://goessner.net/articles/JsonPath/">http://goessner.net/articles/JsonPath/</a> for more details on JSON path.</p>
+
+<p>Note: JSON key names containing special characters like : and similar should be surrounded in &#39;single quotes&#39;, even if they are the old thing in the path. For example:</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">attribute :title, path: &quot;&#39;dc:title&#39;&quot;
+# or
+attribute :title, path: &quot;$.&#39;dc:title&#39;&quot;
+</code></pre></figure>
+
+                    </div>
+                
+            </div>
+
+        </div>
+
+        <script>
+            function orderNav() {
+                var list,
+                    section,
+                    header,
+                    sections = [],
+                    lists = {},
+                    headers = {};
+
+                var navUl = document.querySelectorAll('#navigation ul')[0],
+                    navLis = document.querySelectorAll('#navigation ul li');
+
+                if (!navUl) return;
+
+                for (var i = 0; i < navLis.length; i++) {
+                    var order, li = navLis[i];
+
+                    if (li.classList.contains('nav-header')) {
+                        section = li.textContent || li.innerText;
+                        sections.push(section);
+                        headers[section] = li;
+                        continue;
+                    }
+
+                    if (!lists[section]) {
+                        lists[section] = [];
+                    }
+
+                    order = parseFloat(li.getAttribute('data-order'))
+                    lists[section].push([order, li]);
+                }
+
+                for (var i = 0; i < sections.length; i++) {
+                    section = sections[i];
+                    list = lists[section].sort(function(a, b) {
+                        return a[0] - b[0];
+                    });
+
+                    if (header = headers[section]) {
+                        navUl.appendChild(header);
+                    }
+                    for (var j = 0; j < list.length; j++) {
+                        navUl.appendChild(list[j][1]);
+                    }
+                }
+            }
+
+            if (document.querySelectorAll) orderNav();
+        </script>
+    </body>
+</html>

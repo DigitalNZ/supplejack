@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="apple-touch-icon" sizes="144x144" href="/supplejack/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/supplejack/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/supplejack/favicon-16x16.png">
+        <link rel="manifest" href="/supplejack/manifest.json">
+        <link rel="mask-icon" href="/supplejack/safari-pinned-tab.svg" color="#118a0f">
+        <meta name="theme-color" content="#118a0f">
+
+        <title>Supplejack : Production Install</title>
+        <meta name="description" content="Documentation">
+
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/supplejack/css/syntax.css">
+        <link rel="stylesheet" href="/supplejack/css/main.css">
+    </head>
+    <body>
+
+        <div class="container">
+            <div class=row-fluid>
+                <div id=header class=span12>
+                    <a href="/supplejack/">
+                      <img src="/supplejack/images/supplejack_logo.png" alt='Supplejack' />
+                    </a>
+                    <small>Documentation (Version 0.1)</small>
+                </div>
+            </div>
+
+            <div class=row-fluid>
+                
+                
+                    <div id=navigation class=span2>
+                        <ul class="nav nav-list">
+    <li><a href="/supplejack/">Home</a></li>
+    <li><a href="/supplejack/about.html">About</a></li>
+    <li><a href="/supplejack/screenshots.html">Screenshots</a></li>
+    <li><a href="/supplejack/architecture.html">Architecture</a></li>
+    <li><a href="/supplejack/licence.html">Licence</a></li>
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Installation</li>
+            
+            <li data-order="11"><a href="/supplejack/start/installation-walk-through-by-example.html">Installation Walk-through by Example</a></li>
+        
+            
+            <li data-order="3"><a href="/supplejack/start/production-install.html">Production Install</a></li>
+        
+            
+            <li data-order="7"><a href="/supplejack/start/supplejack-website.html">Supplejack Website</a></li>
+        
+            
+            <li data-order="6"><a href="/supplejack/start/supplejack-client.html">Supplejack Client</a></li>
+        
+            
+            <li data-order="9"><a href="/supplejack/start/troubleshooting.html">Troubleshooting</a></li>
+        
+            
+            <li data-order="8"><a href="/supplejack/start/supplejack-common.html">Supplejack Common</a></li>
+        
+            
+            <li data-order="2"><a href="/supplejack/start/development-setup.html">Development Setup</a></li>
+        
+            
+            <li data-order="1"><a href="/supplejack/start/dependencies.html">Dependencies</a></li>
+        
+            
+            <li data-order="5"><a href="/supplejack/start/supplejack-worker.html">Supplejack Worker</a></li>
+        
+            
+            <li data-order="4"><a href="/supplejack/start/supplejack-manager.html">Supplejack Manager</a></li>
+        
+            
+            <li data-order="3"><a href="/supplejack/start/supplejack-api.html">Supplejack API</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Creating your API</li>
+            
+            <li data-order="3"><a href="/supplejack/api/api-admin.html">API Admin</a></li>
+        
+            
+            <li data-order="2"><a href="/supplejack/api/schema-dsl-domain-specific-language.html">Schema DSL (Domain Specific Language)</a></li>
+        
+            
+            <li data-order="1"><a href="/supplejack/api/creating-schemas.html">Creating Schemas</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Using the API</li>
+            
+            <li data-order=""><a href="/supplejack/api_usage/metrics-api.html">Metrics API</a></li>
+        
+            
+            <li data-order="2"><a href="/supplejack/api_usage/user-sets.html">Sets API</a></li>
+        
+            
+            <li data-order="1"><a href="/supplejack/api_usage/records-api.html">Records API</a></li>
+        
+            
+            <li data-order="3"><a href="/supplejack/api_usage/concepts-api.html">Concepts API</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Using the manager</li>
+            
+            <li data-order="11"><a href="/supplejack/manager/job-status.html">Job Status</a></li>
+        
+            
+            <li data-order="10"><a href="/supplejack/manager/concept-configuration.html">Concepts Configuration</a></li>
+        
+            
+            <li data-order="9"><a href="/supplejack/manager/linkchecker.html">Link Checker</a></li>
+        
+            
+            <li data-order="8"><a href="/supplejack/manager/code-snippets.html">Code Snippets</a></li>
+        
+            
+            <li data-order="1"><a href="/supplejack/manager/introduction-to-parser-scripts.html">Introduction to parser scripts</a></li>
+        
+            
+            <li data-order="2"><a href="/supplejack/manager/parser-dsl-domain-specific-language.html">Parser DSL (Domain Specific Language)</a></li>
+        
+            
+            <li data-order="3"><a href="/supplejack/manager/validations.html">Validations</a></li>
+        
+            
+            <li data-order="4"><a href="/supplejack/manager/xml-namespaces.html">XML Namespaces</a></li>
+        
+            
+            <li data-order="5"><a href="/supplejack/manager/attribute-transformation-options.html">Attribute Transformation Options</a></li>
+        
+            
+            <li data-order="6"><a href="/supplejack/manager/enrichments.html">Enrichments</a></li>
+        
+            
+            <li data-order="7"><a href="/supplejack/manager/modifiers.html">Modifiers</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Activity Metrics</li>
+            
+            <li data-order=""><a href="/supplejack/metrics/item-metrics.html">Item Metrics</a></li>
+        
+            
+            <li data-order=""><a href="/supplejack/metrics/usage-metrics.html">Usage Metrics</a></li>
+        
+    
+        
+        
+
+        
+    
+<!-- List additional links. It is recommended to add a divider
+    e.g. <li class=divider></li> first to break up the content. -->
+</ul>
+
+                    </div>
+
+                    <div id=content class=span10>
+                        <div class=page-header>
+    <h1>Production Install
+        
+    </h1>
+</div>
+
+<h3 id="notes">Notes</h3>
+
+<ul>
+<li>This documentation assumes the production has one Linux-based server. The code and documentation provided is tailored for a monolithic install, however in a full production environment DigitalNZ runs a cluster of front-end services delivering the public API, supported by a back-end service dedicated to harvesting.</li>
+<li>Replace <code>example.com</code> with your own domain name</li>
+</ul>
+
+<h3 id="1.-install-ruby,-redis-and-mongodb">1. Install Ruby, Redis and MongoDB</h3>
+
+<p>See the <a href="/supplejack/start/dependencies.html">Dependencies</a> for instructions and versions.</p>
+
+<h3 id="2.-install-supplejack-applications">2. Install Supplejack Applications</h3>
+
+<p>Installing the applications and configuring them can be quite tricky. Refer to the <a href="https://github.com/DigitalNZ/supplejack_installation/blob/master/supplejack_api_template.rb">application template code</a> to see what we do if you get stuck.</p>
+
+<p>The Rails applications need to be installed in separate folders which will be referred in the Apache configuration. Typically this is a mounted volume, so could be something like <code>/data/sites/supplejack_manager</code>.</p>
+
+<ol>
+<li>Clone the Manager from git via <code>git clone git@github.com:DigitalNZ/supplejack_manager.git</code>.</li>
+<li>Run <code>bundle install</code> from the <code>supplejack_manager</code> directory.</li>
+<li>Clone the Worker from git via <code>git clone git@github.com:DigitalNZ/supplejack_worker.git</code></li>
+<li>Run <code>bundle install</code> from the <code>supplejack_worker</code> directory.</li>
+<li>Clone <strong>your</strong> API which includes the Supplejack API Engine from <strong>your git repository</strong>.</li>
+<li>Run <code>bundle install</code> from the <code>api</code> directory.</li>
+</ol>
+
+<h3 id="3.-generate-user-api-keys">3. Generate User API Keys</h3>
+
+<p>The applications orchestrate harvesting activities by communicating over Restful JSON APIs. In order for this work, user API keys need to be created in each application. The API keys is a random assortment of numbers and letters, like <code>RhymLHa9xRQGU8gyAYXP</code>. Perform the following:</p>
+
+<ol>
+<li>Generate (and take note) of the Supplejack Manager user key by the &#39;Generate Manager User keys&#39; section of the <a href="/supplejack/start/supplejack-manager.html">documentation</a>.</li>
+<li>Generate (and take note) of the Supplejack Worker user key by the &#39;Generate Worker User keys&#39; section of the <a href="/supplejack/start/supplejack-worker.html">documentation</a>.</li>
+<li>Generate (and take note) of the Supplejack API user key by the &#39;Generate API User keys&#39; section of the <a href="/supplejack/start/supplejack-api.html">documentation</a>.</li>
+</ol>
+
+<h3 id="4.-setup-supplejack-manager">4. Setup Supplejack Manager</h3>
+
+<p>Refer to the <a href="/supplejack/start/supplejack-manager.html">Supplejack Manager documentation</a>.</p>
+
+<p>Create an Environment Configuration in <code>application.yml</code>, based on the &#39;Example 1: One environment setup&#39; example.</p>
+
+<p>Note: You will need the Worker API key from 3.2. For the <code>WORKER_HOST</code> and <code>API_HOST</code> use the external address you intend to host these applications as, such as <code>worker.example.com</code> and <code>api.example.com</code>. We will setup this configuration in Apache later.</p>
+
+<h3 id="5.-setup-supplejack-worker">5. Setup Supplejack Worker</h3>
+
+<p>Refer to the <a href="/supplejack/start/supplejack-worker.html">Supplejack Worker documentation</a>.</p>
+
+<p>You need to:</p>
+
+<ol>
+<li>Create an Environment Configuration in <code>application.yml</code>, based on the example.</li>
+<li>Start <a href="http://sidekiq.org">Sidekiq</a> via <code>bundle exec sidekiq start</code> from the worker directory</li>
+</ol>
+
+<p>Note: You will need the Manager API from 3.2. For the <code>MANAGER_HOST</code> and <code>API_HOST</code> use the external address you intend to host these applications as, such as <code>harvester.example.com</code> and <code>api.example.com</code>. We will setup this configuration in Apache later.</p>
+
+<h3 id="6.-setup-supplejack-api">6. Setup Supplejack API</h3>
+
+<p>There is nothing to configure for Supplejack API as the configuration is inside <strong>your</strong> API (which contains the <code>supplejack_api</code> engine). However, you may need to setup any configuration needed for your application.</p>
+
+<h3 id="7.-install-java-development-kit-(jdk)">7. Install Java Development Kit (JDK)</h3>
+
+<p><a href="http://lucene.apache.org/solr/">Apache Solr</a> requires a Java Runtime environment to be installed.</p>
+
+<p>Install Oracle JDK for your platform. See <a href="http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html">Oracle&#39;s Website</a> for details</p>
+
+<h3 id="8.-install-solr-and-tomcat">8. Install Solr and Tomcat</h3>
+
+<p>We recommend using Solr5, please read the Getting Started and Taking Solr to Production information on their documentation for information on how to get up and running.</p>
+
+<p><a href="http://archive.apache.org/dist/lucene/solr/ref-guide/apache-solr-ref-guide-5.5.pdf">http://archive.apache.org/dist/lucene/solr/ref-guide/apache-solr-ref-guide-5.5.pdf</a></p>
+
+<h3 id="9.-install-and-configure-apache-with-passenger">9. Install and configure Apache with Passenger</h3>
+
+<ol>
+<li>Install Apache if not already installed.</li>
+<li>Install the <a href="https://www.phusionpassenger.com/">Phusion Passenger module</a> into Apache to run Rails applications.</li>
+<li>Create <code>VirtualHost</code> configurations for the harvester, worker, API and Solr:</li>
+</ol>
+
+<h4 id="harvester:">Harvester:</h4>
+<figure class="highlight"><pre><code class="language-apacheconf" data-lang="apacheconf">&lt;VirtualHost HOST_IP_ADDRESS:80&gt;
+  DocumentRoot /data/sites/harvester.example.com/httpdocs
+  ServerName harvester.example.com
+  ServerAlias www.harvester.example.com
+
+  PassengerAppRoot /data/sites/harvester.example.com/
+
+  RailsEnv production
+  RackEnv production
+
+  &lt;Directory /data/sites/harvester.example.com/httpdocs&gt;
+    AllowOverride All
+
+    Order allow,deny
+    Allow from all
+  &lt;/Directory&gt;
+
+  ErrorLog /data/sites/harvester.example.com/logs/error_log
+  CustomLog /data/sites/harvester.example.com/logs/access_log combined
+
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^www.harvester.example.com$
+  RewriteRule ^(.*)$ http://harvester.example.com$1 [L,R=301]
+
+  Header always unset X-Powered-By
+  Header always unset X-Runtime
+&lt;/VirtualHost&gt;
+</code></pre></figure>
+<h4 id="worker:">Worker:</h4>
+<figure class="highlight"><pre><code class="language-apacheconf" data-lang="apacheconf">&lt;VirtualHost HOST_IP_ADDRESS:80&gt;
+  DocumentRoot /data/sites/worker.example.com/httpdocs
+  ServerName worker.example.com
+  ServerAlias www.worker.example.com
+
+  PassengerAppRoot /data/sites/worker.example.com/
+
+  RailsEnv production
+  RackEnv production
+
+  &lt;Directory /data/sites/worker.example.com/httpdocs&gt;
+    AllowOverride All
+
+    Order allow,deny
+    Allow from all
+  &lt;/Directory&gt;
+
+  ErrorLog /data/sites/worker.example.com/logs/error_log
+  CustomLog /data/sites/worker.example.com/logs/access_log combined
+
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^www.worker.example.com$
+  RewriteRule ^(.*)$ http://worker.example.com$1 [L,R=301]
+
+  Header always unset X-Powered-By
+  Header always unset X-Runtime
+&lt;/VirtualHost&gt;
+</code></pre></figure>
+<h4 id="api:">API:</h4>
+<figure class="highlight"><pre><code class="language-apacheconf" data-lang="apacheconf">&lt;VirtualHost HOST_IP_ADDRESS:80&gt;
+  DocumentRoot /data/sites/api.example.com/httpdocs
+  ServerName api.example.com
+  ServerAlias www.api.example.com
+
+  ProxyPass / http://HOST_IP_ADDRESS:81/ retry=0
+  ProxyPassReverse / http://HOST_IP_ADDRESS:81/
+
+  &lt;Proxy *&gt;
+    Order allow,deny
+    Allow from all
+  &lt;/Proxy&gt;
+
+  ErrorLog /data/sites/api.example.com/logs/error_log
+  CustomLog /data/sites/api.example.com/logs/access_log combined
+&lt;/VirtualHost&gt;
+</code></pre></figure>
+<h4 id="solr:">Solr:</h4>
+<figure class="highlight"><pre><code class="language-apacheconf" data-lang="apacheconf">&lt;VirtualHost HOST_IP_ADDRESS:80&gt;
+  DocumentRoot /data/sites/solr.example.com/httpdocs
+  ServerName solr.example.com
+  ServerAlias www.solr.example.com
+
+  ProxyPass / http://HOST_IP_ADDRESS:8080/ retry=0
+  ProxyPassReverse / http://HOST_IP_ADDRESS:8080/
+
+  &lt;Proxy *&gt;
+    Order allow,deny
+    Allow from all
+  &lt;/Proxy&gt;
+
+  ErrorLog /data/sites/solr.example.com/logs/error_log
+  CustomLog /data/sites/solr.example.com/logs/access_log combined
+&lt;/VirtualHost&gt;
+</code></pre></figure>
+<h3 id="10.-run-thin-servers-for-the-api">10. Run Thin servers for the API</h3>
+
+<p><a href="http://code.macournoyer.com/thin/">Thin</a> is a lightweight Ruby web server. We suggest that you run 8 <code>thin</code> worker processes to handle API traffic:</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">$ sudo /data/sites/api.example.com/bin/thin start -d -u www-data -g www-data -p 8190 -s 8 -e production --stats=&#39;/t_stats&#39;
+</code></pre></figure>
+<p>Note: API traffic isn&#39;t handled by Apache, it just provides a reverse proxy.</p>
+
+<h3 id="11.-install-haproxy">11. Install HAProxy</h3>
+
+<p><a href="http://www.haproxy.org/">HAProxy</a> is a HTTP load-balancer. We use it to distribute the load across the 8 <code>thin</code> instances we created above, exposing them a single server running on port <code>81</code>.</p>
+
+<ol>
+<li>Install HAProxy v<code>1.4.24</code></li>
+<li>Ensure you can access <a href="http://HOST:22002">http://HOST:22002</a></li>
+<li>Add this section to the HAPRoxy configuration (<code>/etc/haproxy/haprpoxy.cfg</code>) to:</li>
+</ol>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">listen application 0.0.0.0:81
+  balance  roundrobin
+  option forwardfor
+
+  stats enable
+  stats refresh 5s
+
+  server thin8190 127.0.0.1:8190 weight 1 check
+  server thin8191 127.0.0.1:8191 weight 1 check
+  server thin8192 127.0.0.1:8192 weight 1 check
+  server thin8193 127.0.0.1:8193 weight 1 check
+  server thin8194 127.0.0.1:8194 weight 1 check
+  server thin8195 127.0.0.1:8195 weight 1 check
+  server thin8196 127.0.0.1:8196 weight 1 check
+  server thin8197 127.0.0.1:8197 weight 1 check
+</code></pre></figure>
+<h3 id="12.-networking">12. Networking</h3>
+
+<ol>
+<li>You may need to configure firewalls to allow you to access services and hosts</li>
+<li>You might need to configure DNS servers or <code>/etc/hosts</code> to allow you to access hosts as names, such as <code>api.example.com</code></li>
+<li>Note that the Supplejack Manager is called the &#39;harvester&#39; when it&#39;s deployed as it&#39;s frontend to all harvesting.</li>
+</ol>
+
+<h3 id="13.-testing">13. Testing</h3>
+
+<ol>
+<li>Ensure MongoDB running via <code>mongo</code></li>
+<li>Ensure Solr is running at <a href="http://api.example.com:8080">http://api.example.com:8080</a></li>
+<li>Ensure that the API is running at <a href="http://api.example.com/records/1.json?api_key=API_KEY">http://api.example.com/records/1.json?api_key=API_KEY</a></li>
+<li>Ensure that Sidekiq for API is running at <a href="http://api.example.com/sidekiq">http://api.example.com/sidekiq</a></li>
+<li>Ensure that Sidekiq for worker is running at <a href="http://worker.example.com/sidekiq">http://worker.example.com/sidekiq</a></li>
+<li>Ensure that the manager is running at <a href="http://harvester.example.com">http://harvester.example.com</a></li>
+<li>Ensure that the worker is running at <a href="http://worker.example.com">http://worker.example.com</a></li>
+</ol>
+
+
+                    </div>
+                
+            </div>
+
+        </div>
+
+        <script>
+            function orderNav() {
+                var list,
+                    section,
+                    header,
+                    sections = [],
+                    lists = {},
+                    headers = {};
+
+                var navUl = document.querySelectorAll('#navigation ul')[0],
+                    navLis = document.querySelectorAll('#navigation ul li');
+
+                if (!navUl) return;
+
+                for (var i = 0; i < navLis.length; i++) {
+                    var order, li = navLis[i];
+
+                    if (li.classList.contains('nav-header')) {
+                        section = li.textContent || li.innerText;
+                        sections.push(section);
+                        headers[section] = li;
+                        continue;
+                    }
+
+                    if (!lists[section]) {
+                        lists[section] = [];
+                    }
+
+                    order = parseFloat(li.getAttribute('data-order'))
+                    lists[section].push([order, li]);
+                }
+
+                for (var i = 0; i < sections.length; i++) {
+                    section = sections[i];
+                    list = lists[section].sort(function(a, b) {
+                        return a[0] - b[0];
+                    });
+
+                    if (header = headers[section]) {
+                        navUl.appendChild(header);
+                    }
+                    for (var j = 0; j < list.length; j++) {
+                        navUl.appendChild(list[j][1]);
+                    }
+                }
+            }
+
+            if (document.querySelectorAll) orderNav();
+        </script>
+    </body>
+</html>
