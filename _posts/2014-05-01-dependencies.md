@@ -58,7 +58,7 @@ For more information on how to install ruby, you can refer to [official ruby gui
 
 ### Rails
 
-**Version: 4.1.7**
+**Version: 5.1.4**
 
 **Description**: [Rails](http://rubyonrails.org/) is a full-stack open source web application framework.
 
@@ -66,16 +66,16 @@ For more information on how to install ruby, you can refer to [official ruby gui
 
 If you are using [rbenv](https://github.com/sstephenson/rbenv), simply enter the following command:
 
-`gem install rails -v '4.1.7'`
+`gem install rails -v '5.1.4'`
 
 
 ### MongoDB
 
-**Version: 2.2 or greater**
+**Version: 3.4 or greater**
 
 **Description**: Supplejack uses MongoDB as a data store. You can learn about MongoDB on its [website](http://www.mongodb.org/) or on the [Wikipedia](http://en.wikipedia.org/wiki/MongoDB) page.
 
-**Installation instructions:** http://docs.mongodb.org/manual/installation/.
+**Installation instructions:** https://docs.mongodb.com/v3.4/installation/.
 
 **Alternative installation for OSX using _Homebrew_:**
 
