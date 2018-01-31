@@ -14,7 +14,7 @@ This wiki provides a guide on how to create and configure your API as well as an
 
 Before starting you should check that you have all the [dependencies](/supplejack/start/dependencies.html) installed.
 
-Once that is complete we strongly recommend using the [Supplejack template](https://github.com/DigitalNZ/supplejack_installation) to create your app. This template will create a new app which includes the Supplejack API engine and then step through the configuration options. 
+Once that is complete we strongly recommend using the [Supplejack template](https://github.com/DigitalNZ/supplejack_installation) to create your app. This template will create a new app which includes the Supplejack API engine and then step through the configuration options.
 
 For details about how to install Supplejack Template, see [Install & Setup](/supplejack/start/install-setup.html)
 
@@ -28,6 +28,16 @@ If you want to use a custom SupplejackApi::Record model, you can define a supple
 SupplejackApi.setup do |config|
   config.record_class = YourCustomClass
   config.preview_record_class = YourPreviewCustomClass
+end
+```
+
+## Log Record Metric Data
+
+By default, Supplejack will log a history of Records that have been viewed in searches and individually, if you do not want this functionality simply set `config.log_metrics = false` in `config/initializers/supplejack_api.rb`
+
+```ruby
+SupplejackApi.setup do |config|
+  config.log_metrics = false
 end
 ```
 
