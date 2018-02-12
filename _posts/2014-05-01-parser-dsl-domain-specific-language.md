@@ -47,13 +47,13 @@ basic_auth "username", "password"
 
 This will basically append "username:password" to the URL's of the requests executed by this parser. So a request to: "http://gdata.youtube.com/feeds/api/videos" will be converted to "http://username:password@gdata.youtube.com/feeds/api/videos"
 
-### http_header
+### http_headers
 Allows the operator to add http headers to the request, so that requests can be made to protected endpoints.
 
 It can be used like
 
 ```ruby
-http_header({'x-api-key': 'api-key', 'Authorization': 'Token token="token"'})
+http_headers({'x-api-key': 'api-key', 'Authorization': 'Token token="token"'})
 ```
 
 ## Pagination

@@ -220,12 +220,12 @@ end
 </code></pre></figure>
 <p>This will basically append &quot;username:password&quot; to the URL&#39;s of the requests executed by this parser. So a request to: &quot;<a href="http://gdata.youtube.com/feeds/api/videos">http://gdata.youtube.com/feeds/api/videos</a>&quot; will be converted to &quot;<a href="http://username:password@gdata.youtube.com/feeds/api/videos">http://username:password@gdata.youtube.com/feeds/api/videos</a>&quot;</p>
 
-<h3 id="http_header">http_header</h3>
+<h3 id="http_headers">http_headers</h3>
 
 <p>Allows the operator to add http headers to the request, so that requests can be made to protected endpoints.</p>
 
 <p>It can be used like</p>
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">http_header({&#39;x-api-key&#39;: &#39;api-key&#39;, &#39;Authorization&#39;: &#39;Token token=&quot;token&quot;&#39;})
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">http_headers({&#39;x-api-key&#39;: &#39;api-key&#39;, &#39;Authorization&#39;: &#39;Token token=&quot;token&quot;&#39;})
 </code></pre></figure>
 <h2 id="pagination">Pagination</h2>
 
