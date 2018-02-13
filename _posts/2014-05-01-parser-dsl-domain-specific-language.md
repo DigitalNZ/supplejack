@@ -70,9 +70,11 @@ paginate page_parameter: "start-index", type: "item", per_page_parameter: "max-r
 
 #### Tokenised pagination
 
+Tokenised pagination is enabled for XML, OAI, and JSON parser scripts.
+
 ```ruby
 base_url "http://gdata.youtube.com/feeds/api/videos"
-  paginate tokenised: true, type: 'page', next_page_token_location: "$.nextPageToken", per_page: 1, per_page_parameter: "maxResults", page_parameter: 'pageToken'
+  paginate type: 'tokenised', next_page_token_location: "$.nextPageToken", per_page: 1, per_page_parameter: "maxResults", page_parameter: 'pageToken'
 ```
 
 The above example will execute the following requests:
@@ -84,9 +86,11 @@ http://gdata.youtube.com/feeds/api/videos?start-index=101&max-results=50
 etc...
 ```
 
-The total_selector option is to extract the total amount of records so that the paginator knows when to stop.
+The total_selector option is to extract the total amount of records so that the paginator knows when to stop.  For tokenised pagination, this is an optional parameter.  Without it, the harvest will stop when the next_page_token is not present.
 
-The type option refers to the weather the pagination is implemented by specifiying the starting index like in the above case where you need to specify "item" or the case where you specify the actual page value, for this case use the value "page".
+The type option refers to the weather the pagination is implemented by specifiying the starting index like in the above case where you need to specify "item" or the case where you specify the actual page value, for this case use the value "page".  Use `type: 'tokenised'` for tokenised pagination.
+
+For apis that require an initial parameter for the first tokenised paginated request, but not for successive requests, you can use the `initial_parameter: 'abc'` method.
 
 ## Reject records
 ### reject_if
