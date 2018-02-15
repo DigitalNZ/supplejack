@@ -74,7 +74,7 @@ Tokenised pagination is enabled for XML, OAI, and JSON parser scripts.
 
 ```ruby
 base_url "http://gdata.youtube.com/feeds/api/videos"
-  paginate type: 'tokenised', next_page_token_location: "$.nextPageToken", per_page: 1, per_page_parameter: "maxResults", page_parameter: 'pageToken'
+  paginate type: 'token', next_page_token_location: "$.nextPageToken", per_page: 1, per_page_parameter: "maxResults", page_parameter: 'pageToken'
 ```
 
 The above example will execute the following requests:
