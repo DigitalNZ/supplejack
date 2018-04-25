@@ -52,6 +52,8 @@ Add your **WORKER_KEY** to the `worker/config/application.yml` in the specified 
 
 *You can now boot up the Manager and the Worker*
 
+** Make sure Mongo (port 27017)  and Redis server (port 6379) are running **
+
 Inside of the Manager directory, run `bundle exec rails s -p 3001`.
 
 Inside of the Worker directory, run `bundle exec rails s -p 3002`. You will also need to run sidekiq. Sidekiq is responsible for processing the workers jobs. Inside of the worker directory, run `bundle exec sidekiq`.
@@ -70,16 +72,16 @@ Here you will be able to see a visual representation of the queues that are bein
 
 The Supplejack API project on github is mountable rails engine. This means it is intended on being run inside of a host Rails application. Our first step will be creating the host application.
 
-First you will need to install Rails, we need to use an older version as supplejack_api is not yet compatible with Rails 5.
+First you will need to install Rails 5.
 
-`gem install rails --version=4.1.4`.
+`gem install rails --version=5.1.4`.
 
 Because we are using an older version of rails, the most simple way to get started is like this:
 
 * create a new folder called api, inside of the folder create a `Gemfile`.
 * In the Gemfile, add the following:
 * `source 'https://rubygems.org'`
-* `gem 'rails', '4.1.4'`
+* `gem 'rails', '5.1.4'`
 * run `bundle install`.
 
 Once it has finished, run `bundle exec rails new . --force --skip-bundle`.
@@ -98,6 +100,12 @@ SupplejackApi.setup do |config|
   config.preview_record_class = SupplejackApi::PreviewRecord
 end
 ```
+
+You also need to remove this line:
+
+`protect_from_forgery with: :exception`
+
+from your `app/controllers/application_controller.rb`
 
 Lastly, we need to configure the harvester key that allows the Worker and the Manager to communicate with the API. To do this, open up the rails console, with `rails console`, and create a user.
 
@@ -122,8 +130,6 @@ Cd into your api directory and boot it up on port 3000
 #### Boot Solr
 
 Cd into your API directory and run `bundle exec rails generate sunspot_rails:install`.  You will be asked if you wish to overwrite sunpot.yml?  Answer Yes.
-
-If there is a solr directory, you will need to remove it `rm -rf solr`.
 
 Now run:
 
