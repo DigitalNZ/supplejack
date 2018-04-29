@@ -28,9 +28,11 @@ Now, boot up the rails console `rails c` and run `User.create(email: 'your@email
 
 **Make sure you make yourself an admin otherwise you will not be able to create parser scripts**.
 
-This will create your user that you will use to login to the manager, you can also use this key to authenticate with the worker.
+This will create your user that you will use to login to the manager.
 
-You can see this key by running `User.last.authentication_token` in the rails console. If you have multiple accounts, you can use `User.find_by(email: ‘your_email@email.com’).authentication_token` to find the token of a particular user.
+Now you will need to generate the worker key.
+
+Run `bundle exec rake secret`
 
 Write this key down, it is the **WORKER_KEY**
 
