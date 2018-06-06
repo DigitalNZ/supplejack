@@ -61,3 +61,7 @@ Create a user.
  > SupplejackApi::User.last.authentication_token
 => "RhymLHa9xRQGU8gyAYXP"
 ```
+
+### Cron Jobs
+
+Supplejack has a few cronjobs that will help with indexing records. You can see examples of them in `schedule.example.rb`. The main one you should add is the `SupplejackApi::IndexRemainingRecordsInQueue` as it will index records that are in the Redis queue when there is not yet enough of them to trigger an index automatically.
