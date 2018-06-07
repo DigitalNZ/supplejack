@@ -61,3 +61,11 @@ Create a user.
  > SupplejackApi::User.last.authentication_token
 => "RhymLHa9xRQGU8gyAYXP"
 ```
+
+### Cron Jobs
+
+Supplejack has a few cronjobs that will help with indexing records. You can see examples of them in `schedule.example.rb`. The main one you should add is the `SupplejackApi::IndexRemainingRecordsInQueue` as it will index records that are in the Redis queue when there is not yet enough of them to trigger an index automatically.
+
+## Supplejack Sidekiq
+
+Supplejack has it's own instance of Sidekiq that you will need to run for the Full and Flush harvest to work. Start Sidekiq from the api directory with `bundle exec sidekiq`. If you are running both Sidekiq instances on the same machine, you will need to point them at separate Redis databases otherwise you will end up in problems where the two Sidekiqs are trying to process each others jobs. This can be done by appending `/<number>` to the end of your Redis URL.
