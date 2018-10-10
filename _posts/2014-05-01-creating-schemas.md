@@ -54,7 +54,7 @@ For example, if you want a field called `title` of type `String`
 * `store`: Make the field writable to DB, default is `true`
 * `search_boost`: Define Solr search priority
 
-There are for 4 field types: `string`, `integer`, `datetime`, `boolean`. You can refer to sample record schema as example.
+There are 6 field types: `string`, `integer`, `datetime`, `boolean`, `latlng`, and `text`. You can refer to sample record schema as example.
 
 ### Aliasing and Solr name
 If you need to create an alias or a virtual field, you can do that using the `search_value`.

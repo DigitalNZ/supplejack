@@ -195,11 +195,11 @@
 <li>Replace <code>example.com</code> with your own domain name</li>
 </ul>
 
-<h3 id="1.-install-ruby,-redis-and-mongodb">1. Install Ruby, Redis and MongoDB</h3>
+<h3 id="1-install-ruby-redis-and-mongodb">1. Install Ruby, Redis and MongoDB</h3>
 
 <p>See the <a href="/supplejack/start/dependencies.html">Dependencies</a> for instructions and versions.</p>
 
-<h3 id="2.-install-supplejack-applications">2. Install Supplejack Applications</h3>
+<h3 id="2-install-supplejack-applications">2. Install Supplejack Applications</h3>
 
 <p>Installing the applications and configuring them can be quite tricky. Refer to the <a href="https://github.com/DigitalNZ/supplejack_installation/blob/master/supplejack_api_template.rb">application template code</a> to see what we do if you get stuck.</p>
 
@@ -214,7 +214,7 @@
 <li>Run <code>bundle install</code> from the <code>api</code> directory.</li>
 </ol>
 
-<h3 id="3.-generate-user-api-keys">3. Generate User API Keys</h3>
+<h3 id="3-generate-user-api-keys">3. Generate User API Keys</h3>
 
 <p>The applications orchestrate harvesting activities by communicating over Restful JSON APIs. In order for this work, user API keys need to be created in each application. The API keys is a random assortment of numbers and letters, like <code>RhymLHa9xRQGU8gyAYXP</code>. Perform the following:</p>
 
@@ -224,7 +224,7 @@
 <li>Generate (and take note) of the Supplejack API user key by the &#39;Generate API User keys&#39; section of the <a href="/supplejack/start/supplejack-api.html">documentation</a>.</li>
 </ol>
 
-<h3 id="4.-setup-supplejack-manager">4. Setup Supplejack Manager</h3>
+<h3 id="4-setup-supplejack-manager">4. Setup Supplejack Manager</h3>
 
 <p>Refer to the <a href="/supplejack/start/supplejack-manager.html">Supplejack Manager documentation</a>.</p>
 
@@ -232,7 +232,7 @@
 
 <p>Note: You will need the Worker API key from 3.2. For the <code>WORKER_HOST</code> and <code>API_HOST</code> use the external address you intend to host these applications as, such as <code>worker.example.com</code> and <code>api.example.com</code>. We will setup this configuration in Apache later.</p>
 
-<h3 id="5.-setup-supplejack-worker">5. Setup Supplejack Worker</h3>
+<h3 id="5-setup-supplejack-worker">5. Setup Supplejack Worker</h3>
 
 <p>Refer to the <a href="/supplejack/start/supplejack-worker.html">Supplejack Worker documentation</a>.</p>
 
@@ -245,23 +245,23 @@
 
 <p>Note: You will need the Manager API from 3.2. For the <code>MANAGER_HOST</code> and <code>API_HOST</code> use the external address you intend to host these applications as, such as <code>harvester.example.com</code> and <code>api.example.com</code>. We will setup this configuration in Apache later.</p>
 
-<h3 id="6.-setup-supplejack-api">6. Setup Supplejack API</h3>
+<h3 id="6-setup-supplejack-api">6. Setup Supplejack API</h3>
 
 <p>There is nothing to configure for Supplejack API as the configuration is inside <strong>your</strong> API (which contains the <code>supplejack_api</code> engine). However, you may need to setup any configuration needed for your application.</p>
 
-<h3 id="7.-install-java-development-kit-(jdk)">7. Install Java Development Kit (JDK)</h3>
+<h3 id="7-install-java-development-kit-jdk">7. Install Java Development Kit (JDK)</h3>
 
 <p><a href="http://lucene.apache.org/solr/">Apache Solr</a> requires a Java Runtime environment to be installed.</p>
 
 <p>Install Oracle JDK for your platform. See <a href="http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html">Oracle&#39;s Website</a> for details</p>
 
-<h3 id="8.-install-solr-and-tomcat">8. Install Solr and Tomcat</h3>
+<h3 id="8-install-solr-and-tomcat">8. Install Solr and Tomcat</h3>
 
 <p>We recommend using Solr5, please read the Getting Started and Taking Solr to Production information on their documentation for information on how to get up and running.</p>
 
 <p><a href="http://archive.apache.org/dist/lucene/solr/ref-guide/apache-solr-ref-guide-5.5.pdf">http://archive.apache.org/dist/lucene/solr/ref-guide/apache-solr-ref-guide-5.5.pdf</a></p>
 
-<h3 id="9.-install-and-configure-apache-with-passenger">9. Install and configure Apache with Passenger</h3>
+<h3 id="9-install-and-configure-apache-with-passenger">9. Install and configure Apache with Passenger</h3>
 
 <ol>
 <li>Install Apache if not already installed.</li>
@@ -269,7 +269,7 @@
 <li>Create <code>VirtualHost</code> configurations for the harvester, worker, API and Solr:</li>
 </ol>
 
-<h4 id="harvester:">Harvester:</h4>
+<h4 id="harvester">Harvester:</h4>
 <figure class="highlight"><pre><code class="language-apacheconf" data-lang="apacheconf">&lt;VirtualHost HOST_IP_ADDRESS:80&gt;
   DocumentRoot /data/sites/harvester.example.com/httpdocs
   ServerName harvester.example.com
@@ -298,7 +298,7 @@
   Header always unset X-Runtime
 &lt;/VirtualHost&gt;
 </code></pre></figure>
-<h4 id="worker:">Worker:</h4>
+<h4 id="worker">Worker:</h4>
 <figure class="highlight"><pre><code class="language-apacheconf" data-lang="apacheconf">&lt;VirtualHost HOST_IP_ADDRESS:80&gt;
   DocumentRoot /data/sites/worker.example.com/httpdocs
   ServerName worker.example.com
@@ -327,7 +327,7 @@
   Header always unset X-Runtime
 &lt;/VirtualHost&gt;
 </code></pre></figure>
-<h4 id="api:">API:</h4>
+<h4 id="api">API:</h4>
 <figure class="highlight"><pre><code class="language-apacheconf" data-lang="apacheconf">&lt;VirtualHost HOST_IP_ADDRESS:80&gt;
   DocumentRoot /data/sites/api.example.com/httpdocs
   ServerName api.example.com
@@ -345,7 +345,7 @@
   CustomLog /data/sites/api.example.com/logs/access_log combined
 &lt;/VirtualHost&gt;
 </code></pre></figure>
-<h4 id="solr:">Solr:</h4>
+<h4 id="solr">Solr:</h4>
 <figure class="highlight"><pre><code class="language-apacheconf" data-lang="apacheconf">&lt;VirtualHost HOST_IP_ADDRESS:80&gt;
   DocumentRoot /data/sites/solr.example.com/httpdocs
   ServerName solr.example.com
@@ -363,14 +363,14 @@
   CustomLog /data/sites/solr.example.com/logs/access_log combined
 &lt;/VirtualHost&gt;
 </code></pre></figure>
-<h3 id="10.-run-thin-servers-for-the-api">10. Run Thin servers for the API</h3>
+<h3 id="10-run-thin-servers-for-the-api">10. Run Thin servers for the API</h3>
 
 <p><a href="http://code.macournoyer.com/thin/">Thin</a> is a lightweight Ruby web server. We suggest that you run 8 <code>thin</code> worker processes to handle API traffic:</p>
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">$ sudo /data/sites/api.example.com/bin/thin start -d -u www-data -g www-data -p 8190 -s 8 -e production --stats=&#39;/t_stats&#39;
 </code></pre></figure>
 <p>Note: API traffic isn&#39;t handled by Apache, it just provides a reverse proxy.</p>
 
-<h3 id="11.-install-haproxy">11. Install HAProxy</h3>
+<h3 id="11-install-haproxy">11. Install HAProxy</h3>
 
 <p><a href="http://www.haproxy.org/">HAProxy</a> is a HTTP load-balancer. We use it to distribute the load across the 8 <code>thin</code> instances we created above, exposing them a single server running on port <code>81</code>.</p>
 
@@ -395,7 +395,7 @@
   server thin8196 127.0.0.1:8196 weight 1 check
   server thin8197 127.0.0.1:8197 weight 1 check
 </code></pre></figure>
-<h3 id="12.-networking">12. Networking</h3>
+<h3 id="12-networking">12. Networking</h3>
 
 <ol>
 <li>You may need to configure firewalls to allow you to access services and hosts</li>
@@ -403,7 +403,7 @@
 <li>Note that the Supplejack Manager is called the &#39;harvester&#39; when it&#39;s deployed as it&#39;s frontend to all harvesting.</li>
 </ol>
 
-<h3 id="13.-testing">13. Testing</h3>
+<h3 id="13-testing">13. Testing</h3>
 
 <ol>
 <li>Ensure MongoDB running via <code>mongo</code></li>
