@@ -196,18 +196,25 @@
 
 <p>Before starting you should check that you have all the <a href="/supplejack/start/dependencies.html">dependencies</a> installed.</p>
 
-<p>Once that is complete we strongly recommend using the <a href="https://github.com/DigitalNZ/supplejack_installation">Supplejack template</a> to create your app. This template will create a new app which includes the Supplejack API engine and then step through the configuration options. </p>
+<p>Once that is complete we strongly recommend using the <a href="https://github.com/DigitalNZ/supplejack_installation">Supplejack template</a> to create your app. This template will create a new app which includes the Supplejack API engine and then step through the configuration options.</p>
 
 <p>For details about how to install Supplejack Template, see <a href="/supplejack/start/install-setup.html">Install &amp; Setup</a></p>
 
 <p>Once the install is complete you should have a working API. The next step is to <a href="/supplejack/api/creating-schemas.html">configure your schema</a> so that you can configure the fields that are stored/returned by your API.</p>
 
-<h2 id="setup-a-custom-record-model-from-your-api-[optional]">Setup a custom record model from your API [OPTIONAL]</h2>
+<h2 id="setup-a-custom-record-model-from-your-api-optional">Setup a custom record model from your API [OPTIONAL]</h2>
 
 <p>If you want to use a custom SupplejackApi::Record model, you can define a supplejack_api.rb initializer file and define the following block:</p>
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">SupplejackApi.setup do |config|
   config.record_class = YourCustomClass
   config.preview_record_class = YourPreviewCustomClass
+end
+</code></pre></figure>
+<h2 id="log-record-metric-data">Log Record Metric Data</h2>
+
+<p>By default, Supplejack will log a history of Records that have been viewed in searches and individually, if you do not want this functionality simply set <code>config.log_metrics = false</code> in <code>config/initializers/supplejack_api.rb</code></p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">SupplejackApi.setup do |config|
+  config.log_metrics = false
 end
 </code></pre></figure>
 <p>Make sure your model follow the same structure as the <a href="https://github.com/DigitalNZ/supplejack_api/blob/master/app/models/supplejack_api/record.rb">SupplejackApi::Record</a> and <a href="https://github.com/DigitalNZ/supplejack_api/blob/master/app/models/supplejack_api/preview_record.rb">SupplejackApi::PreviewRecord</a></p>
@@ -225,6 +232,14 @@ end
  &gt; SupplejackApi::User.last.authentication_token
 =&gt; &quot;RhymLHa9xRQGU8gyAYXP&quot;
 </code></pre></figure>
+<h3 id="cron-jobs">Cron Jobs</h3>
+
+<p>Supplejack has a few cronjobs that will help with indexing records. You can see examples of them in <code>schedule.example.rb</code>. The main one you should add is the <code>SupplejackApi::IndexRemainingRecordsInQueue</code> as it will index records that are in the Redis queue when there is not yet enough of them to trigger an index automatically.</p>
+
+<h2 id="supplejack-sidekiq">Supplejack Sidekiq</h2>
+
+<p>Supplejack has it&#39;s own instance of Sidekiq that you will need to run for the Full and Flush harvest to work. Start Sidekiq from the api directory with <code>bundle exec sidekiq</code>. If you are running both Sidekiq instances on the same machine, you will need to point them at separate Redis databases otherwise you will end up in problems where the two Sidekiqs are trying to process each others jobs. This can be done by appending <code>/&lt;number&gt;</code> to the end of your Redis URL.</p>
+
 
                     </div>
                 

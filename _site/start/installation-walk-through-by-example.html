@@ -192,13 +192,13 @@
 
 <p>By the end of this tutorial, you will have a working set up of Supplejack on your local machine. Note that these instructions are intended to be run on either Mac or Linux.</p>
 
-<h3 id="step-one---setting-up-your-working-directories:">Step One - Setting up your working directories:</h3>
+<h3 id="step-one-setting-up-your-working-directories">Step One - Setting up your working directories:</h3>
 
 <p>Create a folder called <code>supplejack</code> on your machine. Inside of this folder, clone down the following projects.</p>
 
 <p><a href="https://github.com/DigitalNZ/supplejack_manager">https://github.com/DigitalNZ/supplejack_manager</a> as &#39;manager&#39;. <a href="https://github.com/DigitalNZ/supplejack_worker">https://github.com/DigitalNZ/supplejack_worker</a> as ‘worker’.</p>
 
-<h3 id="step-two---setting-up-the-manager:">Step Two - Setting up the Manager:</h3>
+<h3 id="step-two-setting-up-the-manager">Step Two - Setting up the Manager:</h3>
 
 <p>The Manager and Worker need a key to communicate with each other, the instructions below will tell you how to create them.</p>
 
@@ -210,29 +210,33 @@
 
 <p><strong>Make sure you make yourself an admin otherwise you will not be able to create parser scripts</strong>.</p>
 
-<p>This will create your user that you will use to login to the manager, you can also use this key to authenticate with the worker.</p>
+<p>This will create your user that you will use to login to the manager.</p>
 
-<p>You can see this key by running <code>User.last.authentication_token</code> in the rails console. If you have multiple accounts, you can use <code>User.find_by(email: ‘your_email@email.com’).authentication_token</code> to find the token of a particular user.</p>
+<p>Now you will need to generate the worker key.</p>
+
+<p>Run <code>bundle exec rake secret</code></p>
 
 <p>Write this key down, it is the <strong>WORKER_KEY</strong></p>
 
-<h3 id="step-three---setting-up-the-worker">Step Three - Setting up the Worker</h3>
+<h3 id="step-three-setting-up-the-worker">Step Three - Setting up the Worker</h3>
 
 <p>As with the manager, cd into your worker directory and run bundle install.</p>
 
 <p>Once this has finished, copy the <code>config/application.yml.example</code> to <code>config/application.yml</code>.</p>
 
-<h3 id="step-four---sharing-keys-and-booting-up-the-manager-and-worker.">Step Four - Sharing keys and Booting up the Manager and Worker.</h3>
+<h3 id="step-four-sharing-keys-and-booting-up-the-manager-and-worker">Step Four - Sharing keys and Booting up the Manager and Worker.</h3>
 
-<h4 id="for-the-manager:">For the Manager:</h4>
+<h4 id="for-the-manager">For the Manager:</h4>
 
 <p>Add your <strong>WORKER_KEY</strong> to the <code>manager/config/application.yml</code> where it states <strong>WORKER_KEY</strong>. You will need to add this for each environment listed in this file.</p>
 
-<h4 id="for-the-worker:">For the Worker:</h4>
+<h4 id="for-the-worker">For the Worker:</h4>
 
 <p>Add your <strong>WORKER_KEY</strong> to the <code>worker/config/application.yml</code> in the specified place. You will need to do this for the test, development, and staging environments.</p>
 
 <p><em>You can now boot up the Manager and the Worker</em></p>
+
+<p>** Make sure Mongo (port 27017)  and Redis server (port 6379) are running **</p>
 
 <p>Inside of the Manager directory, run <code>bundle exec rails s -p 3001</code>.</p>
 
@@ -248,13 +252,13 @@ You will be able to login here with the credentials you previously generated for
 <p>The Workers Sidekiq: <a href="http://localhost:3002/sidekiq">http://localhost:3002/sidekiq</a>
 Here you will be able to see a visual representation of the queues that are being processed.</p>
 
-<h3 id="step-five---setting-up-the-api">Step Five - Setting up the API</h3>
+<h3 id="step-five-setting-up-the-api">Step Five - Setting up the API</h3>
 
 <p>The Supplejack API project on github is mountable rails engine. This means it is intended on being run inside of a host Rails application. Our first step will be creating the host application.</p>
 
-<p>First you will need to install Rails, we need to use an older version as supplejack_api is not yet compatible with Rails 5.</p>
+<p>First you will need to install Rails 5.</p>
 
-<p><code>gem install rails --version=4.1.4</code>.</p>
+<p><code>gem install rails --version=5.1.4</code>.</p>
 
 <p>Because we are using an older version of rails, the most simple way to get started is like this:</p>
 
@@ -262,7 +266,7 @@ Here you will be able to see a visual representation of the queues that are bein
 <li>create a new folder called api, inside of the folder create a <code>Gemfile</code>.</li>
 <li>In the Gemfile, add the following:</li>
 <li><code>source &#39;https://rubygems.org&#39;</code></li>
-<li><code>gem &#39;rails&#39;, &#39;4.1.4&#39;</code></li>
+<li><code>gem &#39;rails&#39;, &#39;5.1.4&#39;</code></li>
 <li>run <code>bundle install</code>.</li>
 </ul>
 
@@ -280,6 +284,12 @@ Here you will be able to see a visual representation of the queues that are bein
   config.preview_record_class = SupplejackApi::PreviewRecord
 end
 </code></pre></figure>
+<p>You also need to remove this line:</p>
+
+<p><code>protect_from_forgery with: :exception</code></p>
+
+<p>from your <code>app/controllers/application_controller.rb</code></p>
+
 <p>Lastly, we need to configure the harvester key that allows the Worker and the Manager to communicate with the API. To do this, open up the rails console, with <code>rails console</code>, and create a user.</p>
 <figure class="highlight"><pre><code class="language-Ruby" data-lang="Ruby">SupplejackApi::User.create(email: &#39;yourharvest@email.com&#39;, password: &#39;password&#39;, password_confirmation: &#39;password&#39;, role: &#39;harvester&#39;)
 </code></pre></figure>
@@ -289,9 +299,9 @@ end
 
 <p>You are now ready to run the stack!</p>
 
-<h3 id="step-six---running-the-stack">Step Six - Running the Stack</h3>
+<h3 id="step-six-running-the-stack">Step Six - Running the Stack</h3>
 
-<h4 id="boot-the-api:">Boot the API:</h4>
+<h4 id="boot-the-api">Boot the API:</h4>
 
 <p>Cd into your api directory and boot it up on port 3000</p>
 
@@ -300,8 +310,6 @@ end
 <h4 id="boot-solr">Boot Solr</h4>
 
 <p>Cd into your API directory and run <code>bundle exec rails generate sunspot_rails:install</code>.  You will be asked if you wish to overwrite sunpot.yml?  Answer Yes.</p>
-
-<p>If there is a solr directory, you will need to remove it <code>rm -rf solr</code>.</p>
 
 <p>Now run:</p>
 
@@ -520,7 +528,7 @@ end
 
 <p>Click ‘Run Harvest’, and then click ‘Staging Harvest’, enter 1000, and then click start. I do not know how large this example harvest is.</p>
 
-<h3 id="step-seven---indexing-your-records">Step Seven - Indexing your Records</h3>
+<h3 id="step-seven-indexing-your-records">Step Seven - Indexing your Records</h3>
 
 <p>Once the harvest has finished you are now ready to index your records into Solr. On our DNZ servers we have a background job that handles this, but since we are running locally we can just do it in the Rails console of the API.</p>
 
@@ -540,7 +548,7 @@ SupplejackApi::PreviewRecord.destroy_all
 
 <p><strong>Note the fields that are returned by default are determined by the groups on your RecordSchema. You can alter the your RecordSchema to whichever fields you would like, check out the docs here.</strong></p>
 
-<h3 id="step-eight---using-the-supplejack-client-to-pull-data-from-your-api">Step Eight - Using the supplejack client to pull data from your API</h3>
+<h3 id="step-eight-using-the-supplejack-client-to-pull-data-from-your-api">Step Eight - Using the supplejack client to pull data from your API</h3>
 
 <p>Create a new Rails application, this can be Rails 5 if you would like.</p>
 
@@ -574,7 +582,7 @@ end
 
 <p>You can find a record_id by adding <code>record_id</code> to the list of fields in the api GET request you previously made in the browser.</p>
 
-<h3 id="step-nine---showing-your-data-on-your-host-app">Step Nine - Showing your data on your host app</h3>
+<h3 id="step-nine-showing-your-data-on-your-host-app">Step Nine - Showing your data on your host app</h3>
 
 <p>Create a new records_controller in your host application. You can do this with <code>rails g controller records</code>. The generate command will create the controller, the view, and the related spec files.</p>
 

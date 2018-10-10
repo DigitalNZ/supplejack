@@ -209,12 +209,12 @@ end
 
 <p>The <strong>fetch</strong> method is provided to have access to the the raw data.</p>
 
-<h5 id="xml-based-strategy-(xml,-rss)">XML based strategy (XML, RSS)</h5>
+<h5 id="xml-based-strategy-xml-rss">XML based strategy (XML, RSS)</h5>
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">attribute :creator do
   fetch(&quot;//author&quot;)
 end
 </code></pre></figure>
-<h5 id="json-based-strategy-(json)">JSON based strategy (JSON)</h5>
+<h5 id="json-based-strategy-json">JSON based strategy (JSON)</h5>
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">attribute :creator do
   fetch(&quot;author&quot;)
 end
@@ -249,7 +249,7 @@ For an overview of all the configuration parameters refer to the <a href="https:
 
 <p>The following set of methods allow the operator to inspect the values of a particular field. These methods are specially usefull when the operator needs to acomplish conditional </p>
 
-<h4 id="present?">present?</h4>
+<h4 id="present">present?</h4>
 
 <p>Checks if there is any value at all. Returns true or false.</p>
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">attribute :category, xpath: &quot;//category&quot; do
@@ -258,7 +258,7 @@ For an overview of all the configuration parameters refer to the <a href="https:
   category
 end
 </code></pre></figure>
-<h4 id="includes?">includes?</h4>
+<h4 id="includes">includes?</h4>
 
 <p>Checks if the value provided is included in the set.</p>
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">attribute :category, xpath: &quot;//category&quot; do
@@ -285,35 +285,35 @@ end
 </code></pre></figure>
 <h3 id="modify-value">Modify Value</h3>
 
-<h4 id="find_with(regexp)">find_with(regexp)</h4>
+<h4 id="find_with-regexp">find_with(regexp)</h4>
 
 <p>It returns the first element that matches the regular expression.</p>
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">attribute :identifier do
   get(:identifier).find_with(/IE:\w/)
 end
 </code></pre></figure>
-<h4 id="find_all_with(regexp)">find_all_with(regexp)</h4>
+<h4 id="find_all_with-regexp">find_all_with(regexp)</h4>
 
 <p>It returns all the elements that matches the regular expression.</p>
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">attribute :identifier do
   get(:identifier).find_all_with(/IE:\w/)
 end
 </code></pre></figure>
-<h4 id="find_without(regexp)">find_without(regexp)</h4>
+<h4 id="find_without-regexp">find_without(regexp)</h4>
 
 <p>It returns the first element that doesn&#39;t match the regular expression.</p>
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">attribute :identifier do
   get(:identifier).find_without(/http/)
 end
 </code></pre></figure>
-<h4 id="find_all_without(regexp)">find_all_without(regexp)</h4>
+<h4 id="find_all_without-regexp">find_all_without(regexp)</h4>
 
 <p>It returns all the elements that don&#39;t match the regular expression.</p>
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">attribute :identifier do
   get(:identifier).find_all_without(/http/)
 end
 </code></pre></figure>
-<h4 id="mapping(regexp,-substitute_value)">mapping(regexp, substitute_value)</h4>
+<h4 id="mapping-regexp-substitute_value">mapping(regexp, substitute_value)</h4>
 
 <p>It replaces all the values with the regular expression specified</p>
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">attribute :enrichment_url do
@@ -327,7 +327,7 @@ end
 </code></pre></figure>
 <p>To use captured values from the regular expression use \1 for the first captured value \2 for the second on so on.</p>
 
-<h4 id="select(start,-end)">select(start, end)</h4>
+<h4 id="select-start-end">select(start, end)</h4>
 
 <p>It allows you to select any element or range of elements within an array</p>
 
@@ -351,21 +351,21 @@ end
   get(:creator).select(:first, -2)
 end
 </code></pre></figure>
-<h4 id="add(value)">add(value)</h4>
+<h4 id="add-value">add(value)</h4>
 
 <p>It appends a value to a attribute.</p>
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">attribute :category, default: [&quot;Newspapers&quot;] do
   get(:category).add(&quot;Images&quot;) if get(:thumbnail_url).present?
 end
 </code></pre></figure>
-<h4 id="compose(value1,-value2...)">compose(value1, value2...)</h4>
+<h4 id="compose-value1-value2">compose(value1, value2...)</h4>
 
 <p>It joins multiple values from potentially different places.</p>
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">attribute :subjects do
   compose(get(:tag), &quot;New Zealand&quot;, get(:title))
 end
 </code></pre></figure>
-<h4 id="concept_lookup(url)">concept_lookup(url)</h4>
+<h4 id="concept_lookup-url">concept_lookup(url)</h4>
 
 <p>It returns concept ids if the sameAs of the concept fragment contains given url</p>
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">attribute :concept_ids do
@@ -379,7 +379,7 @@ end
   get(:display_date).to_date
 end
 </code></pre></figure>
-<h4 id="split(split_value)">split(split_value)</h4>
+<h4 id="split-split_value">split(split_value)</h4>
 
 <p>It will try and split all values by the value specified.</p>
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">attribute :subject do
@@ -393,7 +393,7 @@ end
 </code></pre></figure>
 <p>The splitter can also split based on a regular expression.</p>
 
-<h4 id="truncate(length,-omission=&quot;...&quot;)">truncate(length, omission=&quot;...&quot;)</h4>
+<h4 id="truncate-length-omission">truncate(length, omission=&quot;...&quot;)</h4>
 
 <p>It will truncate all values to the specified length. The omission defaults to three dots &quot;...&quot;, but a different string can be specified.</p>
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">attribute :description do

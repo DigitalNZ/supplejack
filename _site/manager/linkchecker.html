@@ -199,7 +199,7 @@ to the <code>primary_collection</code>.</p>
 
 <h2 id="components">Components</h2>
 
-<h3 id="source-checking-(on-demand)">Source Checking (On Demand)</h3>
+<h3 id="source-checking-on-demand">Source Checking (On Demand)</h3>
 
 <p>When a <code>source_url</code> (such as
 <a href="http://api.digitalnz.org/records/23141109/source">http://api.digitalnz.org/records/23141109/source</a>)
@@ -231,7 +231,7 @@ suppressed, and add or remove collections.</p>
 
 <p><em>Note: Marking a collection as suppressed doesn&#39;t delete the collections
 items (and are thus still available if you their id), they are just
-added to the <a href="http://localhost:3000/sources.json&amp;source%5Bstatus%5D=suppressed">API Suppressed Sources</a>
+added to the <a href="http://localhost:3000/sources.json&source%5Bstatus%5D=suppressed">API Suppressed Sources</a>
 and don&#39;t show up in search results.</em></p>
 
 <h3 id="collection-rules">Collection Rules</h3>
@@ -284,10 +284,10 @@ This is also emailed to Harvest Operators</p>
 
 <h2 id="nitty-gritty-technical-details">Nitty Gritty Technical Details</h2>
 
-<h3 id="relationship-between-the-manager,-the-api-and-the-worker">Relationship between the Manager, the API and the Worker</h3>
+<h3 id="relationship-between-the-manager-the-api-and-the-worker">Relationship between the Manager, the API and the Worker</h3>
 
 <p>The Manager houses all the setup of the collection checking and the
-rules. The Manager provides an interface to the <a href="http://localhost:3000/sources.json&amp;source%5Bstatus%5D=suppressed">API Suppressed Sources</a>
+rules. The Manager provides an interface to the <a href="http://localhost:3000/sources.json&source%5Bstatus%5D=suppressed">API Suppressed Sources</a>
 to manually suppress and active whole collections. The work to actually
 perform the checking of the <code>landing_url</code>s and to check the health of the
 network is all done in the Worker, running as Sidekiq jobs.</p>
