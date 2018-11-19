@@ -10,22 +10,6 @@ a quicker setup locally.
 
 Docker implementation of Supplejack stack includes (API, Manager, Worker, MongoDB, Redis and Solr). Repository found here https://github.com/DigitalNZ/supplejack_docker .
 
-### Features
-- Redis container
-- Solr container
-- Docker volumes for mongo and solr-index
-- Supplejack worker container: rails
-- Supplejack worker container: sidekiq
-- Supplejack manager container
-- Supplejack sample API container: rails
-- Supplejack sample API container: sidekiq + crons for indexing
-
-Note that the cronjob for indexing new records in to solr runs once per minute, as does the Solr autocommit.
-
-### Prerequisites
-- Docker
-- Docker Compose
-
 ### Getting Started
 1. [Install Docker, Docker Compose and dependencies](https://docs.docker.com/install/)
 
