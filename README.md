@@ -13,7 +13,7 @@ To get started editing the documentation run the following commands
 ~/supplejack $ jekyll serve
 ```
 
-This will run a local coy of the docs at http://0.0.0.0:4000/supplejack/
+This will run a local copy of the docs at http://0.0.0.0:4000/supplejack/
 
 ## Editing pages
 
@@ -26,7 +26,7 @@ Once you have made and saved your changes run the following command to generate 
 jekyll build
 ```
 
-If you are doing lots of changes or would like to review your changes often you can use 
+If you are doing lots of changes or would like to review your changes often you can use
 
 ```bash
 jekyll build --watch
@@ -41,7 +41,7 @@ This will rebuild the site automatically when you save changes. Once you are hap
 To create a new page run the following commad in the root of the docs site.
 
 ```bash
-ruby ./bin/jekyll-page "Page name" page-category 
+ruby ./bin/jekyll-page "Page name" page-category
 ```
 
 This script builds a new page with the correct time stamping and create a symlink in the pages directory.
