@@ -431,6 +431,8 @@ end
 
 <p>If you get an error such as ‘Unable to connect to localhost:3001 over (1)’ you will need to change the <code>config/application.yml</code> of the MANAGER and the WORKER to have the API HOST, MANAGER HOST, and WORKER HOST, as <code>http://127.0.0.1:port</code> instead of <code>http://localhost:port</code>.</p>
 
+<p>If you get an error such as <code>Errno::ECONNREFUSED: Failed to open TCP connection to 127.0.0.1:3001 (Connection refused - connect(2) for &quot;127.0.0.1&quot; port 3001)</code> when previewing / harvesting, add the <code>-b 0.0.0.0</code> option to the <code>rails s</code> command when running the stack locally.</p>
+
 <p>If you do not get any records coming through in your preview, look in the Sidekiq pane of your terminal. If there is an error about not being able to find a Record with a specific ID, you will have a mismatch within the <code>Record</code> and <code>PreviewRecord</code> IDs. The best thing to do here is to go into the API project, run the rails console and delete the <code>SupplejackApi::Record</code> and <code>SupplejackApi::PreviewRecord</code> models.</p>
 
 <p>You can do this with <code>SupplejackApi::Record.destroy_all</code> and <code>SupplejackApi::PreviewRecord.destroy_all</code></p>

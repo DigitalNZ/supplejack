@@ -254,6 +254,8 @@ You should now be able to preview your parser! Click the preview button and the 
 
 If you get an error such as ‘Unable to connect to localhost:3001 over (1)’ you will need to change the `config/application.yml` of the MANAGER and the WORKER to have the API HOST, MANAGER HOST, and WORKER HOST, as `http://127.0.0.1:port` instead of `http://localhost:port`.
 
+If you get an error such as `Errno::ECONNREFUSED: Failed to open TCP connection to 127.0.0.1:3001 (Connection refused - connect(2) for "127.0.0.1" port 3001)` when previewing / harvesting, add the `-b 0.0.0.0` option to the `rails s` command when running the stack locally.
+
 If you do not get any records coming through in your preview, look in the Sidekiq pane of your terminal. If there is an error about not being able to find a Record with a specific ID, you will have a mismatch within the `Record` and `PreviewRecord` IDs. The best thing to do here is to go into the API project, run the rails console and delete the `SupplejackApi::Record` and `SupplejackApi::PreviewRecord` models.
 
 You can do this with `SupplejackApi::Record.destroy_all` and `SupplejackApi::PreviewRecord.destroy_all`
