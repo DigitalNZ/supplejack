@@ -393,7 +393,7 @@ Create a new Rails application, this can be Rails 5 if you would like.
 
 Add the supplejack_client to your Gemfile.
 
-gem 'supplejack_client', git: 'https://github.com/DigitalNZ/supplejack_api.git'
+gem 'supplejack_client', git: 'https://github.com/DigitalNZ/supplejack_client.git'
 Then run `bundle install`
 
 The default testing framework that Rails ships with is MiniTest, all of our projects use [RSpec](https://github.com/rspec/rspec-rails) to add it to the Gemfile and follow the configuration steps to get up and running.
