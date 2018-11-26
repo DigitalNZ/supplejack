@@ -49,6 +49,9 @@
             
                 <li class=nav-header>Installation</li>
             
+            <li data-order="3"><a href="/supplejack/start/docker-setup.html">Docker Setup</a></li>
+        
+            
             <li data-order="11"><a href="/supplejack/start/installation-walk-through-by-example.html">Installation Walk-through by Example</a></li>
         
             
@@ -188,9 +191,11 @@
     </h1>
 </div>
 
+<p>If you are using Docker and want to setup Supplejack quickly in your development environment you can find the guide for that <a href="/supplejack/start/docker-setup.html">here</a></p>
+
 <p>Once you have installed all the <a href="/supplejack/start/dependencies.html">dependencies</a> you are now ready to install the rest of the stack. As all the components require configuration to interact we strongly recommend that you use the <a href="https://github.com/DigitalNZ/supplejack_installation">installation template</a> which is a <a href="http://guides.rubyonrails.org/rails_application_templates.html">Rails Application Template</a> which is provided for Supplejack.</p>
 
-<p>If you are a Mac user using <a href="http://brew.sh/">Homebrew</a> we strongly recommend you cleanly run brew doctor before installing. </p>
+<p>If you are a Mac user using <a href="http://brew.sh/">Homebrew</a> we strongly recommend you cleanly run brew doctor before installing.</p>
 <figure class="highlight"><pre><code class="language-text" data-lang="text">$ brew update
 $ brew doctor
 </code></pre></figure>
@@ -209,7 +214,7 @@ $ brew doctor
 
 <h2 id="install-the-supplejack-stack">Install the Supplejack Stack</h2>
 
-<p>The Supplejack Stack refers to the Supplejack API, Supplejack Manager and the Supplejack Worker applications. </p>
+<p>The Supplejack Stack refers to the Supplejack API, Supplejack Manager and the Supplejack Worker applications.</p>
 
 <p>The  <a href="https://github.com/DigitalNZ/supplejack_installation">installation template</a> creates a new Rails application using the Supplejack API and then installs and configures the Supplejack Manager and Supplejack Worker applications.</p>
 
