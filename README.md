@@ -1,6 +1,6 @@
 # [Supplejack docs](http://digitalnz.github.io/supplejack/)
 
-These docs are built using Jekyll.
+These docs are built using Jekyll
 
 ## Using [Jekyll](http://jekyllrb.com/docs/home/)
 
