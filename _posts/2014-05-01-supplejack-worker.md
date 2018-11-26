@@ -1,9 +1,9 @@
 ---
 layout: page
 title: "Supplejack Worker"
-category: start
+category: components
 date: 2014-05-01 15:01:48
-order: 5
+order: 3
 ---
 
 The harvester worker is a rails application that uses [Sidekiq](http://sidekiq.org/) to run all of the various jobs that occur in the harvesting and link checking process.
