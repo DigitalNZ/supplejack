@@ -1,12 +1,10 @@
 ---
 layout: page
-title: "Development Setup"
-category: start
+title: "Development Setup via Script"
+category: start_script
 date: 2014-05-01 15:02:23
 order: 2
 ---
-
-If you are using Docker and want to setup Supplejack quickly in your development environment you can find the guide for that [here](/supplejack/start/docker-setup.html)
 
 Once you have installed all the [dependencies](/supplejack/start/dependencies.html) you are now ready to install the rest of the stack. As all the components require configuration to interact we strongly recommend that you use the [installation template](https://github.com/DigitalNZ/supplejack_installation) which is a [Rails Application Template](http://guides.rubyonrails.org/rails_application_templates.html) which is provided for Supplejack.
 

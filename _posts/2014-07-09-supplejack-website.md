@@ -1,9 +1,9 @@
 ---
 layout: page
 title: "Supplejack Website"
-category: start
+category: components
 date: 2014-06-30 15:00:53
-order: 7
+order: 6
 ---
 
 The Supplejack Website is part of the standard Supplejack platform that can aggregate data and content from many different sources.

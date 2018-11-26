@@ -1,9 +1,9 @@
 ---
 layout: page
-title: "Docker Setup"
-category: start
+title: "Development Setup via Docker"
+category: start_docker
 date: 2018-11-20 10:47:52
-order: 3
+order: 2
 ---
 You can setup Supplejack for use in a development environment using Supplejack Docker for
 a quicker setup locally.
