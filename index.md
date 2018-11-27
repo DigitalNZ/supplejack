@@ -14,7 +14,7 @@ This screencast provides a simple introduction to the basic approach of managing
 
 <iframe width="480" height="360" src="//www.youtube.com/embed/MLUURxcfcLc?rel=0" frameborder="0" allowfullscreen></iframe>
 
-### installation
+### Installation
 
 There are currently three different methods available for installing Supplejack
 
