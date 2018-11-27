@@ -3,7 +3,7 @@ layout: page
 title: "Troubleshooting"
 category: start
 date: 2014-05-21 15:02:56
-order: 9
+order: 4
 ---
 
 ## Remove stuck workers from Sidekiq
