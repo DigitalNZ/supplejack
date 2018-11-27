@@ -3,8 +3,12 @@ layout: page
 title: "Installation Walk-through by Example"
 category: start
 date: 2017-12-04 14:57:08
-order: 11
+order: 2
 ---
+
+## Dependencies
+
+Be sure to read through the dependencies guide [here](/supplejack/start/dependencies.html) before continuing the walkthrough.
 
 ## Goal
 
