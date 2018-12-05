@@ -16,7 +16,7 @@ Docker implementation of Supplejack stack includes (API, Manager, Worker, MongoD
 3. Clone this project recursively.
 
     ```bash
-    → git clone --recursive git@github.com:digitalnz/supplejack_docker.git
+    → git clone --recursive https://github.com/DigitalNZ/supplejack_docker.git
     ```
 
 ### Running Docker Containers 🏁
