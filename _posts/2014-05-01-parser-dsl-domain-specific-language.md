@@ -92,6 +92,10 @@ The type option refers to the weather the pagination is implemented by specifiyi
 
 For apis that require an initial parameter for the first tokenised paginated request, but not for successive requests, you can use the `initial_parameter: 'abc'` method.
 
+#### Scroll Harvest
+
+You can harvest from an elastic search scroll harvest endpoint by providing `paginate type: "scroll"`
+
 ## Reject records
 ### reject_if
 
