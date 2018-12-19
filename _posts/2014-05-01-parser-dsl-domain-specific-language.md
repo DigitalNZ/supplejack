@@ -94,7 +94,15 @@ For apis that require an initial parameter for the first tokenised paginated req
 
 #### Scroll Harvest
 
-You can harvest from an elastic search scroll harvest endpoint by providing `paginate type: "scroll"`
+You can harvest from an Elastic Search scroll harvest endpoint by providing `paginate type: "scroll"` in your parser. The parser is expecting the first request to be a POST request so make sure that your base_url is given accordingly. The harvest will automatically page to subsequent pages via the header location that is returned from each page. You do not have to do anything extra. All provided http_headers will come through as expected. 
+
+Here is an example:
+
+```
+base_url "https://data.tepapa.govt.nz/collection/search/_scroll/?q=&size=50"
+http_headers({'x-api-key': '<YOUR_API_KEY>'})
+paginate type: "scroll"
+```
 
 ## Reject records
 ### reject_if
