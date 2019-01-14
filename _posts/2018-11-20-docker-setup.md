@@ -64,14 +64,22 @@ The Supplejack components are connected by API keys. There are two users that ar
 
 1. a user for the harvester App (Supplejack Manager) in the **sample Api container** with email info@email.com
 2. a normal api user in the sample Api container with credentials developer@email.com / password
+3. There is also now a pre-populated user in the Supplejack Manager container with the following credentials sjdocker@email.com / password which you can use to login to the manager.
 
-```
+These are the following users and keys that get generated.
+
+```yaml
+Manager:
+    email: developer@email.com
+    password: password
+    authentication_token: '82HYSEI92N0DGN28'
+# log in to the manager with this user
+Worker:
+    authentication_token: 'JK54SFJ94DAQQCB'
 API:
     api_key: 'KJ64DC023FFO' - used for harvests
     api_key: '82HYSEI92N0DGN28' - used for normal api requests
 ```
-
-There is also now a prepopulated user in the Supplejack Manager container with the following credentials sjdocker@email.com / password which you can use to login to the manager.
 
 Use the appropriate localhost ports to access the services:
 
@@ -85,7 +93,7 @@ Use the appropriate localhost ports to access the services:
 
 ### Example harvest
 
-Log into your manager at [localhost:3001](http://localhost:3001) and hover over ‘Contributors and Scripts’ in the top navigation, click ‘Parser Scripts’, and then select the parser script named ‘oaisample’ which is a pre-populated parser script. You will now have a screen which will allow you to write your parser script for the harvester, this parser is written in Ruby and has it’s own DSL.[The documentation for the parser DSL can be found here](http://digitalnz.github.io/supplejack/)
+Log into your manager at [localhost:3001](http://localhost:3001) and hover over ‘Contributors and Scripts’ in the top navigation, click ‘Parser Scripts’, and then select the parser script named ‘oaisample’ which is a pre-populated parser script. You will now have a screen which will allow you to write your parser script for the harvester, this parser is written in Ruby and has it’s own DSL.[The documentation for the parser DSL can be found here](http://digitalnz.github.io/supplejack/). For now you don't need to make any changes to the script.
 
 You should now be able to preview your parser! Click the preview button and the various components of Supplejack will whurr into a working state.
 
@@ -187,7 +195,6 @@ If you have a successful preview, close the modal window, scroll to the bottom o
 You can now run a staging harvest, note that ‘Staging’ is a term bound to the Manager and does not relate to the Rails environment.
 
 Click ‘Run Harvest’, and then click ‘Staging Harvest’, enter 50, and then click start.
-
 
 Once the harvest is complete, it will take up to a minute for records to appear in solr, and the api response (indexing and solr auto-commit is set to every 60s)
 
