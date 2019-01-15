@@ -60,32 +60,13 @@ Docker implementation of Supplejack stack includes (API, Manager, Worker, MongoD
 
 ### Seeding Data
 
-The Supplejack components are connected by API keys. Before start using it, make sure to run the following commands to generate default users.
+The Supplejack components are connected by API keys. There are two users that are now seeded by default when you start things up with docker-compose.
 
-Make two users in the api:
-1. a user for the harvester App (Supplejack Manager) in the **sample Api container**.
-2. a normal api user in the sample Api container
-```ruby
-$ docker-compose exec api rails c
+1. a user for the harvester App (Supplejack Manager) in the **sample Api container** with email info@email.com
+2. a normal api user in the sample Api container with credentials developer@email.com / password
+3. There is also now a pre-populated user in the Supplejack Manager container with the following credentials sjdocker@email.com / password which you can use to login to the manager.
 
-irb(main):001:0> SupplejackApi::User.create(email: 'info@email.com', password: 'password', password_confirmation: 'password', role: 'harvester', authentication_token: 'KJ64DC023FFO', name: 'harvester User', username: 'harvester User')
-
-irb(main):002:0> SupplejackApi::User.create(email: 'developer@email.com', password: 'password', password_confirmation: 'password', role: 'developer', authentication_token: '82HYSEI92N0DGN28', name: 'Mr Jones', username: 'jonesy')
-
-irb(main):003:0> exit
-```
-
-
-Make a user in the Supplejack Manager container with the following command (this is the user you will log in with:
-
-```ruby
-$ docker-compose exec manager rails c
-
-irb(main):001:0> User.create(email: 'developer@email.com', name: 'Mr Jones', password: 'password', password_confirmation: 'password', role: 'admin')
-irb(main):002:0> exit
-```
-
-This will generate the following user and keys.
+These are the following users and keys that get generated.
 
 ```yaml
 Manager:
@@ -93,10 +74,8 @@ Manager:
     password: password
     authentication_token: '82HYSEI92N0DGN28'
 # log in to the manager with this user
-
 Worker:
     authentication_token: 'JK54SFJ94DAQQCB'
-
 API:
     api_key: 'KJ64DC023FFO' - used for harvests
     api_key: '82HYSEI92N0DGN28' - used for normal api requests
@@ -114,89 +93,7 @@ Use the appropriate localhost ports to access the services:
 
 ### Example harvest
 
-Log into your manager at [localhost:3001](http://localhost:3001) and click ‘New Data Source’, give it a **name** and a **contributor**.
-
-Once it completes, hover over ‘Contributors and Scripts’ in the top navigation, click ‘Parser Scripts’, and then click ‘New Parser Script’.
-
-Name your parser, `Otago Hocken`, select the contributor and data source that you created before, and then choose OAI format.
-
-The click ‘Create Parser Script’.
-
-You will now have a screen which will allow you to write your parser script for the harvester, this parser is written in Ruby and has it’s own DSL.[The documentation for the parser DSL can be found here](http://digitalnz.github.io/supplejack/)
-
-Make your parser look like this:
-
-
-```ruby
-class OtagoHocken < SupplejackCommon::Oai::Base
-  base_url "http://otago.ourheritage.ac.nz/oai-pmh-repository/request"
-  validates :usage, inclusion: {in: ["Share", "Modify", "Use commercially", "All rights reserved", "Unknown"]}
-
-  validates :landing_url, format: {with: /\Ahttps?:/}
-  validates :thumbnail_url, format: {with: /\Ahttps?:/}
-  validates :large_thumbnail_url, format: {with: /\Ahttps?:/}
-  validates :landing_url, size: { is: 1 }
-  validates :internal_identifier, size: { is: 1 }
-
-  namespaces dc: 'http://purl.org/dc/elements/1.1/',
-             oai_dc: 'http://www.openarchives.org/OAI/2.0/oai_dc/',
-                    xsi: 'http://www.w3.org/2001/XMLSchema-instance',
-            dcterms: 'http://purl.org/dc/terms/',
-                        o: 'http://www.openarchives.org/OAI/2.0/'
-
-  attributes :content_partner, :display_content_partner,     default: "University of Otago"
-  attributes :display_collection, :primary_collection,       default: "Otago University Research Heritage"
-  attribute  :collection,                                                                  default: ["Otago University Research Heritage"]
-  attributes :copyright, :usage,                             default: "All rights reserved"
-  attributes :dc_rights, :rights_url,                        default: "http://digital.otago.ac.nz/terms.php"
-  #attribute :dc_type, default: "Watercolors"
-
-  attribute :title,         xpath: "//dc:title"
-  attribute :description,   xpath: "//dc:description"
-  attribute :date,          xpath: "//dc:date",        date: true
-  attribute :display_date,  xpath: "//dc:date"
-  attribute :contributor,   xpath: "//dc:contributor"
-  attribute :publisher,     xpath: "//dc:publisher"
-  attribute :subject,         xpath: "//dc:subject"
-  attribute :source,          xpath: "//dc:source"
-  attribute :creator,         xpath: "//dc:creator"
-  attribute :dc_type,         xpath: "//dc:type"
-  attribute :format,          xpath: "//dc:format"
-
-  attribute :category do
-    category = "Images"
-    category = "Videos" if get(:dc_type).find_with(/^Video$/).present?
-    category
-  end
-
-  attributes :landing_url do
-    fetch("//dc:identifier").find_with(/^http:\/\/otago.ourheritage.ac.nz\/items\/show/)
-  end
-
-  attribute :internal_identifier do
-    get(:landing_url).downcase
-  end
-
-  attributes :large_thumbnail_url do
-    fetch("//dc:identifier").find_with(/\.jpg$/).mapping(/original/ => 'fullsize').first
-  end
-
-  attributes :thumbnail_url do
-    get(:large_thumbnail_url).mapping(/fullsize/ => 'square_thumbnails')
-  end
-
-  attribute :dc_identifier do
-    dcidentifier = get(:dc_identifier)
-    dcidentifier += fetch("//header/identifier")
-    dcidentifier += fetch("//metadata//identifier").find_without(/^http/)
-    dcidentifier
-  end
-
-  reject_if do
-    not get(:landing_url).find_with(/^http/i).present?
-  end
-end
-```
+Log into your manager at [localhost:3001](http://localhost:3001) and hover over ‘Contributors and Scripts’ in the top navigation, click ‘Parser Scripts’, and then select the parser script named ‘oaisample’ which is a pre-populated parser script. You will now have a screen which will allow you to write your parser script for the harvester, this parser is written in Ruby and has it’s own DSL.[The documentation for the parser DSL can be found here](http://digitalnz.github.io/supplejack/). For now you don't need to make any changes to the script.
 
 You should now be able to preview your parser! Click the preview button and the various components of Supplejack will whurr into a working state.
 
@@ -298,7 +195,6 @@ If you have a successful preview, close the modal window, scroll to the bottom o
 You can now run a staging harvest, note that ‘Staging’ is a term bound to the Manager and does not relate to the Rails environment.
 
 Click ‘Run Harvest’, and then click ‘Staging Harvest’, enter 50, and then click start.
-
 
 Once the harvest is complete, it will take up to a minute for records to appear in solr, and the api response (indexing and solr auto-commit is set to every 60s)
 
