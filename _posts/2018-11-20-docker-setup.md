@@ -62,9 +62,9 @@ Docker implementation of Supplejack stack includes (API, Manager, Worker, MongoD
 
 The Supplejack components are connected by API keys. There are two users that are now seeded by default when you start things up with docker-compose.
 
-1. a user for the harvester App (Supplejack Manager) in the **sample Api container** with email info@email.com
-2. a normal api user in the sample Api container with credentials developer@email.com / password
-3. There is also now a pre-populated user in the Supplejack Manager container with the following credentials sjdocker@email.com / password which you can use to login to the manager.
+1. a user for the harvester App (Supplejack Manager) in the **sample Api container** with email **info@email.com**
+2. a normal api user in the sample Api container with credentials **developer@email.com / password**
+3. There is also now a pre-populated user in the Supplejack Manager container with the following credentials **sjdocker@email.com / password** which you can use to login to the manager.
 
 These are the following users and keys that get generated.
 
