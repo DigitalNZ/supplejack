@@ -10,6 +10,9 @@ order: 2
 ### base_url
 The base_url method allows the operator to specify where to fetch the harvest resources from. It accepts a URL or a absolute path in disk. Additionally the operator can specify different urls/paths for each environment.
 
+## proxy
+The proxy method allows the operator to specify a proxy that the base_url needs to be requested through.
+
 ### Web resource
 ```ruby
 base_url "http://gdata.youtube.com/feeds/api/videos"
@@ -94,7 +97,7 @@ For apis that require an initial parameter for the first tokenised paginated req
 
 #### Scroll Harvest
 
-You can harvest from an Elastic Search scroll harvest endpoint by providing `paginate type: "scroll"` in your parser. The parser is expecting the first request to be a POST request so make sure that your base_url is given accordingly. The harvest will automatically page to subsequent pages via the header location that is returned from each page. You do not have to do anything extra. All provided http_headers will come through as expected. 
+You can harvest from an Elastic Search scroll harvest endpoint by providing `paginate type: "scroll"` in your parser. The parser is expecting the first request to be a POST request so make sure that your base_url is given accordingly. The harvest will automatically page to subsequent pages via the header location that is returned from each page. You do not have to do anything extra. All provided http_headers will come through as expected.
 
 Here is an example:
 
