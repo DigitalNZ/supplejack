@@ -240,6 +240,39 @@ end
 
 <p>Supplejack has it&#39;s own instance of Sidekiq that you will need to run for the Full and Flush harvest to work. Start Sidekiq from the api directory with <code>bundle exec sidekiq</code>. If you are running both Sidekiq instances on the same machine, you will need to point them at separate Redis databases otherwise you will end up in problems where the two Sidekiqs are trying to process each others jobs. This can be done by appending <code>/&lt;number&gt;</code> to the end of your Redis URL.</p>
 
+<h3 id="sidekiq-dashboard">Sidekiq Dashboard</h3>
+
+<p>If you would like to view the Sidekiq dashboard belonging to the API, simply add <code>mount Sidekiq::Web =&gt; &#39;/sidekiq&#39;</code> to the <code>config/routes.rb</code> file.</p>
+
+<p>For example:
+```
+Rails.application.routes.draw do
+  resources :records</p>
+
+<p>mount SupplejackApi::Engine =&gt; &#39;/&#39;, as: &#39;supplejack_api&#39;</p>
+
+<p>mount Sidekiq::Web =&gt; &#39;/sidekiq&#39; # Here is where the magic happens
+end
+```</p>
+
+<p>Then restart the API Rails server. Navigate to the &#39;/sidekiq&#39; route and you should see the Sidekiq Dashboard.</p>
+
+<h3 id="sidekiq-dashboard-authentication">Sidekiq Dashboard Authentication</h3>
+
+<p>If you would like to add an authentication wall to the Sidekiq dashboard, create a sidekiq initializer (<code>config/initializers/sidekiq.rb</code>) if you do not have one already.</p>
+
+<p>Add this block of ruby to the sidekiq initializer
+```
+require &#39;sidekiq&#39;
+require &#39;sidekiq/web&#39;</p>
+
+<p>Sidekiq::Web.use(Rack::Auth::Basic) do |user, password|
+  [user, password] == [ <set username here>, <set password here>]
+end
+```</p>
+
+<p>Then restart the API Rails server. When you next navigate to the &#39;/sidekiq&#39; route you will be prompted for a username and password.</p>
+
 
                     </div>
                 
