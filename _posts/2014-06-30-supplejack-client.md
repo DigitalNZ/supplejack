@@ -1,9 +1,9 @@
 ---
 layout: page
 title: "Supplejack Client"
-category: start
+category: components
 date: 2014-06-30 15:00:53
-order: 6
+order: 5
 ---
 
 The Supplejack Client is a library to abstract the interaction with the Supplejack API. It connects to the Supplejack API, and allows you to treat models as if they were in a local database.

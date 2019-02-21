@@ -10,6 +10,9 @@ order: 2
 ### base_url
 The base_url method allows the operator to specify where to fetch the harvest resources from. It accepts a URL or a absolute path in disk. Additionally the operator can specify different urls/paths for each environment.
 
+## proxy
+The proxy method allows the operator to specify a proxy that the base_url needs to be requested through.
+
 ### Web resource
 ```ruby
 base_url "http://gdata.youtube.com/feeds/api/videos"
@@ -91,6 +94,18 @@ The total_selector option is to extract the total amount of records so that the 
 The type option refers to the weather the pagination is implemented by specifiying the starting index like in the above case where you need to specify "item" or the case where you specify the actual page value, for this case use the value "page".  Use `type: 'tokenised'` for tokenised pagination.
 
 For apis that require an initial parameter for the first tokenised paginated request, but not for successive requests, you can use the `initial_parameter: 'abc'` method.
+
+#### Scroll Harvest
+
+You can harvest from an Elastic Search scroll harvest endpoint by providing `paginate type: "scroll"` in your parser. The parser is expecting the first request to be a POST request so make sure that your base_url is given accordingly. The harvest will automatically page to subsequent pages via the header location that is returned from each page. You do not have to do anything extra. All provided http_headers will come through as expected.
+
+Here is an example:
+
+```
+base_url "https://data.tepapa.govt.nz/collection/search/_scroll/?q=&size=50"
+http_headers({'x-api-key': '<YOUR_API_KEY>'})
+paginate type: "scroll"
+```
 
 ## Reject records
 ### reject_if

@@ -1,9 +1,9 @@
 ---
 layout: page
 title: "Supplejack API"
-category: start
+category: components
 date: 2014-05-01 15:00:53
-order: 3
+order: 1
 ---
 
 The Supplejack API is a [Rails mountable engine](http://guides.rubyonrails.org/engines.html) that provides functionality to store, index and retrieve metadata via an API. It also includes an API dashboard for monitoring API key activity and setting query throttle rates.

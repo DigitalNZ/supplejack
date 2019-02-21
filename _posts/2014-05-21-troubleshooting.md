@@ -3,7 +3,7 @@ layout: page
 title: "Troubleshooting"
 category: start
 date: 2014-05-21 15:02:56
-order: 9
+order: 4
 ---
 
 ## Remove stuck workers from Sidekiq
@@ -19,7 +19,7 @@ $ redis-cli
 
 Refresh the web interface and the stuck workers should be gone.
 
-## Forbidden 403 errors on Manager when harvesting records or previwing
+## Forbidden 403 errors on Manager when harvesting records or previewing
 
 Check if your `harvester` user `authentication_token` in your Supplejack API
 `SupplejackApi::User.where(role: 'harvester')`

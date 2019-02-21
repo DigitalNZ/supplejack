@@ -1,14 +1,14 @@
 ---
 layout: page
-title: "Development Setup"
-category: start
+title: "Development Setup via Script"
+category: start_script
 date: 2014-05-01 15:02:23
 order: 2
 ---
 
 Once you have installed all the [dependencies](/supplejack/start/dependencies.html) you are now ready to install the rest of the stack. As all the components require configuration to interact we strongly recommend that you use the [installation template](https://github.com/DigitalNZ/supplejack_installation) which is a [Rails Application Template](http://guides.rubyonrails.org/rails_application_templates.html) which is provided for Supplejack.
 
-If you are a Mac user using [Homebrew](http://brew.sh/) we strongly recommend you cleanly run brew doctor before installing. 
+If you are a Mac user using [Homebrew](http://brew.sh/) we strongly recommend you cleanly run brew doctor before installing.
 
 ```
 $ brew update
@@ -32,7 +32,7 @@ If mongod doesn't start, review the [MongoDB installation documention](http://do
 
 ## Install the Supplejack Stack
 
-The Supplejack Stack refers to the Supplejack API, Supplejack Manager and the Supplejack Worker applications. 
+The Supplejack Stack refers to the Supplejack API, Supplejack Manager and the Supplejack Worker applications.
 
 The  [installation template](https://github.com/DigitalNZ/supplejack_installation) creates a new Rails application using the Supplejack API and then installs and configures the Supplejack Manager and Supplejack Worker applications.
 

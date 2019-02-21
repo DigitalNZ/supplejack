@@ -13,7 +13,10 @@ codeurl: 'https://github.com/DigitalNZ/supplejack_api'
 
 # Default categories (in order) to appear in the navigation
 sections: [
-    ['start', 'Installation'],
+    ['start', 'Standard Installation'],
+    ['start_docker', 'Docker Installation'],
+    ['start_script', 'Script Installation'],
+    ['components', 'Supplejack Components'],
     ['api', 'Creating your API'],
     ['api_usage', 'Using the API'],
     ['manager', 'Using the manager'],

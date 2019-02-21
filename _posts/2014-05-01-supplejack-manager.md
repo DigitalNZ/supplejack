@@ -1,9 +1,9 @@
 ---
 layout: page
 title: "Supplejack Manager"
-category: start
+category: components
 date: 2014-05-01 15:01:36
-order: 4
+order: 2
 ---
 
 The harvester manager is a rails application that provides a visual interface into the harvesting and link checking processes within the harvester worker. The manager uses active resource to interface into the workers models using a restful interface. It allows the harvest operator to do the following:

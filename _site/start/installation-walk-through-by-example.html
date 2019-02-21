@@ -47,39 +47,63 @@
 
         
             
-                <li class=nav-header>Installation</li>
+                <li class=nav-header>Standard Installation</li>
             
-            <li data-order="11"><a href="/supplejack/start/installation-walk-through-by-example.html">Installation Walk-through by Example</a></li>
+            <li data-order="2"><a href="/supplejack/start/installation-walk-through-by-example.html">Installation Walk-through by Example</a></li>
         
             
             <li data-order="3"><a href="/supplejack/start/production-install.html">Production Install</a></li>
         
             
-            <li data-order="7"><a href="/supplejack/start/supplejack-website.html">Supplejack Website</a></li>
-        
-            
-            <li data-order="6"><a href="/supplejack/start/supplejack-client.html">Supplejack Client</a></li>
-        
-            
-            <li data-order="9"><a href="/supplejack/start/troubleshooting.html">Troubleshooting</a></li>
-        
-            
-            <li data-order="8"><a href="/supplejack/start/supplejack-common.html">Supplejack Common</a></li>
-        
-            
-            <li data-order="2"><a href="/supplejack/start/development-setup.html">Development Setup</a></li>
+            <li data-order="4"><a href="/supplejack/start/troubleshooting.html">Troubleshooting</a></li>
         
             
             <li data-order="1"><a href="/supplejack/start/dependencies.html">Dependencies</a></li>
         
-            
-            <li data-order="5"><a href="/supplejack/start/supplejack-worker.html">Supplejack Worker</a></li>
+    
+        
+        
+
         
             
-            <li data-order="4"><a href="/supplejack/start/supplejack-manager.html">Supplejack Manager</a></li>
+                <li class=nav-header>Docker Installation</li>
+            
+            <li data-order="2"><a href="/supplejack/start_docker/docker-setup.html">Development Setup via Docker</a></li>
+        
+    
+        
+        
+
         
             
-            <li data-order="3"><a href="/supplejack/start/supplejack-api.html">Supplejack API</a></li>
+                <li class=nav-header>Script Installation</li>
+            
+            <li data-order="2"><a href="/supplejack/start_script/development-setup.html">Development Setup via Script</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Supplejack Components</li>
+            
+            <li data-order="6"><a href="/supplejack/components/supplejack-website.html">Supplejack Website</a></li>
+        
+            
+            <li data-order="5"><a href="/supplejack/components/supplejack-client.html">Supplejack Client</a></li>
+        
+            
+            <li data-order="4"><a href="/supplejack/components/supplejack-common.html">Supplejack Common</a></li>
+        
+            
+            <li data-order="3"><a href="/supplejack/components/supplejack-worker.html">Supplejack Worker</a></li>
+        
+            
+            <li data-order="2"><a href="/supplejack/components/supplejack-manager.html">Supplejack Manager</a></li>
+        
+            
+            <li data-order="1"><a href="/supplejack/components/supplejack-api.html">Supplejack API</a></li>
         
     
         
@@ -187,6 +211,10 @@
         
     </h1>
 </div>
+
+<h2 id="dependencies">Dependencies</h2>
+
+<p>Be sure to read through the dependencies guide <a href="/supplejack/start/dependencies.html">here</a> before continuing the walkthrough.</p>
 
 <h2 id="goal">Goal</h2>
 
@@ -428,6 +456,8 @@ end
 
 <p>If you get an error such as ‘Unable to connect to localhost:3001 over (1)’ you will need to change the <code>config/application.yml</code> of the MANAGER and the WORKER to have the API HOST, MANAGER HOST, and WORKER HOST, as <code>http://127.0.0.1:port</code> instead of <code>http://localhost:port</code>.</p>
 
+<p>If you get an error such as <code>Errno::ECONNREFUSED: Failed to open TCP connection to 127.0.0.1:3001 (Connection refused - connect(2) for &quot;127.0.0.1&quot; port 3001)</code> when previewing / harvesting, add the <code>-b 0.0.0.0</code> option to the <code>rails s</code> command when running the stack locally.</p>
+
 <p>If you do not get any records coming through in your preview, look in the Sidekiq pane of your terminal. If there is an error about not being able to find a Record with a specific ID, you will have a mismatch within the <code>Record</code> and <code>PreviewRecord</code> IDs. The best thing to do here is to go into the API project, run the rails console and delete the <code>SupplejackApi::Record</code> and <code>SupplejackApi::PreviewRecord</code> models.</p>
 
 <p>You can do this with <code>SupplejackApi::Record.destroy_all</code> and <code>SupplejackApi::PreviewRecord.destroy_all</code></p>
@@ -556,7 +586,7 @@ SupplejackApi::PreviewRecord.destroy_all
 
 <p>Add the supplejack_client to your Gemfile.</p>
 
-<p>gem &#39;supplejack_client&#39;, git: &#39;<a href="https://github.com/DigitalNZ/supplejack_api.git">https://github.com/DigitalNZ/supplejack_api.git</a>&#39;
+<p>gem &#39;supplejack_client&#39;, git: &#39;<a href="https://github.com/DigitalNZ/supplejack_client.git">https://github.com/DigitalNZ/supplejack_client.git</a>&#39;
 Then run <code>bundle install</code></p>
 
 <p>The default testing framework that Rails ships with is MiniTest, all of our projects use <a href="https://github.com/rspec/rspec-rails">RSpec</a> to add it to the Gemfile and follow the configuration steps to get up and running.</p>
