@@ -70,3 +70,19 @@ production:
   LINKCHECKER_RECIPIENTS: "test@example.com"
   WORKER_KEY: <YOUR_WORKER_KEY>
 ```
+
+## Sidekiq Dashboard Authentication
+
+If you would like to add an authentication wall to the Sidekiq dashboard, create a sidekiq initializer (`config/initializers/sidekiq.rb`) if you do not have one already.
+
+Add this block of ruby to the sidekiq initializer
+```
+require 'sidekiq'
+require 'sidekiq/web'
+
+Sidekiq::Web.use(Rack::Auth::Basic) do |user, password|
+  [user, password] == [ <set username here>, <set password here>]
+end
+```
+
+Then restart the worker Rails server. When you next navigate to the '/sidekiq' route you will be prompted for a username and password.
