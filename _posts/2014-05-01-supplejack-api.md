@@ -72,6 +72,10 @@ Supplejack has it's own instance of Sidekiq that you will need to run for the Fu
 
 ### Sidekiq Dashboard
 
+Supplejack ships with a background-job processing service called Sidekiq. By default, we do not enable users to access the interactive dashboard to view, monitor, and start and stop background jobs.
+
+![Sidekiq Dashboard](/supplejack/images/sidekiq-dashboard.png)
+
 If you would like to view the Sidekiq dashboard belonging to the API, simply add `mount Sidekiq::Web => '/sidekiq'` to the `config/routes.rb` file.
 
 For example:
