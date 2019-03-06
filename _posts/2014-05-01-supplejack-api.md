@@ -72,7 +72,7 @@ Supplejack has it's own instance of Sidekiq that you will need to run for the Fu
 
 ### Sidekiq Dashboard
 
-Supplejack ships with a background-job processing service called Sidekiq. By default, we do not enable users to access the interactive dashboard to view, monitor, and start and stop background jobs. This dashboard is available by default on the Supplejack Worker but will need to configured manually within your Supplejack API.
+Supplejack ships with a background-job processing service called Sidekiq. The interactive Sidekiq dashboard is available by default on the Supplejack Worker and provides extra capabilities around viewing, monitoring, starting and stopping background jobs. For the Supplejack API, it is an optional extra.
 
 ![Sidekiq Dashboard](/supplejack/images/sidekiq-dashboard.png)
 
