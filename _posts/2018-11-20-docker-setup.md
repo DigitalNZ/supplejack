@@ -13,11 +13,13 @@ Docker implementation of Supplejack stack includes (API, Manager, Worker, MongoD
 ### Getting Started
 1. [Install Docker, Docker Compose and dependencies](https://docs.docker.com/install/)
 
-3. Clone this project recursively.
+2. Clone this project recursively.
 
     ```bash
     → git clone --recursive https://github.com/DigitalNZ/supplejack_docker.git
     ```
+
+3. Update the REQUEST_LIMIT_MAILER setting in `sample_rails_api/config/application.yml` to an email address that you manage to receive admin/service alerts.
 
 ### Running Docker Containers 🏁
 
