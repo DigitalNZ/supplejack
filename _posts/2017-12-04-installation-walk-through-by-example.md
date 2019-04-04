@@ -412,7 +412,7 @@ You also need to update the config.fields array to include the symbols `:verbose
 
 This will ensure that we get some useful data through the API.
 
-Now create a record model and include the Supplejack::Record class into it.  Don't use the `rails g model record` command to do this, as it will create a rails migration, which is unnecessary: this model won't inherit from ApplicationRecord like most models do.  Instead, Supplejack will govern the model behavior and link it to our api.
+Now create a record model and include the Supplejack::Record class into it.  Don't use the `rails g model record` command to do this, as it will create a rails migration, which is unnecessary: this model won't inherit from ApplicationRecord like most models do.  Instead, Supplejack will govern the model behaviour and link it to our api.
 
 Like this:
 
@@ -425,6 +425,8 @@ end
 Now you can search the API in the rails console with `Supplejack::Search.new(params)` or find a specific record like `Record.find(record_id)`.
 
 You can find a record_id by adding `record_id` to the list of fields in the api GET request you previously made in the browser.
+
+**Note:** You may also want to update the REQUEST_LIMIT_MAILER setting in `my_app_name/config/application.yml` to an email address that you manage to receive admin/service alerts.)
 
 ### Step Nine - Showing your data on your host app
 
