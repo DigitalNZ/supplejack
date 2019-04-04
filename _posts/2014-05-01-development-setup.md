@@ -45,6 +45,8 @@ $ rails _5.1.4_ new mysupplejack_api_name --skip-bundle -m https://raw.github.co
 ```
 **Note:** Be sure to record the user API key that is printed to the terminal during the install process.
 
+**Note:** You may also want to update the REQUEST_LIMIT_MAILER setting in `mysupplejack_api_name/config/application.yml` to an email address that you manage to receive admin/service alerts.)
+
 This operation will create three directories and many files:
 ```
 /mysupplejack_api_name
