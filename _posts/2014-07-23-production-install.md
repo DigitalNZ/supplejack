@@ -31,28 +31,24 @@ The Rails applications need to be installed in separate folders which will be re
 
 The applications orchestrate harvesting activities by communicating over Restful JSON APIs. In order for this work, user API keys need to be created in each application. The API keys is a random assortment of numbers and letters, like `RhymLHa9xRQGU8gyAYXP`. Perform the following:
 
-1. Generate (and take note) of the Supplejack Manager user key by the 'Generate Manager User keys' section of the [documentation](/supplejack/start/supplejack-manager.html).
-1. Generate (and take note) of the Supplejack Worker user key by the 'Generate Worker User keys' section of the [documentation](/supplejack/start/supplejack-worker.html).
-1. Generate (and take note) of the Supplejack API user key by the 'Generate API User keys' section of the [documentation](/supplejack/start/supplejack-api.html).
+Generate the associated keys for the Worker and the Manager as described in Steps Three, Four, and Five [here](/supplejack/start/installation-walk-through-by-example.html).
 
 ### 4. Setup Supplejack Manager
 
-Refer to the [Supplejack Manager documentation](/supplejack/start/supplejack-manager.html).
+Refer to the [Supplejack Manager section](/supplejack/start/installation-walk-through-by-example.html).
 
-Create an Environment Configuration in `application.yml`, based on the 'Example 1: One environment setup' example.
-
-Note: You will need the Worker API key from 3.2. For the `WORKER_HOST` and `API_HOST` use the external address you intend to host these applications as, such as `worker.example.com` and `api.example.com`. We will setup this configuration in Apache later.
+For the `WORKER_HOST` and `API_HOST` use the external address you intend to host these applications as, such as `worker.example.com` and `api.example.com`. We will setup this configuration in Apache later.
 
 ### 5. Setup Supplejack Worker
 
-Refer to the [Supplejack Worker documentation](/supplejack/start/supplejack-worker.html).
+Refer to the [Supplejack Worker section](/supplejack/start/installation-walk-through-by-example.html).
 
 You need to:
 
 1. Create an Environment Configuration in `application.yml`, based on the example.
 1. Start [Sidekiq](http://sidekiq.org) via `bundle exec sidekiq start` from the worker directory
 
-Note: You will need the Manager API from 3.2. For the `MANAGER_HOST` and `API_HOST` use the external address you intend to host these applications as, such as `harvester.example.com` and `api.example.com`. We will setup this configuration in Apache later.
+For the `MANAGER_HOST` and `API_HOST` use the external address you intend to host these applications as, such as `harvester.example.com` and `api.example.com`. We will setup this configuration in Apache later.
 
 ### 6. Setup Supplejack API
 
@@ -60,11 +56,11 @@ There is nothing to configure for Supplejack API as the configuration is inside 
 
 ### 7. Install Java Development Kit (JDK)
 
-[Apache Solr](http://lucene.apache.org/solr/) requires a Java Runtime environment to be installed.
+[Apache Solr](http://lucene.apache.org/solr/) requires a Java Runtime environment to be installed. We are currently using Java 8 with Solr5.
 
-Install Oracle JDK for your platform. See [Oracle's Website](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html) for details
+Install Oracle JDK for your platform. See [Oracle's Website](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) for details
 
-### 8. Install Solr and Tomcat
+### 8. Install Solr
 
 We recommend using Solr5, please read the Getting Started and Taking Solr to Production information on their documentation for information on how to get up and running.
 
