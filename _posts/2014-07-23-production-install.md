@@ -48,7 +48,7 @@ You need to:
 1. Create an Environment Configuration in `application.yml`, based on the example.
 1. Start [Sidekiq](http://sidekiq.org) via `bundle exec sidekiq start` from the worker directory
 
-For the `MANAGER_HOST` and `API_HOST` use the external address you intend to host these applications as, such as `harvester.example.com` and `api.example.com`. We will setup this configuration in Apache later.
+For the `MANAGER_HOST` and `API_HOST` use the external address you intend to host these applications as, such as `manager.example.com` and `api.example.com`. We will setup this configuration in Apache later.
 
 ### 6. Setup Supplejack API
 
@@ -70,33 +70,33 @@ http://archive.apache.org/dist/lucene/solr/ref-guide/apache-solr-ref-guide-5.5.p
 
 1. Install Apache if not already installed.
 1. Install the [Phusion Passenger module](https://www.phusionpassenger.com/) into Apache to run Rails applications.
-1. Create `VirtualHost` configurations for the harvester, worker, API and Solr:
+1. Create `VirtualHost` configurations for the manager, worker, API and Solr:
 
-#### Harvester:
+#### Manager:
 ```apacheconf
 <VirtualHost HOST_IP_ADDRESS:80>
-  DocumentRoot /data/sites/harvester.example.com/httpdocs
-  ServerName harvester.example.com
-  ServerAlias www.harvester.example.com
+  DocumentRoot /data/sites/manager.example.com/httpdocs
+  ServerName manager.example.com
+  ServerAlias www.manager.example.com
 
-  PassengerAppRoot /data/sites/harvester.example.com/
+  PassengerAppRoot /data/sites/<YOUR_MANAGER_DIRECTORY>/
 
   RailsEnv production
   RackEnv production
 
-  <Directory /data/sites/harvester.example.com/httpdocs>
+  <Directory /data/sites/<YOUR_MANAGER_DIRECTORY>/httpdocs>
     AllowOverride All
 
     Order allow,deny
     Allow from all
   </Directory>
 
-  ErrorLog /data/sites/harvester.example.com/logs/error_log
-  CustomLog /data/sites/harvester.example.com/logs/access_log combined
+  ErrorLog /data/sites/<YOUR_MANAGER_DIRECTORY>/logs/error_log
+  CustomLog /data/sites/<YOUR_MANAGER_DIRECTORY>/logs/access_log combined
 
   RewriteEngine On
-  RewriteCond %{HTTP_HOST} ^www.harvester.example.com$
-  RewriteRule ^(.*)$ http://harvester.example.com$1 [L,R=301]
+  RewriteCond %{HTTP_HOST} ^www.manager.example.com$
+  RewriteRule ^(.*)$ http://manager.example.com$1 [L,R=301]
 
   Header always unset X-Powered-By
   Header always unset X-Runtime
@@ -105,24 +105,24 @@ http://archive.apache.org/dist/lucene/solr/ref-guide/apache-solr-ref-guide-5.5.p
 #### Worker:
 ```apacheconf
 <VirtualHost HOST_IP_ADDRESS:80>
-  DocumentRoot /data/sites/worker.example.com/httpdocs
+  DocumentRoot /data/sites/<YOUR_WORKER_DIRECTORY>/httpdocs
   ServerName worker.example.com
   ServerAlias www.worker.example.com
 
-  PassengerAppRoot /data/sites/worker.example.com/
+  PassengerAppRoot /data/sites/<YOUR_WORKER_DIRECTORY>/
 
   RailsEnv production
   RackEnv production
 
-  <Directory /data/sites/worker.example.com/httpdocs>
+  <Directory /data/sites/<YOUR_WORKER_DIRECTORY>/httpdocs>
     AllowOverride All
 
     Order allow,deny
     Allow from all
   </Directory>
 
-  ErrorLog /data/sites/worker.example.com/logs/error_log
-  CustomLog /data/sites/worker.example.com/logs/access_log combined
+  ErrorLog /data/sites/<YOUR_WORKER_DIRECTORY>/logs/error_log
+  CustomLog /data/sites/<YOUR_WORKER_DIRECTORY>/logs/access_log combined
 
   RewriteEngine On
   RewriteCond %{HTTP_HOST} ^www.worker.example.com$
@@ -135,7 +135,7 @@ http://archive.apache.org/dist/lucene/solr/ref-guide/apache-solr-ref-guide-5.5.p
 #### API:
 ```apacheconf
 <VirtualHost HOST_IP_ADDRESS:80>
-  DocumentRoot /data/sites/api.example.com/httpdocs
+  DocumentRoot /data/sites/<YOUR_API_DIRECTORY>/httpdocs
   ServerName api.example.com
   ServerAlias www.api.example.com
 
@@ -147,14 +147,14 @@ http://archive.apache.org/dist/lucene/solr/ref-guide/apache-solr-ref-guide-5.5.p
     Allow from all
   </Proxy>
 
-  ErrorLog /data/sites/api.example.com/logs/error_log
-  CustomLog /data/sites/api.example.com/logs/access_log combined
+  ErrorLog /data/sites/<YOUR_API_DIRECTORY>/logs/error_log
+  CustomLog /data/sites/<YOUR_API_DIRECTORY>/logs/access_log combined
 </VirtualHost>
 ```
 #### Solr:
 ```apacheconf
 <VirtualHost HOST_IP_ADDRESS:80>
-  DocumentRoot /data/sites/solr.example.com/httpdocs
+  DocumentRoot /data/sites/<YOUR_SOLR_DIRECTORY>/httpdocs
   ServerName solr.example.com
   ServerAlias www.solr.example.com
 
@@ -166,8 +166,8 @@ http://archive.apache.org/dist/lucene/solr/ref-guide/apache-solr-ref-guide-5.5.p
     Allow from all
   </Proxy>
 
-  ErrorLog /data/sites/solr.example.com/logs/error_log
-  CustomLog /data/sites/solr.example.com/logs/access_log combined
+  ErrorLog /data/sites/<YOUR_SOLR_DIRECTORY>/logs/error_log
+  CustomLog /data/sites/<YOUR_SOLR_DIRECTORY>/logs/access_log combined
 </VirtualHost>
 ```
 
@@ -211,7 +211,6 @@ listen application 0.0.0.0:81
 
 1. You may need to configure firewalls to allow you to access services and hosts
 1. You might need to configure DNS servers or `/etc/hosts` to allow you to access hosts as names, such as `api.example.com`
-1. Note that the Supplejack Manager is called the 'harvester' when it's deployed as it's frontend to all harvesting.
 
 ### 13. Testing
 
@@ -220,5 +219,5 @@ listen application 0.0.0.0:81
 1. Ensure that the API is running at http://api.example.com/records/1.json?api_key=API_KEY
 1. Ensure that Sidekiq for API is running at http://api.example.com/sidekiq
 1. Ensure that Sidekiq for worker is running at http://worker.example.com/sidekiq
-1. Ensure that the manager is running at http://harvester.example.com
+1. Ensure that the manager is running at http://manager.example.com
 1. Ensure that the worker is running at http://worker.example.com
