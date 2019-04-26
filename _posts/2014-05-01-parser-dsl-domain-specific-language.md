@@ -325,3 +325,46 @@ attribute :title, path: "'dc:title'"
 # or
 attribute :title, path: "$.'dc:title'"
 ```
+
+### Preprocess source data before running the parser script
+Mutate the response data from your parser source. It's useful when you need to clean duplicates entries in your source data.
+
+JSON Base example
+```ruby
+# rest_client_response = RestClient::Response Object
+  pre_process_block do |rest_client_response|
+  
+    # Convert RestClient::Response to Hash
+    hash = JSON.parse(rest_client_response.body)
+    
+    # Mutate the data
+    # Eg Make it uniq by id
+    hash = hash.uniq { |item| item['id'] }
+
+    # Convert back to JSON
+    json = hash.to_json
+    
+    # Return a new RestClient::Response with the new mutated JSON
+    RestClient::Response.create(json, rest_client_response.net_http_res, rest_client_response.request)
+  end
+```
+
+XML Base example
+```ruby
+  # rest_client_response = RestClient::Response Object
+  pre_process_block do |rest_client_response|
+
+    # Convert RestClient::Response to Hash
+    hash = Hash.from_xml(rest_client_response)
+    
+    # Mutate
+    # Eg Make it uniq by id
+    hash = hash.uniq { |item| item['id'] }
+    
+    # Convert back to XML
+		xml = hash.to_xml
+    
+    # Return a new RestClient::Response with the new mutated JSON
+    RestClient::Response.create(xml, rest_client_response.net_http_res, rest_client_response.request)
+  end
+```
