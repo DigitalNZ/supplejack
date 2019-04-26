@@ -362,9 +362,9 @@ XML Base example
     hash = hash.uniq { |item| item['id'] }
     
     # Convert back to XML
-		xml = hash.to_xml
+    xml = hash.to_xml
     
-    # Return a new RestClient::Response with the new mutated JSON
+    # Return a new RestClient::Response with the new mutated XML
     RestClient::Response.create(xml, rest_client_response.net_http_res, rest_client_response.request)
   end
 ```
