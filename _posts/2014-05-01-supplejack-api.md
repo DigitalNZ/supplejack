@@ -70,6 +70,8 @@ Supplejack has a few cronjobs that will help with indexing records. You can see 
 
 Supplejack has it's own instance of Sidekiq that you will need to run for the Full and Flush harvest to work. Start Sidekiq from the api directory with `bundle exec sidekiq`. If you are running both Sidekiq instances on the same machine, you will need to point them at separate Redis databases otherwise you will end up in problems where the two Sidekiqs are trying to process each others jobs. This can be done by appending `/<number>` to the end of your Redis URL.
 
+By default the Redis queues in Supplejack are numbered and differentiated between the worker and the api. However if you use Sidekiq to process other jobs on the same machine then you may want to change either the Redis numbered queue for those processes or for your worker and api to avoid any scenarios where two Sidekiqs may attempt to process each others jobs.
+
 ### Sidekiq Dashboard
 
 Supplejack ships with a background-job processing service called Sidekiq. The interactive Sidekiq dashboard is available by default on the Supplejack Worker and provides extra capabilities around viewing, monitoring, starting and stopping background jobs. For the Supplejack API, it is an optional extra.
