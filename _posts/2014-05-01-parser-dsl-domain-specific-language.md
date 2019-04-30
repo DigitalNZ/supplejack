@@ -352,19 +352,28 @@ JSON Base example
 XML Base example
 ```ruby
   # rest_client_response = RestClient::Response Object
-  pre_process_block do |rest_client_response|
+  pre_process_block do |data|
+    # Convert to Nokogiri Document
+    doc = Nokogiri::XML(data.body) { |config|	config.options = Nokogiri::XML::ParseOptions::NOBLANKS }
+    
+    # Select node that contains all items
+    items_node  = doc.at_xpath('//root')
+    
+    # Example of sorting by date
+    sorted = items_node.children.sort_by do |item|
+      item.children.find { |child| child.name == 'date' }.text
+    end
+    
+    # Example of uniquing by a key
+    uniq = sorted.uniq do |item|
+      item.children.find { |child| child.name == 'key' }.text
+    end
+    
+    # Replace all children with new values
+    items_node.children.remove
+    uniq.each{ |n| items_node << n }
 
-    # Convert RestClient::Response to Hash
-    hash = Hash.from_xml(rest_client_response)
-    
-    # Mutate
-    # Eg Make it uniq by id
-    hash = hash.uniq { |item| item['id'] }
-    
-    # Convert back to XML
-    xml = hash.to_xml
-    
-    # Return a new RestClient::Response with the new mutated XML
-    RestClient::Response.create(xml, rest_client_response.net_http_res, rest_client_response.request)
+    # Return a new rest response
+    RestClient::Response.create(doc.to_xml, data.net_http_res, data.request)
   end
 ```
