@@ -330,7 +330,7 @@ attribute :title, path: "$.'dc:title'"
 This optional block allows manipulation of the response data from your harvest source, before it is handed on to the rest of the parser as per normal. It could be used for any type of pre-processing data clean up requirements but was initially designed to rationalise verbose feeds that mentioned items multiple times, keeping only the latest mention to be harvested.
 
 
-JSON example
+### JSON example
 
 ```ruby
 pre_process_block do |rest_client_response|
@@ -352,7 +352,7 @@ pre_process_block do |rest_client_response|
 end
 ```
 
-XML example
+### XML example
 ```ruby
 pre_process_block do |rest_client_response|
   # Convert RestClient::Response to Nokogiri Document
