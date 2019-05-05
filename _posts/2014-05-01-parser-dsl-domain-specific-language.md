@@ -331,7 +331,7 @@ This optional block allows manipulation of the response data from your harvest s
 JSON example
 
 ```ruby
-# rest_client_response = RestClient::Response Object
+# Params - rest_client_response: RestClient::Response
 pre_process_block do |rest_client_response|
   # Convert RestClient::Response to Hash
   hash = JSON.parse(rest_client_response.body)
@@ -353,10 +353,10 @@ end
 
 XML Base example
 ```ruby
-# rest_client_response = RestClient::Response Object
-pre_process_block do |data|
+# Params - rest_client_response: RestClient::Response
+pre_process_block do |rest_client_response|
   # Convert to Nokogiri Document
-  doc = Nokogiri::XML(data.body) { |config|    config.options = Nokogiri::XML::ParseOptions::NOBLANKS }
+  doc = Nokogiri::XML(rest_client_response.body) { |config|    config.options = Nokogiri::XML::ParseOptions::NOBLANKS }
 
   # Select node that contains all items
   items_node  = doc.at_xpath('//dnz-export')
@@ -376,6 +376,6 @@ pre_process_block do |data|
   uniq.each{ |n| items_node << n }
 
   # Return a new rest response
-  RestClient::Response.create(doc.to_xml, data.net_http_res, data.request)
+  RestClient::Response.create(doc.to_xml, rest_client_response.net_http_res, rest_client_response.request)
 end
 ```
