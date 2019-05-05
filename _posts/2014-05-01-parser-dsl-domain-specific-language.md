@@ -331,7 +331,6 @@ This optional block allows manipulation of the response data from your harvest s
 JSON example
 
 ```ruby
-# Params - rest_client_response: RestClient::Response
 pre_process_block do |rest_client_response|
   # Convert RestClient::Response to Hash
   hash = JSON.parse(rest_client_response.body)
@@ -353,9 +352,8 @@ end
 
 XML Base example
 ```ruby
-# Params - rest_client_response: RestClient::Response
 pre_process_block do |rest_client_response|
-  # Convert to Nokogiri Document
+  # Convert RestClient::Response to Nokogiri Document
   doc = Nokogiri::XML(rest_client_response.body) { |config|    config.options = Nokogiri::XML::ParseOptions::NOBLANKS }
 
   # Select node that contains all items
