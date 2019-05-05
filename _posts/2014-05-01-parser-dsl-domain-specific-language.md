@@ -332,50 +332,50 @@ JSON example
 
 ```ruby
 # rest_client_response = RestClient::Response Object
-  pre_process_block do |rest_client_response|
- # Convert RestClient::Response to Hash
- hash = JSON.parse(rest_client_response.body)
+pre_process_block do |rest_client_response|
+  # Convert RestClient::Response to Hash
+  hash = JSON.parse(rest_client_response.body)
 
- # Sort and uniq the data will result in only the latest of each item
- hash = hash.sort do |item_a, item_b|
-   # 'updated_at' specifies the date to sort on
-   Date.parse(item_b['updated_at']) <=> Date.parse(item_a['updated_at'])
- end
- .uniq { |item| item['audio_id'] } # 'audio_id' specifies the unique item ID to rationalise with
+  # Sort and uniq the data will result in only the latest of each item
+  hash = hash.sort do |item_a, item_b|
+    # 'updated_at' specifies the date to sort on
+    Date.parse(item_b['updated_at']) <=> Date.parse(item_a['updated_at'])
+  end
+    .uniq { |item| item['audio_id'] } # 'audio_id' specifies the unique item ID to rationalise with
 
- # Convert back to JSON
- json = hash.to_json
+  # Convert back to JSON
+  json = hash.to_json
 
- # Return a new RestClient::Response with the new mutated JSON
- RestClient::Response.create(json, rest_client_response.net_http_res, rest_client_response.request)
+  # Return a new RestClient::Response with the new mutated JSON
+  RestClient::Response.create(json, rest_client_response.net_http_res, rest_client_response.request)
 end
 ```
 
 XML Base example
 ```ruby
-  # rest_client_response = RestClient::Response Object
-  pre_process_block do |data|
- # Convert to Nokogiri Document
- doc = Nokogiri::XML(data.body) { |config|    config.options = Nokogiri::XML::ParseOptions::NOBLANKS }
+# rest_client_response = RestClient::Response Object
+pre_process_block do |data|
+  # Convert to Nokogiri Document
+  doc = Nokogiri::XML(data.body) { |config|    config.options = Nokogiri::XML::ParseOptions::NOBLANKS }
 
- # Select node that contains all items
- items_node  = doc.at_xpath('//dnz-export')
+  # Select node that contains all items
+  items_node  = doc.at_xpath('//dnz-export')
 
- # Sorting by the "date" field
- sorted = items_node.children.sort_by do |item|
-   item.children.find { |child| child.name == 'date' }.text
- end.reverse!
+  # Sorting by the "date" field
+  sorted = items_node.children.sort_by do |item|
+    item.children.find { |child| child.name == 'date' }.text
+  end.reverse!
 
   # uniq will keep only the latest mention of each item based on the unique ID of that item (specified in "key")
- uniq = sorted.uniq do |item|
-   item.children.find { |child| child.name == 'key' } .text
- end
+  uniq = sorted.uniq do |item|
+    item.children.find { |child| child.name == 'key' } .text
+  end
 
- # Replace all children with new values
- items_node.children.remove
- uniq.each{ |n| items_node << n }
+  # Replace all children with new values
+  items_node.children.remove
+  uniq.each{ |n| items_node << n }
 
- # Return a new rest response
- RestClient::Response.create(doc.to_xml, data.net_http_res, data.request)
+  # Return a new rest response
+  RestClient::Response.create(doc.to_xml, data.net_http_res, data.request)
 end
 ```
