@@ -31,28 +31,24 @@ The Rails applications need to be installed in separate folders which will be re
 
 The applications orchestrate harvesting activities by communicating over Restful JSON APIs. In order for this work, user API keys need to be created in each application. The API keys is a random assortment of numbers and letters, like `RhymLHa9xRQGU8gyAYXP`. Perform the following:
 
-1. Generate (and take note) of the Supplejack Manager user key by the 'Generate Manager User keys' section of the [documentation](/supplejack/start/supplejack-manager.html).
-1. Generate (and take note) of the Supplejack Worker user key by the 'Generate Worker User keys' section of the [documentation](/supplejack/start/supplejack-worker.html).
-1. Generate (and take note) of the Supplejack API user key by the 'Generate API User keys' section of the [documentation](/supplejack/start/supplejack-api.html).
+Generate the associated keys for the Worker and the Manager as described in Steps Three, Four, and Five [here](/supplejack/start/installation-walk-through-by-example.html).
 
 ### 4. Setup Supplejack Manager
 
-Refer to the [Supplejack Manager documentation](/supplejack/start/supplejack-manager.html).
+Refer to the [Supplejack Manager section](/supplejack/start/installation-walk-through-by-example.html).
 
-Create an Environment Configuration in `application.yml`, based on the 'Example 1: One environment setup' example.
-
-Note: You will need the Worker API key from 3.2. For the `WORKER_HOST` and `API_HOST` use the external address you intend to host these applications as, such as `worker.example.com` and `api.example.com`. We will setup this configuration in Apache later.
+For the `WORKER_HOST` and `API_HOST` use the external address you intend to host these applications as, such as `worker.example.com` and `api.example.com`. We will setup this configuration in Apache later.
 
 ### 5. Setup Supplejack Worker
 
-Refer to the [Supplejack Worker documentation](/supplejack/start/supplejack-worker.html).
+Refer to the [Supplejack Worker section](/supplejack/start/installation-walk-through-by-example.html).
 
 You need to:
 
 1. Create an Environment Configuration in `application.yml`, based on the example.
 1. Start [Sidekiq](http://sidekiq.org) via `bundle exec sidekiq start` from the worker directory
 
-Note: You will need the Manager API from 3.2. For the `MANAGER_HOST` and `API_HOST` use the external address you intend to host these applications as, such as `harvester.example.com` and `api.example.com`. We will setup this configuration in Apache later.
+For the `MANAGER_HOST` and `API_HOST` use the external address you intend to host these applications as, such as `manager.example.com` and `api.example.com`. We will setup this configuration in Apache later.
 
 ### 6. Setup Supplejack API
 
@@ -60,11 +56,11 @@ There is nothing to configure for Supplejack API as the configuration is inside 
 
 ### 7. Install Java Development Kit (JDK)
 
-[Apache Solr](http://lucene.apache.org/solr/) requires a Java Runtime environment to be installed.
+[Apache Solr](http://lucene.apache.org/solr/) requires a Java Runtime environment to be installed. We are currently using Java 8 with Solr5.
 
-Install Oracle JDK for your platform. See [Oracle's Website](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html) for details
+Install Oracle JDK for your platform. See [Oracle's Website](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) for details
 
-### 8. Install Solr and Tomcat
+### 8. Install Solr
 
 We recommend using Solr5, please read the Getting Started and Taking Solr to Production information on their documentation for information on how to get up and running.
 
@@ -74,33 +70,33 @@ http://archive.apache.org/dist/lucene/solr/ref-guide/apache-solr-ref-guide-5.5.p
 
 1. Install Apache if not already installed.
 1. Install the [Phusion Passenger module](https://www.phusionpassenger.com/) into Apache to run Rails applications.
-1. Create `VirtualHost` configurations for the harvester, worker, API and Solr:
+1. Create `VirtualHost` configurations for the manager, worker, API and Solr:
 
-#### Harvester:
+#### Manager:
 ```apacheconf
 <VirtualHost HOST_IP_ADDRESS:80>
-  DocumentRoot /data/sites/harvester.example.com/httpdocs
-  ServerName harvester.example.com
-  ServerAlias www.harvester.example.com
+  DocumentRoot /data/sites/manager.example.com/httpdocs
+  ServerName manager.example.com
+  ServerAlias www.manager.example.com
 
-  PassengerAppRoot /data/sites/harvester.example.com/
+  PassengerAppRoot /data/sites/<YOUR_MANAGER_DIRECTORY>/
 
   RailsEnv production
   RackEnv production
 
-  <Directory /data/sites/harvester.example.com/httpdocs>
+  <Directory /data/sites/<YOUR_MANAGER_DIRECTORY>/httpdocs>
     AllowOverride All
 
     Order allow,deny
     Allow from all
   </Directory>
 
-  ErrorLog /data/sites/harvester.example.com/logs/error_log
-  CustomLog /data/sites/harvester.example.com/logs/access_log combined
+  ErrorLog /data/sites/<YOUR_MANAGER_DIRECTORY>/logs/error_log
+  CustomLog /data/sites/<YOUR_MANAGER_DIRECTORY>/logs/access_log combined
 
   RewriteEngine On
-  RewriteCond %{HTTP_HOST} ^www.harvester.example.com$
-  RewriteRule ^(.*)$ http://harvester.example.com$1 [L,R=301]
+  RewriteCond %{HTTP_HOST} ^www.manager.example.com$
+  RewriteRule ^(.*)$ http://manager.example.com$1 [L,R=301]
 
   Header always unset X-Powered-By
   Header always unset X-Runtime
@@ -109,24 +105,24 @@ http://archive.apache.org/dist/lucene/solr/ref-guide/apache-solr-ref-guide-5.5.p
 #### Worker:
 ```apacheconf
 <VirtualHost HOST_IP_ADDRESS:80>
-  DocumentRoot /data/sites/worker.example.com/httpdocs
+  DocumentRoot /data/sites/<YOUR_WORKER_DIRECTORY>/httpdocs
   ServerName worker.example.com
   ServerAlias www.worker.example.com
 
-  PassengerAppRoot /data/sites/worker.example.com/
+  PassengerAppRoot /data/sites/<YOUR_WORKER_DIRECTORY>/
 
   RailsEnv production
   RackEnv production
 
-  <Directory /data/sites/worker.example.com/httpdocs>
+  <Directory /data/sites/<YOUR_WORKER_DIRECTORY>/httpdocs>
     AllowOverride All
 
     Order allow,deny
     Allow from all
   </Directory>
 
-  ErrorLog /data/sites/worker.example.com/logs/error_log
-  CustomLog /data/sites/worker.example.com/logs/access_log combined
+  ErrorLog /data/sites/<YOUR_WORKER_DIRECTORY>/logs/error_log
+  CustomLog /data/sites/<YOUR_WORKER_DIRECTORY>/logs/access_log combined
 
   RewriteEngine On
   RewriteCond %{HTTP_HOST} ^www.worker.example.com$
@@ -139,7 +135,7 @@ http://archive.apache.org/dist/lucene/solr/ref-guide/apache-solr-ref-guide-5.5.p
 #### API:
 ```apacheconf
 <VirtualHost HOST_IP_ADDRESS:80>
-  DocumentRoot /data/sites/api.example.com/httpdocs
+  DocumentRoot /data/sites/<YOUR_API_DIRECTORY>/httpdocs
   ServerName api.example.com
   ServerAlias www.api.example.com
 
@@ -151,14 +147,14 @@ http://archive.apache.org/dist/lucene/solr/ref-guide/apache-solr-ref-guide-5.5.p
     Allow from all
   </Proxy>
 
-  ErrorLog /data/sites/api.example.com/logs/error_log
-  CustomLog /data/sites/api.example.com/logs/access_log combined
+  ErrorLog /data/sites/<YOUR_API_DIRECTORY>/logs/error_log
+  CustomLog /data/sites/<YOUR_API_DIRECTORY>/logs/access_log combined
 </VirtualHost>
 ```
 #### Solr:
 ```apacheconf
 <VirtualHost HOST_IP_ADDRESS:80>
-  DocumentRoot /data/sites/solr.example.com/httpdocs
+  DocumentRoot /data/sites/<YOUR_SOLR_DIRECTORY>/httpdocs
   ServerName solr.example.com
   ServerAlias www.solr.example.com
 
@@ -170,8 +166,8 @@ http://archive.apache.org/dist/lucene/solr/ref-guide/apache-solr-ref-guide-5.5.p
     Allow from all
   </Proxy>
 
-  ErrorLog /data/sites/solr.example.com/logs/error_log
-  CustomLog /data/sites/solr.example.com/logs/access_log combined
+  ErrorLog /data/sites/<YOUR_SOLR_DIRECTORY>/logs/error_log
+  CustomLog /data/sites/<YOUR_SOLR_DIRECTORY>/logs/access_log combined
 </VirtualHost>
 ```
 
@@ -215,7 +211,6 @@ listen application 0.0.0.0:81
 
 1. You may need to configure firewalls to allow you to access services and hosts
 1. You might need to configure DNS servers or `/etc/hosts` to allow you to access hosts as names, such as `api.example.com`
-1. Note that the Supplejack Manager is called the 'harvester' when it's deployed as it's frontend to all harvesting.
 
 ### 13. Testing
 
@@ -224,5 +219,5 @@ listen application 0.0.0.0:81
 1. Ensure that the API is running at http://api.example.com/records/1.json?api_key=API_KEY
 1. Ensure that Sidekiq for API is running at http://api.example.com/sidekiq
 1. Ensure that Sidekiq for worker is running at http://worker.example.com/sidekiq
-1. Ensure that the manager is running at http://harvester.example.com
+1. Ensure that the manager is running at http://manager.example.com
 1. Ensure that the worker is running at http://worker.example.com
