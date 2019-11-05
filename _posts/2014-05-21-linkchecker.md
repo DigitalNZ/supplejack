@@ -76,9 +76,7 @@ be added explicitly. Examples:
 content partner. Analogous with `throttle` in the [parser
 DSL](http://digitalnz.github.io/supplejack/manager/parser-dsl-domain-specific-language.html)
 
-* Collection link checking active?: This disables link checking
-activities for that collection - meaning that 404 errors will keep the
-record active.
+* Active: This activates link checking activities for that collection - so when the link checker comes across broken links (eg 404's) the record will be suppressed.
 
 ### Network Health Awareness
 
