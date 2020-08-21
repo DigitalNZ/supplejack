@@ -47,6 +47,8 @@ end
 Then do `Supplejack::Search.new(params)` or `Record.find(id)`
 
 ## Search params
+
+|------------+---------------+---------|
 | Param name | Default value | Details |
 | ---------- | ------- | -------- |
 | text | '' | Text to be searched |
@@ -54,8 +56,8 @@ Then do `Supplejack::Search.new(params)` or `Record.find(id)`
 | record_type | 0 | **DNZ specific** natlib to search through its 'authorities'. Normal records are 0, authorities are 1. |
 | page | 1 | Page to display |
 | per_page | `Supplejack.per_page` | Items per page |
-| and | [] | `and` for filter results from search |
-| without | [] | `without` filters to exclude results from search |
+| and | [ ] | `and` for filter results from search |
+| without | [ ] | `without` filters to exclude results from search |
 | facets | `not defined` | Array of facets to display |
 | facets_per_page | 0 | Number of facets per page |
 | fields | `Supplejack.fields` | Fields to be returned |
@@ -65,6 +67,19 @@ Then do `Supplejack::Search.new(params)` or `Record.find(id)`
 | sort | `not defined` | Define a facet to be ordered by |
 | direction | `asc` | Define a sort direction |
 | exclude_filters_from_facets | `false` | Set this value to true in order to exclude filters from facets so you can retain facets values while drilling down the search |
+|-----------------------------+---------+-------------------------------------------------------------------------------------------------------------------------------|
+
+
+## More like this
+For this to work `[:mlt]` should be configured to a field in the Record Schema.
+
+Then do  `Supplejack::MoreLikeThis.new(record_id, options).records`. This will return an array of SupplejackRecords.
+
+`record_id` is available on SupplejackRecord in `.record_id`.
+`options` can include the fields with which the relatedness is queried for and the frequency.
+Frequency is the number of times words should show up in a record filed to make the similarity relation between them.
+
+Example `{ mlt_fields: [:title, :description], frequency: 2}`, default frequency is 1.
 
 
 ## Configuration

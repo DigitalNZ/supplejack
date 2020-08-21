@@ -22,7 +22,7 @@ where:
 * `name` can be any valid ruby identifier (i.e. must not start with a number or a [Ruby reserved word](http://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Lexicology#Reserved_Words)).
 * `options` (all optional):
     * `search_boost` is an integer passed to Sunspot/Solr to increase the search relevance by the given factor. Default: `1`.
-    * `search_as` determines whether the field is can be searched a filter, fulltext, or both. Valid values are `[:filter]`, `[:fulltext]` or `[:filter, :fulltext]`. Default: `[]`.
+    * `search_as` determines whether the field can be searched a filter, fulltext, more like a record(mlt) or a combination of the 3. Valid values are `[:filter]`, `[:fulltext]`, `[:mlt]` or `[:filter, :fulltext, :mlt]`. Default: `[]`. Detailed explanation of these configurations are below.
     * `store` is a boolean value which determines whether the field is stored in the Mongo database or not. Default: `true`.
     * `multi_value` is a boolean value which determines whether the value is stored as an array or single value. Default: `false`.
     * `solr_name` is a string which is the name of the field in Solr. Default: field's `name`.
@@ -54,6 +54,19 @@ string  :fulltext  do
   solr_name :text
 end 
 ```
+
+### Search as configurations
+
+#### fulltext
+The fulltext option indexes the field so it can be searched using the text parameter. For example, using the fulltext option on a title and description field would allow records to be found by any words appearing in these two fields.
+
+#### filter
+The filter option indexes fields so that queries can be filtered on a specific value of that field.
+Example query for `category` = `books`
+
+#### mlt
+This enables the "more like this" feature of Solr. when `[:mlt]` is configured with a field, Solr indexes the "relatedness of records" based on the fields with this option enabled.
+Query the api to return similar records using `/records/$record_id/more_like_this`.
 
 ## Groups
 Groups allow you to collect several fields together and reference them using a single value. 
