@@ -64,13 +64,28 @@ Create a user.
 
 ### Cron Jobs
 
-Supplejack has a few cronjobs that will help with indexing records. You can see examples of them in `schedule.example.rb`. The main one you should add is the `SupplejackApi::IndexRemainingRecordsInQueue` as it will index records that are in the Redis queue when there is not yet enough of them to trigger an index automatically.
+Supplejack has a few cronjobs that will help with indexing records. You can see examples of them in `schedule.example.rb`.
 
 ## Supplejack Sidekiq
 
 Supplejack has it's own instance of Sidekiq that you will need to run for the Full and Flush harvest to work. Start Sidekiq from the api directory with `bundle exec sidekiq`. If you are running both Sidekiq instances on the same machine, you will need to point them at separate Redis databases otherwise you will end up in problems where the two Sidekiqs are trying to process each others jobs. This can be done by appending `/<number>` to the end of your Redis URL.
 
 By default the Redis queues in Supplejack are numbered and differentiated between the worker and the api. However if you use Sidekiq to process other jobs on the same machine then you may want to change either the Redis numbered queue for those processes or for your worker and api to avoid any scenarios where two Sidekiqs may attempt to process each others jobs.
+
+## Indexing
+
+To index your records in the background, create a rake task that looks like so:
+
+```
+task :index_processor, [:batch_size] => [:environment] do |_, args|
+  loop do
+    SupplejackApi::IndexProcessor.new(args[:batch_size]).call
+    sleep 5
+  end
+end
+```
+
+This will look in Mongo for batches of records of your provided size to pull out and index. It will also remove records that have been deleted. We like to run this as a seperate long running ruby process. 
 
 ### Sidekiq Dashboard
 

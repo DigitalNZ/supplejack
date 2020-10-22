@@ -389,6 +389,19 @@ You can now see your records on the API! Go to `http://localhost:3000/records.js
 
 **Note the fields that are returned by default are determined by the groups on your RecordSchema. You can alter the your RecordSchema to whichever fields you would like, check out the docs here.**
 
+To index your records in the background, create a rake task that looks like so:
+
+```
+task :index_processor, [:batch_size] => [:environment] do |_, args|
+  loop do
+    SupplejackApi::IndexProcessor.new(args[:batch_size]).call
+    sleep 5
+  end
+end
+```
+
+This will look in Mongo for batches of records of your provided size to pull out and index. It will also remove records that have been deleted. We like to run this as a seperate long running ruby process. 
+
 ### Step Eight - Using the supplejack client to pull data from your API
 
 Create a new Rails application, this can be Rails 5 if you would like.
