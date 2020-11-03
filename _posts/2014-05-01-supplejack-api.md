@@ -74,16 +74,9 @@ By default the Redis queues in Supplejack are numbered and differentiated betwee
 
 ## Indexing
 
-To index your records in the background, create a rake task that looks like so:
+To index your records in the background, run the rake task that is provided by the engine as a seperate process.
 
-```
-task :index_processor, [:batch_size] => [:environment] do |_, args|
-  loop do
-    SupplejackApi::IndexProcessor.new(args[:batch_size]).call
-    sleep 5
-  end
-end
-```
+`bundle exec rake index_processor:run[1000]`
 
 This will look in Mongo for batches of records of your provided size to pull out and index. It will also remove records that have been deleted. We like to run this as a seperate long running ruby process. 
 
