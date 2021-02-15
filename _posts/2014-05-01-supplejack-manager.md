@@ -123,11 +123,11 @@ staging:
 
 ### Enabling MFA on the Manager
 
-MFA can be enabled on the manager by setting the environment variable MFA_ENABLED to true or by setting it to true in the application.rb. Once you have enabled MFA you can get totp codes for a specific user by running in the rails console so that they can login and then set it up for themselves.
+MFA can be enabled on the manager by setting the environment variable MFA_ENABLED to true and by adding the environment variable OTP_SECRET_KEY to your application.yaml. This value should be generated with `bundle exec rake secret`. Once you have enabled MFA you can get the secret key through the rails console a give it to a user so that they can set up MFA for themselves. 
 
 ```
 user = User.where(email: 'bla')
-ROTP::TOTP.new(user.otp_secret_key).at(DateTime.now)
+user.otp_secret_key
 ```
 
 If you are enabling it on an existing application, please run the rake task `users:configure_mfa` to set up the required fields on all of the users. 
