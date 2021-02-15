@@ -120,3 +120,14 @@ staging:
 * [Attribute Transformation Options](/supplejack/manager/attribute-transformation-options.html)
 * [Enrichments](/supplejack/manager/enrichments.html)
 * [Modifiers](/supplejack/manager/modifiers.html)
+
+### Enabling MFA on the Manager
+
+MFA can be enabled on the manager by setting the environment variable MFA_ENABLED to true or by setting it to true in the application.rb. Once you have enabled MFA you can get totp codes for a specific user by running in the rails console so that they can login and then set it up for themselves.
+
+```
+user = User.where(email: 'bla')
+ROTP::TOTP.new(user.otp_secret_key).at(DateTime.now)
+```
+
+If you are enabling it on an existing application, please run the rake task `users:configure_mfa` to set up the required fields on all of the users. 
