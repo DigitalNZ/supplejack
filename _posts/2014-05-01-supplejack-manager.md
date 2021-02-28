@@ -123,7 +123,7 @@ staging:
 
 ### Enabling MFA on the Manager
 
-MFA can be enabled on the manager by setting the environment variable MFA_ENABLED to true and by adding the environment variable OTP_SECRET_KEY to your application.yaml. This value should be generated with `bundle exec rake secret`. Once you have enabled MFA you can get the secret key through the rails console a give it to a user so that they can set up MFA for themselves. 
+MFA can be enabled on the manager by setting the environment variable MFA_ENABLED to true and by adding the environment variable OTP_SECRET_KEY. This value should be generated with `bundle exec rake secret`. Once you have enabled MFA you can get the secret key through the rails console a give it to a user so that they can set up MFA for themselves. 
 
 ```
 user = User.where(email: 'bla')
