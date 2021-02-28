@@ -120,3 +120,14 @@ staging:
 * [Attribute Transformation Options](/supplejack/manager/attribute-transformation-options.html)
 * [Enrichments](/supplejack/manager/enrichments.html)
 * [Modifiers](/supplejack/manager/modifiers.html)
+
+### Enabling MFA on the Manager
+
+MFA can be enabled on the manager by setting the environment variable MFA_ENABLED to true and by adding the environment variable OTP_SECRET_KEY. This value should be generated with `bundle exec rake secret`. Once you have enabled MFA you can get the secret key through the rails console a give it to a user so that they can set up MFA for themselves. 
+
+```
+user = User.where(email: 'bla')
+user.otp_secret_key
+```
+
+If you are enabling it on an existing application, please run the rake task `users:configure_mfa` to set up the required fields on all of the users. 
