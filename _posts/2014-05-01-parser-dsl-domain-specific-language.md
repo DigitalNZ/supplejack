@@ -93,7 +93,7 @@ The total_selector option is to extract the total amount of records so that the 
 
 The type option refers to the weather the pagination is implemented by specifiying the starting index like in the above case where you need to specify "item" or the case where you specify the actual page value, for this case use the value "page".  Use `type: 'tokenised'` for tokenised pagination.
 
-For apis that require an initial parameter for the first tokenised paginated request, but not for successive requests, you can use the `initial_parameter: 'abc'` method.
+For apis that require an initial parameter for the first tokenised paginated request, but not for successive requests, you can use the initial_param: 'cursor=*' method.
 
 #### Scroll Harvest
 
