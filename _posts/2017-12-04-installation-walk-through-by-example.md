@@ -98,15 +98,6 @@ Once you have done this, run `bundle install`. If there are conflicts, run `bund
 
 Next, we can run the supplejack installer with `bundle exec rails g supplejack_api:install`. Press Y for any questions that it asks you. This will generate the extra files that your app needs to be a working Supplejack API.
 
-Now you need to create the file `config/initializers/supplejack_api.rb` and add the following block of code.
-
-```Ruby
-SupplejackApi.setup do |config|
-  config.record_class = SupplejackApi::Record
-  config.preview_record_class = SupplejackApi::PreviewRecord
-end
-```
-
 You also need to remove this line:
 
 `protect_from_forgery with: :exception`
