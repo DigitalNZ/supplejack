@@ -18,12 +18,9 @@ This screencast provides a simple introduction to the basic approach of managing
 
 There are currently three different methods available for installing Supplejack
 
-1. Docker Installation - If you want to get started easily in development and use Docker, then this guide is a quick way to set everything up and see if Supplejack is
-right for your needs.
+1. Standard Installation - The best place to start for the manual installation ( suitable for use in production ) is the [Installation Walk-through by Example](/supplejack/start/installation-walk-through-by-example). In addition the production install guide can be found [here](/supplejack/start/production-install.html).
 
-2. Standard Installation - The best place to start for the manual installation ( suitable for use in production ) is the [Installation Walk-through by Example](/supplejack/start/installation-walk-through-by-example). In addition the production install guide can be found [here](/supplejack/start/production-install.html).
-
-3. Script Installation - Less control than the Standard Installation but more than the Docker installation method. This is a relatively quick way to get setup if you don't use
+2. Script Installation - Less control than the Standard Installation but more than the Docker installation method. This is a relatively quick way to get setup if you don't use
 Docker but still want to explore Supplejack and get up and running quickly.
 
 ### Contact us or get involved
