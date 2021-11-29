@@ -1,3 +1,5 @@
-_si*
-_pa*
-.DS_Store
+_site
+.sass-cache
+.jekyll-metadata
+.bundle
+.env
