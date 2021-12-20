@@ -31,9 +31,9 @@ From the Manager's project root, create a user from the console:
 ```ruby
 rails c
  > User.create!(email: 'your@email.com', name: 'Joe Doe', password: 'p@ssw0rd', password_confirmation: 'p@ssw0rd').
-=> #<User _id: 5371508b5311633df8000001, created_at: 2014-05-12 22:51:55 UTC, updated_at: 2014-05-12 22:51:55 UTC, name: "Joe Doe", email: "your@email.com", encrypted_password: "$2a$10$pKS9ydWHRWtbywuIWBBiy.Yn16QR3ZKmuPXFzQIyJqJHZtrb5c1uq", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 0, current_sign_in_at: nil, last_sign_in_at: nil, current_sign_in_ip: nil, last_sign_in_ip: nil, authentication_token: "BYh6ovEAWwLyxJpqRrwE">
+=> #<User _id: 5371508b5311633df8000001, created_at: 2014-05-12 22:51:55 UTC, updated_at: 2014-05-12 22:51:55 UTC, name: "Joe Doe", email: "your@email.com", encrypted_password: "$2a$10$pKS9ydWHRWtbywuIWBBiy.Yn16QR3ZKmuPXFzQIyJqJHZtrb5c1uq", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 0, current_sign_in_at: nil, last_sign_in_at: nil, current_sign_in_ip: nil, last_sign_in_ip: nil, authentication_token: "MANAGER_API_KEY">
  > User.last.authentication_token
-=> "BYh6ovEAWwLyxJpqRrwE"
+=> "MANAGER_API_KEY"
 ```
 
 ### Supplejack API integration
@@ -123,11 +123,11 @@ staging:
 
 ### Enabling MFA on the Manager
 
-MFA can be enabled on the manager by setting the environment variable MFA_ENABLED to true and by adding the environment variable OTP_SECRET_KEY. This value should be generated with `bundle exec rake secret`. Once you have enabled MFA you can get the secret key through the rails console a give it to a user so that they can set up MFA for themselves. 
+MFA can be enabled on the manager by setting the environment variable MFA_ENABLED to true and by adding the environment variable OTP_SECRET_KEY. This value should be generated with `bundle exec rake secret`. Once you have enabled MFA you can get the secret key through the rails console a give it to a user so that they can set up MFA for themselves.
 
 ```
 user = User.where(email: 'bla')
 user.otp_secret_key
 ```
 
-If you are enabling it on an existing application, please run the rake task `users:configure_mfa` to set up the required fields on all of the users. 
+If you are enabling it on an existing application, please run the rake task `users:configure_mfa` to set up the required fields on all of the users.

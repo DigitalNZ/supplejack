@@ -10,7 +10,7 @@ order: 3
 `http://localhost:3000/schema`
 
 ### Display a single concept ###
-`http://localhost:3000/concepts/1.json?api_key=your-api-key`
+`http://localhost:3000/concepts/1.json`
 
 #### Request ####
 
@@ -21,7 +21,7 @@ order: 3
 | inline_context| Displays @context values (defaults to false) |
 
 ### Display a records associated with a concept ###
-`http://localhost:3000/concepts/1/records.json?api_key=your-api-key`
+`http://localhost:3000/concepts/1/records.json`
 
 #### Request ####
 
@@ -35,7 +35,7 @@ order: 3
 | direction     | Order of the sort `asc` or `desc` |
 
 ### Search for concepts ###
-`http://localhost:3000/concepts.json?api_key=your-api-key&text=Salomon`
+`http://localhost:3000/concepts.json?text=Salomon`
 
 #### Request ####
 
@@ -52,7 +52,7 @@ order: 3
 
 Search using `text`.
 
-`http://localhost:3000/concepts.json?api_key=your-api-key&text=Salomon`
+`http://localhost:3000/concepts.json?text=Salomon`
 
 ```json
 {
@@ -81,14 +81,14 @@ Search using `text`.
         ],
         "per_page": 20,
         "page": 1,
-        "request_url": "http://localhost:3000/concepts.json?api_key=our-api-key&text=Salomon"
+        "request_url": "http://localhost:3000/concepts.json?text=Salomon"
     }
 }
 ```
 
 Using `facets`.
 
-`http://localhost:3000/concepts.json?api_key=your-api-key&facets=label`
+`http://localhost:3000/concepts.json?facets=label`
 
 ```json
 {
@@ -101,7 +101,7 @@ Using `facets`.
         ],
         "per_page": 20,
         "page": 1,
-        "request_url": "http://localhost:3000/concepts.json?api_key=your-api-key&facets=label",
+        "request_url": "http://localhost:3000/concepts.json?facets=label",
         "facets": {
             "label": {
                 "Frances Hodgkins": 1,
@@ -117,7 +117,7 @@ Using `facets`.
 
 Display specific fields using `fields`.
 
-`http://localhost:3000/concepts.json?api_key=your-api-key&text=Salomon&fields=prefLabel`
+`http://localhost:3000/concepts.json?text=Salomon&fields=prefLabel`
 
 ```json
 {
@@ -134,7 +134,7 @@ Display specific fields using `fields`.
         ],
         "per_page": 20,
         "page": 1,
-        "request_url": "http://localhost:3000/concepts.json?api_key=your-api-key&text=Rita&fields=prefLabel",
+        "request_url": "http://localhost:3000/concepts.json?text=Rita&fields=prefLabel",
         "facets": {}
     }
 }
@@ -142,7 +142,7 @@ Display specific fields using `fields`.
 
 Sorting search results using `sort` and `direction`.
 
-`http://localhost:3000/concepts.json?api_key=your-api-key&sort=dateOfBirth&direction=asc&fields=dateOfBirth,label`
+`http://localhost:3000/concepts.json?sort=dateOfBirth&direction=asc&fields=dateOfBirth,label`
 
 ```json
 {
@@ -177,7 +177,7 @@ Sorting search results using `sort` and `direction`.
         ],
         "per_page": 20,
         "page": 1,
-        "request_url": "http://localhost:3000/concepts.json?api_key=your-api-key&sort=dateOfBirth&direction=asc&fields=dateOfBirth,label",
+        "request_url": "http://localhost:3000/concepts.json?sort=dateOfBirth&direction=asc&fields=dateOfBirth,label",
         "facets": {}
     }
 }

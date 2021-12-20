@@ -93,4 +93,4 @@ $ rails server
 ```
 
 
-Once complete you will be able to access your API (at http://localhost:3000/records.json?api_key=USER_API_KEY) and harvest new data from external sources.
+Once complete you will be able to access your API (at http://localhost:3000/records.json) and harvest new data from external sources.

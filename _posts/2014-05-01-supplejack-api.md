@@ -46,9 +46,9 @@ Create a user.
 
 ```ruby
  > SupplejackApi::User.create(email: 'your@email.com', name: 'Your Name', username: 'your_username')
-=> #<SupplejackApi::User _id: 53d58681f694195642000002, created_at: 2014-07-27 23:08:49 UTC, updated_at: 2014-07-27 23:08:49 UTC, email: "your@email.com", encrypted_password: nil, name: "Your Name", username: "your_username", sign_in_count: nil, current_sign_in_at: nil, last_sign_in_at: nil, current_sign_in_ip: nil, last_sign_in_ip: nil, authentication_token: "JmVe15z2BSHDwaVsjMvA", daily_requests: 0, monthly_requests: 0, max_requests: 10000, role: "developer", daily_activity: nil, daily_activity_stored: true>
+=> #<SupplejackApi::User _id: 53d58681f694195642000002, created_at: 2014-07-27 23:08:49 UTC, updated_at: 2014-07-27 23:08:49 UTC, email: "your@email.com", encrypted_password: nil, name: "Your Name", username: "your_username", sign_in_count: nil, current_sign_in_at: nil, last_sign_in_at: nil, current_sign_in_ip: nil, last_sign_in_ip: nil, authentication_token: "WORKER_API_KEY", daily_requests: 0, monthly_requests: 0, max_requests: 10000, role: "developer", daily_activity: nil, daily_activity_stored: true>
  > SupplejackApi::User.last.authentication_token
-=> "RhymLHa9xRQGU8gyAYXP"
+=> "WORKER_API_KEY"
 ```
 
 ### Cron Jobs
@@ -67,7 +67,7 @@ To index your records in the background, run the rake task that is provided by t
 
 `bundle exec rake index_processor:run[1000]`
 
-This will look in Mongo for batches of records of your provided size to pull out and index. It will also remove records that have been deleted. We like to run this as a seperate long running ruby process. 
+This will look in Mongo for batches of records of your provided size to pull out and index. It will also remove records that have been deleted. We like to run this as a seperate long running ruby process.
 
 ### Sidekiq Dashboard
 

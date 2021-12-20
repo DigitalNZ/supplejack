@@ -9,4 +9,4 @@ order: 1
 ## Search ##
 
 ### Search for records ###
-`http://localhost:3000/records.json?api_key=your-api-key&text=Salomon`
+`http://localhost:3000/records.json?text=Salomon`

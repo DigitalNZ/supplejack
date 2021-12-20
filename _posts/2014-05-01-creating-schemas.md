@@ -34,7 +34,7 @@ You must name your class `Schema` and it must include `SupplejackApi::Supplejack
 :updated_at             # When the record was last updated.
 
 # You can view the core fields on a record by adding &fields=internal_fields to a request
-# e.g. http://localhost:3000/records/1.json?api_key=zNyseQUT9vybmZsBo-af&fields=internal_fields
+# e.g. http://localhost:3000/records/1.json?fields=internal_fields
 ```
 
 Once you have defined your class you can begin adding fields, groups and roles. For more details about how to do this you can view the [Schema DSL documentation](supplejack/api/schema-dsl-domain-specific-language.html). You must define at least one group and role, and mark them as `default`, before you can view records from your API.
@@ -156,7 +156,7 @@ The `:sets` group acts as the default list of fields that will be used to displa
 
 The `:valid_set_fields` group acts as a way to validate additional fields that have been passed to a user set.
 
-For example, when you are querying for User Set data `/sets/SET_ID.json?api_key=API_KEY&fields=name`, the passed field will need to be in the `:valid_set_fields` group, otherwise it will be ignored.
+For example, when you are querying for User Set data `/sets/SET_ID.json?fields=name`, the passed field will need to be in the `:valid_set_fields` group, otherwise it will be ignored.
 
 
 ### Example Set Groups ###

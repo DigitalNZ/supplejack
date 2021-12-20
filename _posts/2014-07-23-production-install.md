@@ -216,7 +216,7 @@ listen application 0.0.0.0:81
 
 1. Ensure MongoDB running via `mongo`
 1. Ensure Solr is running at http://api.example.com:8080
-1. Ensure that the API is running at http://api.example.com/records/1.json?api_key=API_KEY
+1. Ensure that the API is running at http://api.example.com/records/1.json
 1. Ensure that Sidekiq for API is running at http://api.example.com/sidekiq
 1. Ensure that Sidekiq for worker is running at http://worker.example.com/sidekiq
 1. Ensure that the manager is running at http://manager.example.com
