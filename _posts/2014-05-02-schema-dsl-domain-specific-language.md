@@ -52,7 +52,7 @@ string  :fulltext  do
     text.flatten.join(" ")
   end
   solr_name :text
-end 
+end
 ```
 
 ### Search as configurations
@@ -69,16 +69,16 @@ This enables the "more like this" feature of Solr. when `[:mlt]` is configured w
 Query the api to return similar records using `/records/$record_id/more_like_this`.
 
 ## Groups
-Groups allow you to collect several fields together and reference them using a single value. 
+Groups allow you to collect several fields together and reference them using a single value.
 
 Groups are a set of fields which are returned from the API. There _must_ be a single default group which is returned when no explicit group is requested.
 
-The groups are exposed via the `fields` URL parameter, such as http://api.example.com/records/123?api_key=abc&fields=verbose
+The groups are exposed via the `fields` URL parameter, such as http://api.example.com/records/123?fields=verbose
 
 A group consists of:
 
-* `name` is a ruby identifier, must be unique. _Required_    
-* `default` is a boolean determining that this is the default group for a query.  
+* `name` is a ruby identifier, must be unique. _Required_
+* `default` is a boolean determining that this is the default group for a query.
 At least one of the following must exist:
 * `fields` is an array of symbols defining the fields in that group. The fields must be defined (see above).
 * `includes` is an array of symbols signifing that all fields from the given group(s) are included in this group.
@@ -104,7 +104,7 @@ end
 
 ```javascript
 // Sample requests with different groups
-// api.supplejack.com/records/123.json?api_key=abc123
+// api.supplejack.com/records/123.json?
 {
   "record": {
      name: "Joe Smith",
@@ -112,7 +112,7 @@ end
   }
 }
 
-// api.supplejack.com/records/123.json?api_key=abc123&fields=all_fields
+// api.supplejack.com/records/123.json?fields=all_fields
 {
   "record": {
      name: "Joe Smith",
@@ -134,7 +134,7 @@ A role has field and restrictions. A field restriction means that the field valu
 The groups consists of:
 
 * `name` is a ruby identifier, must be unique. _Required_
-* `default` is a boolean determining that this is the default role for a new user.  
+* `default` is a boolean determining that this is the default role for a new user.
 Both are optional:
 * `field_restrictions` is a Hash where the key is the `field` to match, and the value is another Hash, the key of which is value of the `field` to match, and the value is the `field` is restricted. The value of `field` to match can either be a single `string` or a `RegEx`.
    * The example above restricts the `attachments` field when the `collection` is `NZ On Screen` and `large_thumbail_url` field when it includes `secret.com`.
