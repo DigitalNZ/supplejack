@@ -11,4 +11,4 @@ Each user has an API key. You need to provide this API key with the header `Auth
 curl -H 'Authentication-Token: <API_KEY>' https://api.example.com/
 ```
 
-Depending on how your app is configured you'll need this API key or not. A user/api key is attached to a role. The role defines what read/write actions you can do on every resources.
+Depending on how your app is configured this authentication can control access to your resources/endpoints. A user/api key is attached to a role. The roles can define what read/write actions users can do on any resource.
