@@ -58,7 +58,7 @@ For more information on how to install ruby, you can refer to [official ruby gui
 
 ### Rails
 
-**Version: 6.1.4.1**
+**Version: 6.1.4.6**
 
 **Description**: [Rails](http://rubyonrails.org/) is a full-stack open source web application framework.
 
