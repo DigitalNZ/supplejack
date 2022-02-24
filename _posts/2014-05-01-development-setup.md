@@ -41,7 +41,7 @@ To install the full stack run the following command:
 ```bash
 # You should replace 'mysupplejack_api_name' with the name of your app.
 
-$ rails _5.1.4_ new mysupplejack_api_name --skip-bundle -m https://raw.github.com/digitalnz/supplejack_installation/master/supplejack_api_template.rb
+$ rails _RAILS_VERSION_ new mysupplejack_api_name --api --skip-bundle -m https://raw.github.com/digitalnz/supplejack_installation/master/supplejack_api_template.rb
 ```
 **Note:** Be sure to record the user API key that is printed to the terminal during the install process.
 

@@ -17,7 +17,7 @@ We recommend OSX users use the [Homebrew](http://brew.sh/) package manager to ma
 
 ### Ruby
 
-**Version: 2.3.0**
+**Version: 3.0.x**
 
 **Description**: [Ruby](https://www.ruby-lang.org/) is a general purpose programming language. The Rails web framework and all Supplejack components are written in Ruby.
 
@@ -28,7 +28,7 @@ We strongly recommend using [rbenv](https://github.com/sstephenson/rbenv) to man
 Once rbenv is installed, you should [install Ruby 2.3.0](https://github.com/sstephenson/rbenv#choosing-the-ruby-version).
 
 ```
-$ rbenv install 2.3.0
+$ rbenv install 3.0.x
 ```
 
 **Alternative _rbnenv_ installation for OSX using _Homebrew_:**
@@ -45,7 +45,7 @@ $ echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi' >> ~/.bash_
 Once rbenv is installed, you should [install Ruby 2.3.0](https://github.com/sstephenson/rbenv#choosing-the-ruby-version).
 
 ```
-$ rbenv install 2.3.0
+$ rbenv install 3.0.x
 ```
 
 
@@ -58,7 +58,7 @@ For more information on how to install ruby, you can refer to [official ruby gui
 
 ### Rails
 
-**Version: 5.1.4**
+**Version: 6.1.4.6**
 
 **Description**: [Rails](http://rubyonrails.org/) is a full-stack open source web application framework.
 
@@ -66,12 +66,12 @@ For more information on how to install ruby, you can refer to [official ruby gui
 
 If you are using [rbenv](https://github.com/sstephenson/rbenv), simply enter the following command:
 
-`gem install rails -v '5.1.4'`
+`gem install rails -v '6.1.4.1'`
 
 
 ### MongoDB
 
-**Version: 3.4 or greater**
+**Version: 4.0 or greater**
 
 **Description**: Supplejack uses MongoDB as a data store. You can learn about MongoDB on its [website](http://www.mongodb.org/) or on the [Wikipedia](http://en.wikipedia.org/wiki/MongoDB) page.
 
@@ -120,7 +120,7 @@ $ brew install redis
 
 ### Apache Solr
 
-**Version: 5.3.1**
+**Version: 6.4**
 
 **Description:** [Solr](http://lucene.apache.org/solr/) is the full-text search platform that underpins the Supplejack Records API.
 
