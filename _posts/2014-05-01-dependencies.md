@@ -58,7 +58,7 @@ For more information on how to install ruby, you can refer to [official ruby gui
 
 ### Rails
 
-**Version: 6.1.4.6**
+**Version: 7.0.2.2**
 
 **Description**: [Rails](http://rubyonrails.org/) is a full-stack open source web application framework.
 
@@ -66,7 +66,7 @@ For more information on how to install ruby, you can refer to [official ruby gui
 
 If you are using [rbenv](https://github.com/sstephenson/rbenv), simply enter the following command:
 
-`gem install rails -v '6.1.4.1'`
+`gem install rails -v '7.0.2.2'`
 
 
 ### MongoDB
