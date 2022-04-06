@@ -114,6 +114,8 @@ Note, make **sure** that you have the *harvester* role. Otherwise you will get a
 
 Once the user has been made, copy it’s authentication_token and put it in the `config/application.yml` of each the Worker and the Manger where it says HARVESTER_API_KEY. Again, you will need to do this for *each* environment.
 
+We also need the WORKER_HOST and the WORKER_KEY environment variables in the API. So add these environment variables and the correct values to them in `config/application.yml`.
+
 You are now ready to run the stack!
 
 ### Step Six - Running the Stack
