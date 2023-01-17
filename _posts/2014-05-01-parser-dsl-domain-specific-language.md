@@ -99,8 +99,7 @@ For apis that require an initial parameter for the first tokenised paginated req
 
 You can harvest from an Elastic Search scroll endpoint by providing `paginte type: "scroll"` in your parser. The worker is expecting all requests to be a GET request and it knows when to stop when there are no more results coming from the API. The results are expected to be in the body of the document in the JSON body['hits']['hits'] keys. 
 
-To generate the next URL the worker will convert the base URL (EG https://content-partner.com/search/collection/_search?scroll=10m&q=334) into the format (https://content-partner.com/search/_search/scroll/<-scroll_id->?scroll=1m) and it will pull the scroll-id from the body['_scroll_id'] key in the response.
-
+To generate the next URL the worker will convert the base URL (EG https://content-partner.com/search/collection/_search?scroll=10m&q=334) into the format (https://content-partner.com/search/_search/scroll/<-scroll_id->?scroll=10m&q=334) and it will pull the scroll-id from the body['_scroll_id'] key in the response. 
 Here is an example:
 
 ```
