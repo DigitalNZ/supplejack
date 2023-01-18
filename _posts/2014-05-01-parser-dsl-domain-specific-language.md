@@ -97,15 +97,27 @@ For apis that require an initial parameter for the first tokenised paginated req
 
 #### Scroll Harvest
 
-You can harvest from an Elastic Search scroll harvest endpoint by providing `paginate type: "scroll"` in your parser. The parser is expecting the first request to be a POST request so make sure that your base_url is given accordingly. The harvest will automatically page to subsequent pages via the header location that is returned from each page. You do not have to do anything extra. All provided http_headers will come through as expected.
+You can harvest from an Elastic Search scroll endpoint by providing `paginte type: "scroll"` in your parser. The worker is expecting all requests to be a GET request and it knows when to stop when there are no more results coming from the API. The results are expected to be in the body of the document in the JSON body['hits']['hits'] keys. 
+
+To generate the next URL the worker will convert the base URL (EG https://content-partner.com/search/collection/_search?scroll=10m&q=334) into the format (https://content-partner.com/search/_search/scroll/<-scroll_id->?scroll=10m&q=334) and it will pull the scroll-id from the body['_scroll_id'] key in the response. 
+Here is an example:
+
+```
+paginate type: "scroll", duration_parameter: 'scroll', duration_value: '1m'
+```
+
+If your content partner is doing something different, you can override the way the the worker will generate the next scroll url and how it determines what the next URL is by providing the respective blocks. 
 
 Here is an example:
 
 ```
-base_url "https://data.tepapa.govt.nz/collection/search/_scroll/?q=&size=50"
-http_headers({'x-api-key': '<YOUR_API_KEY>'})
-paginate type: "scroll"
+  paginate type: "scroll", 
+  	   next_scroll_url_block: proc { |url, klass| url.match('(?<base_url>.+\/collection)')[:base_url] + klass._document.headers[:location] },
+           scroll_more_results_block: proc { |klass| klass._document.code == 303 }
 ```
+
+The next scroll url block tells the worker how to construct the base url and where the next scroll token comes from. 
+The scroll_more_results_block tells the worker when to keep going and fetch more results.
 
 ## Reject records
 ### reject_if
