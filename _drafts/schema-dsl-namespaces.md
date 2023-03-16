@@ -20,6 +20,7 @@ where:
     * `solr_name` is a string which is the name of the field in Solr. Default: field's `name`.
     * `namespace` the namespace of this field.
     * `namespace_field` the field name from the namespace. Use if your field name is not the same as the defined in the namespace
+    * `facet_method` allows overriding the default facet method used by Solr. Valid values are 'enum', 'fc', or 'fcs'. More information about Solrs faceting methods can be found in the Solr documentation. 
 * `block`
     * `search_value` is a Ruby `Proc` which produces the value which should be indexed by Solr. The block is executed when the field is indexed. Must be the same type as the field's `type`. Default: `nil`.
 
